@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>FazendasUp - Gestão de Pedidos</title>
     <style>
         * {
@@ -11,48 +11,66 @@
             box-sizing: border-box;
         }
         
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #f5f5f5;
             color: #333;
+            display: flex;
+            flex-direction: column;
         }
         
+        /* Header */
         .header {
             background: linear-gradient(135deg, #2d7a3a 0%, #1e5a28 100%);
             color: white;
-            padding: 20px;
+            padding: 16px 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-shrink: 0;
+            gap: 10px;
         }
         
         .header h1 {
-            font-size: 24px;
+            font-size: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .header-info {
-            font-size: 12px;
+            font-size: 11px;
             opacity: 0.9;
+            white-space: nowrap;
         }
         
-        .container {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            height: calc(100vh - 80px);
+        /* Main Container */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
         }
         
+        /* Sidebar */
         .sidebar {
             background: white;
             border-right: 1px solid #e5e7eb;
-            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
             overflow-y: auto;
+            min-width: 180px;
         }
         
         .tab-btn {
             display: block;
             width: 100%;
-            padding: 12px 20px;
+            padding: 14px 16px;
             text-align: left;
             background: none;
             border: none;
@@ -61,6 +79,7 @@
             color: #666;
             transition: all 0.3s;
             border-left: 3px solid transparent;
+            white-space: nowrap;
         }
         
         .tab-btn:hover {
@@ -75,8 +94,10 @@
             font-weight: 600;
         }
         
+        /* Content */
         .content {
-            padding: 30px;
+            flex: 1;
+            padding: 20px;
             overflow-y: auto;
             background: #f5f5f5;
         }
@@ -84,41 +105,41 @@
         .card {
             background: white;
             border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 16px;
+            margin-bottom: 16px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         
         .card h2 {
             color: #2d7a3a;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-size: 18px;
         }
         
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
         }
         
         .stat-box {
             background: linear-gradient(135deg, #f0f9f1 0%, #e8f5ea 100%);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
             text-align: center;
         }
         
         .stat-number {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             color: #2d7a3a;
         }
         
         .stat-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #666;
-            margin-top: 5px;
+            margin-top: 4px;
         }
         
         .metric {
@@ -144,30 +165,53 @@
             padding: 12px;
             background: #f8faf8;
             border-radius: 6px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            gap: 8px;
+        }
+        
+        .list-item-content {
+            flex: 1;
+            min-width: 0;
         }
         
         .list-item-title {
             font-weight: 600;
             color: #333;
+            font-size: 14px;
         }
         
         .list-item-subtitle {
             font-size: 12px;
             color: #999;
-            margin-top: 4px;
+            margin-top: 2px;
+        }
+        
+        .list-item-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        
+        .btn-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px 8px;
+            color: #2d7a3a;
         }
         
         .button {
             background: #2d7a3a;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 16px;
             border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             transition: background 0.3s;
+            width: 100%;
         }
         
         .button:hover {
@@ -175,7 +219,7 @@
         }
         
         .search-box {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .search-box input {
@@ -186,6 +230,7 @@
             font-size: 14px;
         }
         
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -197,6 +242,7 @@
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
         
         .modal.active {
@@ -206,30 +252,30 @@
         .modal-content {
             background: white;
             border-radius: 8px;
-            padding: 30px;
-            width: 90%;
+            padding: 20px;
+            width: 100%;
             max-width: 500px;
             max-height: 90vh;
             overflow-y: auto;
         }
         
         .modal-header {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             color: #2d7a3a;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             color: #333;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 13px;
         }
         
         .form-group input,
@@ -250,8 +296,8 @@
         
         .modal-footer {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 8px;
+            margin-top: 16px;
         }
         
         .btn-primary {
@@ -263,6 +309,7 @@
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 14px;
         }
         
         .btn-primary:hover {
@@ -278,22 +325,118 @@
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 14px;
         }
         
         .btn-secondary:hover {
             background: #d1d5db;
         }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 16px;
+            }
+            
+            .header h1 {
+                font-size: 18px;
+            }
+            
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                display: flex;
+                flex-direction: row;
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+                overflow-x: auto;
+                overflow-y: hidden;
+                min-width: auto;
+                max-height: 50px;
+            }
+            
+            .tab-btn {
+                flex-shrink: 0;
+                padding: 12px 14px;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                font-size: 13px;
+            }
+            
+            .tab-btn.active {
+                border-left: none;
+                border-bottom-color: #2d7a3a;
+                background: transparent;
+            }
+            
+            .content {
+                padding: 16px;
+            }
+            
+            .card {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 10px 12px;
+            }
+            
+            .header h1 {
+                font-size: 16px;
+            }
+            
+            .header-info {
+                display: none;
+            }
+            
+            .content {
+                padding: 12px;
+            }
+            
+            .card {
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+            
+            .card h2 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            .stat-number {
+                font-size: 18px;
+            }
+            
+            .stat-label {
+                font-size: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>🥬 FazendasUp - Gestão de Pedidos</h1>
+        <h1>🥬 FazendasUp</h1>
         <div class="header-info">
-            Última atualização: <span id="lastUpdate">--:--:--</span>
+            <span id="lastUpdate">--:--:--</span>
         </div>
     </div>
     
-    <div class="container">
+    <div class="main-container">
         <div class="sidebar">
             <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
             <button class="tab-btn" data-tab="agenda">📅 Agenda</button>
@@ -304,7 +447,7 @@
         <div id="content" class="content"></div>
     </div>
     
-    <!-- Cliente Modal -->
+    <!-- Modals -->
     <div id="clienteModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">Novo Cliente</div>
@@ -313,14 +456,11 @@
                 <input type="text" id="clienteNome" placeholder="Ex: João Silva">
             </div>
             <div class="form-group">
-                <label>Telefone</label>
-                <input type="tel" id="clienteTelefone" placeholder="Ex: (11) 99999-9999">
-            </div>
-            <div class="form-group">
                 <label>Período de Entrega</label>
                 <select id="clientePeriodo">
-                    <option value="manha">Manhã</option>
-                    <option value="tarde">Tarde</option>
+                    <option value="">Selecionar...</option>
+                    <option value="Manhã">Manhã</option>
+                    <option value="Tarde">Tarde</option>
                 </select>
             </div>
             <div class="form-group">
@@ -328,23 +468,19 @@
                 <input type="time" id="clienteHorarioMax">
             </div>
             <div class="form-group">
-                <label>Prazo de Boleto (dias)</label>
-                <input type="number" id="clientePrazoBoleto" placeholder="Ex: 3">
+                <label>Prazo de Boleto</label>
+                <input type="text" id="clientePrazoBoleto" placeholder="Ex: 10 dias">
             </div>
             <div class="form-group">
                 <label>Cobra Entrega?</label>
                 <select id="clienteCobraEntrega">
-                    <option value="nao">Não</option>
-                    <option value="sim">Sim</option>
+                    <option value="false">Não</option>
+                    <option value="true">Sim</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Observações</label>
                 <textarea id="clienteObservacoes" placeholder="Ex: Boleto para 3 dias"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Acumula Pedidos (dias)</label>
-                <input type="number" id="clienteAcumulaPedidos" placeholder="Ex: 15">
             </div>
             <div class="modal-footer">
                 <button class="btn-primary" onclick="saveCliente()">Salvar</button>
@@ -353,7 +489,6 @@
         </div>
     </div>
     
-    <!-- Produto Modal -->
     <div id="produtoModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">Novo Produto</div>
@@ -362,12 +497,12 @@
                 <input type="text" id="produtoNome" placeholder="Ex: Alface Crespa Verde">
             </div>
             <div class="form-group">
-                <label>Categoria</label>
-                <input type="text" id="produtoCategoria" placeholder="Ex: Folhosas">
+                <label>Categorias (separadas por vírgula)</label>
+                <input type="text" id="produtoCategoria" placeholder="Ex: Folhosas, Orgânico">
             </div>
             <div class="form-group">
                 <label>Preço Base (R$)</label>
-                <input type="number" id="produtoPrecoBase" placeholder="Ex: 3,50" step="0.01">
+                <input type="number" id="produtoPrecoBase" placeholder="Ex: 3,50" step="0.01" min="0">
             </div>
             <div class="modal-footer">
                 <button class="btn-primary" onclick="saveProduto()">Salvar</button>
@@ -376,17 +511,32 @@
         </div>
     </div>
     
-    <!-- Pedido Modal -->
     <div id="pedidoModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">Novo Pedido</div>
             <div class="form-group">
                 <label>Cliente</label>
-                <input type="text" id="pedidoCliente" placeholder="Ex: João Silva">
+                <select id="pedidoCliente">
+                    <option value="">Selecionar cliente...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Dia da Semana</label>
+                <select id="pedidoDia">
+                    <option value="">Selecionar...</option>
+                    <option value="Segunda">Segunda</option>
+                    <option value="Terça">Terça</option>
+                    <option value="Quarta">Quarta</option>
+                    <option value="Quinta">Quinta</option>
+                    <option value="Sexta">Sexta</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>Produto</label>
-                <input type="text" id="pedidoProduto" placeholder="Ex: Alface Crespa Verde">
+                <select id="pedidoProduto">
+                    <option value="">Selecionar produto...</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>Categoria</label>
@@ -394,11 +544,20 @@
             </div>
             <div class="form-group">
                 <label>Quantidade</label>
-                <input type="number" id="pedidoQuantidade" placeholder="Ex: 10">
+                <input type="number" id="pedidoQuantidade" placeholder="Ex: 10" min="1">
             </div>
             <div class="form-group">
-                <label>Preço (R$)</label>
-                <input type="number" id="pedidoPreco" placeholder="Ex: 3,50" step="0.01">
+                <label>Tipo de Venda</label>
+                <select id="pedidoTipoVenda">
+                    <option value="">Selecionar...</option>
+                    <option value="Venda">Venda</option>
+                    <option value="Cortesia">Cortesia</option>
+                    <option value="Devolução">Devolução</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Observações</label>
+                <textarea id="pedidoObservacoes" placeholder="Ex: Entregar de manhã"></textarea>
             </div>
             <div class="modal-footer">
                 <button class="btn-primary" onclick="savePedido()">Salvar</button>
