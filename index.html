@@ -113,16 +113,6 @@
             padding: 20px;
         }
 
-        /* Search Input */
-        .search-input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
         /* Sections */
         .section {
             background: var(--surface);
@@ -208,19 +198,53 @@
             font-size: 12px;
         }
 
-        /* Lists */
-        .volume-list,
-        .products-list,
-        .orders-count,
-        .products-count {
+        /* Volume List */
+        .volume-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .volume-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .volume-day {
+            width: 40px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .volume-bar {
+            flex: 1;
+            height: 20px;
+            background: var(--bg);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .volume-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .volume-count {
+            width: 40px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        /* Products List */
+        .products-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
-        .volume-item,
-        .product-item,
-        .order-item {
+        .product-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -230,17 +254,97 @@
             border-left: 4px solid var(--primary);
         }
 
-        .product-rank {
+        .product-name {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .product-qty {
             background: var(--primary);
             color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Today Deliveries */
+        .today-deliveries {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .client-delivery-card {
+            background: var(--bg);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .client-header {
+            margin-bottom: 12px;
+        }
+
+        .client-info h4 {
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .client-meta {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .client-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .client-obs {
+            background: rgba(243, 156, 18, 0.1);
+            border-left: 3px solid var(--warning);
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--warning);
+            margin-bottom: 12px;
+        }
+
+        .custom-prices {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .prices-label {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text);
+            margin-bottom: 4px;
         }
 
         /* Day Sections */
@@ -258,71 +362,79 @@
             font-size: 16px;
         }
 
-        .pedidos-list {
+        .clientes-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .pedido-card {
+        .cliente-group {
             background: var(--bg);
-            padding: 15px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 6px;
             border-left: 4px solid var(--primary);
         }
 
-        .pedido-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .cliente-name {
+            font-weight: bold;
+            color: var(--text);
             margin-bottom: 10px;
         }
 
-        .pedido-cliente {
-            font-weight: bold;
-            color: var(--text);
+        .pedidos-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .pedido-details {
+        .pedido-item {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .pedido-top {
             display: flex;
-            gap: 15px;
-            margin-bottom: 8px;
-            font-size: 14px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
         }
 
         .pedido-produto {
-            color: var(--text-light);
+            font-weight: 500;
+            color: var(--text);
         }
 
         .pedido-qty {
-            background: var(--primary);
+            background: var(--secondary);
             color: white;
             padding: 2px 8px;
             border-radius: 4px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
         }
 
         .pedido-categoria {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-light);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .pedido-obs {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--warning);
             font-style: italic;
             margin-bottom: 8px;
-            padding: 8px;
+            padding: 6px;
             background: rgba(243, 156, 18, 0.1);
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         .pedido-actions {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 8px;
+            margin-top: 8px;
         }
 
         .status-select {
@@ -332,6 +444,15 @@
             border-radius: 4px;
             font-size: 12px;
             cursor: pointer;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            padding: 6px 10px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
         }
 
         /* Grids */
@@ -394,6 +515,21 @@
             border-radius: 4px;
         }
 
+        .precos-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .preco-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            padding: 6px;
+            background: var(--bg);
+            border-radius: 4px;
+        }
+
         .produto-info,
         .produto-stats {
             display: flex;
@@ -443,28 +579,6 @@
             font-size: 18px;
             cursor: pointer;
             padding: 0;
-        }
-
-        /* Status Badges */
-        .status-badge {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: white;
-        }
-
-        .status-badge.pendente {
-            background: var(--warning);
-        }
-
-        .status-badge.entregue {
-            background: var(--success);
-        }
-
-        .status-badge.cancelado {
-            background: var(--danger);
         }
 
         /* Modals */
@@ -559,34 +673,33 @@
             flex: 1;
         }
 
+        /* Preço Especial */
+        .preco-input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .preco-input-row select,
+        .preco-input-row input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .preco-input-row .btn-delete {
+            flex: 0;
+            padding: 8px;
+        }
+
         /* Empty State */
         .empty-state {
             text-align: center;
             padding: 40px 20px;
             color: var(--text-light);
             font-size: 14px;
-        }
-
-        .today-orders,
-        .today-products {
-            background: var(--bg);
-            padding: 15px;
-            border-radius: 8px;
-        }
-
-        .orders-count,
-        .products-count {
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .more-items {
-            text-align: center;
-            padding: 10px;
-            color: var(--text-light);
-            font-size: 12px;
-            font-style: italic;
         }
 
         /* Responsive */
@@ -657,134 +770,154 @@
     <div id="pedidoModal" class="modal">
         <div class="modal-content">
             <h2>Novo Pedido</h2>
-            <div class="form-group">
-                <label>Cliente</label>
-                <select id="pedidoCliente">
-                    <option value="">Selecionar cliente...</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Dia da Semana</label>
-                <select id="pedidoDia">
-                    <option value="segunda-feira">Segunda-feira</option>
-                    <option value="terça-feira">Terça-feira</option>
-                    <option value="quarta-feira">Quarta-feira</option>
-                    <option value="quinta-feira">Quinta-feira</option>
-                    <option value="sexta-feira">Sexta-feira</option>
-                    <option value="sábado">Sábado</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Produto</label>
-                <select id="pedidoProduto">
-                    <option value="">Selecionar produto...</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Quantidade</label>
-                <input type="number" id="pedidoQuantidade" min="1" value="1">
-            </div>
-            <div class="form-group">
-                <label>Categoria</label>
-                <input type="text" id="pedidoCategoria" placeholder="Ex: Desfolhado, Pote, Buque">
-            </div>
-            <div class="form-group">
-                <label>Tipo de Venda</label>
-                <select id="pedidoTipoVenda">
-                    <option value="">Selecionar...</option>
-                    <option value="Recorrente Semanal">Recorrente Semanal</option>
-                    <option value="Recorrente Quinzenal">Recorrente Quinzenal</option>
-                    <option value="Plano">Plano</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Observações</label>
-                <textarea id="pedidoObservacoes" placeholder="Observações sobre o pedido..."></textarea>
-            </div>
-            <div class="modal-buttons">
-                <button class="btn-primary" onclick="savePedido()">Salvar</button>
-                <button class="btn-secondary" onclick="closeModal('pedidoModal')">Cancelar</button>
-            </div>
+            <form id="pedidoForm">
+                <div class="form-group">
+                    <label>Cliente</label>
+                    <select id="pedidoCliente">
+                        <option value="">Selecionar cliente...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Dia da Semana</label>
+                    <select id="pedidoDia">
+                        <option value="segunda-feira">Segunda-feira</option>
+                        <option value="terça-feira">Terça-feira</option>
+                        <option value="quarta-feira">Quarta-feira</option>
+                        <option value="quinta-feira">Quinta-feira</option>
+                        <option value="sexta-feira">Sexta-feira</option>
+                        <option value="sábado">Sábado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Produto</label>
+                    <select id="pedidoProduto">
+                        <option value="">Selecionar produto...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantidade</label>
+                    <input type="number" id="pedidoQuantidade" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="pedidoCategoria">
+                        <option value="">Selecionar...</option>
+                        <option value="Buque">Buque</option>
+                        <option value="Desfolhado">Desfolhado</option>
+                        <option value="Pote">Pote</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de Venda</label>
+                    <select id="pedidoTipoVenda">
+                        <option value="">Selecionar...</option>
+                        <option value="Recorrente Semanal">Recorrente Semanal</option>
+                        <option value="Recorrente Quinzenal">Recorrente Quinzenal</option>
+                        <option value="Plano">Plano</option>
+                        <option value="Avulso">Avulso</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Observações</label>
+                    <textarea id="pedidoObservacoes" placeholder="Observações sobre o pedido..."></textarea>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn-primary" onclick="savePedido()">Salvar</button>
+                    <button type="button" class="btn-secondary" onclick="closeModal('pedidoModal')">Cancelar</button>
+                </div>
+            </form>
         </div>
     </div>
 
     <div id="clienteModal" class="modal">
         <div class="modal-content">
             <h2>Novo Cliente</h2>
-            <div class="form-group">
-                <label>Nome</label>
-                <input type="text" id="clienteNome" placeholder="Nome do cliente">
-            </div>
-            <div class="form-group">
-                <label>Observações Gerais</label>
-                <textarea id="clienteObservacoes" placeholder="Ex: Boleto para 21 dias..."></textarea>
-            </div>
-            
-            <h3 style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;">📍 Entrega</h3>
-            <div class="form-group">
-                <label>Período de Entrega</label>
-                <select id="clientePeriodo">
-                    <option value="">Não definido</option>
-                    <option value="Manhã">Manhã</option>
-                    <option value="Tarde">Tarde</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Horário Máximo</label>
-                <input type="time" id="clienteHorario">
-            </div>
-            <div class="form-group-checkbox">
-                <input type="checkbox" id="clienteCobraEntrega">
-                <label for="clienteCobraEntrega">Cobra taxa de entrega</label>
-            </div>
+            <form id="clienteForm">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" id="clienteNome" placeholder="Nome do cliente">
+                </div>
+                <div class="form-group">
+                    <label>Observações Gerais</label>
+                    <textarea id="clienteObservacoes" placeholder="Ex: Boleto para 21 dias..."></textarea>
+                </div>
+                
+                <h3 style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;">📍 Entrega</h3>
+                <div class="form-group">
+                    <label>Período de Entrega</label>
+                    <select id="clientePeriodo">
+                        <option value="">Não definido</option>
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Horário Máximo</label>
+                    <input type="time" id="clienteHorario">
+                </div>
+                <div class="form-group-checkbox">
+                    <input type="checkbox" id="clienteCobraEntrega">
+                    <label for="clienteCobraEntrega">Cobra taxa de entrega</label>
+                </div>
 
-            <h3 style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;">💰 Faturamento</h3>
-            <div class="form-group">
-                <label>Prazo do Boleto</label>
-                <input type="text" id="clientePrazoBoleto" placeholder="Ex: 10 dias, 30 dias">
-            </div>
-            <div class="form-group-checkbox">
-                <input type="checkbox" id="clienteAcumula">
-                <label for="clienteAcumula">Acumula pedidos antes de faturar</label>
-            </div>
-            <div class="form-group">
-                <label>Dias de Acúmulo</label>
-                <input type="text" id="clienteDiasAcumulo" placeholder="Ex: 15 dias">
-            </div>
-            <div class="form-group">
-                <label>Prazo do Boleto (Acúmulo)</label>
-                <input type="text" id="clientePrazoBoletoAcumulo" placeholder="Ex: 10 dias">
-            </div>
+                <h3 style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;">💰 Faturamento</h3>
+                <div class="form-group">
+                    <label>Prazo do Boleto</label>
+                    <input type="text" id="clientePrazoBoleto" placeholder="Ex: 10 dias, 30 dias">
+                </div>
+                <div class="form-group-checkbox">
+                    <input type="checkbox" id="clienteAcumula">
+                    <label for="clienteAcumula">Acumula pedidos antes de faturar</label>
+                </div>
+                <div class="form-group">
+                    <label>Dias de Acúmulo</label>
+                    <input type="text" id="clienteDiasAcumulo" placeholder="Ex: 15 dias">
+                </div>
+                <div class="form-group">
+                    <label>Prazo do Boleto (Acúmulo)</label>
+                    <input type="text" id="clientePrazoBoletoAcumulo" placeholder="Ex: 10 dias">
+                </div>
 
-            <div class="modal-buttons">
-                <button class="btn-primary" onclick="saveCliente()">Salvar</button>
-                <button class="btn-secondary" onclick="closeModal('clienteModal')">Cancelar</button>
-            </div>
+                <h3 style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;">💵 Preços Especiais</h3>
+                <div id="precosContainer"></div>
+                <button type="button" class="btn-primary" style="width: 100%; margin-bottom: 15px;" onclick="adicionarPrecoEspecial()">+ Adicionar Preço Especial</button>
+
+                <div class="modal-buttons">
+                    <button type="button" class="btn-primary" onclick="saveCliente()">Salvar</button>
+                    <button type="button" class="btn-secondary" onclick="closeModal('clienteModal')">Cancelar</button>
+                </div>
+            </form>
         </div>
     </div>
 
     <div id="produtoModal" class="modal">
         <div class="modal-content">
             <h2>Novo Produto</h2>
-            <div class="form-group">
-                <label>Nome</label>
-                <input type="text" id="produtoNome" placeholder="Nome do produto">
-            </div>
-            <div class="form-group">
-                <label>Preço Base</label>
-                <input type="number" id="produtoPrecoBase" min="0" step="0.01" placeholder="0.00">
-            </div>
-            <div class="form-group">
-                <label>Categorias (separadas por vírgula)</label>
-                <input type="text" id="produtoCategorias" placeholder="Ex: Desfolhado, Pote, Buque">
-            </div>
-            <div class="modal-buttons">
-                <button class="btn-primary" onclick="saveProduto()">Salvar</button>
-                <button class="btn-secondary" onclick="closeModal('produtoModal')">Cancelar</button>
-            </div>
+            <form id="produtoForm">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" id="produtoNome" placeholder="Nome do produto">
+                </div>
+                <div class="form-group">
+                    <label>Preço Base</label>
+                    <input type="number" id="produtoPrecoBase" min="0" step="0.01" placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label>Categorias</label>
+                    <select id="produtoCategorias" multiple>
+                        <option value="Buque">Buque</option>
+                        <option value="Desfolhado">Desfolhado</option>
+                        <option value="Pote">Pote</option>
+                    </select>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn-primary" onclick="saveProduto()">Salvar</button>
+                    <button type="button" class="btn-secondary" onclick="closeModal('produtoModal')">Cancelar</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <script src="app.js?v=5"></script>
+    <script src="app.js?v=6"></script>
 </body>
 </html>

@@ -7,10 +7,19 @@ let appState = {
     clientes: [],
     produtos: [],
   },
-  today: new Date().toLocaleDateString('pt-BR', { weekday: 'long' }).replace('-feira', '').toLowerCase(),
+  editingPedido: null,
 };
 
-const DIAS_SEMANA = ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo'];
+const DIAS_SEMANA = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+const DIAS_CURTOS = {
+  'segunda-feira': 'Seg',
+  'terça-feira': 'Ter',
+  'quarta-feira': 'Qua',
+  'quinta-feira': 'Qui',
+  'sexta-feira': 'Sex',
+  'sábado': 'Sáb',
+};
+const CATEGORIAS = ['Buque', 'Desfolhado', 'Pote'];
 
 // ─── Inicialização ───────────────────────────────────────────────────────────
 
@@ -100,12 +109,6 @@ async function loadSampleData() {
     saveData();
   } catch (e) {
     console.error('Erro ao carregar dados de exemplo:', e);
-    // Fallback com dados mínimos
-    appState.data = {
-      pedidos: [],
-      clientes: [],
-      produtos: [],
-    };
   }
 }
 
@@ -119,9 +122,8 @@ function renderDashboard() {
   const content = document.getElementById('content');
   const stats = calculateStats();
   const volumeByDay = calculateVolumeByDay();
-  const topProdutos = getTopProdutos(5);
-  const pedidosHoje = getPedidosHoje();
   const produtosHoje = getProdutosHoje();
+  const clientesHoje = getClientesHoje();
   
   content.innerHTML = `
     <div class="dashboard">
@@ -167,43 +169,20 @@ function renderDashboard() {
       <div class="section">
         <h3>📈 Volume por Dia</h3>
         <div class="volume-list">
-          ${DIAS_SEMANA.map(dia => `
-            <div class="volume-item">
-              <span class="volume-day">${capitalizeDay(dia)}</span>
-              <span class="volume-count">${volumeByDay[dia] || 0} itens</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-
-      <div class="section">
-        <h3>🥬 Top 5 Produtos</h3>
-        <div class="products-list">
-          ${topProdutos.map((p, i) => `
-            <div class="product-item">
-              <span class="product-rank">#${i + 1}</span>
-              <span class="product-name">${p.nome}</span>
-              <span class="product-qty">${p.quantidade} un</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-
-      <div class="section">
-        <h3>📅 Pedidos de Hoje</h3>
-        <div class="today-orders">
-          ${pedidosHoje.length > 0 ? `
-            <div class="orders-count">Total: ${pedidosHoje.length} pedidos</div>
-            ${pedidosHoje.slice(0, 10).map(p => `
-              <div class="order-item">
-                <span class="order-client">${p.cliente}</span>
-                <span class="order-product">${p.produto}</span>
-                <span class="order-qty">${p.quantidade}x</span>
-                <span class="status-badge ${p.status}">${p.status}</span>
+          ${DIAS_SEMANA.map(dia => {
+            const volume = volumeByDay[dia] || 0;
+            const maxVol = Math.max(...DIAS_SEMANA.map(d => volumeByDay[d] || 0)) || 1;
+            const percentage = (volume / maxVol) * 100;
+            return `
+              <div class="volume-item">
+                <span class="volume-day">${DIAS_CURTOS[dia]}</span>
+                <div class="volume-bar">
+                  <div class="volume-fill" style="width: ${percentage}%"></div>
+                </div>
+                <span class="volume-count">${volume}</span>
               </div>
-            `).join('')}
-            ${pedidosHoje.length > 10 ? `<div class="more-items">+${pedidosHoje.length - 10} mais</div>` : ''}
-          ` : '<div class="empty-state">Nenhum pedido para hoje</div>'}
+            `;
+          }).join('')}
         </div>
       </div>
 
@@ -211,14 +190,63 @@ function renderDashboard() {
         <h3>🥬 Produtos de Hoje</h3>
         <div class="today-products">
           ${produtosHoje.length > 0 ? `
-            <div class="products-count">Total: ${produtosHoje.length} produtos diferentes</div>
-            ${produtosHoje.map(p => `
-              <div class="product-item">
-                <span class="product-name">${p.nome}</span>
-                <span class="product-qty">${p.quantidade}x</span>
-              </div>
-            `).join('')}
+            <div class="products-list">
+              ${produtosHoje.map(p => `
+                <div class="product-row">
+                  <span class="product-name">${p.nome}</span>
+                  <span class="product-qty">${p.quantidade}x</span>
+                </div>
+              `).join('')}
+            </div>
           ` : '<div class="empty-state">Nenhum produto para hoje</div>'}
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>👥 Entregas de Hoje</h3>
+        <div class="today-deliveries">
+          ${clientesHoje.length > 0 ? clientesHoje.map(grupo => {
+            const cliente = appState.data.clientes.find(c => c.id === grupo.clientId);
+            const totalQtd = grupo.pedidos.reduce((s, p) => s + p.quantidade, 0);
+            const entregues = grupo.pedidos.filter(p => p.status === 'entregue').length;
+            
+            return `
+              <div class="client-delivery-card">
+                <div class="client-header">
+                  <div class="client-info">
+                    <h4>${grupo.clientName}</h4>
+                    <span class="client-meta">${grupo.pedidos.length} produto(s) | ${totalQtd} itens | ${entregues}/${grupo.pedidos.length} entregues</span>
+                  </div>
+                </div>
+                
+                ${cliente ? `
+                  <div class="client-tags">
+                    ${cliente.periodoEntrega ? `<span class="tag">${cliente.periodoEntrega}</span>` : ''}
+                    ${cliente.horarioMaximo ? `<span class="tag">até ${cliente.horarioMaximo}</span>` : ''}
+                    ${cliente.prazoBoleto ? `<span class="tag">Boleto ${cliente.prazoBoleto}</span>` : ''}
+                    ${cliente.acumulaPedidos ? `<span class="tag">Acumula ${cliente.diasAcumulo || 'pedidos'}</span>` : ''}
+                    ${cliente.cobraEntrega ? `<span class="tag">Cobra entrega</span>` : ''}
+                  </div>
+                ` : ''}
+                
+                ${cliente && cliente.observacoes ? `
+                  <div class="client-obs">${cliente.observacoes}</div>
+                ` : ''}
+                
+                ${cliente && cliente.precos && cliente.precos.length > 0 ? `
+                  <div class="custom-prices">
+                    <span class="prices-label">Preços Personalizados:</span>
+                    ${cliente.precos.map(p => `
+                      <div class="price-row">
+                        <span>${p.produto}</span>
+                        <span>R$ ${p.preco.toFixed(2)}</span>
+                      </div>
+                    `).join('')}
+                  </div>
+                ` : ''}
+              </div>
+            `;
+          }).join('') : '<div class="empty-state">Nenhuma entrega para hoje</div>'}
         </div>
       </div>
     </div>
@@ -229,21 +257,6 @@ function renderDashboard() {
 
 function renderAgenda() {
   const content = document.getElementById('content');
-  const searchInput = document.createElement('input');
-  searchInput.type = 'text';
-  searchInput.placeholder = 'Buscar pedido...';
-  searchInput.className = 'search-input';
-  
-  let filteredPedidos = appState.data.pedidos;
-  
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase();
-    filteredPedidos = appState.data.pedidos.filter(p =>
-      p.cliente.toLowerCase().includes(query) ||
-      p.produto.toLowerCase().includes(query)
-    );
-    renderAgendaList(filteredPedidos);
-  });
   
   content.innerHTML = `
     <div class="agenda">
@@ -251,51 +264,61 @@ function renderAgenda() {
         <h2>📅 Agenda de Pedidos</h2>
         <button class="btn-primary" onclick="openModal('pedidoModal')">+ Novo Pedido</button>
       </div>
+      <div id="agenda-list"></div>
     </div>
   `;
   
-  content.querySelector('.agenda').appendChild(searchInput);
-  
-  const agendaDiv = document.createElement('div');
-  agendaDiv.id = 'agenda-list';
-  content.querySelector('.agenda').appendChild(agendaDiv);
-  
-  renderAgendaList(filteredPedidos);
+  renderAgendaList();
 }
 
-function renderAgendaList(pedidos) {
+function renderAgendaList() {
   const agendaList = document.getElementById('agenda-list');
+  if (!agendaList) return;
   
   const groupedByDay = {};
   DIAS_SEMANA.forEach(dia => {
-    groupedByDay[dia] = pedidos.filter(p => p.dia_semana === dia);
+    groupedByDay[dia] = appState.data.pedidos.filter(p => p.dia_semana === dia);
   });
   
   agendaList.innerHTML = DIAS_SEMANA.map(dia => {
     const pedidosDia = groupedByDay[dia];
+    
+    // Agrupar por cliente
+    const porCliente = {};
+    pedidosDia.forEach(p => {
+      if (!porCliente[p.id_cliente]) {
+        porCliente[p.id_cliente] = { cliente: p.cliente, pedidos: [] };
+      }
+      porCliente[p.id_cliente].pedidos.push(p);
+    });
+    
     return `
       <div class="day-section">
-        <h3>${capitalizeDay(dia)} (${pedidosDia.length})</h3>
-        <div class="pedidos-list">
-          ${pedidosDia.length > 0 ? pedidosDia.map(p => `
-            <div class="pedido-card">
-              <div class="pedido-header">
-                <span class="pedido-cliente">${p.cliente}</span>
-                <span class="status-badge ${p.status}">${p.status}</span>
-              </div>
-              <div class="pedido-details">
-                <span class="pedido-produto">${p.produto}</span>
-                <span class="pedido-qty">${p.quantidade}x</span>
-              </div>
-              <div class="pedido-categoria">${p.categoria}</div>
-              ${p.observacoes ? `<div class="pedido-obs">${p.observacoes}</div>` : ''}
-              <div class="pedido-actions">
-                <select class="status-select" value="${p.status}" onchange="updatePedidoStatus('${p.id}', this.value)">
-                  <option value="pendente">Pendente</option>
-                  <option value="entregue">Entregue</option>
-                  <option value="cancelado">Cancelado</option>
-                </select>
-                <button class="btn-delete" onclick="deletePedido('${p.id}')">🗑️</button>
+        <h3>${DIAS_CURTOS[dia]} - ${dia} (${pedidosDia.length})</h3>
+        <div class="clientes-list">
+          ${Object.values(porCliente).length > 0 ? Object.values(porCliente).map(grupo => `
+            <div class="cliente-group">
+              <div class="cliente-name">${grupo.cliente}</div>
+              <div class="pedidos-group">
+                ${grupo.pedidos.map(p => `
+                  <div class="pedido-item">
+                    <div class="pedido-top">
+                      <span class="pedido-produto">${p.produto}</span>
+                      <span class="pedido-qty">x${p.quantidade}</span>
+                    </div>
+                    ${p.categoria ? `<div class="pedido-categoria">${p.categoria}</div>` : ''}
+                    ${p.observacoes ? `<div class="pedido-obs">${p.observacoes}</div>` : ''}
+                    <div class="pedido-actions">
+                      <select class="status-select" value="${p.status}" onchange="updatePedidoStatus('${p.id}', this.value)">
+                        <option value="pendente">Pendente</option>
+                        <option value="entregue">Entregue</option>
+                        <option value="cancelado">Cancelado</option>
+                      </select>
+                      <button class="btn-edit" onclick="editPedido('${p.id}')">✏️</button>
+                      <button class="btn-delete" onclick="deletePedido('${p.id}')">🗑️</button>
+                    </div>
+                  </div>
+                `).join('')}
               </div>
             </div>
           `).join('') : '<div class="empty-state">Nenhum pedido</div>'}
@@ -309,20 +332,6 @@ function renderAgendaList(pedidos) {
 
 function renderClientes() {
   const content = document.getElementById('content');
-  const searchInput = document.createElement('input');
-  searchInput.type = 'text';
-  searchInput.placeholder = 'Buscar cliente...';
-  searchInput.className = 'search-input';
-  
-  let filteredClientes = appState.data.clientes;
-  
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase();
-    filteredClientes = appState.data.clientes.filter(c =>
-      c.nome.toLowerCase().includes(query)
-    );
-    renderClientesList(filteredClientes);
-  });
   
   content.innerHTML = `
     <div class="clientes">
@@ -330,24 +339,20 @@ function renderClientes() {
         <h2>👥 Clientes</h2>
         <button class="btn-primary" onclick="openModal('clienteModal')">+ Novo Cliente</button>
       </div>
+      <div id="clientes-list"></div>
     </div>
   `;
   
-  content.querySelector('.clientes').appendChild(searchInput);
-  
-  const clientesDiv = document.createElement('div');
-  clientesDiv.id = 'clientes-list';
-  content.querySelector('.clientes').appendChild(clientesDiv);
-  
-  renderClientesList(filteredClientes);
+  renderClientesList();
 }
 
-function renderClientesList(clientes) {
+function renderClientesList() {
   const clientesList = document.getElementById('clientes-list');
+  if (!clientesList) return;
   
   clientesList.innerHTML = `
     <div class="clientes-grid">
-      ${clientes.map(c => `
+      ${appState.data.clientes.map(c => `
         <div class="cliente-card">
           <div class="cliente-header">
             <h3>${c.nome}</h3>
@@ -373,6 +378,20 @@ function renderClientesList(clientes) {
             </div>
           </div>
           
+          ${c.precos && c.precos.length > 0 ? `
+            <div class="cliente-section">
+              <h4>💵 Preços Especiais</h4>
+              <div class="precos-list">
+                ${c.precos.map(p => `
+                  <div class="preco-item">
+                    <span>${p.produto}</span>
+                    <span>R$ ${p.preco.toFixed(2)}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+          
           ${c.observacoes ? `
             <div class="cliente-section">
               <h4>📝 Observações</h4>
@@ -391,20 +410,6 @@ function renderClientesList(clientes) {
 
 function renderProdutos() {
   const content = document.getElementById('content');
-  const searchInput = document.createElement('input');
-  searchInput.type = 'text';
-  searchInput.placeholder = 'Buscar produto...';
-  searchInput.className = 'search-input';
-  
-  let filteredProdutos = appState.data.produtos;
-  
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase();
-    filteredProdutos = appState.data.produtos.filter(p =>
-      p.nome.toLowerCase().includes(query)
-    );
-    renderProdutosList(filteredProdutos);
-  });
   
   content.innerHTML = `
     <div class="produtos">
@@ -412,24 +417,20 @@ function renderProdutos() {
         <h2>🥬 Produtos</h2>
         <button class="btn-primary" onclick="openModal('produtoModal')">+ Novo Produto</button>
       </div>
+      <div id="produtos-list"></div>
     </div>
   `;
   
-  content.querySelector('.produtos').appendChild(searchInput);
-  
-  const produtosDiv = document.createElement('div');
-  produtosDiv.id = 'produtos-list';
-  content.querySelector('.produtos').appendChild(produtosDiv);
-  
-  renderProdutosList(filteredProdutos);
+  renderProdutosList();
 }
 
-function renderProdutosList(produtos) {
+function renderProdutosList() {
   const produtosList = document.getElementById('produtos-list');
+  if (!produtosList) return;
   
   produtosList.innerHTML = `
     <div class="produtos-grid">
-      ${produtos.map(p => {
+      ${appState.data.produtos.map(p => {
         const totalPedidos = appState.data.pedidos.filter(pd => pd.produto === p.nome).length;
         const totalQuantidade = appState.data.pedidos
           .filter(pd => pd.produto === p.nome)
@@ -470,11 +471,14 @@ function openModal(modalId) {
   } else if (modalId === 'pedidoModal') {
     updateClientSelects();
     updateProductSelects();
+    appState.editingPedido = null;
+    document.getElementById('pedidoForm').reset();
   }
 }
 
 function closeModal(modalId) {
   document.getElementById(modalId).classList.remove('active');
+  appState.editingPedido = null;
 }
 
 // ─── Save Functions ────────────────────────────────────────────────────────
@@ -500,20 +504,39 @@ function savePedido() {
     return;
   }
   
-  const pedido = {
-    id: `order_${Date.now()}`,
-    id_cliente: clienteId,
-    cliente: cliente.nome,
-    dia_semana: document.getElementById('pedidoDia').value,
-    produto: produtoNome,
-    categoria: document.getElementById('pedidoCategoria').value || '',
-    quantidade,
-    tipo_venda: document.getElementById('pedidoTipoVenda').value || '',
-    observacoes: document.getElementById('pedidoObservacoes').value || '',
-    status: 'pendente',
-  };
+  if (appState.editingPedido) {
+    // Editar pedido existente
+    const idx = appState.data.pedidos.findIndex(p => p.id === appState.editingPedido);
+    if (idx >= 0) {
+      appState.data.pedidos[idx] = {
+        ...appState.data.pedidos[idx],
+        id_cliente: clienteId,
+        cliente: cliente.nome,
+        dia_semana: document.getElementById('pedidoDia').value,
+        produto: produtoNome,
+        categoria: document.getElementById('pedidoCategoria').value || '',
+        quantidade,
+        tipo_venda: document.getElementById('pedidoTipoVenda').value || '',
+        observacoes: document.getElementById('pedidoObservacoes').value || '',
+      };
+    }
+  } else {
+    // Novo pedido
+    const pedido = {
+      id: `order_${Date.now()}`,
+      id_cliente: clienteId,
+      cliente: cliente.nome,
+      dia_semana: document.getElementById('pedidoDia').value,
+      produto: produtoNome,
+      categoria: document.getElementById('pedidoCategoria').value || '',
+      quantidade,
+      tipo_venda: document.getElementById('pedidoTipoVenda').value || '',
+      observacoes: document.getElementById('pedidoObservacoes').value || '',
+      status: 'pendente',
+    };
+    appState.data.pedidos.push(pedido);
+  }
   
-  appState.data.pedidos.push(pedido);
   saveData();
   closeModal('pedidoModal');
   renderAgenda();
@@ -526,6 +549,16 @@ function saveCliente() {
     return;
   }
   
+  // Coletar preços especiais
+  const precos = [];
+  document.querySelectorAll('.preco-input-row').forEach(row => {
+    const produto = row.querySelector('.preco-produto-select').value;
+    const preco = parseFloat(row.querySelector('.preco-valor-input').value.replace(',', '.')) || 0;
+    if (produto && preco > 0) {
+      precos.push({ produto, preco });
+    }
+  });
+  
   const cliente = {
     id: `client_${Date.now()}`,
     nome,
@@ -537,7 +570,7 @@ function saveCliente() {
     periodoEntrega: document.getElementById('clientePeriodo').value || '',
     horarioMaximo: document.getElementById('clienteHorario').value || '',
     cobraEntrega: document.getElementById('clienteCobraEntrega').checked,
-    precos: [],
+    precos,
   };
   
   appState.data.clientes.push(cliente);
@@ -556,7 +589,7 @@ function saveProduto() {
   const produto = {
     nome,
     precoBase: parseFloat(document.getElementById('produtoPrecoBase').value) || 0,
-    categorias: (document.getElementById('produtoCategorias').value || '').split(',').map(c => c.trim()).filter(c => c),
+    categorias: Array.from(document.getElementById('produtoCategorias').selectedOptions).map(o => o.value),
   };
   
   appState.data.produtos.push(produto);
@@ -592,11 +625,27 @@ function deleteProduto(nome) {
 
 // ─── Edit Functions ────────────────────────────────────────────────────────
 
+function editPedido(id) {
+  const pedido = appState.data.pedidos.find(p => p.id === id);
+  if (!pedido) return;
+  
+  appState.editingPedido = id;
+  
+  document.getElementById('pedidoCliente').value = pedido.id_cliente;
+  document.getElementById('pedidoDia').value = pedido.dia_semana;
+  document.getElementById('pedidoProduto').value = pedido.produto;
+  document.getElementById('pedidoQuantidade').value = pedido.quantidade;
+  document.getElementById('pedidoCategoria').value = pedido.categoria;
+  document.getElementById('pedidoTipoVenda').value = pedido.tipo_venda;
+  document.getElementById('pedidoObservacoes').value = pedido.observacoes;
+  
+  openModal('pedidoModal');
+}
+
 function editCliente(id) {
   const cliente = appState.data.clientes.find(c => c.id === id);
   if (!cliente) return;
   
-  // Preencher modal com dados
   document.getElementById('clienteNome').value = cliente.nome;
   document.getElementById('clienteObservacoes').value = cliente.observacoes;
   document.getElementById('clientePrazoBoleto').value = cliente.prazoBoleto;
@@ -607,6 +656,15 @@ function editCliente(id) {
   document.getElementById('clienteHorario').value = cliente.horarioMaximo;
   document.getElementById('clienteCobraEntrega').checked = cliente.cobraEntrega;
   
+  // Carregar preços especiais
+  const precosContainer = document.getElementById('precosContainer');
+  precosContainer.innerHTML = '';
+  if (cliente.precos && cliente.precos.length > 0) {
+    cliente.precos.forEach(p => {
+      adicionarPrecoEspecial(p.produto, p.preco);
+    });
+  }
+  
   openModal('clienteModal');
 }
 
@@ -616,7 +674,11 @@ function editProduto(nome) {
   
   document.getElementById('produtoNome').value = produto.nome;
   document.getElementById('produtoPrecoBase').value = produto.precoBase;
-  document.getElementById('produtoCategorias').value = produto.categorias.join(', ');
+  
+  // Selecionar categorias
+  Array.from(document.getElementById('produtoCategorias').options).forEach(opt => {
+    opt.selected = produto.categorias.includes(opt.value);
+  });
   
   openModal('produtoModal');
 }
@@ -630,6 +692,23 @@ function updatePedidoStatus(id, status) {
     saveData();
     renderAgenda();
   }
+}
+
+// ─── Preço Especial Functions ──────────────────────────────────────────────
+
+function adicionarPrecoEspecial(produtoNome = '', preco = '') {
+  const container = document.getElementById('precosContainer');
+  const row = document.createElement('div');
+  row.className = 'preco-input-row';
+  row.innerHTML = `
+    <select class="preco-produto-select">
+      <option value="">Selecionar produto...</option>
+      ${appState.data.produtos.map(p => `<option value="${p.nome}" ${p.nome === produtoNome ? 'selected' : ''}>${p.nome}</option>`).join('')}
+    </select>
+    <input type="number" class="preco-valor-input" placeholder="Preço" value="${preco}" step="0.01" min="0">
+    <button class="btn-delete" onclick="this.parentElement.remove()">🗑️</button>
+  `;
+  container.appendChild(row);
 }
 
 // ─── Helper Functions ────────────────────────────────────────────────────────
@@ -672,27 +751,9 @@ function calculateVolumeByDay() {
   return volume;
 }
 
-function getTopProdutos(limit = 5) {
-  const produtoMap = {};
-  appState.data.pedidos.forEach(p => {
-    if (!produtoMap[p.produto]) produtoMap[p.produto] = 0;
-    produtoMap[p.produto] += p.quantidade || 0;
-  });
-  
-  return Object.entries(produtoMap)
-    .map(([nome, quantidade]) => ({ nome, quantidade }))
-    .sort((a, b) => b.quantidade - a.quantidade)
-    .slice(0, limit);
-}
-
-function getPedidosHoje() {
-  return appState.data.pedidos.filter(p => 
-    p.dia_semana.toLowerCase().includes(appState.today)
-  );
-}
-
 function getProdutosHoje() {
-  const pedidosHoje = getPedidosHoje();
+  const hoje = getCurrentDay();
+  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === hoje);
   const produtosMap = {};
   
   pedidosHoje.forEach(p => {
@@ -707,8 +768,24 @@ function getProdutosHoje() {
     .sort((a, b) => b.quantidade - a.quantidade);
 }
 
-function capitalizeDay(dia) {
-  return dia.charAt(0).toUpperCase() + dia.slice(1);
+function getClientesHoje() {
+  const hoje = getCurrentDay();
+  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === hoje);
+  
+  const grouped = {};
+  pedidosHoje.forEach(p => {
+    if (!grouped[p.id_cliente]) {
+      grouped[p.id_cliente] = { clientId: p.id_cliente, clientName: p.cliente, pedidos: [] };
+    }
+    grouped[p.id_cliente].pedidos.push(p);
+  });
+  
+  return Object.values(grouped).sort((a, b) => a.clientName.localeCompare(b.clientName));
+}
+
+function getCurrentDay() {
+  const days = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+  return days[new Date().getDay()];
 }
 
 // ─── Initialize ──────────────────────────────────────────────────────────────
