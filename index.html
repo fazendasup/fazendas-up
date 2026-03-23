@@ -821,6 +821,9 @@
                 <button class="tab-btn" data-tab="clientes">👥 Clientes</button>
                 <button class="tab-btn" data-tab="produtos">🥬 Produtos</button>
             </div>
+            <div style="margin-top: auto; padding-top: 30px;">
+                <button onclick="resetarDados()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; width: 100%;" title="Restaurar dados originais da planilha">🔄 Restaurar Dados Originais</button>
+            </div>
         </div>
 
         <div class="main">
@@ -1041,17 +1044,39 @@ function switchTab(tab) {
 
 // ─── Data Management ─────────────────────────────────────────────────────────
 
+const DATA_VERSION = 'v2_291_58_23';
+
 async function loadData() {
+  const savedVersion = localStorage.getItem('fazendas-up-version');
   const saved = localStorage.getItem('fazendas-up-data');
+  
+  // Se a versão mudou ou não existe, recarregar dados embutidos
+  if (savedVersion !== DATA_VERSION) {
+    console.log('Versão de dados atualizada, recarregando dados embutidos...');
+    await loadSampleData();
+    localStorage.setItem('fazendas-up-version', DATA_VERSION);
+    return;
+  }
+  
   if (saved) {
     try {
-      appState.data = JSON.parse(saved);
+      const parsed = JSON.parse(saved);
+      // Verificar se os dados são válidos e completos
+      if (parsed.pedidos && parsed.pedidos.length > 10 && parsed.clientes && parsed.clientes.length > 10) {
+        appState.data = parsed;
+      } else {
+        console.log('Dados incompletos no localStorage, recarregando...');
+        await loadSampleData();
+        localStorage.setItem('fazendas-up-version', DATA_VERSION);
+      }
     } catch (e) {
       console.error('Erro ao carregar dados:', e);
       await loadSampleData();
+      localStorage.setItem('fazendas-up-version', DATA_VERSION);
     }
   } else {
     await loadSampleData();
+    localStorage.setItem('fazendas-up-version', DATA_VERSION);
   }
 }
 
@@ -5973,6 +5998,21 @@ function calculateVolumeByDay() {
   return volume;
 }
 
+function getProdutosHoje() {
+  const hoje = getCurrentDay();
+  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === hoje);
+  
+  const prodMap = {};
+  pedidosHoje.forEach(p => {
+    if (!prodMap[p.produto]) {
+      prodMap[p.produto] = { nome: p.produto, quantidade: 0 };
+    }
+    prodMap[p.produto].quantidade += (p.quantidade || 0);
+  });
+  
+  return Object.values(prodMap).sort((a, b) => b.quantidade - a.quantidade);
+}
+
 function getClientesHoje() {
   const hoje = getCurrentDay();
   const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === hoje);
@@ -5993,7 +6033,20 @@ function getCurrentDay() {
   return days[new Date().getDay()];
 }
 
-// ─── Initialize ──────────────────────────────────────────────────────────────
+// ─── Reset Data ──────────────────────────────────────────────────────────────────────────────
+
+async function resetarDados() {
+  if (confirm('Tem certeza que deseja restaurar todos os dados originais da planilha? Isso irá sobrescrever quaisquer alterações feitas.')) {
+    localStorage.removeItem('fazendas-up-data');
+    localStorage.removeItem('fazendas-up-version');
+    await loadSampleData();
+    localStorage.setItem('fazendas-up-version', DATA_VERSION);
+    switchTab(appState.currentTab);
+    alert('Dados restaurados com sucesso! 291 pedidos, 58 clientes e 23 produtos carregados.');
+  }
+}
+
+// ─── Initialize ──────────────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', init);
 
