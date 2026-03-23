@@ -213,7 +213,10 @@ function renderDashboard() {
                 </div>
                 
                 <div class="client-produtos">
-                  <strong>Produtos:</strong> ${produtos}
+                  <strong>Produtos:</strong>
+                  <ul class="produtos-list-vertical">
+                    ${grupo.pedidos.map(p => `<li>${p.produto} (${p.categoria || 'sem cat.'}) x${p.quantidade}</li>`).join('')}
+                  </ul>
                 </div>
                 
                 ${cliente ? `
