@@ -5664,8 +5664,13 @@ function openModal(modalId) {
   } else if (modalId === 'pedidoModal') {
     updateClientSelects();
     updateProductSelects();
-    appState.editingPedido = null;
-    document.getElementById('pedidoForm').reset();
+    // Só resetar se NÃO for edição (editPedido define editingPedido antes de chamar openModal)
+    if (!appState.editingPedido) {
+      document.getElementById('pedidoForm').reset();
+      // Restaurar título para "Novo Pedido"
+      const modalTitle = document.querySelector('#pedidoModal .modal-content h2');
+      if (modalTitle) modalTitle.textContent = 'Novo Pedido';
+    }
   }
 }
 
@@ -5873,17 +5878,24 @@ function editPedido(id) {
   const pedido = appState.data.pedidos.find(p => p.id === id);
   if (!pedido) return;
   
+  // Definir editingPedido ANTES de abrir o modal para que openModal não resete o formulário
   appState.editingPedido = id;
   
+  // Abrir o modal primeiro (popula os selects)
+  openModal('pedidoModal');
+  
+  // Agora preencher os campos com os dados do pedido existente
   document.getElementById('pedidoCliente').value = pedido.id_cliente;
   document.getElementById('pedidoDia').value = pedido.dia_semana;
   document.getElementById('pedidoProduto').value = pedido.produto;
   document.getElementById('pedidoQuantidade').value = pedido.quantidade;
-  document.getElementById('pedidoCategoria').value = pedido.categoria;
-  document.getElementById('pedidoTipoVenda').value = pedido.tipo_venda;
-  document.getElementById('pedidoObservacoes').value = pedido.observacoes;
+  document.getElementById('pedidoCategoria').value = pedido.categoria || '';
+  document.getElementById('pedidoTipoVenda').value = pedido.tipo_venda || '';
+  document.getElementById('pedidoObservacoes').value = pedido.observacoes || '';
   
-  openModal('pedidoModal');
+  // Atualizar título do modal para indicar edição
+  const modalTitle = document.querySelector('#pedidoModal .modal-content h2');
+  if (modalTitle) modalTitle.textContent = 'Editar Pedido';
 }
 
 function editCliente(id) {
