@@ -1011,8 +1011,8 @@ const CATEGORIAS = ['Buque', 'Desfolhado', 'Pote'];
 
 // ─── Inicialização ───────────────────────────────────────────────────────────
 
-function init() {
-  loadData();
+async function init() {
+  await loadData();
   setupEventListeners();
   renderDashboard();
 }
