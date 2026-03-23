@@ -5643,7 +5643,7 @@ function renderProdutos() {
     <div class="produtos">
       <div class="section-header">
         <h2>🥬 Produtos</h2>
-        <button class="btn-primary" onclick="openModal('produtoModal')">+ Novo Produto</button>
+        <button class="btn-primary" onclick="appState.editingProduto = null; openModal('produtoModal'); document.querySelector('#produtoModal h2').textContent = 'Novo Produto';">+ Novo Produto</button>
       </div>
       <div id="produtos-list"></div>
     </div>
@@ -5872,24 +5872,41 @@ function saveCliente() {
 }
 
 function saveProduto() {
-  const nome = document.getElementById('produtoNome').value.trim();
-  if (!nome) {
-    alert('Nome do produto é obrigatório');
-    return;
-  }
-  
-  const produto = {
-    nome,
-    precoBase: parseFloat(document.getElementById('produtoPrecoBase').value) || 0,
-    categorias: Array.from(document.getElementById('produtoCategorias').selectedOptions).map(o => o.value),
-  };
-  
-  appState.data.produtos.push(produto);
-  saveData();
-  sendNotification('🥬 Produto Salvo', { body: nome });
-  closeModal('produtoModal');
-  renderProdutos();
-}
+   const nome = document.getElementById('produtoNome').value.trim();
+   if (!nome) {
+     alert('Nome do produto é obrigatório');
+     return;
+   }
+   
+   const novosDados = {
+     nome,
+     precoBase: parseFloat(document.getElementById('produtoPrecoBase').value) || 0,
+     categorias: Array.from(document.getElementById('produtoCategorias').selectedOptions).map(o => o.value),
+   };
+   
+   if (appState.editingProduto) {
+     // Edição: atualizar produto existente
+     const idx = appState.data.produtos.findIndex(p => p.nome === appState.editingProduto);
+     if (idx !== -1) {
+       // Se o nome mudou, atualizar referências nos pedidos
+       if (appState.editingProduto !== nome) {
+         appState.data.pedidos.forEach(p => {
+           if (p.produto === appState.editingProduto) p.produto = nome;
+         });
+       }
+       appState.data.produtos[idx] = { ...appState.data.produtos[idx], ...novosDados };
+     }
+     appState.editingProduto = null;
+   } else {
+     // Criação: adicionar novo produto
+     appState.data.produtos.push(novosDados);
+   }
+   
+   saveData();
+   sendNotification('🥬 Produto Salvo', { body: nome });
+   closeModal('produtoModal');
+   renderProdutos();
+ }
 
 // ─── Delete Functions ────────────────────────────────────────────────────────
 
@@ -5971,18 +5988,22 @@ function editCliente(id) {
 }
 
 function editProduto(nome) {
-  const produto = appState.data.produtos.find(p => p.nome === nome);
-  if (!produto) return;
-  
-  document.getElementById('produtoNome').value = produto.nome;
-  document.getElementById('produtoPrecoBase').value = produto.precoBase;
-  
-  Array.from(document.getElementById('produtoCategorias').options).forEach(opt => {
-    opt.selected = produto.categorias.includes(opt.value);
-  });
-  
-  openModal('produtoModal');
-}
+   const produto = appState.data.produtos.find(p => p.nome === nome);
+   if (!produto) return;
+   
+   appState.editingProduto = produto.nome;
+   openModal('produtoModal');
+   
+   document.getElementById('produtoNome').value = produto.nome;
+   document.getElementById('produtoPrecoBase').value = produto.precoBase;
+   
+   Array.from(document.getElementById('produtoCategorias').options).forEach(opt => {
+     opt.selected = produto.categorias.includes(opt.value);
+   });
+   
+   const titulo = document.querySelector('#produtoModal h2');
+   if (titulo) titulo.textContent = 'Editar Produto';
+ }
 
 // ─── Update Status ─────────────────────────────────────────────────────────
 
