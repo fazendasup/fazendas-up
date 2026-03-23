@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FazendasUp - Gestão de Pedidos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2d7a3a 0%, #1e5a28 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+        }
+        
+        .header-info {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            height: calc(100vh - 80px);
+        }
+        
+        .sidebar {
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+        
+        .tab-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .tab-btn:hover {
+            background: #f8faf8;
+            color: #2d7a3a;
+        }
+        
+        .tab-btn.active {
+            background: #f0f9f1;
+            color: #2d7a3a;
+            border-left-color: #2d7a3a;
+            font-weight: 600;
+        }
+        
+        .content {
+            padding: 30px;
+            overflow-y: auto;
+            background: #f5f5f5;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .card h2 {
+            color: #2d7a3a;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #f0f9f1 0%, #e8f5ea 100%);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d7a3a;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .metric-label {
+            color: #666;
+        }
+        
+        .metric-value {
+            font-weight: bold;
+            color: #2d7a3a;
+        }
+        
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #f8faf8;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        
+        .list-item-title {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .list-item-subtitle {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+        
+        .button {
+            background: #2d7a3a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 15px;
+            transition: background 0.3s;
+        }
+        
+        .button:hover {
+            background: #1e5a28;
+        }
+        
+        .search-box {
+            margin-bottom: 15px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2d7a3a;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn-primary {
+            flex: 1;
+            background: #2d7a3a;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background: #1e5a28;
+        }
+        
+        .btn-secondary {
+            flex: 1;
+            background: #e5e7eb;
+            color: #333;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🥬 FazendasUp - Gestão de Pedidos</h1>
+        <div class="header-info">
+            Última atualização: <span id="lastUpdate">--:--:--</span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+            <button class="tab-btn" data-tab="agenda">📅 Agenda</button>
+            <button class="tab-btn" data-tab="clientes">👥 Clientes</button>
+            <button class="tab-btn" data-tab="produtos">🥬 Produtos</button>
+        </div>
+        
+        <div id="content" class="content"></div>
+    </div>
+    
+    <!-- Cliente Modal -->
+    <div id="clienteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Novo Cliente</div>
+            <div class="form-group">
+                <label>Nome do Cliente</label>
+                <input type="text" id="clienteNome" placeholder="Ex: João Silva">
+            </div>
+            <div class="form-group">
+                <label>Telefone</label>
+                <input type="tel" id="clienteTelefone" placeholder="Ex: (11) 99999-9999">
+            </div>
+            <div class="form-group">
+                <label>Período de Entrega</label>
+                <select id="clientePeriodo">
+                    <option value="manha">Manhã</option>
+                    <option value="tarde">Tarde</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Horário Máximo</label>
+                <input type="time" id="clienteHorarioMax">
+            </div>
+            <div class="form-group">
+                <label>Prazo de Boleto (dias)</label>
+                <input type="number" id="clientePrazoBoleto" placeholder="Ex: 3">
+            </div>
+            <div class="form-group">
+                <label>Cobra Entrega?</label>
+                <select id="clienteCobraEntrega">
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Observações</label>
+                <textarea id="clienteObservacoes" placeholder="Ex: Boleto para 3 dias"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Acumula Pedidos (dias)</label>
+                <input type="number" id="clienteAcumulaPedidos" placeholder="Ex: 15">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="saveCliente()">Salvar</button>
+                <button class="btn-secondary" onclick="closeModal('clienteModal')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Produto Modal -->
+    <div id="produtoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Novo Produto</div>
+            <div class="form-group">
+                <label>Nome do Produto</label>
+                <input type="text" id="produtoNome" placeholder="Ex: Alface Crespa Verde">
+            </div>
+            <div class="form-group">
+                <label>Categoria</label>
+                <input type="text" id="produtoCategoria" placeholder="Ex: Folhosas">
+            </div>
+            <div class="form-group">
+                <label>Preço Base (R$)</label>
+                <input type="number" id="produtoPrecoBase" placeholder="Ex: 3,50" step="0.01">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="saveProduto()">Salvar</button>
+                <button class="btn-secondary" onclick="closeModal('produtoModal')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pedido Modal -->
+    <div id="pedidoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Novo Pedido</div>
+            <div class="form-group">
+                <label>Cliente</label>
+                <input type="text" id="pedidoCliente" placeholder="Ex: João Silva">
+            </div>
+            <div class="form-group">
+                <label>Produto</label>
+                <input type="text" id="pedidoProduto" placeholder="Ex: Alface Crespa Verde">
+            </div>
+            <div class="form-group">
+                <label>Categoria</label>
+                <input type="text" id="pedidoCategoria" placeholder="Ex: Folhosas">
+            </div>
+            <div class="form-group">
+                <label>Quantidade</label>
+                <input type="number" id="pedidoQuantidade" placeholder="Ex: 10">
+            </div>
+            <div class="form-group">
+                <label>Preço (R$)</label>
+                <input type="number" id="pedidoPreco" placeholder="Ex: 3,50" step="0.01">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="savePedido()">Salvar</button>
+                <button class="btn-secondary" onclick="closeModal('pedidoModal')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+    <script>
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = now.toLocaleTimeString('pt-BR');
+        }, 1000);
+    </script>
+</body>
+</html>
