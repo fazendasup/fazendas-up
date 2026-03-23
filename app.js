@@ -167,6 +167,19 @@ function renderDashboard() {
       </div>
 
       <div class="section">
+        <h3>📦 Produtos de Hoje</h3>
+        <div class="top-products-list">
+          ${getProdutosHoje().map((p, i) => `
+            <div class="top-product-item">
+              <span class="rank-badge">#${i + 1}</span>
+              <span class="prod-name">${p.nome}</span>
+              <span class="prod-total">${p.quantidade} un</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="section">
         <h3>📈 Volume por Dia</h3>
         <div class="volume-list">
           ${DIAS_SEMANA.map(dia => {
@@ -495,6 +508,32 @@ function closeModal(modalId) {
 
 // ─── Save Functions ────────────────────────────────────────────────────────
 
+// ─── Notification System ──────────────────────────────────────────────────
+
+function requestNotificationPermission() {
+  if ('Notification' in window && Notification.permission === 'default') {
+    Notification.requestPermission();
+  }
+}
+
+function sendNotification(title, options = {}) {
+  if ('Notification' in window && Notification.permission === 'granted') {
+    new Notification(title, {
+      icon: '🌾',
+      badge: '🌾',
+      ...options
+    });
+  }
+}
+
+function notifyPedidoChange(tipo, cliente, produto) {
+  const title = tipo === 'novo' ? '📦 Novo Pedido' : '✏️ Pedido Alterado';
+  const body = `${cliente} - ${produto}`;
+  sendNotification(title, { body });
+}
+
+// ─── Save Functions ────────────────────────────────────────────────────
+
 function savePedido() {
   const clienteId = document.getElementById('pedidoCliente').value;
   const cliente = appState.data.clientes.find(c => c.id === clienteId);
@@ -548,8 +587,17 @@ function savePedido() {
   }
   
   saveData();
+  
+  // Notificar mudança
+  if (appState.editingPedido) {
+    notifyPedidoChange('alterado', cliente.nome, produtoNome);
+  } else {
+    notifyPedidoChange('novo', cliente.nome, produtoNome);
+  }
+  
   closeModal('pedidoModal');
   renderAgenda();
+  renderDashboard();
 }
 
 function saveCliente() {
@@ -600,6 +648,7 @@ function saveCliente() {
   }
   
   saveData();
+  sendNotification('👥 Cliente Salvo', { body: nome });
   closeModal('clienteModal');
   renderClientes();
 }
@@ -619,6 +668,7 @@ function saveProduto() {
   
   appState.data.produtos.push(produto);
   saveData();
+  sendNotification('🥬 Produto Salvo', { body: nome });
   closeModal('produtoModal');
   renderProdutos();
 }
