@@ -702,6 +702,54 @@
             font-size: 14px;
         }
 
+        /* Agenda Filters */
+        .agenda-filters {
+            background: var(--surface);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .agenda-filters label {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .agenda-filters select {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Status Select Client */
+        .status-select-client {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .client-delivery-card.completed {
+            opacity: 0.7;
+            border-left-color: var(--success);
+        }
+
+        .client-produtos {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            padding: 8px;
+            background: var(--bg);
+            border-radius: 4px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {

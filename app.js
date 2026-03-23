@@ -8,6 +8,8 @@ let appState = {
     produtos: [],
   },
   editingPedido: null,
+  editingCliente: null,
+  agendaDiaFiltro: null,
 };
 
 const DIAS_SEMANA = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
@@ -72,7 +74,6 @@ async function loadSampleData() {
     const response = await fetch('dados-completos.json');
     const data = await response.json();
     
-    // Transformar dados com IDs e status
     appState.data.pedidos = data.orders.map((o, idx) => ({
       id: `order_${idx}`,
       id_cliente: o.id_cliente,
@@ -122,7 +123,6 @@ function renderDashboard() {
   const content = document.getElementById('content');
   const stats = calculateStats();
   const volumeByDay = calculateVolumeByDay();
-  const produtosHoje = getProdutosHoje();
   const clientesHoje = getClientesHoje();
   
   content.innerHTML = `
@@ -187,36 +187,33 @@ function renderDashboard() {
       </div>
 
       <div class="section">
-        <h3>🥬 Produtos de Hoje</h3>
-        <div class="today-products">
-          ${produtosHoje.length > 0 ? `
-            <div class="products-list">
-              ${produtosHoje.map(p => `
-                <div class="product-row">
-                  <span class="product-name">${p.nome}</span>
-                  <span class="product-qty">${p.quantidade}x</span>
-                </div>
-              `).join('')}
-            </div>
-          ` : '<div class="empty-state">Nenhum produto para hoje</div>'}
-        </div>
-      </div>
-
-      <div class="section">
         <h3>👥 Entregas de Hoje</h3>
         <div class="today-deliveries">
           ${clientesHoje.length > 0 ? clientesHoje.map(grupo => {
             const cliente = appState.data.clientes.find(c => c.id === grupo.clientId);
             const totalQtd = grupo.pedidos.reduce((s, p) => s + p.quantidade, 0);
             const entregues = grupo.pedidos.filter(p => p.status === 'entregue').length;
+            const todoEntregue = entregues === grupo.pedidos.length;
+            
+            // Listar produtos do cliente
+            const produtos = grupo.pedidos.map(p => `${p.produto} (${p.categoria || 'sem cat.'}) x${p.quantidade}`).join(', ');
             
             return `
-              <div class="client-delivery-card">
+              <div class="client-delivery-card ${todoEntregue ? 'completed' : ''}">
                 <div class="client-header">
                   <div class="client-info">
                     <h4>${grupo.clientName}</h4>
                     <span class="client-meta">${grupo.pedidos.length} produto(s) | ${totalQtd} itens | ${entregues}/${grupo.pedidos.length} entregues</span>
                   </div>
+                  <select class="status-select-client" value="${grupo.pedidos[0].status}" onchange="updateClientStatus('${grupo.clientId}', this.value)">
+                    <option value="pendente">Pendente</option>
+                    <option value="entregue">Entregue</option>
+                    <option value="cancelado">Cancelado</option>
+                  </select>
+                </div>
+                
+                <div class="client-produtos">
+                  <strong>Produtos:</strong> ${produtos}
                 </div>
                 
                 ${cliente ? `
@@ -264,6 +261,15 @@ function renderAgenda() {
         <h2>📅 Agenda de Pedidos</h2>
         <button class="btn-primary" onclick="openModal('pedidoModal')">+ Novo Pedido</button>
       </div>
+      
+      <div class="agenda-filters">
+        <label>Filtrar por dia:</label>
+        <select id="agendaDiaSelect" onchange="filterAgendaByDay(this.value)">
+          <option value="">Todos os dias</option>
+          ${DIAS_SEMANA.map(dia => `<option value="${dia}">${dia}</option>`).join('')}
+        </select>
+      </div>
+      
       <div id="agenda-list"></div>
     </div>
   `;
@@ -271,16 +277,23 @@ function renderAgenda() {
   renderAgendaList();
 }
 
+function filterAgendaByDay(dia) {
+  appState.agendaDiaFiltro = dia || null;
+  renderAgendaList();
+}
+
 function renderAgendaList() {
   const agendaList = document.getElementById('agenda-list');
   if (!agendaList) return;
   
+  let diasParaMostrar = appState.agendaDiaFiltro ? [appState.agendaDiaFiltro] : DIAS_SEMANA;
+  
   const groupedByDay = {};
-  DIAS_SEMANA.forEach(dia => {
+  diasParaMostrar.forEach(dia => {
     groupedByDay[dia] = appState.data.pedidos.filter(p => p.dia_semana === dia);
   });
   
-  agendaList.innerHTML = DIAS_SEMANA.map(dia => {
+  agendaList.innerHTML = diasParaMostrar.map(dia => {
     const pedidosDia = groupedByDay[dia];
     
     // Agrupar por cliente
@@ -309,11 +322,6 @@ function renderAgendaList() {
                     ${p.categoria ? `<div class="pedido-categoria">${p.categoria}</div>` : ''}
                     ${p.observacoes ? `<div class="pedido-obs">${p.observacoes}</div>` : ''}
                     <div class="pedido-actions">
-                      <select class="status-select" value="${p.status}" onchange="updatePedidoStatus('${p.id}', this.value)">
-                        <option value="pendente">Pendente</option>
-                        <option value="entregue">Entregue</option>
-                        <option value="cancelado">Cancelado</option>
-                      </select>
                       <button class="btn-edit" onclick="editPedido('${p.id}')">✏️</button>
                       <button class="btn-delete" onclick="deletePedido('${p.id}')">🗑️</button>
                     </div>
@@ -479,6 +487,7 @@ function openModal(modalId) {
 function closeModal(modalId) {
   document.getElementById(modalId).classList.remove('active');
   appState.editingPedido = null;
+  appState.editingCliente = null;
 }
 
 // ─── Save Functions ────────────────────────────────────────────────────────
@@ -505,7 +514,6 @@ function savePedido() {
   }
   
   if (appState.editingPedido) {
-    // Editar pedido existente
     const idx = appState.data.pedidos.findIndex(p => p.id === appState.editingPedido);
     if (idx >= 0) {
       appState.data.pedidos[idx] = {
@@ -521,7 +529,6 @@ function savePedido() {
       };
     }
   } else {
-    // Novo pedido
     const pedido = {
       id: `order_${Date.now()}`,
       id_cliente: clienteId,
@@ -559,8 +566,7 @@ function saveCliente() {
     }
   });
   
-  const cliente = {
-    id: `client_${Date.now()}`,
+  const clienteData = {
     nome,
     observacoes: document.getElementById('clienteObservacoes').value || '',
     prazoBoleto: document.getElementById('clientePrazoBoleto').value || '',
@@ -573,7 +579,23 @@ function saveCliente() {
     precos,
   };
   
-  appState.data.clientes.push(cliente);
+  if (appState.editingCliente) {
+    // Editar cliente existente
+    const idx = appState.data.clientes.findIndex(c => c.id === appState.editingCliente);
+    if (idx >= 0) {
+      appState.data.clientes[idx] = {
+        ...appState.data.clientes[idx],
+        ...clienteData,
+      };
+    }
+  } else {
+    // Novo cliente
+    appState.data.clientes.push({
+      id: `client_${Date.now()}`,
+      ...clienteData,
+    });
+  }
+  
   saveData();
   closeModal('clienteModal');
   renderClientes();
@@ -646,6 +668,8 @@ function editCliente(id) {
   const cliente = appState.data.clientes.find(c => c.id === id);
   if (!cliente) return;
   
+  appState.editingCliente = id;
+  
   document.getElementById('clienteNome').value = cliente.nome;
   document.getElementById('clienteObservacoes').value = cliente.observacoes;
   document.getElementById('clientePrazoBoleto').value = cliente.prazoBoleto;
@@ -675,7 +699,6 @@ function editProduto(nome) {
   document.getElementById('produtoNome').value = produto.nome;
   document.getElementById('produtoPrecoBase').value = produto.precoBase;
   
-  // Selecionar categorias
   Array.from(document.getElementById('produtoCategorias').options).forEach(opt => {
     opt.selected = produto.categorias.includes(opt.value);
   });
@@ -685,13 +708,15 @@ function editProduto(nome) {
 
 // ─── Update Status ─────────────────────────────────────────────────────────
 
-function updatePedidoStatus(id, status) {
-  const pedido = appState.data.pedidos.find(p => p.id === id);
-  if (pedido) {
-    pedido.status = status;
-    saveData();
-    renderAgenda();
-  }
+function updateClientStatus(clientId, status) {
+  // Mudar status de TODOS os pedidos do cliente
+  appState.data.pedidos.forEach(p => {
+    if (p.id_cliente === clientId) {
+      p.status = status;
+    }
+  });
+  saveData();
+  renderDashboard();
 }
 
 // ─── Preço Especial Functions ──────────────────────────────────────────────
@@ -706,7 +731,7 @@ function adicionarPrecoEspecial(produtoNome = '', preco = '') {
       ${appState.data.produtos.map(p => `<option value="${p.nome}" ${p.nome === produtoNome ? 'selected' : ''}>${p.nome}</option>`).join('')}
     </select>
     <input type="number" class="preco-valor-input" placeholder="Preço" value="${preco}" step="0.01" min="0">
-    <button class="btn-delete" onclick="this.parentElement.remove()">🗑️</button>
+    <button type="button" class="btn-delete" onclick="this.parentElement.remove()">🗑️</button>
   `;
   container.appendChild(row);
 }
@@ -749,23 +774,6 @@ function calculateVolumeByDay() {
       .reduce((sum, p) => sum + (p.quantidade || 0), 0);
   });
   return volume;
-}
-
-function getProdutosHoje() {
-  const hoje = getCurrentDay();
-  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === hoje);
-  const produtosMap = {};
-  
-  pedidosHoje.forEach(p => {
-    if (!produtosMap[p.produto]) {
-      produtosMap[p.produto] = 0;
-    }
-    produtosMap[p.produto] += p.quantidade || 0;
-  });
-  
-  return Object.entries(produtosMap)
-    .map(([nome, quantidade]) => ({ nome, quantidade }))
-    .sort((a, b) => b.quantidade - a.quantidade);
 }
 
 function getClientesHoje() {
