@@ -21,6 +21,7 @@
             --pending: #f39c12;
             --delivered: #2ecc71;
             --cancelled: #e74c3c;
+            --ready: #3498db;
             --bg: #f5f5f5;
             --surface: #ffffff;
             --text: #333;
@@ -165,7 +166,7 @@
         /* Status Grid */
         .status-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
 
@@ -186,6 +187,10 @@
 
         .status-card.cancelled {
             background: linear-gradient(135deg, var(--danger) 0%, #c0392b 100%);
+        }
+
+        .status-card.ready {
+            background: linear-gradient(135deg, var(--ready) 0%, #2980b9 100%);
         }
 
         .status-value {
@@ -231,8 +236,20 @@
             transition: width 0.3s ease;
         }
 
+        .prod-name-bar {
+            width: 160px;
+            min-width: 160px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .volume-count {
-            width: 40px;
+            width: 50px;
+            min-width: 50px;
             text-align: right;
             font-weight: bold;
         }
@@ -738,7 +755,10 @@
 
         .client-delivery-card.completed {
             opacity: 0.7;
-            border-left-color: var(--success);
+        }
+
+        .client-delivery-card.ready-card {
+            border-left: 4px solid var(--ready);
         }
 
         .client-delivery-card.completed .client-produtos {
@@ -1044,7 +1064,7 @@ function switchTab(tab) {
 
 // ─── Data Management ─────────────────────────────────────────────────────────
 
-const DATA_VERSION = 'v2_291_58_23';
+const DATA_VERSION = 'v3_status_pronto';
 
 async function loadData() {
   const savedVersion = localStorage.getItem('fazendas-up-version');
@@ -5318,11 +5338,15 @@ function renderDashboard() {
       </div>
 
       <div class="section">
-        <h3>🚚 Status de Entregas</h3>
+        <h3>🚚 Status de Entregas (por cliente - hoje)</h3>
         <div class="status-grid">
           <div class="status-card pending">
             <div class="status-value">${stats.pendentes}</div>
             <div class="status-label">Pendentes</div>
+          </div>
+          <div class="status-card ready">
+            <div class="status-value">${stats.prontos}</div>
+            <div class="status-label">Prontos</div>
           </div>
           <div class="status-card delivered">
             <div class="status-value">${stats.entregues}</div>
@@ -5337,14 +5361,23 @@ function renderDashboard() {
 
       <div class="section">
         <h3>📦 Produtos de Hoje</h3>
-        <div class="top-products-list">
-          ${getProdutosHoje().map((p, i) => `
-            <div class="top-product-item">
-              <span class="rank-badge">#${i + 1}</span>
-              <span class="prod-name">${p.nome}</span>
-              <span class="prod-total">${p.quantidade} un</span>
-            </div>
-          `).join('')}
+        <div class="volume-list">
+          ${(() => {
+            const prods = getProdutosHoje();
+            const maxQtd = Math.max(...prods.map(p => p.quantidade), 1);
+            return prods.map((p, i) => {
+              const pct = (p.quantidade / maxQtd) * 100;
+              return `
+                <div class="volume-item">
+                  <span class="prod-name-bar">${p.nome}</span>
+                  <div class="volume-bar">
+                    <div class="volume-fill" style="width: ${pct}%"></div>
+                  </div>
+                  <span class="volume-count">${p.quantidade} un</span>
+                </div>
+              `;
+            }).join('');
+          })()}
         </div>
       </div>
 
@@ -5374,23 +5407,25 @@ function renderDashboard() {
           ${clientesHoje.length > 0 ? clientesHoje.map(grupo => {
             const cliente = appState.data.clientes.find(c => c.id === grupo.clientId);
             const totalQtd = grupo.pedidos.reduce((s, p) => s + p.quantidade, 0);
-            const entregues = grupo.pedidos.filter(p => p.status === 'entregue').length;
-            const todoEntregue = entregues === grupo.pedidos.length;
+            const statusCliente = grupo.pedidos[0]?.status || 'pendente';
+            const todoEntregue = statusCliente === 'entregue';
+            const todoPronto = statusCliente === 'pronto';
             
             // Listar produtos do cliente
             const produtos = grupo.pedidos.map(p => `${p.produto} (${p.categoria || 'sem cat.'}) x${p.quantidade}`).join(', ');
             
             return `
-              <div class="client-delivery-card ${todoEntregue ? 'completed' : ''}">
+              <div class="client-delivery-card ${todoEntregue ? 'completed' : ''} ${todoPronto ? 'ready-card' : ''}">
                 <div class="client-header">
                   <div class="client-info">
                     <h4>${grupo.clientName}</h4>
-                    <span class="client-meta">${grupo.pedidos.length} produto(s) | ${totalQtd} itens | ${entregues}/${grupo.pedidos.length} entregues</span>
+                    <span class="client-meta">${grupo.pedidos.length} produto(s) | ${totalQtd} itens</span>
                   </div>
-                  <select class="status-select-client" value="${grupo.pedidos[0].status}" onchange="updateClientStatus('${grupo.clientId}', this.value)">
-                    <option value="pendente">Pendente</option>
-                    <option value="entregue">Entregue</option>
-                    <option value="cancelado">Cancelado</option>
+                  <select class="status-select-client" onchange="updateClientStatus('${grupo.clientId}', this.value)">
+                    <option value="pendente" ${statusCliente === 'pendente' ? 'selected' : ''}>Pendente</option>
+                    <option value="pronto" ${statusCliente === 'pronto' ? 'selected' : ''}>Pronto</option>
+                    <option value="entregue" ${statusCliente === 'entregue' ? 'selected' : ''}>Entregue</option>
+                    <option value="cancelado" ${statusCliente === 'cancelado' ? 'selected' : ''}>Cancelado</option>
                   </select>
                 </div>
                 
@@ -5444,7 +5479,7 @@ function renderAgenda() {
     <div class="agenda">
       <div class="section-header">
         <h2>📅 Agenda de Pedidos</h2>
-        <button class="btn-primary" onclick="openModal('pedidoModal')">+ Novo Pedido</button>
+        <button class="btn-primary" onclick="appState.editingPedido = null; openModal('pedidoModal')">+ Novo Pedido</button>
       </div>
       
       <div class="agenda-filters">
@@ -5530,7 +5565,7 @@ function renderClientes() {
     <div class="clientes">
       <div class="section-header">
         <h2>👥 Clientes</h2>
-        <button class="btn-primary" onclick="openModal('clienteModal')">+ Novo Cliente</button>
+        <button class="btn-primary" onclick="appState.editingCliente = null; openModal('clienteModal')">+ Novo Cliente</button>
       </div>
       <div id="clientes-list"></div>
     </div>
@@ -5661,6 +5696,15 @@ function openModal(modalId) {
   
   if (modalId === 'clienteModal') {
     updateClientSelects();
+    if (!appState.editingCliente) {
+      document.getElementById('clienteForm').reset();
+      document.getElementById('precosContainer').innerHTML = '';
+      const modalTitle = document.querySelector('#clienteModal .modal-content h2');
+      if (modalTitle) modalTitle.textContent = 'Novo Cliente';
+    } else {
+      const modalTitle = document.querySelector('#clienteModal .modal-content h2');
+      if (modalTitle) modalTitle.textContent = 'Editar Cliente';
+    }
   } else if (modalId === 'pedidoModal') {
     updateClientSelects();
     updateProductSelects();
@@ -5903,18 +5947,20 @@ function editCliente(id) {
   if (!cliente) return;
   
   appState.editingCliente = id;
+  openModal('clienteModal');
   
+  // Preencher DEPOIS do openModal para que os selects estejam populados
   document.getElementById('clienteNome').value = cliente.nome;
-  document.getElementById('clienteObservacoes').value = cliente.observacoes;
-  document.getElementById('clientePrazoBoleto').value = cliente.prazoBoleto;
-  document.getElementById('clienteAcumula').checked = cliente.acumulaPedidos;
-  document.getElementById('clienteDiasAcumulo').value = cliente.diasAcumulo;
-  document.getElementById('clientePrazoBoletoAcumulo').value = cliente.prazoBoletoAcumulo;
-  document.getElementById('clientePeriodo').value = cliente.periodoEntrega;
-  document.getElementById('clienteHorario').value = cliente.horarioMaximo;
-  document.getElementById('clienteCobraEntrega').checked = cliente.cobraEntrega;
+  document.getElementById('clienteObservacoes').value = cliente.observacoes || '';
+  document.getElementById('clientePrazoBoleto').value = cliente.prazoBoleto || '';
+  document.getElementById('clienteAcumula').checked = cliente.acumulaPedidos || false;
+  document.getElementById('clienteDiasAcumulo').value = cliente.diasAcumulo || '';
+  document.getElementById('clientePrazoBoletoAcumulo').value = cliente.prazoBoletoAcumulo || '';
+  document.getElementById('clientePeriodo').value = cliente.periodoEntrega || '';
+  document.getElementById('clienteHorario').value = cliente.horarioMaximo || '';
+  document.getElementById('clienteCobraEntrega').checked = cliente.cobraEntrega || false;
   
-  // Carregar preços especiais
+  // Carregar precos especiais
   const precosContainer = document.getElementById('precosContainer');
   precosContainer.innerHTML = '';
   if (cliente.precos && cliente.precos.length > 0) {
@@ -5922,8 +5968,6 @@ function editCliente(id) {
       adicionarPrecoEspecial(p.produto, p.preco);
     });
   }
-  
-  openModal('clienteModal');
 }
 
 function editProduto(nome) {
@@ -5943,9 +5987,10 @@ function editProduto(nome) {
 // ─── Update Status ─────────────────────────────────────────────────────────
 
 function updateClientStatus(clientId, status) {
-  // Mudar status de TODOS os pedidos do cliente
+  const hoje = getCurrentDay();
+  // Mudar status de todos os pedidos do cliente NO DIA DE HOJE
   appState.data.pedidos.forEach(p => {
-    if (p.id_cliente === clientId) {
+    if (p.id_cliente === clientId && p.dia_semana === hoje) {
       p.status = status;
     }
   });
@@ -5989,14 +6034,29 @@ function updateProductSelects() {
 }
 
 function calculateStats() {
+  const hoje = getCurrentDay();
+  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === hoje);
+  
+  // Agrupar por cliente para contar status por CLIENTE
+  const clienteStatusMap = {};
+  pedidosHoje.forEach(p => {
+    if (!clienteStatusMap[p.id_cliente]) {
+      clienteStatusMap[p.id_cliente] = p.status || 'pendente';
+    }
+  });
+  const clienteStatuses = Object.values(clienteStatusMap);
+  
   return {
     totalPedidos: appState.data.pedidos.length,
     totalQuantidade: appState.data.pedidos.reduce((sum, p) => sum + (p.quantidade || 0), 0),
     clientesUnicos: new Set(appState.data.pedidos.map(p => p.id_cliente)).size,
     produtosUnicos: new Set(appState.data.pedidos.map(p => p.produto)).size,
-    pendentes: appState.data.pedidos.filter(p => p.status === 'pendente').length,
-    entregues: appState.data.pedidos.filter(p => p.status === 'entregue').length,
-    cancelados: appState.data.pedidos.filter(p => p.status === 'cancelado').length,
+    // Status contados por CLIENTE (não por pedido)
+    pendentes: clienteStatuses.filter(s => s === 'pendente').length,
+    prontos: clienteStatuses.filter(s => s === 'pronto').length,
+    entregues: clienteStatuses.filter(s => s === 'entregue').length,
+    cancelados: clienteStatuses.filter(s => s === 'cancelado').length,
+    totalClientesHoje: clienteStatuses.length,
   };
 }
 
