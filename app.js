@@ -1,6 +1,3 @@
-// Firebase Database Reference
-let db = null;
-
 // App State
 let appState = {
   currentTab: 'dashboard',
@@ -9,29 +6,19 @@ let appState = {
     clientes: [],
     produtos: [],
   },
-  selectedDay: 'Segunda',
-  searchQuery: '',
 };
 
-// Dias da semana
 const DIAS_SEMANA = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 
 // ─── Inicialização ───────────────────────────────────────────────────────────
 
-function initFirebase() {
-  if (typeof firebase !== 'undefined' && firebase.database) {
-    db = firebase.database();
-    console.log('Firebase inicializado');
-    loadInitialData();
-    setupFirebaseListeners();
-    setupEventListeners();
-  } else {
-    console.error('Firebase não disponível');
-  }
+function init() {
+  loadData();
+  setupEventListeners();
+  renderDashboard();
 }
 
 function setupEventListeners() {
-  // Tab buttons
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const tab = btn.dataset.tab;
@@ -43,79 +30,31 @@ function setupEventListeners() {
 function switchTab(tab) {
   appState.currentTab = tab;
   
-  // Update active button
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.tab === tab);
   });
   
-  // Render content
   if (tab === 'dashboard') renderDashboard();
   else if (tab === 'agenda') renderAgenda();
   else if (tab === 'clientes') renderClientes();
   else if (tab === 'produtos') renderProdutos();
 }
 
-// ─── Firebase Listeners ──────────────────────────────────────────────────────
+// ─── Data Management ─────────────────────────────────────────────────────────
 
-function setupFirebaseListeners() {
-  if (!db) return;
-  
-  // Listener para pedidos
-  db.ref('pedidos').on('value', (snapshot) => {
-    const data = snapshot.val();
-    if (data) {
-      appState.data.pedidos = Array.isArray(data) ? data : Object.values(data);
-      localStorage.setItem('fazendas-up-data', JSON.stringify(appState.data));
-      if (appState.currentTab === 'dashboard') renderDashboard();
-      else if (appState.currentTab === 'agenda') renderAgenda();
-    }
-  });
-  
-  // Listener para clientes
-  db.ref('clientes').on('value', (snapshot) => {
-    const data = snapshot.val();
-    if (data) {
-      appState.data.clientes = Array.isArray(data) ? data : Object.values(data);
-      localStorage.setItem('fazendas-up-data', JSON.stringify(appState.data));
-      updateClientSelects();
-      if (appState.currentTab === 'clientes') renderClientes();
-    }
-  });
-  
-  // Listener para produtos
-  db.ref('produtos').on('value', (snapshot) => {
-    const data = snapshot.val();
-    if (data) {
-      appState.data.produtos = Array.isArray(data) ? data : Object.values(data);
-      localStorage.setItem('fazendas-up-data', JSON.stringify(appState.data));
-      updateProductSelects();
-      if (appState.currentTab === 'produtos') renderProdutos();
-    }
-  });
-}
-
-function loadInitialData() {
+function loadData() {
   const saved = localStorage.getItem('fazendas-up-data');
   if (saved) {
     try {
       appState.data = JSON.parse(saved);
     } catch (e) {
-      console.error('Erro ao carregar dados salvos:', e);
+      console.error('Erro ao carregar dados:', e);
     }
   }
 }
 
-function saveToFirebase() {
-  if (!db) return;
-  
-  db.ref('pedidos').set(appState.data.pedidos).catch(err => console.error('Erro ao salvar pedidos:', err));
-  db.ref('clientes').set(appState.data.clientes).catch(err => console.error('Erro ao salvar clientes:', err));
-  db.ref('produtos').set(appState.data.produtos).catch(err => console.error('Erro ao salvar produtos:', err));
-}
-
 function saveData() {
   localStorage.setItem('fazendas-up-data', JSON.stringify(appState.data));
-  saveToFirebase();
 }
 
 // ─── Render Functions ────────────────────────────────────────────────────────
@@ -180,12 +119,12 @@ function renderDashboard() {
     
     <div class="card">
       <h2>🥬 Top 5 Produtos</h2>
-      ${topProdutos.map(p => `
+      ${topProdutos.length > 0 ? topProdutos.map(p => `
         <div class="metric">
           <span class="metric-label">${p.nome}</span>
           <span class="metric-value">${p.quantidade} un</span>
         </div>
-      `).join('')}
+      `).join('') : '<p style="color: #999;">Nenhum produto ainda</p>'}
     </div>
   `;
 }
@@ -217,9 +156,7 @@ function renderAgendaContent() {
   let html = '';
   for (const dia of DIAS_SEMANA) {
     const pedidosDia = appState.data.pedidos.filter(p => p.dia_semana === dia);
-    const filtered = pedidosDia.filter(p => 
-      !query || p.cliente.toLowerCase().includes(query)
-    );
+    const filtered = pedidosDia.filter(p => !query || p.cliente.toLowerCase().includes(query));
     
     if (filtered.length === 0) continue;
     
@@ -241,10 +178,10 @@ function renderAgendaContent() {
           <div class="list-item">
             <div class="list-item-content">
               <div class="list-item-title">${p.produto}</div>
-              <div class="list-item-subtitle">${p.quantidade} un - ${p.categoria}</div>
+              <div class="list-item-subtitle">${p.quantidade} un</div>
             </div>
             <div class="list-item-actions">
-              <button class="btn-icon" onclick="deletePedido('${p.id}')">🗑️</button>
+              <button class="btn-icon" onclick="deletePedido('${p.id}')" style="color: #ef4444;">🗑️</button>
             </div>
           </div>
         `;
@@ -282,9 +219,7 @@ function renderClientesContent() {
   if (!container) return;
   
   const query = document.getElementById('clientesSearch')?.value.toLowerCase() || '';
-  const filtered = appState.data.clientes.filter(c => 
-    !query || c.nome.toLowerCase().includes(query)
-  );
+  const filtered = appState.data.clientes.filter(c => !query || c.nome.toLowerCase().includes(query));
   
   if (filtered.length === 0) {
     container.innerHTML = '<p style="color: #999;">Nenhum cliente encontrado</p>';
@@ -295,9 +230,7 @@ function renderClientesContent() {
     <div class="list-item">
       <div class="list-item-content">
         <div class="list-item-title">${c.nome}</div>
-        <div class="list-item-subtitle">
-          ${c.periodoEntrega ? `${c.periodoEntrega}` : ''} ${c.cobraEntrega ? '• Cobra entrega' : ''}
-        </div>
+        <div class="list-item-subtitle">${c.periodoEntrega ? c.periodoEntrega : 'Sem período'}</div>
       </div>
       <div class="list-item-actions">
         <button class="btn-icon" onclick="deleteCliente('${c.id}')" style="color: #ef4444;">🗑️</button>
@@ -329,9 +262,7 @@ function renderProdutosContent() {
   if (!container) return;
   
   const query = document.getElementById('produtosSearch')?.value.toLowerCase() || '';
-  const filtered = appState.data.produtos.filter(p => 
-    !query || p.nome.toLowerCase().includes(query)
-  );
+  const filtered = appState.data.produtos.filter(p => !query || p.nome.toLowerCase().includes(query));
   
   if (filtered.length === 0) {
     container.innerHTML = '<p style="color: #999;">Nenhum produto encontrado</p>';
@@ -342,9 +273,7 @@ function renderProdutosContent() {
     <div class="list-item">
       <div class="list-item-content">
         <div class="list-item-title">${p.nome}</div>
-        <div class="list-item-subtitle">
-          ${p.categorias ? p.categorias.join(', ') : 'Sem categoria'} • R$ ${p.precoBase?.toFixed(2) || '0,00'}
-        </div>
+        <div class="list-item-subtitle">R$ ${p.precoBase?.toFixed(2) || '0,00'}</div>
       </div>
       <div class="list-item-actions">
         <button class="btn-icon" onclick="deleteProduto('${p.nome}')" style="color: #ef4444;">🗑️</button>
@@ -375,22 +304,17 @@ function openModal(modalId) {
   if (modalId === 'clienteModal') {
     document.getElementById('clienteNome').value = '';
     document.getElementById('clientePeriodo').value = '';
-    document.getElementById('clienteHorarioMax').value = '';
-    document.getElementById('clientePrazoBoleto').value = '';
-    document.getElementById('clienteCobraEntrega').value = 'false';
     document.getElementById('clienteObservacoes').value = '';
   } else if (modalId === 'produtoModal') {
     document.getElementById('produtoNome').value = '';
-    document.getElementById('produtoCategoria').value = '';
     document.getElementById('produtoPrecoBase').value = '';
   } else if (modalId === 'pedidoModal') {
     document.getElementById('pedidoCliente').value = '';
     document.getElementById('pedidoDia').value = '';
     document.getElementById('pedidoProduto').value = '';
-    document.getElementById('pedidoCategoria').value = '';
     document.getElementById('pedidoQuantidade').value = '';
-    document.getElementById('pedidoTipoVenda').value = '';
-    document.getElementById('pedidoObservacoes').value = '';
+    updateClientSelects();
+    updateProductSelects();
   }
 }
 
@@ -411,9 +335,6 @@ function saveCliente() {
     id: `client_${Date.now()}`,
     nome,
     periodoEntrega: document.getElementById('clientePeriodo').value,
-    horarioMaximo: document.getElementById('clienteHorarioMax').value,
-    prazoBoleto: document.getElementById('clientePrazoBoleto').value,
-    cobraEntrega: document.getElementById('clienteCobraEntrega').value === 'true',
     observacoes: document.getElementById('clienteObservacoes').value,
   };
   
@@ -430,14 +351,8 @@ function saveProduto() {
     return;
   }
   
-  const categorias = document.getElementById('produtoCategoria').value
-    .split(',')
-    .map(c => c.trim())
-    .filter(c => c);
-  
   const produto = {
     nome,
-    categorias,
     precoBase: parseFloat(document.getElementById('produtoPrecoBase').value) || 0,
   };
   
@@ -474,10 +389,7 @@ function savePedido() {
     cliente: cliente.nome,
     dia_semana: document.getElementById('pedidoDia').value,
     produto: produtoNome,
-    categoria: document.getElementById('pedidoCategoria').value,
     quantidade,
-    tipo_venda: document.getElementById('pedidoTipoVenda').value,
-    observacoes: document.getElementById('pedidoObservacoes').value,
     status: 'pendente',
   };
   
@@ -518,24 +430,16 @@ function updateClientSelects() {
   const select = document.getElementById('pedidoCliente');
   if (!select) return;
   
-  const currentValue = select.value;
   select.innerHTML = '<option value="">Selecionar cliente...</option>' +
-    appState.data.clientes.map(c => 
-      `<option value="${c.id}">${c.nome}</option>`
-    ).join('');
-  select.value = currentValue;
+    appState.data.clientes.map(c => `<option value="${c.id}">${c.nome}</option>`).join('');
 }
 
 function updateProductSelects() {
   const select = document.getElementById('pedidoProduto');
   if (!select) return;
   
-  const currentValue = select.value;
   select.innerHTML = '<option value="">Selecionar produto...</option>' +
-    appState.data.produtos.map(p => 
-      `<option value="${p.nome}">${p.nome}</option>`
-    ).join('');
-  select.value = currentValue;
+    appState.data.produtos.map(p => `<option value="${p.nome}">${p.nome}</option>`).join('');
 }
 
 function calculateStats() {
@@ -575,12 +479,8 @@ function getTopProdutos(limit = 5) {
 
 // ─── Initialize ──────────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded', () => {
-  initFirebase();
-  renderDashboard();
-});
+document.addEventListener('DOMContentLoaded', init);
 
-// Close modals on outside click
 document.addEventListener('click', (e) => {
   if (e.target.classList.contains('modal')) {
     e.target.classList.remove('active');
