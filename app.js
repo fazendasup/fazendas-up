@@ -30,9 +30,13 @@ let appState = {
   modalType: null,
 };
 
-// Salvar dados no localStorage
+// Salvar dados no localStorage e Firebase
 function saveData() {
   localStorage.setItem('fazendas-up-data', JSON.stringify(appState.data));
+  // Sincronizar com Firebase se disponível
+  if (typeof syncToFirebase !== 'undefined') {
+    syncToFirebase();
+  }
 }
 
 // Renderizar Dashboard
