@@ -881,6 +881,29 @@
         </div>
     </div>
     
+    <div id="agendaFiltrosModal" class="modal">
+        <div class="modal-content">
+            <h2>🔍 Filtros da Agenda</h2>
+            <form style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="form-group">
+                    <label>Filtrar por dia:</label>
+                    <select id="agendaDiaSelect" onchange="filterAgendaByDay(this.value)">
+                        <option value="">Todos os dias</option>
+                        ${DIAS_SEMANA.map(dia => `<option value="${dia}">${dia}</option>`).join('')}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Filtrar por clientes:</label>
+                    <div id="clientesCheckboxes" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; max-height: 250px; overflow-y: auto; padding: 10px; border: 2px solid var(--border); border-radius: 6px; background: var(--surface);"></div>
+                </div>
+            </form>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn-primary" onclick="closeModal('agendaFiltrosModal')" style="flex: 1;">Fechar</button>
+            </div>
+        </div>
+    </div>
+    
     <div id="pedidoModal" class="modal">
         <div class="modal-content">
             <h2>Novo Pedido</h2>
@@ -5608,37 +5631,16 @@ function renderAgenda() {
     return { id, nome: pedido.cliente };
   }).sort((a, b) => a.nome.localeCompare(b.nome));
   
+  appState.clientesUnicos = clientesUnicos;
+  
   content.innerHTML = `
     <div class="agenda">
       <div class="section-header">
         <h2>📅 Agenda de Pedidos</h2>
-        <button class="btn-primary" onclick="appState.editingPedido = null; openModal('pedidoModal')">+ Novo Pedido</button>
-      </div>
-      
-      <div class="agenda-filters" style="display: flex; flex-direction: column; gap: 15px;">
-        <div>
-          <label style="display: block; margin-bottom: 8px; font-weight: 500;">Filtrar por dia:</label>
-          <select id="agendaDiaSelect" onchange="filterAgendaByDay(this.value)" style="width: 100%; padding: 8px; border: 2px solid var(--border); border-radius: 6px;">
-            <option value="">Todos os dias</option>
-            ${DIAS_SEMANA.map(dia => `<option value="${dia}">${dia}</option>`).join('')}
-          </select>
-        </div>
-        
-        <div>
-          <label style="display: block; margin-bottom: 8px; font-weight: 500;">Pesquisar:</label>
-          <input type="text" id="agendaPesquisa" placeholder="Cliente, produto, observacao..." onkeyup="filterAgendaBySearch(this.value)" style="width: 100%; padding: 8px; border: 2px solid var(--border); border-radius: 6px; box-sizing: border-box;">
-        </div>
-        
-        <div>
-          <label style="display: block; margin-bottom: 8px; font-weight: 500;">Filtrar por clientes:</label>
-          <div id="clientesCheckboxes" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; max-height: 200px; overflow-y: auto; padding: 10px; border: 2px solid var(--border); border-radius: 6px; background: var(--surface);">
-            ${clientesUnicos.map(cliente => `
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                <input type="checkbox" value="${cliente.id}" onchange="filterAgendaByClientes()" style="cursor: pointer;">
-                <span style="font-size: 13px;">${cliente.nome}</span>
-              </label>
-            `).join('')}
-          </div>
+        <div style="display: flex; gap: 10px;">
+          <input type="text" id="agendaPesquisaRapida" placeholder="🔍 Pesquisar..." onkeyup="filterAgendaBySearch(this.value)" style="padding: 8px 12px; border: 2px solid var(--border); border-radius: 6px; width: 250px; font-size: 14px;">
+          <button class="btn-secondary" onclick="openModal('agendaFiltrosModal')" style="padding: 8px 16px;">⚙️ Filtros</button>
+          <button class="btn-primary" onclick="appState.editingPedido = null; openModal('pedidoModal')">+ Novo Pedido</button>
         </div>
       </div>
       
@@ -5647,6 +5649,7 @@ function renderAgenda() {
   `;
   
   renderAgendaList();
+  renderAgendaFiltrosModal();
 }
 
 function filterAgendaByDay(dia) {
@@ -5664,6 +5667,22 @@ function filterAgendaByClientes() {
   appState.agendaClientesFiltro = Array.from(checkboxes).map(cb => cb.value);
   renderAgendaList();
 }
+
+function renderAgendaFiltrosModal() {
+  const checkboxesContainer = document.getElementById('clientesCheckboxes');
+  if (!checkboxesContainer) return;
+  
+  const clientesUnicos = appState.clientesUnicos || [];
+  
+  checkboxesContainer.innerHTML = clientesUnicos.map(cliente => `
+    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+      <input type="checkbox" value="${cliente.id}" onchange="filterAgendaByClientes()" style="cursor: pointer;">
+      <span style="font-size: 13px;">${cliente.nome}</span>
+    </label>
+  `).join('');
+}
+
+
 
 // ─── Sistema de Prioridade ──────────────────────────────────────────────────────
 
