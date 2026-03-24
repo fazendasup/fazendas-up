@@ -874,6 +874,13 @@
     </div>
 
     <!-- Modals -->
+    <div id="prioridadeModal" class="modal">
+        <div class="modal-content">
+            <h2>🎯 Definir Prioridade de Entrega</h2>
+            <div id="prioridadeContent"></div>
+        </div>
+    </div>
+    
     <div id="pedidoModal" class="modal">
         <div class="modal-content">
             <h2>Novo Pedido</h2>
@@ -1072,6 +1079,9 @@ function switchTab(tab) {
 // ─── Data Management ─────────────────────────────────────────────────────────
 
 const DATA_VERSION = 'v5_permissoes';
+
+// Dia selecionado para visualização
+let diaVisualizacao = 'hoje'; // 'hoje' ou um dos dias da semana
 
 // Sistema de Permissões
 let userRole = null; // Não persistir - pedir login toda vez
@@ -5385,15 +5395,32 @@ function saveData() {
 
 // ─── Dashboard Render ────────────────────────────────────────────────────────
 
+function mudarDiaVisualizacao(dia) {
+  diaVisualizacao = dia;
+  renderDashboard();
+}
+
 function renderDashboard() {
   const content = document.getElementById('content');
   const stats = calculateStats();
   const volumeByDay = calculateVolumeByDay();
   const clientesHoje = getClientesHoje();
   
+  // Gerar opções de dias
+  const diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
+  const opcoesHtml = `<option value="hoje">Hoje</option>` + diasSemana.map(dia => `<option value="${dia}">${dia}</option>`).join('');
+  
   content.innerHTML = `
     <div class="dashboard">
-      <h2>📊 Dashboard</h2>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>📊 Dashboard</h2>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <label for="diaSelect" style="font-weight: 500; color: var(--text);">Visualizar:</label>
+          <select id="diaSelect" onchange="mudarDiaVisualizacao(this.value)" style="padding: 8px 12px; border: 2px solid var(--border); border-radius: 6px; background: white; color: var(--text); font-size: 14px; cursor: pointer;">
+            ${opcoesHtml}
+          </select>
+        </div>
+      </div>
       
       <div class="stats-grid">
         <div class="stat-card">
@@ -5479,7 +5506,10 @@ function renderDashboard() {
       </div>
 
       <div class="section">
-        <h3>👥 Entregas de Hoje</h3>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+          <h3>🛍 Entregas de Hoje</h3>
+          ${userRole === 'administrativo' ? `<button class="btn-secondary" onclick="abrirModalPrioridade()" style="padding: 8px 16px; font-size: 12px;">🎯 Definir Prioridade</button>` : ''}
+        </div>
         <div class="today-deliveries">
           ${clientesHoje.length > 0 ? clientesHoje.map(grupo => {
             const cliente = appState.data.clientes.find(c => c.id === grupo.clientId);
@@ -5577,6 +5607,83 @@ function renderAgenda() {
 function filterAgendaByDay(dia) {
   appState.agendaDiaFiltro = dia || null;
   renderAgendaList();
+}
+
+// ─── Sistema de Prioridade ──────────────────────────────────────────────────────
+
+function abrirModalPrioridade() {
+  const clientesHoje = getClientesHoje();
+  const prioridades = JSON.parse(localStorage.getItem('fazendas-up-prioridades') || '{}');
+  const diaKey = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
+  const prioridadesDia = prioridades[diaKey] || [];
+  
+  const html = `
+    <div style="max-height: 500px; overflow-y: auto;">
+      <p style="margin-bottom: 15px; color: var(--text-light);">Arraste os clientes para definir a ordem de entrega. O primeiro será a prioridade.</p>
+      <div id="prioridadeList" style="display: flex; flex-direction: column; gap: 10px;">
+        ${clientesHoje.length > 0 ? clientesHoje.map((grupo, idx) => {
+          const ordem = prioridadesDia.indexOf(grupo.clientId);
+          return `
+            <div draggable="true" ondragstart="dragStart(event, '${grupo.clientId}')" ondrop="dragDrop(event, '${grupo.clientId}')" ondragover="dragOver(event)" style="padding: 12px; background: var(--surface); border: 2px solid var(--border); border-radius: 6px; cursor: move; display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 18px; color: var(--primary);">☰</span>
+              <span style="font-weight: 500; flex: 1;">${ordem >= 0 ? `${ordem + 1}. ` : ''}${grupo.clientName}</span>
+            </div>
+          `;
+        }).join('') : '<div class="empty-state">Nenhum cliente para hoje</div>'}
+      </div>
+    </div>
+    <div style="display: flex; gap: 10px; margin-top: 20px;">
+      <button class="btn-primary" onclick="salvarPrioridades()" style="flex: 1;">Salvar Prioridades</button>
+      <button class="btn-secondary" onclick="closeModal('prioridadeModal')" style="flex: 1;">Cancelar</button>
+    </div>
+  `;
+  
+  document.getElementById('prioridadeContent').innerHTML = html;
+  openModal('prioridadeModal');
+}
+
+let draggedClientId = null;
+
+function dragStart(e, clientId) {
+  draggedClientId = clientId;
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+function dragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+}
+
+function dragDrop(e, targetClientId) {
+  e.preventDefault();
+  if (draggedClientId !== targetClientId) {
+    // Trocar ordem
+    const items = document.querySelectorAll('[draggable="true"]');
+    const draggedItem = Array.from(items).find(item => item.textContent.includes(draggedClientId));
+    const targetItem = Array.from(items).find(item => item.textContent.includes(targetClientId));
+    
+    if (draggedItem && targetItem) {
+      targetItem.parentNode.insertBefore(draggedItem, targetItem);
+    }
+  }
+}
+
+function salvarPrioridades() {
+  const clientesHoje = getClientesHoje();
+  const diaKey = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
+  const items = document.querySelectorAll('[draggable="true"]');
+  const novaOrdem = Array.from(items).map(item => {
+    const clientName = item.textContent.replace(/☰|\d+\.|\s+/g, '').trim();
+    return clientesHoje.find(g => g.clientName === clientName)?.clientId;
+  }).filter(Boolean);
+  
+  const prioridades = JSON.parse(localStorage.getItem('fazendas-up-prioridades') || '{}');
+  prioridades[diaKey] = novaOrdem;
+  localStorage.setItem('fazendas-up-prioridades', JSON.stringify(prioridades));
+  
+  closeModal('prioridadeModal');
+  alert('Prioridades salvas com sucesso!');
+  renderDashboard();
 }
 
 function renderAgendaList() {
@@ -6229,8 +6336,8 @@ function getProdutoLines() {
 }
 
 function calculateStats() {
-  const hoje = getCurrentDay();
-  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === hoje);
+  let diaFiltro = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
+  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === diaFiltro);
   
   // Agrupar por cliente para contar status por CLIENTE
   const clienteStatusMap = {};
@@ -6266,8 +6373,8 @@ function calculateVolumeByDay() {
 }
 
 function getProdutosHoje() {
-  const hoje = getCurrentDay();
-  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === hoje);
+  let diaFiltro = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
+  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === diaFiltro);
   
   const prodMap = {};
   pedidosHoje.forEach(p => {
@@ -6281,8 +6388,8 @@ function getProdutosHoje() {
 }
 
 function getClientesHoje() {
-  const hoje = getCurrentDay();
-  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === hoje);
+  let diaFiltro = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
+  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === diaFiltro);
   
   const grouped = {};
   pedidosHoje.forEach(p => {
