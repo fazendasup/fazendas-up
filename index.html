@@ -5428,7 +5428,7 @@ function renderDashboard() {
   
   // Gerar opções de dias
   const diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
-  const opcoesHtml = `<option value="hoje">Hoje</option>` + diasSemana.map(dia => `<option value="${dia}">${dia}</option>`).join('');
+  const opcoesHtml = `<option value="hoje" ${diaVisualizacao === 'hoje' ? 'selected' : ''}>Hoje</option>` + diasSemana.map(dia => `<option value="${dia}" ${diaVisualizacao === dia ? 'selected' : ''}>${dia}</option>`).join('');
   
   content.innerHTML = `
     <div class="dashboard">
@@ -5696,13 +5696,9 @@ function moverPrioridadeDown(clientId) {
 }
 
 function salvarPrioridades() {
-  const clientesHoje = getClientesHoje();
   const diaKey = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
-  const items = document.querySelectorAll('[draggable="true"]');
-  const novaOrdem = Array.from(items).map(item => {
-    const clientName = item.textContent.replace(/☰|\d+\.|\s+/g, '').trim();
-    return clientesHoje.find(g => g.clientName === clientName)?.clientId;
-  }).filter(Boolean);
+  const items = document.querySelectorAll('[data-client-id]');
+  const novaOrdem = Array.from(items).map(item => item.getAttribute('data-client-id')).filter(Boolean);
   
   const prioridades = JSON.parse(localStorage.getItem('fazendas-up-prioridades') || '{}');
   prioridades[diaKey] = novaOrdem;
