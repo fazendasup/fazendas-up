@@ -5603,6 +5603,11 @@ function renderDashboard() {
 function renderAgenda() {
   const content = document.getElementById('content');
   
+  const clientesUnicos = [...new Set(appState.data.pedidos.map(p => p.id_cliente))].map(id => {
+    const pedido = appState.data.pedidos.find(p => p.id_cliente === id);
+    return { id, nome: pedido.cliente };
+  }).sort((a, b) => a.nome.localeCompare(b.nome));
+  
   content.innerHTML = `
     <div class="agenda">
       <div class="section-header">
@@ -5610,12 +5615,31 @@ function renderAgenda() {
         <button class="btn-primary" onclick="appState.editingPedido = null; openModal('pedidoModal')">+ Novo Pedido</button>
       </div>
       
-      <div class="agenda-filters">
-        <label>Filtrar por dia:</label>
-        <select id="agendaDiaSelect" onchange="filterAgendaByDay(this.value)">
-          <option value="">Todos os dias</option>
-          ${DIAS_SEMANA.map(dia => `<option value="${dia}">${dia}</option>`).join('')}
-        </select>
+      <div class="agenda-filters" style="display: flex; flex-direction: column; gap: 15px;">
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500;">Filtrar por dia:</label>
+          <select id="agendaDiaSelect" onchange="filterAgendaByDay(this.value)" style="width: 100%; padding: 8px; border: 2px solid var(--border); border-radius: 6px;">
+            <option value="">Todos os dias</option>
+            ${DIAS_SEMANA.map(dia => `<option value="${dia}">${dia}</option>`).join('')}
+          </select>
+        </div>
+        
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500;">Pesquisar:</label>
+          <input type="text" id="agendaPesquisa" placeholder="Cliente, produto, observacao..." onkeyup="filterAgendaBySearch(this.value)" style="width: 100%; padding: 8px; border: 2px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+        </div>
+        
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500;">Filtrar por clientes:</label>
+          <div id="clientesCheckboxes" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; max-height: 200px; overflow-y: auto; padding: 10px; border: 2px solid var(--border); border-radius: 6px; background: var(--surface);">
+            ${clientesUnicos.map(cliente => `
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" value="${cliente.id}" onchange="filterAgendaByClientes()" style="cursor: pointer;">
+                <span style="font-size: 13px;">${cliente.nome}</span>
+              </label>
+            `).join('')}
+          </div>
+        </div>
       </div>
       
       <div id="agenda-list"></div>
@@ -5627,6 +5651,17 @@ function renderAgenda() {
 
 function filterAgendaByDay(dia) {
   appState.agendaDiaFiltro = dia || null;
+  renderAgendaList();
+}
+
+function filterAgendaBySearch(termo) {
+  appState.agendaPesquisa = termo.toLowerCase();
+  renderAgendaList();
+}
+
+function filterAgendaByClientes() {
+  const checkboxes = document.querySelectorAll('#clientesCheckboxes input[type="checkbox"]:checked');
+  appState.agendaClientesFiltro = Array.from(checkboxes).map(cb => cb.value);
   renderAgendaList();
 }
 
@@ -5710,7 +5745,24 @@ function renderAgendaList() {
   
   const groupedByDay = {};
   diasParaMostrar.forEach(dia => {
-    groupedByDay[dia] = appState.data.pedidos.filter(p => p.dia_semana === dia);
+    let pedidosDia = appState.data.pedidos.filter(p => p.dia_semana === dia);
+    
+    // Aplicar filtro de clientes
+    if (appState.agendaClientesFiltro && appState.agendaClientesFiltro.length > 0) {
+      pedidosDia = pedidosDia.filter(p => appState.agendaClientesFiltro.includes(p.id_cliente));
+    }
+    
+    // Aplicar filtro de pesquisa
+    if (appState.agendaPesquisa) {
+      const termo = appState.agendaPesquisa;
+      pedidosDia = pedidosDia.filter(p => 
+        p.cliente.toLowerCase().includes(termo) || 
+        p.produto.toLowerCase().includes(termo) || 
+        (p.observacoes && p.observacoes.toLowerCase().includes(termo))
+      );
+    }
+    
+    groupedByDay[dia] = pedidosDia;
   });
   
   agendaList.innerHTML = diasParaMostrar.map(dia => {
