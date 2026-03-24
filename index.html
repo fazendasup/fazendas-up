@@ -5630,7 +5630,7 @@ function abrirModalPrioridade() {
         ${clientesHoje.length > 0 ? clientesHoje.map((grupo, idx) => {
           const ordem = prioridadesDia.indexOf(grupo.clientId);
           return `
-            <div draggable="true" ondragstart="dragStart(event, '${grupo.clientId}')" ondrop="dragDrop(event, '${grupo.clientId}')" ondragover="dragOver(event)" style="padding: 12px; background: var(--surface); border: 2px solid var(--border); border-radius: 6px; cursor: move; display: flex; align-items: center; gap: 10px;">
+            <div draggable="true" data-client-id="${grupo.clientId}" ondragstart="dragStart(event, '${grupo.clientId}')" ondrop="dragDrop(event, '${grupo.clientId}')" ondragover="dragOver(event)" style="padding: 12px; background: var(--surface); border: 2px solid var(--border); border-radius: 6px; cursor: move; display: flex; align-items: center; gap: 10px;">
               <span style="font-size: 18px; color: var(--primary);">☰</span>
               <span style="font-weight: 500; flex: 1;">${ordem >= 0 ? `${ordem + 1}. ` : ''}${grupo.clientName}</span>
             </div>
@@ -5666,10 +5666,11 @@ function dragDrop(e, targetClientId) {
     // Trocar ordem
     const list = document.getElementById('prioridadeList');
     const items = list.querySelectorAll('[draggable="true"]');
-    const draggedItem = Array.from(items).find(item => item.getAttribute('ondragstart').includes(draggedClientId));
-    const targetItem = Array.from(items).find(item => item.getAttribute('ondrop').includes(targetClientId));
+    const draggedItem = Array.from(items).find(item => item.textContent.includes(draggedClientId) || item.innerHTML.includes(`'${draggedClientId}'`));
+    const targetItem = Array.from(items).find(item => item.textContent.includes(targetClientId) || item.innerHTML.includes(`'${targetClientId}'`));
     
     if (draggedItem && targetItem) {
+      // Inserir o item arrastado antes do item alvo
       list.insertBefore(draggedItem, targetItem);
     }
   }
