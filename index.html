@@ -5404,20 +5404,12 @@ function setupDiaSelectListener() {
   const diaSelect = document.getElementById('diaSelect');
   if (diaSelect) {
     diaSelect.removeEventListener('change', handleDiaChange);
-    diaSelect.removeEventListener('click', handleDiaClick);
     diaSelect.addEventListener('change', handleDiaChange);
-    diaSelect.addEventListener('click', handleDiaClick);
   }
 }
 
 function handleDiaChange(e) {
   mudarDiaVisualizacao(e.target.value);
-}
-
-function handleDiaClick(e) {
-  setTimeout(() => {
-    mudarDiaVisualizacao(e.target.value);
-  }, 50);
 }
 
 function renderDashboard() {
@@ -5678,9 +5670,9 @@ function moverPrioridadeUp(clientId) {
   const currentIndex = items.findIndex(item => item.getAttribute('data-client-id') === clientId);
   
   if (currentIndex > 0) {
-    const temp = items[currentIndex];
-    items[currentIndex - 1].parentNode.insertBefore(temp, items[currentIndex - 1]);
-    abrirModalPrioridade();
+    const currentItem = items[currentIndex];
+    const previousItem = items[currentIndex - 1];
+    list.insertBefore(currentItem, previousItem);
   }
 }
 
@@ -5690,8 +5682,9 @@ function moverPrioridadeDown(clientId) {
   const currentIndex = items.findIndex(item => item.getAttribute('data-client-id') === clientId);
   
   if (currentIndex < items.length - 1) {
-    items[currentIndex + 1].parentNode.insertBefore(items[currentIndex + 1], items[currentIndex]);
-    abrirModalPrioridade();
+    const currentItem = items[currentIndex];
+    const nextItem = items[currentIndex + 1];
+    list.insertBefore(nextItem, currentItem);
   }
 }
 
