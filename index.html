@@ -880,25 +880,6 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Produto</label>
-                    <select id="pedidoProduto">
-                        <option value="">Selecionar produto...</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Quantidade</label>
-                    <input type="number" id="pedidoQuantidade" min="1" value="1">
-                </div>
-                <div class="form-group">
-                    <label>Categoria</label>
-                    <select id="pedidoCategoria">
-                        <option value="">Selecionar...</option>
-                        <option value="Buque">Buque</option>
-                        <option value="Desfolhado">Desfolhado</option>
-                        <option value="Pote">Pote</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label>Tipo de Venda</label>
                     <select id="pedidoTipoVenda">
                         <option value="">Selecionar...</option>
@@ -911,6 +892,13 @@
                 <div class="form-group">
                     <label>Observações</label>
                     <textarea id="pedidoObservacoes" placeholder="Observações sobre o pedido..."></textarea>
+                </div>
+                <div style="border-top: 2px solid var(--primary); margin-top: 15px; padding-top: 15px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <label style="font-weight: 600; color: var(--primary); font-size: 15px; margin: 0;">📦 Produtos</label>
+                        <button type="button" onclick="addProdutoLine()" style="background: var(--primary); color: white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;">+ Adicionar Produto</button>
+                    </div>
+                    <div id="produtosContainer"></div>
                 </div>
                 <div class="modal-buttons">
                     <button type="button" class="btn-primary" onclick="savePedido()">Salvar</button>
@@ -5710,11 +5698,11 @@ function openModal(modalId) {
     }
   } else if (modalId === 'pedidoModal') {
     updateClientSelects();
-    updateProductSelects();
     // Só resetar se NÃO for edição (editPedido define editingPedido antes de chamar openModal)
     if (!appState.editingPedido) {
       document.getElementById('pedidoForm').reset();
-      // Restaurar título para "Novo Pedido"
+      document.getElementById('produtosContainer').innerHTML = '';
+      addProdutoLine(); // Adicionar uma linha de produto vazia
       const modalTitle = document.querySelector('#pedidoModal .modal-content h2');
       if (modalTitle) modalTitle.textContent = 'Novo Pedido';
     }
@@ -5764,58 +5752,78 @@ function savePedido() {
     return;
   }
   
-  const produtoNome = document.getElementById('pedidoProduto').value;
-  if (!produtoNome) {
-    alert('Selecione um produto');
+  const produtoLines = getProdutoLines();
+  if (produtoLines.length === 0) {
+    alert('Adicione pelo menos um produto');
     return;
   }
   
-  const quantidade = parseInt(document.getElementById('pedidoQuantidade').value);
-  if (!quantidade || quantidade <= 0) {
-    alert('Quantidade deve ser maior que 0');
-    return;
+  // Validar quantidades
+  for (const pl of produtoLines) {
+    if (!pl.quantidade || pl.quantidade <= 0) {
+      alert(`Quantidade de "${pl.produto}" deve ser maior que 0`);
+      return;
+    }
   }
+  
+  const diaSemana = document.getElementById('pedidoDia').value;
+  const tipoVenda = document.getElementById('pedidoTipoVenda').value || '';
+  const observacoes = document.getElementById('pedidoObservacoes').value || '';
   
   if (appState.editingPedido) {
+    // Edição: se só tem 1 produto, atualizar o pedido existente
+    // Se tem múltiplos, atualizar o primeiro e criar os demais
     const idx = appState.data.pedidos.findIndex(p => p.id === appState.editingPedido);
     if (idx >= 0) {
+      // Atualizar o primeiro produto no pedido existente
       appState.data.pedidos[idx] = {
         ...appState.data.pedidos[idx],
         id_cliente: clienteId,
         cliente: cliente.nome,
-        dia_semana: document.getElementById('pedidoDia').value,
-        produto: produtoNome,
-        categoria: document.getElementById('pedidoCategoria').value || '',
-        quantidade,
-        tipo_venda: document.getElementById('pedidoTipoVenda').value || '',
-        observacoes: document.getElementById('pedidoObservacoes').value || '',
+        dia_semana: diaSemana,
+        produto: produtoLines[0].produto,
+        categoria: produtoLines[0].categoria,
+        quantidade: produtoLines[0].quantidade,
+        tipo_venda: tipoVenda,
+        observacoes: observacoes,
       };
+      // Criar pedidos adicionais para os demais produtos
+      for (let i = 1; i < produtoLines.length; i++) {
+        appState.data.pedidos.push({
+          id: `order_${Date.now()}_${i}`,
+          id_cliente: clienteId,
+          cliente: cliente.nome,
+          dia_semana: diaSemana,
+          produto: produtoLines[i].produto,
+          categoria: produtoLines[i].categoria,
+          quantidade: produtoLines[i].quantidade,
+          tipo_venda: tipoVenda,
+          observacoes: observacoes,
+          status: 'pendente',
+        });
+      }
     }
+    notifyPedidoChange('alterado', cliente.nome, produtoLines.map(p => p.produto).join(', '));
   } else {
-    const pedido = {
-      id: `order_${Date.now()}`,
-      id_cliente: clienteId,
-      cliente: cliente.nome,
-      dia_semana: document.getElementById('pedidoDia').value,
-      produto: produtoNome,
-      categoria: document.getElementById('pedidoCategoria').value || '',
-      quantidade,
-      tipo_venda: document.getElementById('pedidoTipoVenda').value || '',
-      observacoes: document.getElementById('pedidoObservacoes').value || '',
-      status: 'pendente',
-    };
-    appState.data.pedidos.push(pedido);
+    // Novo: criar um pedido para cada produto
+    produtoLines.forEach((pl, i) => {
+      appState.data.pedidos.push({
+        id: `order_${Date.now()}_${i}`,
+        id_cliente: clienteId,
+        cliente: cliente.nome,
+        dia_semana: diaSemana,
+        produto: pl.produto,
+        categoria: pl.categoria,
+        quantidade: pl.quantidade,
+        tipo_venda: tipoVenda,
+        observacoes: observacoes,
+        status: 'pendente',
+      });
+    });
+    notifyPedidoChange('novo', cliente.nome, produtoLines.map(p => p.produto).join(', '));
   }
   
   saveData();
-  
-  // Notificar mudança
-  if (appState.editingPedido) {
-    notifyPedidoChange('alterado', cliente.nome, produtoNome);
-  } else {
-    notifyPedidoChange('novo', cliente.nome, produtoNome);
-  }
-  
   closeModal('pedidoModal');
   renderAgenda();
   renderDashboard();
@@ -5945,17 +5953,18 @@ function editPedido(id) {
   // Definir editingPedido ANTES de abrir o modal para que openModal não resete o formulário
   appState.editingPedido = id;
   
-  // Abrir o modal primeiro (popula os selects)
+  // Abrir o modal primeiro (popula os selects de cliente)
   openModal('pedidoModal');
   
-  // Agora preencher os campos com os dados do pedido existente
+  // Preencher os campos compartilhados
   document.getElementById('pedidoCliente').value = pedido.id_cliente;
   document.getElementById('pedidoDia').value = pedido.dia_semana;
-  document.getElementById('pedidoProduto').value = pedido.produto;
-  document.getElementById('pedidoQuantidade').value = pedido.quantidade;
-  document.getElementById('pedidoCategoria').value = pedido.categoria || '';
   document.getElementById('pedidoTipoVenda').value = pedido.tipo_venda || '';
   document.getElementById('pedidoObservacoes').value = pedido.observacoes || '';
+  
+  // Limpar e adicionar a linha de produto com os dados existentes
+  document.getElementById('produtosContainer').innerHTML = '';
+  addProdutoLine(pedido.produto, pedido.quantidade, pedido.categoria);
   
   // Atualizar título do modal para indicar edição
   const modalTitle = document.querySelector('#pedidoModal .modal-content h2');
@@ -6050,11 +6059,68 @@ function updateClientSelects() {
 }
 
 function updateProductSelects() {
-  const select = document.getElementById('pedidoProduto');
-  if (!select) return;
-  
-  select.innerHTML = '<option value="">Selecionar produto...</option>' +
-    appState.data.produtos.map(p => `<option value="${p.nome}">${p.nome}</option>`).join('');
+  // Legacy - agora usamos addProdutoLine
+}
+
+let produtoLineCounter = 0;
+
+function getProductOptions(selectedValue) {
+  return '<option value="">Selecionar produto...</option>' +
+    appState.data.produtos.map(p => `<option value="${p.nome}" ${p.nome === selectedValue ? 'selected' : ''}>${p.nome}</option>`).join('');
+}
+
+function addProdutoLine(produto, quantidade, categoria) {
+  const container = document.getElementById('produtosContainer');
+  const lineId = produtoLineCounter++;
+  const div = document.createElement('div');
+  div.id = `produtoLine_${lineId}`;
+  div.style.cssText = 'display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap;';
+  div.innerHTML = `
+    <select style="flex: 2; min-width: 120px; padding: 8px; border: 1px solid var(--border); border-radius: 6px;" class="prod-select">
+      ${getProductOptions(produto || '')}
+    </select>
+    <input type="number" min="1" value="${quantidade || 1}" placeholder="Qtd" style="flex: 0.7; min-width: 60px; padding: 8px; border: 1px solid var(--border); border-radius: 6px; text-align: center;" class="prod-qty">
+    <select style="flex: 1; min-width: 100px; padding: 8px; border: 1px solid var(--border); border-radius: 6px;" class="prod-cat">
+      <option value="" ${!categoria ? 'selected' : ''}>Categoria...</option>
+      <option value="Buque" ${categoria === 'Buque' ? 'selected' : ''}>Buque</option>
+      <option value="Desfolhado" ${categoria === 'Desfolhado' ? 'selected' : ''}>Desfolhado</option>
+      <option value="Pote" ${categoria === 'Pote' ? 'selected' : ''}>Pote</option>
+    </select>
+    <button type="button" onclick="removeProdutoLine('produtoLine_${lineId}')" style="background: var(--error); color: white; border: none; width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 16px; flex-shrink: 0;">&times;</button>
+  `;
+  container.appendChild(div);
+}
+
+function removeProdutoLine(lineId) {
+  const line = document.getElementById(lineId);
+  if (line) {
+    const container = document.getElementById('produtosContainer');
+    // Não permitir remover se só tem uma linha
+    if (container.children.length > 1) {
+      line.remove();
+    } else {
+      alert('O pedido precisa ter pelo menos 1 produto.');
+    }
+  }
+}
+
+function getProdutoLines() {
+  const container = document.getElementById('produtosContainer');
+  const lines = container.querySelectorAll('[id^="produtoLine_"]');
+  const produtos = [];
+  lines.forEach(line => {
+    const select = line.querySelector('.prod-select');
+    const qty = line.querySelector('.prod-qty');
+    const cat = line.querySelector('.prod-cat');
+    if (select && select.value) {
+      produtos.push({
+        produto: select.value,
+        quantidade: parseInt(qty.value) || 1,
+        categoria: cat.value || '',
+      });
+    }
+  });
+  return produtos;
 }
 
 function calculateStats() {
