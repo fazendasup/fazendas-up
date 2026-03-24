@@ -6415,7 +6415,32 @@ function getClientesHoje() {
     grouped[p.id_cliente].pedidos.push(p);
   });
   
-  return Object.values(grouped).sort((a, b) => a.clientName.localeCompare(b.clientName));
+  let clientes = Object.values(grouped);
+  
+  // Aplicar priorização se existir
+  const prioridades = JSON.parse(localStorage.getItem('fazendas-up-prioridades') || '{}');
+  const diaKey = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
+  const prioridadesDia = prioridades[diaKey] || [];
+  
+  if (prioridadesDia.length > 0) {
+    clientes.sort((a, b) => {
+      const indexA = prioridadesDia.indexOf(a.clientId);
+      const indexB = prioridadesDia.indexOf(b.clientId);
+      
+      // Se ambos estão na lista de prioridades, ordenar por posição
+      if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+      // Se apenas A está na lista, vem primeiro
+      if (indexA !== -1) return -1;
+      // Se apenas B está na lista, vem primeiro
+      if (indexB !== -1) return 1;
+      // Se nenhum está na lista, ordenar alfabeticamente
+      return a.clientName.localeCompare(b.clientName);
+    });
+  } else {
+    clientes.sort((a, b) => a.clientName.localeCompare(b.clientName));
+  }
+  
+  return clientes;
 }
 
 function getCurrentDay() {
