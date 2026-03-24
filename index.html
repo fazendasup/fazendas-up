@@ -835,7 +835,23 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal" style="display: flex;">
+        <div class="modal-content" style="max-width: 400px; margin: auto;">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px;">🌱 Fazendas Up</h2>
+            <p style="text-align: center; color: var(--text); margin-bottom: 20px; font-size: 14px;">Selecione seu nível de acesso:</p>
+            <div style="display: flex; gap: 10px; flex-direction: column;">
+                <button onclick="setUserRole('operacional')" style="background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600;">👷 Operacional</button>
+                <button onclick="showAdminPassword()" style="background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600;">🔐 Administrativo</button>
+            </div>
+            <div id="adminPasswordDiv" style="display: none; margin-top: 20px;">
+                <input type="password" id="adminPassword" placeholder="Digite a senha" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; box-sizing: border-box;">
+                <button onclick="verifyAdminPassword()" style="width: 100%; background: var(--primary); color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; margin-top: 10px;">Entrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="display: none;" id="appContainer">
         <div class="sidebar">
             <div class="logo">🌱 Fazendas Up</div>
             <div class="nav-tabs">
@@ -1055,7 +1071,76 @@ function switchTab(tab) {
 
 // ─── Data Management ─────────────────────────────────────────────────────────
 
-const DATA_VERSION = 'v4_multiproduto';
+const DATA_VERSION = 'v5_permissoes';
+
+// Sistema de Permissões
+let userRole = localStorage.getItem('fazendas-up-role') || null;
+
+function setUserRole(role) {
+  userRole = role;
+  localStorage.setItem('fazendas-up-role', role);
+  document.getElementById('loginModal').style.display = 'none';
+  document.getElementById('appContainer').style.display = 'flex';
+  updateUIByRole();
+  Initialize();
+}
+
+function showAdminPassword() {
+  document.getElementById('adminPasswordDiv').style.display = 'block';
+  document.getElementById('adminPassword').focus();
+}
+
+function verifyAdminPassword() {
+  const password = document.getElementById('adminPassword').value;
+  if (password === 'Fup2026') {
+    setUserRole('administrativo');
+  } else {
+    alert('Senha incorreta!');
+    document.getElementById('adminPassword').value = '';
+  }
+}
+
+function updateUIByRole() {
+  const tabs = document.querySelectorAll('.tab-btn');
+  const updateBtn = document.getElementById('btnAtualizar');
+  
+  if (userRole === 'operacional') {
+    // Ocultar abas de edição
+    tabs[1].style.display = 'none'; // Agenda
+    tabs[2].style.display = 'none'; // Clientes
+    tabs[3].style.display = 'none'; // Produtos
+    updateBtn.style.display = 'none';
+    // Forçar Dashboard
+    showTab('dashboard');
+  } else {
+    // Mostrar todas as abas
+    tabs[1].style.display = 'block';
+    tabs[2].style.display = 'block';
+    tabs[3].style.display = 'block';
+    updateBtn.style.display = 'block';
+  }
+}
+
+function logout() {
+  userRole = null;
+  localStorage.removeItem('fazendas-up-role');
+  document.getElementById('loginModal').style.display = 'flex';
+  document.getElementById('appContainer').style.display = 'none';
+  document.getElementById('adminPassword').value = '';
+  document.getElementById('adminPasswordDiv').style.display = 'none';
+}
+
+// Verificar login ao carregar
+window.addEventListener('load', () => {
+  if (!userRole) {
+    document.getElementById('loginModal').style.display = 'flex';
+    document.getElementById('appContainer').style.display = 'none';
+  } else {
+    document.getElementById('loginModal').style.display = 'none';
+    document.getElementById('appContainer').style.display = 'flex';
+    updateUIByRole();
+  }
+});
 
 async function loadData() {
   const savedVersion = localStorage.getItem('fazendas-up-version');
@@ -5879,7 +5964,6 @@ function saveCliente() {
   sendNotification('👥 Cliente Salvo', { body: nome });
   closeModal('clienteModal');
   renderClientes();
-  renderDashboard();
 }
 
 function saveProduto() {
@@ -5917,12 +6001,15 @@ function saveProduto() {
    sendNotification('🥬 Produto Salvo', { body: nome });
    closeModal('produtoModal');
    renderProdutos();
-   renderDashboard();
  }
 
 // ─── Delete Functions ────────────────────────────────────────────────────────
 
 function deletePedido(id) {
+  if (userRole === 'operacional') {
+    alert('Você não tem permissão para deletar pedidos. Acesso apenas para Administrativo.');
+    return;
+  }
   if (!confirm('Tem certeza que deseja deletar este pedido?')) return;
   appState.data.pedidos = appState.data.pedidos.filter(p => p.id !== id);
   saveData();
@@ -5930,6 +6017,10 @@ function deletePedido(id) {
 }
 
 function deleteCliente(id) {
+  if (userRole === 'operacional') {
+    alert('Você não tem permissão para deletar clientes. Acesso apenas para Administrativo.');
+    return;
+  }
   if (!confirm('Tem certeza que deseja deletar este cliente?')) return;
   appState.data.clientes = appState.data.clientes.filter(c => c.id !== id);
   appState.data.pedidos = appState.data.pedidos.filter(p => p.id_cliente !== id);
@@ -5948,6 +6039,10 @@ function deleteProduto(nome) {
 // ─── Edit Functions ────────────────────────────────────────────────────────
 
 function editPedido(id) {
+  if (userRole === 'operacional') {
+    alert('Você não tem permissão para editar pedidos. Acesso apenas para Administrativo.');
+    return;
+  }
   const pedido = appState.data.pedidos.find(p => p.id === id);
   if (!pedido) return;
   
@@ -5973,6 +6068,10 @@ function editPedido(id) {
 }
 
 function editCliente(id) {
+  if (userRole === 'operacional') {
+    alert('Você não tem permissão para editar clientes. Acesso apenas para Administrativo.');
+    return;
+  }
   const cliente = appState.data.clientes.find(c => c.id === id);
   if (!cliente) return;
   
@@ -6001,6 +6100,10 @@ function editCliente(id) {
 }
 
 function editProduto(nome) {
+  if (userRole === 'operacional') {
+    alert('Você não tem permissão para editar produtos. Acesso apenas para Administrativo.');
+    return;
+  }
    const produto = appState.data.produtos.find(p => p.nome === nome);
    if (!produto) return;
    
