@@ -5442,7 +5442,7 @@ function renderDashboard() {
       </div>
 
       <div class="section">
-        <h3>🚚 Status de Entregas (por cliente - hoje)</h3>
+        <h3 id="statusTitle">🚚 Status de Entregas (por cliente - hoje)</h3>
         <div class="status-grid">
           <div class="status-card pending">
             <div class="status-value">${stats.pendentes}</div>
@@ -5507,7 +5507,7 @@ function renderDashboard() {
 
       <div class="section">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-          <h3>🛍 Entregas de Hoje</h3>
+          <h3 id="entregasTitle">🛍 Entregas de Hoje</h3>
           ${userRole === 'administrativo' ? `<button class="btn-secondary" onclick="abrirModalPrioridade()" style="padding: 8px 16px; font-size: 12px;">🎯 Definir Prioridade</button>` : ''}
         </div>
         <div class="today-deliveries">
@@ -5575,6 +5575,12 @@ function renderDashboard() {
       </div>
     </div>
   `;
+  
+  // Atualizar títulos com o dia selecionado
+  const diaExibicao = diaVisualizacao === 'hoje' ? 'hoje' : diaVisualizacao.toLowerCase();
+  const diaCapitalizado = diaVisualizacao === 'hoje' ? 'Hoje' : diaVisualizacao;
+  document.getElementById('statusTitle').textContent = `🚚 Status de Entregas (por cliente - ${diaExibicao})`;
+  document.getElementById('entregasTitle').textContent = `🛍 Entregas de ${diaCapitalizado}`;
 }
 
 // ─── Agenda Render ──────────────────────────────────────────────────────────
@@ -5658,12 +5664,13 @@ function dragDrop(e, targetClientId) {
   e.preventDefault();
   if (draggedClientId !== targetClientId) {
     // Trocar ordem
-    const items = document.querySelectorAll('[draggable="true"]');
-    const draggedItem = Array.from(items).find(item => item.textContent.includes(draggedClientId));
-    const targetItem = Array.from(items).find(item => item.textContent.includes(targetClientId));
+    const list = document.getElementById('prioridadeList');
+    const items = list.querySelectorAll('[draggable="true"]');
+    const draggedItem = Array.from(items).find(item => item.getAttribute('ondragstart').includes(draggedClientId));
+    const targetItem = Array.from(items).find(item => item.getAttribute('ondrop').includes(targetClientId));
     
     if (draggedItem && targetItem) {
-      targetItem.parentNode.insertBefore(draggedItem, targetItem);
+      list.insertBefore(draggedItem, targetItem);
     }
   }
 }
