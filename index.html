@@ -1075,6 +1075,7 @@ const DATA_VERSION = 'v5_permissoes';
 
 // Sistema de Permissões
 let userRole = null; // Não persistir - pedir login toda vez
+const DATA_STORAGE_KEY = 'fazendas-up-data'; // Continuar salvando dados
 
 function setUserRole(role) {
   userRole = role;
@@ -1141,10 +1142,10 @@ window.addEventListener('load', () => {
     updateUIByRole();
   }
 });
-
 async function loadData() {
+  const stored = localStorage.getItem(DATA_STORAGE_KEY);
   const savedVersion = localStorage.getItem('fazendas-up-version');
-  const saved = localStorage.getItem('fazendas-up-data');
+  const saved = stored;
   
   // Se a versão mudou ou não existe, recarregar dados embutidos
   if (savedVersion !== DATA_VERSION) {
@@ -5379,7 +5380,7 @@ async function loadSampleData() {
 }
 
 function saveData() {
-  localStorage.setItem('fazendas-up-data', JSON.stringify(appState.data));
+  localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
 }
 
 // ─── Dashboard Render ────────────────────────────────────────────────────────
