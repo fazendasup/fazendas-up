@@ -845,7 +845,7 @@
                 <button class="tab-btn" data-tab="produtos">🥬 Produtos</button>
             </div>
             <div style="margin-top: auto; padding-top: 30px;">
-                <button onclick="resetarDados()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; width: 100%;" title="Restaurar dados originais da planilha">🔄 Restaurar Dados Originais</button>
+                <button onclick="buscarDadosPlanilha()" id="btnAtualizar" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; width: 100%;" title="Buscar dados atualizados da planilha Google Sheets">🔄 Atualizar da Planilha</button>
             </div>
         </div>
 
@@ -6129,16 +6129,144 @@ function getCurrentDay() {
   return days[new Date().getDay()];
 }
 
-// ─── Reset Data ──────────────────────────────────────────────────────────────────────────────
+// ─── Buscar Dados da Planilha Google Sheets ─────────────────────────────────────────────────
 
-async function resetarDados() {
-  if (confirm('Tem certeza que deseja restaurar todos os dados originais da planilha? Isso irá sobrescrever quaisquer alterações feitas.')) {
-    localStorage.removeItem('fazendas-up-data');
-    localStorage.removeItem('fazendas-up-version');
-    await loadSampleData();
-    localStorage.setItem('fazendas-up-version', DATA_VERSION);
+const SPREADSHEET_ID = '1ENavAcPvpKhNnZGgMElOeeVPO1ml8G6HaPghTgTwEFs';
+
+function parseCSV(text) {
+  const rows = [];
+  let current = '';
+  let inQuotes = false;
+  let row = [];
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inQuotes) {
+      if (ch === '"' && text[i+1] === '"') { current += '"'; i++; }
+      else if (ch === '"') { inQuotes = false; }
+      else { current += ch; }
+    } else {
+      if (ch === '"') { inQuotes = true; }
+      else if (ch === ',') { row.push(current.trim()); current = ''; }
+      else if (ch === '\n' || (ch === '\r' && text[i+1] === '\n')) {
+        row.push(current.trim()); current = '';
+        if (row.some(c => c !== '')) rows.push(row);
+        row = [];
+        if (ch === '\r') i++;
+      } else { current += ch; }
+    }
+  }
+  row.push(current.trim());
+  if (row.some(c => c !== '')) rows.push(row);
+  return rows;
+}
+
+async function buscarDadosPlanilha() {
+  const btn = document.getElementById('btnAtualizar');
+  const textoOriginal = btn.innerHTML;
+  btn.innerHTML = '⏳ Buscando...';
+  btn.disabled = true;
+  
+  try {
+    // Buscar pedidos da aba BASE_DADOS (A36:H500)
+    const urlPedidos = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=BASE_DADOS&range=A36:H500`;
+    const resPedidos = await fetch(urlPedidos);
+    if (!resPedidos.ok) throw new Error('Erro ao acessar planilha de pedidos');
+    const csvPedidos = await resPedidos.text();
+    const rowsPedidos = parseCSV(csvPedidos);
+    
+    // Buscar listas suspensas (clientes, produtos, categorias)
+    const urlListas = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=Lista%20suspensa&range=A1:D100`;
+    const resListas = await fetch(urlListas);
+    if (!resListas.ok) throw new Error('Erro ao acessar lista suspensa');
+    const csvListas = await resListas.text();
+    const rowsListas = parseCSV(csvListas);
+    
+    // Pular cabeçalho dos pedidos
+    const header = rowsPedidos[0];
+    const pedidosRaw = rowsPedidos.slice(1).filter(r => r.length >= 4 && r[2] && r[3] && !r[0].startsWith('#N/A'));
+    
+    // Processar pedidos
+    const pedidos = pedidosRaw.map((r, idx) => ({
+      id: `order_${idx}`,
+      id_cliente: r[0] || '',
+      dia_semana: r[1] || '',
+      cliente: r[2] || '',
+      produto: r[3] || '',
+      categoria: r[4] || '',
+      quantidade: parseInt(r[5]) || 0,
+      tipo_venda: r[6] || '',
+      observacoes: r[7] || '',
+      status: 'pendente',
+    }));
+    
+    // Extrair clientes únicos dos pedidos
+    const clientesMap = {};
+    pedidos.forEach(p => {
+      if (p.cliente && !clientesMap[p.cliente]) {
+        clientesMap[p.cliente] = {
+          id: p.id_cliente || `cli_${Object.keys(clientesMap).length}`,
+          nome: p.cliente,
+          observacoes: '',
+          prazoBoleto: '',
+          acumulaPedidos: false,
+          diasAcumulo: '',
+          prazoBoletoAcumulo: '',
+          periodoEntrega: '',
+          horarioMaximo: '',
+          cobraEntrega: false,
+          precos: [],
+        };
+      }
+    });
+    
+    // Preservar dados de clientes editados (preços, observações, etc.)
+    const clientesAntigos = {};
+    appState.data.clientes.forEach(c => { clientesAntigos[c.nome] = c; });
+    const clientes = Object.values(clientesMap).map(c => {
+      const antigo = clientesAntigos[c.nome];
+      if (antigo) {
+        return { ...c, observacoes: antigo.observacoes, prazoBoleto: antigo.prazoBoleto, acumulaPedidos: antigo.acumulaPedidos, diasAcumulo: antigo.diasAcumulo, prazoBoletoAcumulo: antigo.prazoBoletoAcumulo, periodoEntrega: antigo.periodoEntrega, horarioMaximo: antigo.horarioMaximo, cobraEntrega: antigo.cobraEntrega, precos: antigo.precos };
+      }
+      return c;
+    });
+    
+    // Extrair produtos únicos
+    const produtosMap = {};
+    pedidos.forEach(p => {
+      if (p.produto) {
+        if (!produtosMap[p.produto]) {
+          produtosMap[p.produto] = { nome: p.produto, categorias: [], precoBase: 0 };
+        }
+        if (p.categoria && !produtosMap[p.produto].categorias.includes(p.categoria)) {
+          produtosMap[p.produto].categorias.push(p.categoria);
+        }
+      }
+    });
+    
+    // Preservar preços base editados
+    const produtosAntigos = {};
+    appState.data.produtos.forEach(p => { produtosAntigos[p.nome] = p; });
+    const produtos = Object.values(produtosMap).map(p => {
+      const antigo = produtosAntigos[p.nome];
+      if (antigo && antigo.precoBase) { p.precoBase = antigo.precoBase; }
+      return p;
+    });
+    
+    // Atualizar estado
+    appState.data.pedidos = pedidos;
+    appState.data.clientes = clientes;
+    appState.data.produtos = produtos;
+    saveData();
+    
     switchTab(appState.currentTab);
-    alert('Dados restaurados com sucesso! 291 pedidos, 58 clientes e 23 produtos carregados.');
+    alert(`Dados atualizados da planilha!\n${pedidos.length} pedidos, ${clientes.length} clientes e ${produtos.length} produtos carregados.`);
+    
+  } catch (e) {
+    console.error('Erro ao buscar dados da planilha:', e);
+    alert('Erro ao buscar dados da planilha: ' + e.message + '\n\nVerifique se a planilha está compartilhada como "Qualquer pessoa com o link pode ver".');
+  } finally {
+    btn.innerHTML = textoOriginal;
+    btn.disabled = false;
   }
 }
 
