@@ -5400,6 +5400,26 @@ function mudarDiaVisualizacao(dia) {
   renderDashboard();
 }
 
+function setupDiaSelectListener() {
+  const diaSelect = document.getElementById('diaSelect');
+  if (diaSelect) {
+    diaSelect.removeEventListener('change', handleDiaChange);
+    diaSelect.removeEventListener('click', handleDiaClick);
+    diaSelect.addEventListener('change', handleDiaChange);
+    diaSelect.addEventListener('click', handleDiaClick);
+  }
+}
+
+function handleDiaChange(e) {
+  mudarDiaVisualizacao(e.target.value);
+}
+
+function handleDiaClick(e) {
+  setTimeout(() => {
+    mudarDiaVisualizacao(e.target.value);
+  }, 50);
+}
+
 function renderDashboard() {
   const content = document.getElementById('content');
   const stats = calculateStats();
@@ -5416,7 +5436,7 @@ function renderDashboard() {
         <h2>📊 Dashboard</h2>
         <div style="display: flex; align-items: center; gap: 10px;">
           <label for="diaSelect" style="font-weight: 500; color: var(--text);">Visualizar:</label>
-          <select id="diaSelect" onchange="mudarDiaVisualizacao(this.value)" style="padding: 8px 12px; border: 2px solid var(--border); border-radius: 6px; background: white; color: var(--text); font-size: 14px; cursor: pointer;">
+           <select id="diaSelect" style="padding: 8px 12px; border: 2px solid var(--border); border-radius: 6px; background: white; color: var(--text); font-size: 14px; cursor: pointer;">
             ${opcoesHtml}
           </select>
         </div>
@@ -5581,6 +5601,9 @@ function renderDashboard() {
   const diaCapitalizado = diaVisualizacao === 'hoje' ? 'Hoje' : diaVisualizacao;
   document.getElementById('statusTitle').textContent = `🚚 Status de Entregas (por cliente - ${diaExibicao})`;
   document.getElementById('entregasTitle').textContent = `🛍 Entregas de ${diaCapitalizado}`;
+  
+  // Setup event listener para o seletor de dia
+  setTimeout(() => setupDiaSelectListener(), 0);
 }
 
 // ─── Agenda Render ──────────────────────────────────────────────────────────
@@ -5625,14 +5648,15 @@ function abrirModalPrioridade() {
   
   const html = `
     <div style="max-height: 500px; overflow-y: auto;">
-      <p style="margin-bottom: 15px; color: var(--text-light);">Arraste os clientes para definir a ordem de entrega. O primeiro será a prioridade.</p>
+      <p style="margin-bottom: 15px; color: var(--text-light);">Use os botões ↑ e ↓ para reordenar. O primeiro será a prioridade.</p>
       <div id="prioridadeList" style="display: flex; flex-direction: column; gap: 10px;">
         ${clientesHoje.length > 0 ? clientesHoje.map((grupo, idx) => {
           const ordem = prioridadesDia.indexOf(grupo.clientId);
           return `
-            <div draggable="true" data-client-id="${grupo.clientId}" ondragstart="dragStart(event, '${grupo.clientId}')" ondrop="dragDrop(event, '${grupo.clientId}')" ondragover="dragOver(event)" style="padding: 12px; background: var(--surface); border: 2px solid var(--border); border-radius: 6px; cursor: move; display: flex; align-items: center; gap: 10px;">
-              <span style="font-size: 18px; color: var(--primary);">☰</span>
+            <div data-client-id="${grupo.clientId}" style="padding: 12px; background: var(--surface); border: 2px solid var(--border); border-radius: 6px; display: flex; align-items: center; gap: 10px;">
               <span style="font-weight: 500; flex: 1;">${ordem >= 0 ? `${ordem + 1}. ` : ''}${grupo.clientName}</span>
+              <button onclick="moverPrioridadeUp('${grupo.clientId}')" style="padding: 6px 10px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">↑</button>
+              <button onclick="moverPrioridadeDown('${grupo.clientId}')" style="padding: 6px 10px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">↓</button>
             </div>
           `;
         }).join('') : '<div class="empty-state">Nenhum cliente para hoje</div>'}
@@ -5648,31 +5672,26 @@ function abrirModalPrioridade() {
   openModal('prioridadeModal');
 }
 
-let draggedClientId = null;
-
-function dragStart(e, clientId) {
-  draggedClientId = clientId;
-  e.dataTransfer.effectAllowed = 'move';
+function moverPrioridadeUp(clientId) {
+  const list = document.getElementById('prioridadeList');
+  const items = Array.from(list.querySelectorAll('[data-client-id]'));
+  const currentIndex = items.findIndex(item => item.getAttribute('data-client-id') === clientId);
+  
+  if (currentIndex > 0) {
+    const temp = items[currentIndex];
+    items[currentIndex - 1].parentNode.insertBefore(temp, items[currentIndex - 1]);
+    abrirModalPrioridade();
+  }
 }
 
-function dragOver(e) {
-  e.preventDefault();
-  e.dataTransfer.dropEffect = 'move';
-}
-
-function dragDrop(e, targetClientId) {
-  e.preventDefault();
-  if (draggedClientId !== targetClientId) {
-    // Trocar ordem
-    const list = document.getElementById('prioridadeList');
-    const items = list.querySelectorAll('[draggable="true"]');
-    const draggedItem = Array.from(items).find(item => item.textContent.includes(draggedClientId) || item.innerHTML.includes(`'${draggedClientId}'`));
-    const targetItem = Array.from(items).find(item => item.textContent.includes(targetClientId) || item.innerHTML.includes(`'${targetClientId}'`));
-    
-    if (draggedItem && targetItem) {
-      // Inserir o item arrastado antes do item alvo
-      list.insertBefore(draggedItem, targetItem);
-    }
+function moverPrioridadeDown(clientId) {
+  const list = document.getElementById('prioridadeList');
+  const items = Array.from(list.querySelectorAll('[data-client-id]'));
+  const currentIndex = items.findIndex(item => item.getAttribute('data-client-id') === clientId);
+  
+  if (currentIndex < items.length - 1) {
+    items[currentIndex + 1].parentNode.insertBefore(items[currentIndex + 1], items[currentIndex]);
+    abrirModalPrioridade();
   }
 }
 
