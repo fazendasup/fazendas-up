@@ -5647,7 +5647,7 @@ function filterAgendaBySearch(termo) {
 }
 
 function filterAgendaByClientes() {
-  const checkboxes = document.querySelectorAll('#clientesCheckboxes input[type="checkbox"]:checked');
+  const checkboxes = document.querySelectorAll('#agendaFiltrosContent input[type="checkbox"]:checked');
   appState.agendaClientesFiltro = Array.from(checkboxes).map(cb => cb.value);
   renderAgendaList();
 }
