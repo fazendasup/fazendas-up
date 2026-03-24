@@ -1074,11 +1074,11 @@ function switchTab(tab) {
 const DATA_VERSION = 'v5_permissoes';
 
 // Sistema de Permissões
-let userRole = localStorage.getItem('fazendas-up-role') || null;
+let userRole = null; // Não persistir - pedir login toda vez
 
 function setUserRole(role) {
   userRole = role;
-  localStorage.setItem('fazendas-up-role', role);
+  // Não salvar no localStorage - pedir login toda vez que abrir
   document.getElementById('loginModal').style.display = 'none';
   document.getElementById('appContainer').style.display = 'flex';
   updateUIByRole();
@@ -1123,7 +1123,7 @@ function updateUIByRole() {
 
 function logout() {
   userRole = null;
-  localStorage.removeItem('fazendas-up-role');
+  // localStorage já não é mais usado
   document.getElementById('loginModal').style.display = 'flex';
   document.getElementById('appContainer').style.display = 'none';
   document.getElementById('adminPassword').value = '';
