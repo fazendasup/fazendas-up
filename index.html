@@ -1055,7 +1055,7 @@ function switchTab(tab) {
 
 // ─── Data Management ─────────────────────────────────────────────────────────
 
-const DATA_VERSION = 'v3_status_pronto';
+const DATA_VERSION = 'v4_multiproduto';
 
 async function loadData() {
   const savedVersion = localStorage.getItem('fazendas-up-version');
@@ -5826,7 +5826,6 @@ function savePedido() {
   saveData();
   closeModal('pedidoModal');
   renderAgenda();
-  renderDashboard();
 }
 
 function saveCliente() {
@@ -5880,6 +5879,7 @@ function saveCliente() {
   sendNotification('👥 Cliente Salvo', { body: nome });
   closeModal('clienteModal');
   renderClientes();
+  renderDashboard();
 }
 
 function saveProduto() {
@@ -5917,6 +5917,7 @@ function saveProduto() {
    sendNotification('🥬 Produto Salvo', { body: nome });
    closeModal('produtoModal');
    renderProdutos();
+   renderDashboard();
  }
 
 // ─── Delete Functions ────────────────────────────────────────────────────────
