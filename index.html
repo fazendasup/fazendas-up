@@ -6817,30 +6817,102 @@ async function buscarDadosPlanilha() {
 }
 
 
-// ─── Auto Sync com Google Drive ──────────────────────────────────────────────────────────────────────────────
-let lastSyncTime = 0;
-const SYNC_INTERVAL = 5000; // 5 segundos
+
+
+
+// ─── Sincronização com GitHub ──────────────────────────────────────────────────────────────────────────────
+const GITHUB_REPO = 'fazendasup/fazendas-up';
+const GITHUB_FILE = 'dados-sync.json';
+const GITHUB_BRANCH = 'main';
+const SYNC_INTERVAL = 10000; // 10 segundos
+
+let lastRemoteUpdate = 0;
 
 function setupAutoSync() {
-  // Sincronizar a cada 5 segundos
-  setInterval(checkAndSyncData, SYNC_INTERVAL);
+  // Sincronizar a cada 10 segundos
+  setInterval(syncWithGitHub, SYNC_INTERVAL);
 }
 
-function checkAndSyncData() {
-  const now = Date.now();
-  
-  // Salvar dados no localStorage
-  saveData();
-  
-  // Mostrar notificação de sincronização
-  const syncNotif = document.getElementById('syncNotification');
-  if (syncNotif) {
-    syncNotif.style.display = 'block';
-    setTimeout(() => {
-      syncNotif.style.display = 'none';
-    }, 2000);
+async function syncWithGitHub() {
+  try {
+    // Ler dados do GitHub
+    const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}`);
+    
+    if (response.ok) {
+      const remoteData = await response.json();
+      const remoteTime = new Date(remoteData.lastUpdate).getTime();
+      
+      // Se os dados remotos são mais novos, atualizar localmente
+      if (remoteTime > lastRemoteUpdate) {
+        appData = remoteData;
+        lastRemoteUpdate = remoteTime;
+        renderDashboard();
+        showSyncNotification('☁️ Sincronizado com GitHub!');
+      }
+    }
+  } catch (e) {
+    // Silenciosamente falhar se não conseguir conectar
+    console.log('Sincronização com GitHub:', e.message);
   }
 }
+
+function showSyncNotification(message) {
+  const notif = document.createElement('div');
+  notif.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 10000;
+  `;
+  notif.textContent = message;
+  document.body.appendChild(notif);
+  
+  setTimeout(() => notif.remove(), 2000);
+}
+
+// Salvar dados no GitHub quando houver mudanças
+async function saveToGitHub() {
+  try {
+    // Atualizar timestamp
+    appData.lastUpdate = new Date().toISOString();
+    
+    // Salvar localmente
+    saveData();
+    
+    // Preparar dados para enviar ao GitHub
+    const dataToSave = JSON.stringify(appData, null, 2);
+    
+    // Usar GitHub API para fazer commit
+    const token = localStorage.getItem('githubToken');
+    if (token) {
+      const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `Sincronizar dados - ${new Date().toLocaleString('pt-BR')}`,
+          content: btoa(dataToSave),
+          branch: GITHUB_BRANCH
+        })
+      });
+      
+      if (response.ok) {
+        lastRemoteUpdate = new Date().getTime();
+        showSyncNotification('✅ Dados salvos no GitHub!');
+      }
+    }
+  } catch (e) {
+    console.log('Erro ao salvar no GitHub:', e.message);
+  }
+}
+
 
 // ─── Initialize ──────────────────────────────────────────────────────────────────────────────
 
