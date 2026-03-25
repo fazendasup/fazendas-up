@@ -1073,13 +1073,17 @@ const CATEGORIAS = ['Buque', 'Desfolhado', 'Pote'];
 // ─── Inicialização ───────────────────────────────────────────────────────────
 
 async function init() {
+  console.log('🚀 Iniciando app...');
   await loadData();
+  console.log('📦 Dados carregados. appState:', JSON.stringify(appState, null, 2).substring(0, 200));
   setupEventListeners();
   setupStorageListener();
   setupAutoSync();
   
   // Sincronizar com GitHub imediatamente
+  console.log('🔄 Sincronizando com GitHub na inicialização...');
   await syncWithGitHub();
+  console.log('✅ Sincronização inicial concluída');
   
   renderDashboard();
 }
