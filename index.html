@@ -835,6 +835,23 @@
     </style>
 </head>
 <body>
+<script>
+// Solicitar token do GitHub na primeira vez
+function setupGitHubToken() {
+  if (!localStorage.getItem('githubTokenConfigured')) {
+    const token = prompt('Cole seu token do GitHub para sincronização automática:\n\n(Você pode gerar em: https://github.com/settings/tokens)');
+    if (token && token.trim()) {
+      localStorage.setItem('githubToken', token.trim());
+      localStorage.setItem('githubTokenConfigured', 'true');
+      alert('✅ Token configurado! Sincronização ativada.');
+    }
+  }
+}
+
+// Chamar ao carregar a página
+window.addEventListener('load', setupGitHubToken);
+</script>
+
     <!-- Modal de Login -->
     <div id="loginModal" class="modal" style="display: flex;">
         <div class="modal-content" style="max-width: 400px; margin: auto;">
