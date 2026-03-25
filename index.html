@@ -1059,7 +1059,91 @@ async function init() {
   await loadData();
   setupEventListeners();
   setupStorageListener();
+  setupGoogleDriveSync();
   renderDashboard();
+}
+
+// ─── Google Drive Sync ──────────────────────────────────────────────────────
+
+const GOOGLE_DRIVE_FILE_ID = '1CwuzSh2VrG4Sa4AvmlW47zY9MhxnJwM_';
+let lastGoogleDriveSync = null;
+
+function setupGoogleDriveSync() {
+  // Sincronizar a cada 5 segundos
+  setInterval(syncWithGoogleDrive, 5000);
+}
+
+async function syncWithGoogleDrive() {
+  try {
+    // Tentar ler do Google Drive
+    const response = await fetch(`https://www.googleapis.com/drive/v3/files/${GOOGLE_DRIVE_FILE_ID}?alt=media&key=AIzaSyDEpqCXvJQQqjqnVARgzYJbFfnrgcPMsZ7xS8z`);
+    
+    if (!response.ok) {
+      console.log('Não conseguiu sincronizar com Google Drive');
+      return;
+    }
+    
+    const driveData = await response.json();
+    
+    // Verificar se há mudanças
+    if (driveData.lastUpdate && driveData.lastUpdate !== lastGoogleDriveSync) {
+      console.log('Dados atualizados no Google Drive. Sincronizando...');
+      
+      // Atualizar dados locais
+      if (driveData.pedidos) appState.data.pedidos = driveData.pedidos;
+      if (driveData.clientes) appState.data.clientes = driveData.clientes;
+      if (driveData.produtos) appState.data.produtos = driveData.produtos;
+      
+      lastGoogleDriveSync = driveData.lastUpdate;
+      
+      // Salvar no localStorage também
+      saveData();
+      
+      // Recarregar a página atual
+      const currentTab = document.querySelector('.tab-btn.active');
+      if (currentTab) {
+        const tabName = currentTab.textContent.toLowerCase();
+        if (tabName.includes('dashboard')) {
+          renderDashboard();
+        } else if (tabName.includes('agenda')) {
+          renderAgenda();
+        } else if (tabName.includes('cliente')) {
+          renderClientes();
+        } else if (tabName.includes('produto')) {
+          renderProdutos();
+        }
+      }
+      
+      // Mostrar notificação
+      showGoogleDriveSyncNotification();
+    }
+  } catch (e) {
+    console.log('Erro ao sincronizar com Google Drive:', e);
+  }
+}
+
+function showGoogleDriveSyncNotification() {
+  const notification = document.createElement('div');
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4285f4;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10000;
+    font-size: 14px;
+  `;
+  notification.textContent = '☁️ Sincronizado com Google Drive!';
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.style.opacity = '0';
+    notification.style.transition = 'opacity 0.3s ease';
+    setTimeout(() => notification.remove(), 300);
+  }, 2000);
 }
 
 function setupEventListeners() {
@@ -5492,9 +5576,52 @@ function saveData() {
     if (!savedData) {
       console.error('Falha ao salvar dados no localStorage');
     }
+    
+    // Também salvar no Google Drive
+    saveToGoogleDrive();
   } catch (e) {
     console.error('Erro ao salvar dados:', e);
   }
+}
+
+async function saveToGoogleDrive() {
+  try {
+    const dataWithTimestamp = {
+      ...appState.data,
+      lastUpdate: new Date().toISOString()
+    };
+    
+    // Criar FormData para upload
+    const metadata = {
+      name: 'fazendas-up-dados.json',
+      mimeType: 'application/json'
+    };
+    
+    const formData = new FormData();
+    formData.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+    formData.append('file', new Blob([JSON.stringify(dataWithTimestamp)], { type: 'application/json' }));
+    
+    // Tentar fazer upload para Google Drive
+    const response = await fetch(`https://www.googleapis.com/upload/drive/v3/files/${GOOGLE_DRIVE_FILE_ID}?uploadType=multipart`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': 'Bearer ' + (await getGoogleDriveToken())
+      },
+      body: formData
+    });
+    
+    if (response.ok) {
+      console.log('Dados salvos no Google Drive');
+      lastGoogleDriveSync = new Date().toISOString();
+    }
+  } catch (e) {
+    console.log('Não conseguiu salvar no Google Drive (pode estar offline):', e);
+  }
+}
+
+async function getGoogleDriveToken() {
+  // Usar token armazenado ou retornar vazio
+  return localStorage.getItem('google-drive-token') || '';
 }
 
 // ─── Dashboard Render ────────────────────────────────────────────────────────
