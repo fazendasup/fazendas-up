@@ -6936,7 +6936,8 @@ function setupAutoSync() {
 }
 
 async function syncWithGitHub() {
-  if (isSyncing) return;
+  // NÃO sincronizar enquanto está salvando (isSaving = true)
+  if (isSyncing || isSaving) return;
   isSyncing = true;
   
   try {
