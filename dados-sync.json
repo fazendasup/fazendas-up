@@ -3558,7 +3558,12 @@
         "periodoEntrega": "Tarde",
         "horarioMaximo": "17:00",
         "cobraEntrega": false,
-        "precos": []
+        "precos": [
+          {
+            "produto": "Micro Rucula",
+            "preco": 12
+          }
+        ]
       },
       {
         "id": "36",
@@ -4424,5 +4429,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-25T20:09:12.087Z"
+  "lastUpdate": "2026-03-25T20:09:44.263Z"
 }
