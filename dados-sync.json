@@ -1811,7 +1811,7 @@
         "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_151",
@@ -1823,7 +1823,7 @@
         "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_152",
@@ -1835,7 +1835,7 @@
         "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_153",
@@ -4516,5 +4516,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-25T20:29:57.114Z"
+  "lastUpdate": "2026-03-25T20:29:59.914Z"
 }
