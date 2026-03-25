@@ -3,6 +3,1434 @@
     "pedidos": [
       {
         "id": "order_0",
+        "id_cliente": "1",
+        "dia_semana": "segunda-feira",
+        "cliente": "Fernanda",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 2,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1",
+        "id_cliente": "1",
+        "dia_semana": "segunda-feira",
+        "cliente": "Fernanda",
+        "produto": "Micro 3 variedades",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Plano",
+        "observacoes": "Entrega de manhã",
+        "status": "pendente"
+      },
+      {
+        "id": "order_2",
+        "id_cliente": "1",
+        "dia_semana": "segunda-feira",
+        "cliente": "Fernanda",
+        "produto": "Baby Acelga",
+        "categoria": "Buque",
+        "quantidade": 2,
+        "tipo_venda": "Plano",
+        "observacoes": "pagamento mensal",
+        "status": "pendente"
+      },
+      {
+        "id": "order_3",
+        "id_cliente": "1",
+        "dia_semana": "segunda-feira",
+        "cliente": "Fernanda",
+        "produto": "Molho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_4",
+        "id_cliente": "2",
+        "dia_semana": "segunda-feira",
+        "cliente": "Grand Amazon",
+        "produto": "Flores",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_5",
+        "id_cliente": "2",
+        "dia_semana": "segunda-feira",
+        "cliente": "Grand Amazon",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_6",
+        "id_cliente": "2",
+        "dia_semana": "segunda-feira",
+        "cliente": "Grand Amazon",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_7",
+        "id_cliente": "2",
+        "dia_semana": "segunda-feira",
+        "cliente": "Grand Amazon",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 7 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_8",
+        "id_cliente": "2",
+        "dia_semana": "segunda-feira",
+        "cliente": "Grand Amazon",
+        "produto": "Micro Mostarda",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_9",
+        "id_cliente": "3",
+        "dia_semana": "segunda-feira",
+        "cliente": "Rodrigues Jacira Reis",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_10",
+        "id_cliente": "3",
+        "dia_semana": "segunda-feira",
+        "cliente": "Rodrigues Jacira Reis",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_11",
+        "id_cliente": "3",
+        "dia_semana": "segunda-feira",
+        "cliente": "Rodrigues Jacira Reis",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "Boleto p/ 21 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_12",
+        "id_cliente": "4",
+        "dia_semana": "segunda-feira",
+        "cliente": "Rodrigues Ponta Negra",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_13",
+        "id_cliente": "4",
+        "dia_semana": "segunda-feira",
+        "cliente": "Rodrigues Ponta Negra",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "Boleto p/ 21 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_14",
+        "id_cliente": "4",
+        "dia_semana": "segunda-feira",
+        "cliente": "Rodrigues Ponta Negra",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_15",
+        "id_cliente": "5",
+        "dia_semana": "segunda-feira",
+        "cliente": "Rodrigues Vieiralves",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_16",
+        "id_cliente": "5",
+        "dia_semana": "segunda-feira",
+        "cliente": "Rodrigues Vieiralves",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "Boleto p/ 21 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_17",
+        "id_cliente": "5",
+        "dia_semana": "segunda-feira",
+        "cliente": "Rodrigues Vieiralves",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_18",
+        "id_cliente": "6",
+        "dia_semana": "segunda-feira",
+        "cliente": "Jackeliny",
+        "produto": "Micro 3 variedades",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_19",
+        "id_cliente": "6",
+        "dia_semana": "segunda-feira",
+        "cliente": "Jackeliny",
+        "produto": "Baby Manjericão",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_20",
+        "id_cliente": "6",
+        "dia_semana": "segunda-feira",
+        "cliente": "Jackeliny",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 2,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_21",
+        "id_cliente": "7",
+        "dia_semana": "segunda-feira",
+        "cliente": "Marcia",
+        "produto": "Alface MIX",
+        "categoria": "Buque",
+        "quantidade": 0,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_22",
+        "id_cliente": "7",
+        "dia_semana": "segunda-feira",
+        "cliente": "Marcia",
+        "produto": "Baby Acelga",
+        "categoria": "Buque",
+        "quantidade": 0,
+        "tipo_venda": "Plano",
+        "observacoes": "viajando",
+        "status": "pendente"
+      },
+      {
+        "id": "order_23",
+        "id_cliente": "7",
+        "dia_semana": "segunda-feira",
+        "cliente": "Marcia",
+        "produto": "Micro 3 variedades",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_24",
+        "id_cliente": "8",
+        "dia_semana": "segunda-feira",
+        "cliente": "Subway Manauara",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 20,
+        "tipo_venda": "Plano",
+        "observacoes": "Somente o orçamento",
+        "status": "pendente"
+      },
+      {
+        "id": "order_25",
+        "id_cliente": "9",
+        "dia_semana": "segunda-feira",
+        "cliente": "Meu Chef Café",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Quinzenal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_26",
+        "id_cliente": "9",
+        "dia_semana": "segunda-feira",
+        "cliente": "Meu Chef Café",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Quinzenal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_27",
+        "id_cliente": "10",
+        "dia_semana": "segunda-feira",
+        "cliente": "Padoca",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_28",
+        "id_cliente": "10",
+        "dia_semana": "segunda-feira",
+        "cliente": "Padoca",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Pagamento mensal",
+        "status": "pendente"
+      },
+      {
+        "id": "order_29",
+        "id_cliente": "10",
+        "dia_semana": "segunda-feira",
+        "cliente": "Padoca",
+        "produto": "Baby Manjericão",
+        "categoria": "Desfolhado",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_30",
+        "id_cliente": "10",
+        "dia_semana": "segunda-feira",
+        "cliente": "Padoca",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_31",
+        "id_cliente": "11",
+        "dia_semana": "segunda-feira",
+        "cliente": "Renato",
+        "produto": "Alface Frisee",
+        "categoria": "Buque",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_32",
+        "id_cliente": "11",
+        "dia_semana": "segunda-feira",
+        "cliente": "Renato",
+        "produto": "Alface Mimosa Roxa",
+        "categoria": "Buque",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_33",
+        "id_cliente": "11",
+        "dia_semana": "segunda-feira",
+        "cliente": "Renato",
+        "produto": "Micro 3 variedades",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "pagamento mensal",
+        "status": "pendente"
+      },
+      {
+        "id": "order_34",
+        "id_cliente": "11",
+        "dia_semana": "segunda-feira",
+        "cliente": "Renato",
+        "produto": "Baby Manjericão",
+        "categoria": "Desfolhado",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "Não emitir nota",
+        "status": "pendente"
+      },
+      {
+        "id": "order_35",
+        "id_cliente": "12",
+        "dia_semana": "segunda-feira",
+        "cliente": "Casa de Tereza",
+        "produto": "Micro Beterraba",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_36",
+        "id_cliente": "12",
+        "dia_semana": "segunda-feira",
+        "cliente": "Casa de Tereza",
+        "produto": "Micro Rucula",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_37",
+        "id_cliente": "12",
+        "dia_semana": "segunda-feira",
+        "cliente": "Casa de Tereza",
+        "produto": "Micro Mostarda",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_38",
+        "id_cliente": "12",
+        "dia_semana": "segunda-feira",
+        "cliente": "Casa de Tereza",
+        "produto": "Micro Coentro",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_39",
+        "id_cliente": "12",
+        "dia_semana": "segunda-feira",
+        "cliente": "Casa de Tereza",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_40",
+        "id_cliente": "13",
+        "dia_semana": "terça-feira",
+        "cliente": "BAREBURGUER",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 3,
+        "tipo_venda": "",
+        "observacoes": "MIX CHEFE",
+        "status": "pendente"
+      },
+      {
+        "id": "order_41",
+        "id_cliente": "13",
+        "dia_semana": "terça-feira",
+        "cliente": "BAREBURGUER",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 34,
+        "tipo_venda": "",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_42",
+        "id_cliente": "14",
+        "dia_semana": "terça-feira",
+        "cliente": "Fitz",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_43",
+        "id_cliente": "14",
+        "dia_semana": "terça-feira",
+        "cliente": "Fitz",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 30,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_44",
+        "id_cliente": "15",
+        "dia_semana": "terça-feira",
+        "cliente": "Banzeiro",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_45",
+        "id_cliente": "16",
+        "dia_semana": "terça-feira",
+        "cliente": "Novotel",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 30,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_46",
+        "id_cliente": "16",
+        "dia_semana": "terça-feira",
+        "cliente": "Novotel",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 40,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Só o orçamento",
+        "status": "pendente"
+      },
+      {
+        "id": "order_47",
+        "id_cliente": "16",
+        "dia_semana": "terça-feira",
+        "cliente": "Novotel",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_48",
+        "id_cliente": "17",
+        "dia_semana": "terça-feira",
+        "cliente": "Una Vitta",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_49",
+        "id_cliente": "17",
+        "dia_semana": "terça-feira",
+        "cliente": "Una Vitta",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_50",
+        "id_cliente": "17",
+        "dia_semana": "terça-feira",
+        "cliente": "Una Vitta",
+        "produto": "Alface MIX",
+        "categoria": "Pote",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_51",
+        "id_cliente": "17",
+        "dia_semana": "terça-feira",
+        "cliente": "Una Vitta",
+        "produto": "Alface Frisee",
+        "categoria": "Pote",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_52",
+        "id_cliente": "18",
+        "dia_semana": "terça-feira",
+        "cliente": "Mori Izakaya",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_53",
+        "id_cliente": "18",
+        "dia_semana": "terça-feira",
+        "cliente": "Mori Izakaya",
+        "produto": "Micro Coentro",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Entrega de manhã",
+        "status": "pendente"
+      },
+      {
+        "id": "order_54",
+        "id_cliente": "18",
+        "dia_semana": "terça-feira",
+        "cliente": "Mori Izakaya",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_55",
+        "id_cliente": "18",
+        "dia_semana": "terça-feira",
+        "cliente": "Mori Izakaya",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_56",
+        "id_cliente": "19",
+        "dia_semana": "terça-feira",
+        "cliente": "Jhon sushi",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_57",
+        "id_cliente": "19",
+        "dia_semana": "terça-feira",
+        "cliente": "Jhon sushi",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_58",
+        "id_cliente": "19",
+        "dia_semana": "terça-feira",
+        "cliente": "Jhon sushi",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_59",
+        "id_cliente": "20",
+        "dia_semana": "terça-feira",
+        "cliente": "Kawamura",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_60",
+        "id_cliente": "20",
+        "dia_semana": "terça-feira",
+        "cliente": "Kawamura",
+        "produto": "Micro Beterraba",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_61",
+        "id_cliente": "21",
+        "dia_semana": "terça-feira",
+        "cliente": "Yakimix",
+        "produto": "Micro Beterraba",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_62",
+        "id_cliente": "21",
+        "dia_semana": "terça-feira",
+        "cliente": "Yakimix",
+        "produto": "Micro Couve",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_63",
+        "id_cliente": "21",
+        "dia_semana": "terça-feira",
+        "cliente": "Yakimix",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_64",
+        "id_cliente": "21",
+        "dia_semana": "terça-feira",
+        "cliente": "Yakimix",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_65",
+        "id_cliente": "22",
+        "dia_semana": "terça-feira",
+        "cliente": "Pasta Morada 1",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_66",
+        "id_cliente": "22",
+        "dia_semana": "terça-feira",
+        "cliente": "Pasta Morada 1",
+        "produto": "Micro Couve",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_67",
+        "id_cliente": "22",
+        "dia_semana": "terça-feira",
+        "cliente": "Pasta Morada 1",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_68",
+        "id_cliente": "23",
+        "dia_semana": "terça-feira",
+        "cliente": "Pasta Morada 2",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_69",
+        "id_cliente": "23",
+        "dia_semana": "terça-feira",
+        "cliente": "Pasta Morada 2",
+        "produto": "Micro Couve",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_70",
+        "id_cliente": "23",
+        "dia_semana": "terça-feira",
+        "cliente": "Pasta Morada 2",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_71",
+        "id_cliente": "24",
+        "dia_semana": "terça-feira",
+        "cliente": "La Vaca Negra",
+        "produto": "Micro Mostarda",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_72",
+        "id_cliente": "24",
+        "dia_semana": "terça-feira",
+        "cliente": "La Vaca Negra",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Lançar somente a venda",
+        "status": "pendente"
+      },
+      {
+        "id": "order_73",
+        "id_cliente": "24",
+        "dia_semana": "terça-feira",
+        "cliente": "La Vaca Negra",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_74",
+        "id_cliente": "24",
+        "dia_semana": "terça-feira",
+        "cliente": "La Vaca Negra",
+        "produto": "Baby Manjericão",
+        "categoria": "Desfolhado",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_75",
+        "id_cliente": "25",
+        "dia_semana": "terça-feira",
+        "cliente": "Moquem",
+        "produto": "Alface MIX",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 7 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_76",
+        "id_cliente": "26",
+        "dia_semana": "terça-feira",
+        "cliente": "Vetrina",
+        "produto": "Micro Mix tudo",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_77",
+        "id_cliente": "27",
+        "dia_semana": "terça-feira",
+        "cliente": "Café de Casa",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 7 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_78",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Micro Coentro",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_79",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_80",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Micro Couve",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_81",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_82",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_83",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Micro Rucula",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "boleto para 7 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_84",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_85",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Alface Frisee",
+        "categoria": "Buque",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_86",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Alface Mimosa Roxa",
+        "categoria": "Buque",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_87",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Buque",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_88",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Baby Manjericão",
+        "categoria": "Desfolhado",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_89",
+        "id_cliente": "28",
+        "dia_semana": "terça-feira",
+        "cliente": "Hotel Juma",
+        "produto": "Baby Acelga",
+        "categoria": "Buque",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_90",
+        "id_cliente": "29",
+        "dia_semana": "terça-feira",
+        "cliente": "Quintal Bistrô",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_91",
+        "id_cliente": "29",
+        "dia_semana": "terça-feira",
+        "cliente": "Quintal Bistrô",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_92",
+        "id_cliente": "29",
+        "dia_semana": "terça-feira",
+        "cliente": "Quintal Bistrô",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_93",
+        "id_cliente": "29",
+        "dia_semana": "terça-feira",
+        "cliente": "Quintal Bistrô",
+        "produto": "Micro Mostarda",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 7 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_94",
+        "id_cliente": "29",
+        "dia_semana": "terça-feira",
+        "cliente": "Quintal Bistrô",
+        "produto": "Flores",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_95",
+        "id_cliente": "25",
+        "dia_semana": "terça-feira",
+        "cliente": "Moquem",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_96",
+        "id_cliente": "25",
+        "dia_semana": "terça-feira",
+        "cliente": "Moquem",
+        "produto": "Micro Rucula",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_97",
+        "id_cliente": "25",
+        "dia_semana": "terça-feira",
+        "cliente": "Moquem",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_98",
+        "id_cliente": "30",
+        "dia_semana": "terça-feira",
+        "cliente": "O maquinista",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_99",
+        "id_cliente": "30",
+        "dia_semana": "terça-feira",
+        "cliente": "O maquinista",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_100",
+        "id_cliente": "30",
+        "dia_semana": "terça-feira",
+        "cliente": "O maquinista",
+        "produto": "Micro Couve",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_101",
+        "id_cliente": "31",
+        "dia_semana": "terça-feira",
+        "cliente": "Roseiral",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_102",
+        "id_cliente": "31",
+        "dia_semana": "terça-feira",
+        "cliente": "Roseiral",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_103",
+        "id_cliente": "31",
+        "dia_semana": "terça-feira",
+        "cliente": "Roseiral",
+        "produto": "Micro Mostarda",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_104",
+        "id_cliente": "31",
+        "dia_semana": "terça-feira",
+        "cliente": "Roseiral",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_105",
+        "id_cliente": "31",
+        "dia_semana": "terça-feira",
+        "cliente": "Roseiral",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_106",
+        "id_cliente": "8",
+        "dia_semana": "terça-feira",
+        "cliente": "Subway Manauara",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "somente orçamento",
+        "status": "pendente"
+      },
+      {
+        "id": "order_107",
+        "id_cliente": "32",
+        "dia_semana": "terça-feira",
+        "cliente": "Cliente",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "retirada",
+        "status": "pendente"
+      },
+      {
+        "id": "order_108",
+        "id_cliente": "33",
+        "dia_semana": "terça-feira",
+        "cliente": "Fiorentina",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_109",
+        "id_cliente": "34",
+        "dia_semana": "terça-feira",
+        "cliente": "Veneza Tarumã",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_110",
+        "id_cliente": "34",
+        "dia_semana": "terça-feira",
+        "cliente": "Veneza Tarumã",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_111",
+        "id_cliente": "34",
+        "dia_semana": "terça-feira",
+        "cliente": "Veneza Tarumã",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_112",
+        "id_cliente": "35",
+        "dia_semana": "terça-feira",
+        "cliente": "Felicori",
+        "produto": "Micro Mostarda",
+        "categoria": "Pote",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_113",
+        "id_cliente": "35",
+        "dia_semana": "terça-feira",
+        "cliente": "Felicori",
+        "produto": "Micro Coentro",
+        "categoria": "Pote",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_114",
+        "id_cliente": "35",
+        "dia_semana": "terça-feira",
+        "cliente": "Felicori",
+        "produto": "Micro Beterraba",
+        "categoria": "Pote",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_115",
+        "id_cliente": "35",
+        "dia_semana": "terça-feira",
+        "cliente": "Felicori",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_116",
+        "id_cliente": "35",
+        "dia_semana": "terça-feira",
+        "cliente": "Felicori",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_117",
+        "id_cliente": "35",
+        "dia_semana": "terça-feira",
+        "cliente": "Felicori",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_118",
+        "id_cliente": "36",
+        "dia_semana": "terça-feira",
+        "cliente": "Burgers & Burgers",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_119",
         "id_cliente": "16",
         "dia_semana": "quarta-feira",
         "cliente": "Novotel",
@@ -14,7 +1442,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_1",
+        "id": "order_120",
         "id_cliente": "16",
         "dia_semana": "quarta-feira",
         "cliente": "Novotel",
@@ -26,7 +1454,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_2",
+        "id": "order_121",
         "id_cliente": "16",
         "dia_semana": "quarta-feira",
         "cliente": "Novotel",
@@ -38,7 +1466,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_3",
+        "id": "order_122",
         "id_cliente": "34",
         "dia_semana": "quarta-feira",
         "cliente": "Veneza Tarumã",
@@ -50,7 +1478,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_4",
+        "id": "order_123",
         "id_cliente": "37",
         "dia_semana": "quarta-feira",
         "cliente": "Porteira",
@@ -62,7 +1490,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_5",
+        "id": "order_124",
         "id_cliente": "37",
         "dia_semana": "quarta-feira",
         "cliente": "Porteira",
@@ -74,7 +1502,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_6",
+        "id": "order_125",
         "id_cliente": "37",
         "dia_semana": "quarta-feira",
         "cliente": "Porteira",
@@ -86,7 +1514,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_7",
+        "id": "order_126",
         "id_cliente": "38",
         "dia_semana": "quarta-feira",
         "cliente": "Barollo",
@@ -98,7 +1526,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_8",
+        "id": "order_127",
         "id_cliente": "38",
         "dia_semana": "quarta-feira",
         "cliente": "Barollo",
@@ -110,7 +1538,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_9",
+        "id": "order_128",
         "id_cliente": "38",
         "dia_semana": "quarta-feira",
         "cliente": "Barollo",
@@ -122,7 +1550,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_10",
+        "id": "order_129",
         "id_cliente": "38",
         "dia_semana": "quarta-feira",
         "cliente": "Barollo",
@@ -134,7 +1562,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_11",
+        "id": "order_130",
         "id_cliente": "38",
         "dia_semana": "quarta-feira",
         "cliente": "Barollo",
@@ -146,7 +1574,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_12",
+        "id": "order_131",
         "id_cliente": "39",
         "dia_semana": "quarta-feira",
         "cliente": "Traverso",
@@ -158,7 +1586,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_13",
+        "id": "order_132",
         "id_cliente": "39",
         "dia_semana": "quarta-feira",
         "cliente": "Traverso",
@@ -170,7 +1598,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_14",
+        "id": "order_133",
         "id_cliente": "39",
         "dia_semana": "quarta-feira",
         "cliente": "Traverso",
@@ -182,7 +1610,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_15",
+        "id": "order_134",
         "id_cliente": "39",
         "dia_semana": "quarta-feira",
         "cliente": "Traverso",
@@ -194,7 +1622,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_16",
+        "id": "order_135",
         "id_cliente": "40",
         "dia_semana": "quarta-feira",
         "cliente": "Nora Minev",
@@ -206,7 +1634,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_17",
+        "id": "order_136",
         "id_cliente": "40",
         "dia_semana": "quarta-feira",
         "cliente": "Nora Minev",
@@ -218,7 +1646,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_18",
+        "id": "order_137",
         "id_cliente": "40",
         "dia_semana": "quarta-feira",
         "cliente": "Nora Minev",
@@ -230,7 +1658,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_19",
+        "id": "order_138",
         "id_cliente": "41",
         "dia_semana": "quarta-feira",
         "cliente": "Cupulla",
@@ -242,7 +1670,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_20",
+        "id": "order_139",
         "id_cliente": "41",
         "dia_semana": "quarta-feira",
         "cliente": "Cupulla",
@@ -254,7 +1682,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_21",
+        "id": "order_140",
         "id_cliente": "41",
         "dia_semana": "quarta-feira",
         "cliente": "Cupulla",
@@ -266,7 +1694,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_22",
+        "id": "order_141",
         "id_cliente": "33",
         "dia_semana": "quarta-feira",
         "cliente": "Fiorentina",
@@ -278,7 +1706,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_23",
+        "id": "order_142",
         "id_cliente": "42",
         "dia_semana": "quarta-feira",
         "cliente": "Farrapo",
@@ -290,7 +1718,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_24",
+        "id": "order_143",
         "id_cliente": "42",
         "dia_semana": "quarta-feira",
         "cliente": "Farrapo",
@@ -302,7 +1730,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_25",
+        "id": "order_144",
         "id_cliente": "42",
         "dia_semana": "quarta-feira",
         "cliente": "Farrapo",
@@ -314,7 +1742,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_26",
+        "id": "order_145",
         "id_cliente": "43",
         "dia_semana": "quarta-feira",
         "cliente": "Lucas",
@@ -326,7 +1754,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_27",
+        "id": "order_146",
         "id_cliente": "43",
         "dia_semana": "quarta-feira",
         "cliente": "Lucas",
@@ -338,7 +1766,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_28",
+        "id": "order_147",
         "id_cliente": "43",
         "dia_semana": "quarta-feira",
         "cliente": "Lucas",
@@ -350,7 +1778,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_29",
+        "id": "order_148",
         "id_cliente": "43",
         "dia_semana": "quarta-feira",
         "cliente": "Lucas",
@@ -362,7 +1790,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_30",
+        "id": "order_149",
         "id_cliente": "43",
         "dia_semana": "quarta-feira",
         "cliente": "Lucas",
@@ -374,7 +1802,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_31",
+        "id": "order_150",
         "id_cliente": "44",
         "dia_semana": "quarta-feira",
         "cliente": "Restaurante Girão's",
@@ -386,7 +1814,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_32",
+        "id": "order_151",
         "id_cliente": "44",
         "dia_semana": "quarta-feira",
         "cliente": "Restaurante Girão's",
@@ -398,7 +1826,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_33",
+        "id": "order_152",
         "id_cliente": "44",
         "dia_semana": "quarta-feira",
         "cliente": "Restaurante Girão's",
@@ -410,7 +1838,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_34",
+        "id": "order_153",
         "id_cliente": "45",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Djalma",
@@ -422,7 +1850,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_35",
+        "id": "order_154",
         "id_cliente": "45",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Djalma",
@@ -434,7 +1862,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_36",
+        "id": "order_155",
         "id_cliente": "45",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Djalma",
@@ -446,7 +1874,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_37",
+        "id": "order_156",
         "id_cliente": "45",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Djalma",
@@ -458,7 +1886,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_38",
+        "id": "order_157",
         "id_cliente": "45",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Djalma",
@@ -470,7 +1898,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_39",
+        "id": "order_158",
         "id_cliente": "45",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Djalma",
@@ -482,7 +1910,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_40",
+        "id": "order_159",
         "id_cliente": "45",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Djalma",
@@ -494,7 +1922,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_41",
+        "id": "order_160",
         "id_cliente": "45",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Djalma",
@@ -506,7 +1934,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_42",
+        "id": "order_161",
         "id_cliente": "45",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Djalma",
@@ -518,7 +1946,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_43",
+        "id": "order_162",
         "id_cliente": "45",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Djalma",
@@ -530,7 +1958,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_44",
+        "id": "order_163",
         "id_cliente": "46",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Adrianópolis",
@@ -542,7 +1970,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_45",
+        "id": "order_164",
         "id_cliente": "46",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Adrianópolis",
@@ -554,7 +1982,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_46",
+        "id": "order_165",
         "id_cliente": "46",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Adrianópolis",
@@ -566,7 +1994,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_47",
+        "id": "order_166",
         "id_cliente": "46",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Adrianópolis",
@@ -578,7 +2006,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_48",
+        "id": "order_167",
         "id_cliente": "46",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Adrianópolis",
@@ -590,7 +2018,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_49",
+        "id": "order_168",
         "id_cliente": "46",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Adrianópolis",
@@ -602,7 +2030,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_50",
+        "id": "order_169",
         "id_cliente": "46",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Adrianópolis",
@@ -614,7 +2042,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_51",
+        "id": "order_170",
         "id_cliente": "47",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Aleixo",
@@ -626,7 +2054,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_52",
+        "id": "order_171",
         "id_cliente": "47",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Aleixo",
@@ -638,7 +2066,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_53",
+        "id": "order_172",
         "id_cliente": "47",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Aleixo",
@@ -650,7 +2078,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_54",
+        "id": "order_173",
         "id_cliente": "47",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Aleixo",
@@ -662,7 +2090,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_55",
+        "id": "order_174",
         "id_cliente": "47",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Aleixo",
@@ -674,7 +2102,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_56",
+        "id": "order_175",
         "id_cliente": "47",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Aleixo",
@@ -686,7 +2114,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_57",
+        "id": "order_176",
         "id_cliente": "47",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Aleixo",
@@ -698,7 +2126,7 @@
         "status": "pendente"
       },
       {
-        "id": "order_58",
+        "id": "order_177",
         "id_cliente": "47",
         "dia_semana": "quarta-feira",
         "cliente": "Patio Aleixo",
@@ -708,9 +2136,1620 @@
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_178",
+        "id_cliente": "40",
+        "dia_semana": "quinta-feira",
+        "cliente": "Nora Minev",
+        "produto": "Micro 3 variedades",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_179",
+        "id_cliente": "48",
+        "dia_semana": "quinta-feira",
+        "cliente": "Eduardo Favoretti",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_180",
+        "id_cliente": "34",
+        "dia_semana": "quinta-feira",
+        "cliente": "Veneza Tarumã",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_181",
+        "id_cliente": "34",
+        "dia_semana": "quinta-feira",
+        "cliente": "Veneza Tarumã",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_182",
+        "id_cliente": "34",
+        "dia_semana": "quinta-feira",
+        "cliente": "Veneza Tarumã",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_183",
+        "id_cliente": "36",
+        "dia_semana": "quinta-feira",
+        "cliente": "Burgers & Burgers",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_184",
+        "id_cliente": "10",
+        "dia_semana": "quinta-feira",
+        "cliente": "Padoca",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 8,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_185",
+        "id_cliente": "10",
+        "dia_semana": "quinta-feira",
+        "cliente": "Padoca",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_186",
+        "id_cliente": "10",
+        "dia_semana": "quinta-feira",
+        "cliente": "Padoca",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_187",
+        "id_cliente": "10",
+        "dia_semana": "quinta-feira",
+        "cliente": "Padoca",
+        "produto": "Baby Manjericão",
+        "categoria": "Desfolhado",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_188",
+        "id_cliente": "49",
+        "dia_semana": "quinta-feira",
+        "cliente": "Mirante do Negro",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_189",
+        "id_cliente": "49",
+        "dia_semana": "quinta-feira",
+        "cliente": "Mirante do Negro",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_190",
+        "id_cliente": "5",
+        "dia_semana": "quinta-feira",
+        "cliente": "Rodrigues Vieiralves",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_191",
+        "id_cliente": "5",
+        "dia_semana": "quinta-feira",
+        "cliente": "Rodrigues Vieiralves",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_192",
+        "id_cliente": "5",
+        "dia_semana": "quinta-feira",
+        "cliente": "Rodrigues Vieiralves",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_193",
+        "id_cliente": "8",
+        "dia_semana": "quinta-feira",
+        "cliente": "Subway Manauara",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 25,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_194",
+        "id_cliente": "50",
+        "dia_semana": "quinta-feira",
+        "cliente": "Veneza Parque 10",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_195",
+        "id_cliente": "50",
+        "dia_semana": "quinta-feira",
+        "cliente": "Veneza Parque 10",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_196",
+        "id_cliente": "50",
+        "dia_semana": "quinta-feira",
+        "cliente": "Veneza Parque 10",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_197",
+        "id_cliente": "51",
+        "dia_semana": "quinta-feira",
+        "cliente": "Frigorifica Amazona P.N",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_198",
+        "id_cliente": "51",
+        "dia_semana": "quinta-feira",
+        "cliente": "Frigorifica Amazona P.N",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_199",
+        "id_cliente": "51",
+        "dia_semana": "quinta-feira",
+        "cliente": "Frigorifica Amazona P.N",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_200",
+        "id_cliente": "12",
+        "dia_semana": "quinta-feira",
+        "cliente": "Casa de Tereza",
+        "produto": "Micro Beterraba",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_201",
+        "id_cliente": "12",
+        "dia_semana": "quinta-feira",
+        "cliente": "Casa de Tereza",
+        "produto": "Micro Rucula",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_202",
+        "id_cliente": "12",
+        "dia_semana": "quinta-feira",
+        "cliente": "Casa de Tereza",
+        "produto": "Micro Mostarda",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_203",
+        "id_cliente": "12",
+        "dia_semana": "quinta-feira",
+        "cliente": "Casa de Tereza",
+        "produto": "Micro Coentro",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_204",
+        "id_cliente": "12",
+        "dia_semana": "quinta-feira",
+        "cliente": "Casa de Tereza",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_205",
+        "id_cliente": "33",
+        "dia_semana": "quinta-feira",
+        "cliente": "Fiorentina",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 15,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_206",
+        "id_cliente": "51",
+        "dia_semana": "quinta-feira",
+        "cliente": "Frigorifica Amazona P.N",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_207",
+        "id_cliente": "51",
+        "dia_semana": "quinta-feira",
+        "cliente": "Frigorifica Amazona P.N",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_208",
+        "id_cliente": "51",
+        "dia_semana": "quinta-feira",
+        "cliente": "Frigorifica Amazona P.N",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_209",
+        "id_cliente": "14",
+        "dia_semana": "sábado",
+        "cliente": "Fitz",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_210",
+        "id_cliente": "14",
+        "dia_semana": "sábado",
+        "cliente": "Fitz",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "Desfolhado",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_211",
+        "id_cliente": "52",
+        "dia_semana": "segunda-feira",
+        "cliente": "Anntipastti",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_212",
+        "id_cliente": "52",
+        "dia_semana": "segunda-feira",
+        "cliente": "Anntipastti",
+        "produto": "Micro Mix tudo",
+        "categoria": "Pote",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_213",
+        "id_cliente": "52",
+        "dia_semana": "segunda-feira",
+        "cliente": "Anntipastti",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_214",
+        "id_cliente": "52",
+        "dia_semana": "segunda-feira",
+        "cliente": "Anntipastti",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_215",
+        "id_cliente": "24",
+        "dia_semana": "sexta-feira",
+        "cliente": "La Vaca Negra",
+        "produto": "Micro Mostarda",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_216",
+        "id_cliente": "41",
+        "dia_semana": "sexta-feira",
+        "cliente": "Cupulla",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_217",
+        "id_cliente": "41",
+        "dia_semana": "sexta-feira",
+        "cliente": "Cupulla",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_218",
+        "id_cliente": "41",
+        "dia_semana": "sexta-feira",
+        "cliente": "Cupulla",
+        "produto": "Micro Coentro",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_219",
+        "id_cliente": "41",
+        "dia_semana": "sexta-feira",
+        "cliente": "Cupulla",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_220",
+        "id_cliente": "41",
+        "dia_semana": "sexta-feira",
+        "cliente": "Cupulla",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_221",
+        "id_cliente": "24",
+        "dia_semana": "sexta-feira",
+        "cliente": "La Vaca Negra",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_222",
+        "id_cliente": "24",
+        "dia_semana": "sexta-feira",
+        "cliente": "La Vaca Negra",
+        "produto": "Flores",
+        "categoria": "Desfolhado",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_223",
+        "id_cliente": "24",
+        "dia_semana": "sexta-feira",
+        "cliente": "La Vaca Negra",
+        "produto": "Baby Manjericão",
+        "categoria": "Desfolhado",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_224",
+        "id_cliente": "38",
+        "dia_semana": "sexta-feira",
+        "cliente": "Barollo",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_225",
+        "id_cliente": "38",
+        "dia_semana": "sexta-feira",
+        "cliente": "Barollo",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_226",
+        "id_cliente": "38",
+        "dia_semana": "sexta-feira",
+        "cliente": "Barollo",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_227",
+        "id_cliente": "38",
+        "dia_semana": "sexta-feira",
+        "cliente": "Barollo",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_228",
+        "id_cliente": "38",
+        "dia_semana": "sexta-feira",
+        "cliente": "Barollo",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_229",
+        "id_cliente": "38",
+        "dia_semana": "sexta-feira",
+        "cliente": "Mizura",
+        "produto": "Micro 3 variedades",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_230",
+        "id_cliente": "53",
+        "dia_semana": "sexta-feira",
+        "cliente": "Mizura",
+        "produto": "Alface Frisee",
+        "categoria": "Desfolhado",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_231",
+        "id_cliente": "53",
+        "dia_semana": "sexta-feira",
+        "cliente": "Mizura",
+        "produto": "Alface Mimosa Roxa",
+        "categoria": "Desfolhado",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_232",
+        "id_cliente": "53",
+        "dia_semana": "sexta-feira",
+        "cliente": "Mizura",
+        "produto": "Flores",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 7 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_233",
+        "id_cliente": "30",
+        "dia_semana": "sexta-feira",
+        "cliente": "O maquinista",
+        "produto": "Micro Couve",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_234",
+        "id_cliente": "30",
+        "dia_semana": "sexta-feira",
+        "cliente": "O maquinista",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_235",
+        "id_cliente": "30",
+        "dia_semana": "sexta-feira",
+        "cliente": "O maquinista",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_236",
+        "id_cliente": "30",
+        "dia_semana": "sexta-feira",
+        "cliente": "O maquinista",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_237",
+        "id_cliente": "22",
+        "dia_semana": "sexta-feira",
+        "cliente": "Pasta Morada 1",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_238",
+        "id_cliente": "22",
+        "dia_semana": "sexta-feira",
+        "cliente": "Pasta Morada 1",
+        "produto": "Micro Mostarda",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_239",
+        "id_cliente": "22",
+        "dia_semana": "sexta-feira",
+        "cliente": "Pasta Morada 1",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_240",
+        "id_cliente": "18",
+        "dia_semana": "sexta-feira",
+        "cliente": "Mori Izakaya",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_241",
+        "id_cliente": "18",
+        "dia_semana": "sexta-feira",
+        "cliente": "Mori Izakaya",
+        "produto": "Micro Coentro",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_242",
+        "id_cliente": "35",
+        "dia_semana": "sexta-feira",
+        "cliente": "Felicori",
+        "produto": "Micro Mostarda",
+        "categoria": "Pote",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_243",
+        "id_cliente": "35",
+        "dia_semana": "sexta-feira",
+        "cliente": "Felicori",
+        "produto": "Micro Acelga",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Avulso",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_244",
+        "id_cliente": "42",
+        "dia_semana": "sexta-feira",
+        "cliente": "Farrapo",
+        "produto": "Baby Manjericão",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_245",
+        "id_cliente": "35",
+        "dia_semana": "sexta-feira",
+        "cliente": "Felicori",
+        "produto": "Micro Coentro",
+        "categoria": "Pote",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_246",
+        "id_cliente": "35",
+        "dia_semana": "sexta-feira",
+        "cliente": "Felicori",
+        "produto": "Micro Beterraba",
+        "categoria": "Pote",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_247",
+        "id_cliente": "54",
+        "dia_semana": "sexta-feira",
+        "cliente": "Taychi",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Pote",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "boleto p/ 7 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_248",
+        "id_cliente": "35",
+        "dia_semana": "sexta-feira",
+        "cliente": "Felicori",
+        "produto": "Flores",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_249",
+        "id_cliente": "42",
+        "dia_semana": "sexta-feira",
+        "cliente": "Farrapo",
+        "produto": "Flores",
+        "categoria": "Pote",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_250",
+        "id_cliente": "54",
+        "dia_semana": "sexta-feira",
+        "cliente": "Taychi",
+        "produto": "Alface Frisee",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_251",
+        "id_cliente": "42",
+        "dia_semana": "sexta-feira",
+        "cliente": "Farrapo",
+        "produto": "Micro 3 variedades",
+        "categoria": "Pote",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_252",
+        "id_cliente": "54",
+        "dia_semana": "sexta-feira",
+        "cliente": "Taychi",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_253",
+        "id_cliente": "54",
+        "dia_semana": "sexta-feira",
+        "cliente": "Taychi",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_254",
+        "id_cliente": "55",
+        "dia_semana": "sexta-feira",
+        "cliente": "Tio Armenio Amazonas",
+        "produto": "Micro Rabanete",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_255",
+        "id_cliente": "55",
+        "dia_semana": "sexta-feira",
+        "cliente": "Tio Armenio Amazonas",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_256",
+        "id_cliente": "55",
+        "dia_semana": "sexta-feira",
+        "cliente": "Tio Armenio Amazonas",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_257",
+        "id_cliente": "55",
+        "dia_semana": "sexta-feira",
+        "cliente": "Tio Armenio Amazonas",
+        "produto": "Flores",
+        "categoria": "Pote",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_258",
+        "id_cliente": "8",
+        "dia_semana": "sexta-feira",
+        "cliente": "Subway Manauara",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 0,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_259",
+        "id_cliente": "19",
+        "dia_semana": "sexta-feira",
+        "cliente": "Jhon sushi",
+        "produto": "Micro Nabo",
+        "categoria": "Pote",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_260",
+        "id_cliente": "19",
+        "dia_semana": "sexta-feira",
+        "cliente": "Jhon sushi",
+        "produto": "Micro Repolho",
+        "categoria": "Pote",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_261",
+        "id_cliente": "19",
+        "dia_semana": "sexta-feira",
+        "cliente": "Jhon sushi",
+        "produto": "Flores",
+        "categoria": "Pote",
+        "quantidade": 4,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_262",
+        "id_cliente": "56",
+        "dia_semana": "sexta-feira",
+        "cliente": "Ancho",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "Desfolhado",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_263",
+        "id_cliente": "56",
+        "dia_semana": "sexta-feira",
+        "cliente": "Ancho",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_264",
+        "id_cliente": "16",
+        "dia_semana": "sexta-feira",
+        "cliente": "Novotel",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 30,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_265",
+        "id_cliente": "16",
+        "dia_semana": "sexta-feira",
+        "cliente": "Novotel",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 40,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_266",
+        "id_cliente": "16",
+        "dia_semana": "sexta-feira",
+        "cliente": "Novotel",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "Desfolhado",
+        "quantidade": 10,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_267",
+        "id_cliente": "16",
+        "dia_semana": "sexta-feira",
+        "cliente": "Novotel",
+        "produto": "Baby Rúcula",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "",
+        "observacoes": "BOLETO PARA 7 DIAS",
+        "status": "pendente"
+      },
+      {
+        "id": "order_268",
+        "id_cliente": "33",
+        "dia_semana": "sexta-feira",
+        "cliente": "Fiorentina",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_269",
+        "id_cliente": "13",
+        "dia_semana": "sexta-feira",
+        "cliente": "BAREBURGUER",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_270",
+        "id_cliente": "4",
+        "dia_semana": "sexta-feira",
+        "cliente": "Rodrigues Ponta Negra",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 30,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_271",
+        "id_cliente": "4",
+        "dia_semana": "sexta-feira",
+        "cliente": "Rodrigues Ponta Negra",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 15,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_272",
+        "id_cliente": "4",
+        "dia_semana": "sexta-feira",
+        "cliente": "Rodrigues Ponta Negra",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 20,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_273",
+        "id_cliente": "3",
+        "dia_semana": "sexta-feira",
+        "cliente": "Rodrigues Jacira Reis",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 30,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_274",
+        "id_cliente": "3",
+        "dia_semana": "sexta-feira",
+        "cliente": "Rodrigues Jacira Reis",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 20,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_275",
+        "id_cliente": "3",
+        "dia_semana": "sexta-feira",
+        "cliente": "Rodrigues Jacira Reis",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 15,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_276",
+        "id_cliente": "5",
+        "dia_semana": "sexta-feira",
+        "cliente": "Rodrigues Vieiralves",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 30,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_277",
+        "id_cliente": "5",
+        "dia_semana": "sexta-feira",
+        "cliente": "Rodrigues Vieiralves",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 20,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_278",
+        "id_cliente": "5",
+        "dia_semana": "sexta-feira",
+        "cliente": "Rodrigues Vieiralves",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 15,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_279",
+        "id_cliente": "8",
+        "dia_semana": "sábado",
+        "cliente": "Subway Manauara",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 35,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_280",
+        "id_cliente": "32",
+        "dia_semana": "sexta-feira",
+        "cliente": "Cliente",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_281",
+        "id_cliente": "13",
+        "dia_semana": "sábado",
+        "cliente": "BAREBURGUER",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 20,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_282",
+        "id_cliente": "58",
+        "dia_semana": "sábado",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 24,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_283",
+        "id_cliente": "58",
+        "dia_semana": "sábado",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 18,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_284",
+        "id_cliente": "58",
+        "dia_semana": "sábado",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 18,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_285",
+        "id_cliente": "59",
+        "dia_semana": "sábado",
+        "cliente": "Frigorifico Amazonas P10",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_286",
+        "id_cliente": "60",
+        "dia_semana": "segunda-feira",
+        "cliente": "Nihan",
+        "produto": "Micro Coentro",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_287",
+        "id_cliente": "60",
+        "dia_semana": "segunda-feira",
+        "cliente": "Nihan",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "",
+        "observacoes": "boleto para 7 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_288",
+        "id_cliente": "60",
+        "dia_semana": "segunda-feira",
+        "cliente": "Nihan",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_289",
+        "id_cliente": "60",
+        "dia_semana": "segunda-feira",
+        "cliente": "Nihan",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_290",
+        "id_cliente": "59",
+        "dia_semana": "sábado",
+        "cliente": "Frigorifico Amazonas P10",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 13,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_291",
+        "id_cliente": "59",
+        "dia_semana": "sábado",
+        "cliente": "Frigorifico Amazonas P10",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_292",
+        "id_cliente": "57",
+        "dia_semana": "sábado",
+        "cliente": "Veneza Tarumã",
+        "produto": "Alface Americana",
+        "categoria": "Desfolhado",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_293",
+        "id_cliente": "57",
+        "dia_semana": "sábado",
+        "cliente": "Veneza Tarumã",
+        "produto": "Alface Crespa Verde",
+        "categoria": "Desfolhado",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_294",
+        "id_cliente": "57",
+        "dia_semana": "sábado",
+        "cliente": "Veneza Tarumã",
+        "produto": "Alface MIX",
+        "categoria": "Desfolhado",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_295",
+        "id_cliente": "57",
+        "dia_semana": "sábado",
+        "cliente": "ROUTE PUB",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 34,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
+      {
+        "id": "1",
+        "nome": "Fernanda",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "2",
+        "nome": "Grand Amazon",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "3",
+        "nome": "Rodrigues Jacira Reis",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "4",
+        "nome": "Rodrigues Ponta Negra",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "5",
+        "nome": "Rodrigues Vieiralves",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "6",
+        "nome": "Jackeliny",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "7",
+        "nome": "Marcia",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "8",
+        "nome": "Subway Manauara",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "9",
+        "nome": "Meu Chef Café",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "10",
+        "nome": "Padoca",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "11",
+        "nome": "Renato",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "12",
+        "nome": "Casa de Tereza",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "13",
+        "nome": "BAREBURGUER",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "14",
+        "nome": "Fitz",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "15",
+        "nome": "Banzeiro",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
       {
         "id": "16",
         "nome": "Novotel",
@@ -725,8 +3764,255 @@
         "precos": []
       },
       {
+        "id": "17",
+        "nome": "Una Vitta",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "18",
+        "nome": "Mori Izakaya",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "19",
+        "nome": "Jhon sushi",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "20",
+        "nome": "Kawamura",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "21",
+        "nome": "Yakimix",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "22",
+        "nome": "Pasta Morada 1",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "23",
+        "nome": "Pasta Morada 2",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "24",
+        "nome": "La Vaca Negra",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "25",
+        "nome": "Moquem",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "26",
+        "nome": "Vetrina",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "27",
+        "nome": "Café de Casa",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "28",
+        "nome": "Hotel Juma",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "29",
+        "nome": "Quintal Bistrô",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "30",
+        "nome": "O maquinista",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "31",
+        "nome": "Roseiral",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "32",
+        "nome": "Cliente",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "33",
+        "nome": "Fiorentina",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
         "id": "34",
         "nome": "Veneza Tarumã",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "35",
+        "nome": "Felicori",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "36",
+        "nome": "Burgers & Burgers",
         "observacoes": "",
         "prazoBoleto": "",
         "acumulaPedidos": false,
@@ -797,19 +4083,6 @@
       {
         "id": "41",
         "nome": "Cupulla",
-        "observacoes": "",
-        "prazoBoleto": "",
-        "acumulaPedidos": false,
-        "diasAcumulo": "",
-        "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
-        "precos": []
-      },
-      {
-        "id": "33",
-        "nome": "Fiorentina",
         "observacoes": "",
         "prazoBoleto": "",
         "acumulaPedidos": false,
@@ -897,78 +4170,183 @@
         "horarioMaximo": "",
         "cobraEntrega": false,
         "precos": []
+      },
+      {
+        "id": "48",
+        "nome": "Eduardo Favoretti",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "49",
+        "nome": "Mirante do Negro",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "50",
+        "nome": "Veneza Parque 10",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "51",
+        "nome": "Frigorifica Amazona P.N",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "52",
+        "nome": "Anntipastti",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "38",
+        "nome": "Mizura",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "54",
+        "nome": "Taychi",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "55",
+        "nome": "Tio Armenio Amazonas",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "56",
+        "nome": "Ancho",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "58",
+        "nome": "Frigorifico A. Adrianópolis",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "59",
+        "nome": "Frigorifico Amazonas P10",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "60",
+        "nome": "Nihan",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "57",
+        "nome": "ROUTE PUB",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
       {
-        "nome": "Alface Americana",
-        "categorias": [
-          "Desfolhado"
-        ],
-        "precoBase": 0
-      },
-      {
-        "nome": "Alface Crespa Verde",
-        "categorias": [
-          "Desfolhado"
-        ],
-        "precoBase": 0
-      },
-      {
-        "nome": "Alface Crespa Roxa",
-        "categorias": [
-          "Desfolhado"
-        ],
-        "precoBase": 0
-      },
-      {
-        "nome": "Micro Rucula",
-        "categorias": [
-          "Pote"
-        ],
-        "precoBase": 0
-      },
-      {
-        "nome": "Micro Couve",
-        "categorias": [
-          "Pote",
-          "Desfolhado"
-        ],
-        "precoBase": 0
-      },
-      {
-        "nome": "Micro Rabanete",
-        "categorias": [
-          "Pote",
-          "Desfolhado"
-        ],
-        "precoBase": 0
-      },
-      {
         "nome": "Alface MIX",
         "categorias": [
-          "Desfolhado"
-        ],
-        "precoBase": 0
-      },
-      {
-        "nome": "Micro Nabo",
-        "categorias": [
-          "Pote",
-          "Desfolhado"
-        ],
-        "precoBase": 0
-      },
-      {
-        "nome": "Micro Coentro",
-        "categorias": [
-          "Pote"
-        ],
-        "precoBase": 0
-      },
-      {
-        "nome": "Micro Mostarda",
-        "categorias": [
+          "Desfolhado",
+          "Buque",
           "Pote"
         ],
         "precoBase": 0
@@ -976,22 +4354,8 @@
       {
         "nome": "Micro 3 variedades",
         "categorias": [
-          "Buque",
-          "Pote"
-        ],
-        "precoBase": 0
-      },
-      {
-        "nome": "Baby Manjericão",
-        "categorias": [
-          "Desfolhado"
-        ],
-        "precoBase": 0
-      },
-      {
-        "nome": "Flores",
-        "categorias": [
-          "Desfolhado"
+          "Pote",
+          "Buque"
         ],
         "precoBase": 0
       },
@@ -1010,13 +4374,147 @@
         "precoBase": 0
       },
       {
+        "nome": "Flores",
+        "categorias": [
+          "Pote",
+          "Desfolhado"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Micro Nabo",
+        "categorias": [
+          "Pote",
+          "Desfolhado"
+        ],
+        "precoBase": 0
+      },
+      {
         "nome": "Micro Repolho",
+        "categorias": [
+          "Pote",
+          "Desfolhado"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Micro Mostarda",
+        "categorias": [
+          "Pote"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Alface Americana",
         "categorias": [
           "Desfolhado"
         ],
         "precoBase": 0
+      },
+      {
+        "nome": "Alface Crespa Verde",
+        "categorias": [
+          "Desfolhado",
+          "Buque",
+          "Pote"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Baby Manjericão",
+        "categorias": [
+          "Pote",
+          "Desfolhado"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Micro Rabanete",
+        "categorias": [
+          "Pote",
+          "Desfolhado"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Alface Frisee",
+        "categorias": [
+          "Buque",
+          "Pote",
+          "Desfolhado"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Alface Mimosa Roxa",
+        "categorias": [
+          "Buque",
+          "Desfolhado"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Micro Beterraba",
+        "categorias": [
+          "Pote"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Micro Rucula",
+        "categorias": [
+          "Pote"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Micro Coentro",
+        "categorias": [
+          "Pote"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Alface Crespa Roxa",
+        "categorias": [
+          "Desfolhado",
+          "Pote"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Micro Couve",
+        "categorias": [
+          "Pote",
+          "Desfolhado"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Micro Mix tudo",
+        "categorias": [
+          "Pote"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Hortelã",
+        "categorias": [],
+        "precoBase": 0
+      },
+      {
+        "nome": "Micro Acelga",
+        "categorias": [
+          "Pote"
+        ],
+        "precoBase": 0
+      },
+      {
+        "nome": "Baby Rúcula",
+        "categorias": [],
+        "precoBase": 0
       }
     ]
   },
-  "lastUpdate": "2026-03-25T20:14:06.346Z"
+  "lastUpdate": "2026-03-25T20:15:31.180Z"
 }
