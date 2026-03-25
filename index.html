@@ -6969,6 +6969,8 @@ async function saveToGitHub() {
     const base64Content = btoa(binaryString);
     
     console.log('Tentando salvar no GitHub...');
+    console.log('DEBUG: Dados a salvar - Clientes:', dataToSave.data.clientes.length, 'Pedidos:', dataToSave.data.pedidos.length);
+    console.log('DEBUG: Timestamp:', now);
     
     // PASSO 1: Obter SHA do arquivo atual (necessário para atualizar)
     let sha = null;
@@ -7015,15 +7017,17 @@ async function saveToGitHub() {
     
     if (putResponse.ok) {
       console.log('Dados salvos no GitHub com sucesso!');
+      console.log('DEBUG: Resposta status:', response.status);
       lastRemoteUpdate = new Date().getTime();
       showSyncNotification('✅ Dados salvos no GitHub!');
     } else {
       const error = await putResponse.json();
       console.error('Erro ao salvar no GitHub:', error);
     }
-  } catch (e) {
-    console.error('Erro ao salvar no GitHub:', e.message);
-  }
+    } catch (e) {
+      console.log('Erro ao salvar no GitHub:', e.message);
+      console.log('DEBUG: Erro completo:', e);
+    }
 }
 
 
