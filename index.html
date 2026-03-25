@@ -5397,7 +5397,17 @@ async function loadSampleData() {
 }
 
 function saveData() {
-  localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
+  try {
+    const dataToSave = JSON.stringify(appState.data);
+    localStorage.setItem(DATA_STORAGE_KEY, dataToSave);
+    // Verificar se foi salvo corretamente
+    const savedData = localStorage.getItem(DATA_STORAGE_KEY);
+    if (!savedData) {
+      console.error('Falha ao salvar dados no localStorage');
+    }
+  } catch (e) {
+    console.error('Erro ao salvar dados:', e);
+  }
 }
 
 // ─── Dashboard Render ────────────────────────────────────────────────────────
@@ -5638,6 +5648,14 @@ function renderAgenda() {
 
 function filterAgendaByDay(dia) {
   appState.agendaDiaFiltro = dia || null;
+  // Limpar filtro de clientes quando mudar de dia
+  if (dia) {
+    appState.agendaClientesFiltro = [];
+    // Desmarcar todos os checkboxes
+    document.querySelectorAll('#agendaFiltrosContent input[type="checkbox"]').forEach(cb => {
+      cb.checked = false;
+    });
+  }
   renderAgendaList();
 }
 
@@ -6108,6 +6126,9 @@ function savePedido() {
   }
   
   saveData();
+  // Limpar o formulário
+  document.getElementById('pedidoForm').reset();
+  document.getElementById('produtosContainer').innerHTML = '<div id="produtoLine_0" class="produto-line"><select class="prod-select"><option value="">Selecionar produto...</option></select><input type="number" class="prod-qty" value="1" min="1"><input type="text" class="prod-cat" placeholder="Categoria"><button type="button" onclick="removeProdutoLine(0)">❌</button></div>';
   closeModal('pedidoModal');
   renderAgenda();
 }
