@@ -5595,20 +5595,27 @@ async function saveToGoogleDrive() {
   try {
     const dataToSave = appState.data;
     
-    // Enviar para Google Apps Script
-    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+    // Enviar para Google Apps Script com o parâmetro action
+    const url = new URL(GOOGLE_APPS_SCRIPT_URL);
+    url.searchParams.append('action', 'write');
+    
+    const response = await fetch(url.toString(), {
       method: 'POST',
       body: JSON.stringify(dataToSave),
       headers: {
         'Content-Type': 'application/json'
-      },
-      mode: 'no-cors'
+      }
     });
     
-    console.log('Dados salvos no Google Apps Script');
-    lastAppsScriptSync = new Date().toISOString();
+    const result = await response.json();
+    if (result.success) {
+      console.log('Dados salvos no Google Apps Script');
+      lastAppsScriptSync = new Date().toISOString();
+    } else {
+      console.log('Erro ao salvar:', result.error);
+    }
   } catch (e) {
-    console.log('Não conseguiu salvar no Apps Script (pode estar offline):', e);
+    console.log('Não conseguiu salvar no Apps Script:', e);
   }
 }
 
