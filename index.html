@@ -6908,11 +6908,15 @@ async function syncWithGitHub() {
       const remoteTime = new Date(remoteData.lastUpdate).getTime();
       
       if (remoteTime > lastSyncTime) {
-        console.log('📥 Atualizando dados do GitHub');
+        console.log('📥 Atualizando dados do GitHub - Timestamp:', remoteData.lastUpdate);
         appState.data = remoteData.data;
         appState.lastUpdate = remoteData.lastUpdate;
         lastSyncTime = remoteTime;
+        console.log('📊 Renderizando dashboard...');
         renderDashboard();
+        console.log('✅ Dashboard atualizado!');
+      } else {
+        console.log('⏭️ Dados já estão sincronizados. Remoto:', remoteTime, 'Local:', lastSyncTime);
       }
     }
   } catch (e) {
