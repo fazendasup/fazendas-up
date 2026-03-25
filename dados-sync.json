@@ -3562,10 +3562,6 @@
           {
             "produto": "Micro Beterraba",
             "preco": 12
-          },
-          {
-            "produto": "Hortel�",
-            "preco": 12
           }
         ]
       },
@@ -4433,5 +4429,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-25T17:10:55.182Z"
+  "lastUpdate": "2026-03-25T17:12:14.728Z"
 }
