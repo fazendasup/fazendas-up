@@ -1077,7 +1077,7 @@ function setupGoogleDriveSync() {
 async function syncWithGoogleDrive() {
   try {
     // Ler arquivo do Google Drive usando URL pública
-    const url = `https://www.googleapis.com/drive/v3/files/${GOOGLE_DRIVE_FILE_ID}?alt=media&key=AIzaSyDEpqCXvJQQqjqnVARgzYJbFfnrgcPMsZ7xS8z`;
+    const url = `https://drive.google.com/uc?export=download&id=${GOOGLE_DRIVE_FILE_ID}`;
     
     const response = await fetch(url);
     if (!response.ok) return;
