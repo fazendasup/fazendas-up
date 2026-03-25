@@ -3560,7 +3560,7 @@
         "cobraEntrega": false,
         "precos": [
           {
-            "produto": "Hortel�",
+            "produto": "Micro Coentro",
             "preco": 12
           }
         ]
@@ -4429,5 +4429,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-25T17:34:34.929Z"
+  "lastUpdate": "2026-03-25T17:35:54.205Z"
 }
