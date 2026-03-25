@@ -6541,9 +6541,17 @@ function adicionarPrecoEspecial(produtoNome = '', preco = '') {
       ${appState.data.produtos.map(p => `<option value="${p.nome}" ${p.nome === produtoNome ? 'selected' : ''}>${p.nome}</option>`).join('')}
     </select>
     <input type="number" class="preco-valor-input" placeholder="Preço" value="${preco}" step="0.01" min="0">
-    <button type="button" class="btn-delete" onclick="this.parentElement.remove()">🗑️</button>
+    <button type="button" class="btn-delete" onclick="this.parentElement.remove(); saveClienteAposRemoverPreco();">🗑️</button>
   `;
   container.appendChild(row);
+}
+
+// Salvar cliente após remover preço
+async function saveClienteAposRemoverPreco() {
+  // Aguardar um pouco para a DOM atualizar
+  setTimeout(async () => {
+    await saveCliente();
+  }, 100);
 }
 
 // ─── Helper Functions ────────────────────────────────────────────────────────
