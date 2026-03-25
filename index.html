@@ -1058,6 +1058,7 @@ const CATEGORIAS = ['Buque', 'Desfolhado', 'Pote'];
 async function init() {
   await loadData();
   setupEventListeners();
+  setupStorageListener();
   renderDashboard();
 }
 
@@ -1192,6 +1193,60 @@ async function loadData() {
     await loadSampleData();
     localStorage.setItem('fazendas-up-version', DATA_VERSION);
   }
+}
+
+// ─── Sincronização em Tempo Real ────────────────────────────────────────────────────────
+
+function setupStorageListener() {
+  // Detectar mudanças no localStorage de outras abas/dispositivos
+  window.addEventListener('storage', (event) => {
+    if (event.key === DATA_STORAGE_KEY) {
+      console.log('Dados alterados em outro dispositivo/aba. Atualizando...');
+      
+      // Mostrar notificação de sincronização
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #10b981;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        font-size: 14px;
+      `;
+      notification.textContent = '🔄 Sincronizando dados...';
+      document.body.appendChild(notification);
+      
+      // Carregar os novos dados
+      const newData = JSON.parse(event.newValue || '{}');
+      appState.data = newData;
+      
+      // Recarregar a página atual
+      const currentTab = document.querySelector('.tab-btn.active');
+      if (currentTab) {
+        const tabName = currentTab.textContent.toLowerCase();
+        if (tabName.includes('dashboard')) {
+          renderDashboard();
+        } else if (tabName.includes('agenda')) {
+          renderAgenda();
+        } else if (tabName.includes('cliente')) {
+          renderClientes();
+        } else if (tabName.includes('produto')) {
+          renderProdutos();
+        }
+      }
+      
+      // Remover notificação após 2 segundos
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+      }, 2000);
+    }
+  });
 }
 
 const DADOS_COMPLETOS = {
