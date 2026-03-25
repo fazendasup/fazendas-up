@@ -3551,14 +3551,23 @@
         "id": "38",
         "nome": "Barollo",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "3 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
         "periodoEntrega": "Tarde",
-        "horarioMaximo": "00:00",
-        "cobraEntrega": false,
-        "precos": []
+        "horarioMaximo": "17:00",
+        "cobraEntrega": true,
+        "precos": [
+          {
+            "produto": "Alface Americana",
+            "preco": 7.49
+          },
+          {
+            "produto": "Alface MIX",
+            "preco": 7.49
+          }
+        ]
       },
       {
         "id": "36",
@@ -4424,5 +4433,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-25T16:32:55.847Z"
+  "lastUpdate": "2026-03-25T16:43:49.243Z"
 }
