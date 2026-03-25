@@ -1063,51 +1063,76 @@ async function init() {
   renderDashboard();
 }
 
-// ─── Google Drive Sync (Automático) ────────────────────────────────────────
+// ─── WebSocket Sync (Automático em Tempo Real) ──────────────────────────────
 
-const GOOGLE_DRIVE_FILE_ID = '1CwuzSh2VrG4Sa4AvmlW47zY9MhxnJwM_';
-let lastGoogleDriveData = null;
-let lastSyncTime = 0;
+let ws = null;
+const SERVER_URL = 'ws://' + window.location.hostname + ':3001';
 
 function setupGoogleDriveSync() {
-  // Sincronizar a cada 3 segundos
-  setInterval(syncWithGoogleDrive, 3000);
+  connectWebSocket();
 }
 
-async function syncWithGoogleDrive() {
+function connectWebSocket() {
   try {
-    // Ler arquivo do Google Drive usando URL pública
-    const url = `https://drive.google.com/uc?export=download&id=${GOOGLE_DRIVE_FILE_ID}`;
+    ws = new WebSocket(SERVER_URL);
     
-    const response = await fetch(url);
-    if (!response.ok) return;
+    ws.onopen = () => {
+      console.log('Conectado ao servidor de sincronização');
+      showSyncNotification('✅ Conectado ao servidor');
+    };
     
-    const remoteData = await response.json();
-    const remoteDataStr = JSON.stringify(remoteData);
-    
-    // Verificar se há mudanças remotas
-    if (lastGoogleDriveData !== remoteDataStr && remoteData.lastUpdate) {
-      console.log('Sincronizando dados do Google Drive...');
-      
-      // Atualizar dados locais
-      appState.data = remoteData;
-      localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
-      lastGoogleDriveData = remoteDataStr;
-      
-      // Recarregar página atual
-      const currentTab = document.querySelector('.tab-btn.active');
-      if (currentTab) {
-        const tabName = currentTab.textContent.toLowerCase();
-        if (tabName.includes('dashboard')) renderDashboard();
-        else if (tabName.includes('agenda')) renderAgenda();
-        else if (tabName.includes('cliente')) renderClientes();
-        else if (tabName.includes('produto')) renderProdutos();
+    ws.onmessage = (event) => {
+      try {
+        const msg = JSON.parse(event.data);
+        
+        if (msg.type === 'init' || msg.type === 'update') {
+          console.log('Recebendo dados do servidor...');
+          
+          // Atualizar dados locais
+          appState.data = msg.data;
+          localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
+          
+          // Recarregar página atual
+          const currentTab = document.querySelector('.tab-btn.active');
+          if (currentTab) {
+            const tabName = currentTab.textContent.toLowerCase();
+            if (tabName.includes('dashboard')) renderDashboard();
+            else if (tabName.includes('agenda')) renderAgenda();
+            else if (tabName.includes('cliente')) renderClientes();
+            else if (tabName.includes('produto')) renderProdutos();
+          }
+          
+          if (msg.type === 'update') {
+            showSyncNotification('☁️ Sincronizado com outros dispositivos!');
+          }
+        }
+      } catch (e) {
+        console.error('Erro ao processar mensagem:', e);
       }
-      
-      showSyncNotification('Sincronizado com Google Drive');
-    }
+    };
+    
+    ws.onerror = (error) => {
+      console.error('Erro WebSocket:', error);
+      showSyncNotification('❌ Erro ao conectar ao servidor');
+    };
+    
+    ws.onclose = () => {
+      console.log('Desconectado do servidor');
+      // Tentar reconectar a cada 5 segundos
+      setTimeout(connectWebSocket, 5000);
+    };
   } catch (e) {
-    console.log('Erro ao sincronizar:', e);
+    console.error('Erro ao conectar:', e);
+    setTimeout(connectWebSocket, 5000);
+  }
+}
+
+function sendDataToServer(data) {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({
+      type: 'update',
+      data: data
+    }));
   }
 }
 
@@ -5566,37 +5591,10 @@ function saveData() {
       console.error('Falha ao salvar dados no localStorage');
     }
     
-    // Dados salvos no localStorage e Google Drive
-    uploadToGoogleDrive();
+    // Enviar dados ao servidor para sincronização
+    sendDataToServer(appState.data);
   } catch (e) {
     console.error('Erro ao salvar dados:', e);
-  }
-}
-
-async function uploadToGoogleDrive() {
-  try {
-    const dataWithTimestamp = {
-      ...appState.data,
-      lastUpdate: new Date().toISOString()
-    };
-    
-    // Criar FormData para upload
-    const metadata = {
-      name: 'fazendas-up-dados.json',
-      mimeType: 'application/json'
-    };
-    
-    const formData = new FormData();
-    formData.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
-    formData.append('file', new Blob([JSON.stringify(dataWithTimestamp)], { type: 'application/json' }));
-    
-    // Usar rclone ou curl para upload
-    console.log('Enviando dados para Google Drive...');
-    
-    // Atualizar lastGoogleDriveData para evitar re-sincronização
-    lastGoogleDriveData = JSON.stringify(dataWithTimestamp);
-  } catch (e) {
-    console.log('Erro ao enviar para Google Drive:', e);
   }
 }
 
