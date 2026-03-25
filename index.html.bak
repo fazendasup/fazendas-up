@@ -835,23 +835,6 @@
     </style>
 </head>
 <body>
-<script>
-// Solicitar token do GitHub na primeira vez
-function setupGitHubToken() {
-  if (!localStorage.getItem('githubTokenConfigured')) {
-    const token = prompt('Cole seu token do GitHub para sincronização automática:\n\n(Você pode gerar em: https://github.com/settings/tokens)');
-    if (token && token.trim()) {
-      localStorage.setItem('githubToken', token.trim());
-      localStorage.setItem('githubTokenConfigured', 'true');
-      alert('✅ Token configurado! Sincronização ativada.');
-    }
-  }
-}
-
-// Chamar ao carregar a página
-window.addEventListener('load', setupGitHubToken);
-</script>
-
     <!-- Modal de Login -->
     <div id="loginModal" class="modal" style="display: flex;">
         <div class="modal-content" style="max-width: 400px; margin: auto;">
@@ -895,13 +878,6 @@ window.addEventListener('load', setupGitHubToken);
         <div class="modal-content">
             <h2>🎯 Definir Prioridade de Entrega</h2>
             <div id="prioridadeContent"></div>
-        </div>
-    </div>
-    
-    <div id="agendaFiltrosModal" class="modal">
-        <div class="modal-content" style="max-width: 500px;">
-            <h2 style="margin-bottom: 15px;">🔍 Filtros</h2>
-            <div id="agendaFiltrosContent"></div>
         </div>
     </div>
     
@@ -1073,57 +1049,9 @@ const CATEGORIAS = ['Buque', 'Desfolhado', 'Pote'];
 // ─── Inicialização ───────────────────────────────────────────────────────────
 
 async function init() {
-  console.log('🚀 Iniciando app...');
   await loadData();
-  console.log('📦 Dados carregados. appState:', JSON.stringify(appState, null, 2).substring(0, 200));
   setupEventListeners();
-  setupStorageListener();
-  setupAutoSync();
-  
-  // Sincronizar com GitHub imediatamente
-  console.log('🔄 Sincronizando com GitHub na inicialização...');
-  await syncWithGitHub();
-  console.log('✅ Sincronização inicial concluída');
-  
   renderDashboard();
-}
-
-// ─── WebSocket Sync (Automático em Tempo Real) ──────────────────────────────
-
-
-
-
-function sendDataToServer(data) {
-  if (ws && ws.readyState === WebSocket.OPEN) {
-    ws.send(JSON.stringify({
-      type: 'update',
-      data: data
-    }));
-  }
-}
-
-function showSyncNotification(msg = '☁️ Dados sincronizados!') {
-  const notification = document.createElement('div');
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #4285f4;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 10000;
-    font-size: 14px;
-  `;
-  notification.textContent = msg;
-  document.body.appendChild(notification);
-  
-  setTimeout(() => {
-    notification.style.opacity = '0';
-    notification.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => notification.remove(), 300);
-  }, 2000);
 }
 
 function setupEventListeners() {
@@ -1165,7 +1093,7 @@ function setUserRole(role) {
   document.getElementById('loginModal').style.display = 'none';
   document.getElementById('appContainer').style.display = 'flex';
   updateUIByRole();
-  init();
+  Initialize();
 }
 
 function showAdminPassword() {
@@ -1225,26 +1153,6 @@ window.addEventListener('load', () => {
   }
 });
 async function loadData() {
-  // Se houver token, SEMPRE carregar do GitHub (GitHub eh a fonte de verdade)
-  const token = localStorage.getItem('githubToken');
-  if (token) {
-    try {
-      const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}?t=${Date.now()}`);
-      if (response.ok) {
-        const remoteData = await response.json();
-        appState.data = remoteData.data;
-        appState.lastUpdate = remoteData.lastUpdate;
-        localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
-        localStorage.setItem('fazendas-up-version', DATA_VERSION);
-        console.log('Dados carregados do GitHub! Timestamp:', remoteData.lastUpdate);
-        return;
-      }
-    } catch (e) {
-      console.log('Erro ao carregar do GitHub:', e.message);
-    }
-  }
-  
-  // Se não conseguir do GitHub, carregar do localStorage
   const stored = localStorage.getItem(DATA_STORAGE_KEY);
   const savedVersion = localStorage.getItem('fazendas-up-version');
   const saved = stored;
@@ -1261,7 +1169,7 @@ async function loadData() {
     try {
       const parsed = JSON.parse(saved);
       // Verificar se os dados são válidos e completos
-      if (parsed.pedidos && parsed.pedidos.length > 0 && parsed.clientes && parsed.clientes.length > 0) {
+      if (parsed.pedidos && parsed.pedidos.length > 10 && parsed.clientes && parsed.clientes.length > 10) {
         appState.data = parsed;
       } else {
         console.log('Dados incompletos no localStorage, recarregando...');
@@ -1276,131 +1184,6 @@ async function loadData() {
   } else {
     await loadSampleData();
     localStorage.setItem('fazendas-up-version', DATA_VERSION);
-  }
-}
-
-// ─── Sincronização em Tempo Real ────────────────────────────────────────────────────────
-
-let lastSyncHash = null;
-let isSaving = false;  // Flag para evitar sobrescrita durante salvamento
-let lastGitHubSync = null;  // Timestamp da última sincronização com GitHub
-
-function setupStorageListener() {
-  // Detectar mudanças no localStorage de outras abas (mesma máquina)
-  window.addEventListener('storage', (event) => {
-    if (event.key === DATA_STORAGE_KEY) {
-      console.log('Dados alterados em outra aba. Atualizando...');
-      if (!isSaving) {  // Só sincroniza se não está salvando
-        syncDataFromStorage(event.newValue);
-      }
-    }
-  });
-  
-  // Polling para sincronizar com GitHub (entre dispositivos diferentes)
-  setInterval(() => {
-    if (!isSaving) {  // Não sincroniza enquanto está salvando
-      syncWithGitHub();
-    }
-  }, 5000); // Verificar GitHub a cada 5 segundos
-}
-
-function hashString(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  return hash.toString();
-}
-
-function syncDataFromStorage(dataString) {
-  try {
-    // Mostrar notificação de sincronização
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #10b981;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      z-index: 10000;
-      font-size: 14px;
-    `;
-    notification.textContent = '🔄 Sincronizando dados...';
-    document.body.appendChild(notification);
-    
-    // Carregar os novos dados
-    const newData = JSON.parse(dataString || '{}');
-    appState.data = newData;
-    
-    // Recarregar a página atual
-    const currentTab = document.querySelector('.tab-btn.active');
-    if (currentTab) {
-      const tabName = currentTab.textContent.toLowerCase();
-      if (tabName.includes('dashboard')) {
-        renderDashboard();
-      } else if (tabName.includes('agenda')) {
-        renderAgenda();
-      } else if (tabName.includes('cliente')) {
-        renderClientes();
-      } else if (tabName.includes('produto')) {
-        renderProdutos();
-      }
-    }
-    
-    // Remover notificação após 2 segundos
-    setTimeout(() => {
-      notification.style.opacity = '0';
-      notification.style.transition = 'opacity 0.3s ease';
-      setTimeout(() => notification.remove(), 300);
-    }, 2000);
-  } catch (e) {
-    console.error('Erro ao sincronizar dados:', e);
-  }
-}
-
-// Sincronizar com GitHub (detectar mudanças de outros dispositivos)
-async function syncWithGitHub() {
-  const token = localStorage.getItem('githubToken');
-  if (!token) return;
-  
-  try {
-    const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}?t=${Date.now()}`);
-    if (response.ok) {
-      const remoteData = await response.json();
-      const remoteTimestamp = new Date(remoteData.lastUpdate).getTime();
-      const localTimestamp = appState.lastUpdate ? new Date(appState.lastUpdate).getTime() : 0;
-      
-      // Se GitHub tem dados mais recentes, sincronizar
-      if (remoteTimestamp > localTimestamp) {
-        console.log('📥 Dados mais recentes no GitHub. Sincronizando...');
-        appState.data = remoteData.data;
-        appState.lastUpdate = remoteData.lastUpdate;
-        localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
-        lastGitHubSync = remoteTimestamp;
-        
-        // Recarregar a página atual
-        const currentTab = document.querySelector('.tab-btn.active');
-        if (currentTab) {
-          const tabName = currentTab.textContent.toLowerCase();
-          if (tabName.includes('dashboard')) {
-            renderDashboard();
-          } else if (tabName.includes('agenda')) {
-            renderAgenda();
-          } else if (tabName.includes('cliente')) {
-            renderClientes();
-          } else if (tabName.includes('produto')) {
-            renderProdutos();
-          }
-        }
-      }
-    }
-  } catch (e) {
-    console.log('Erro ao sincronizar com GitHub:', e.message);
   }
 }
 
@@ -5606,27 +5389,9 @@ async function loadSampleData() {
   }
 }
 
-async function saveData() {
-  try {
-    isSaving = true;  // Bloquear sincronização automática
-    const dataToSave = JSON.stringify(appState.data);
-    localStorage.setItem(DATA_STORAGE_KEY, dataToSave);
-    // Verificar se foi salvo corretamente
-    const savedData = localStorage.getItem(DATA_STORAGE_KEY);
-    if (!savedData) {
-      console.error('Falha ao salvar dados no localStorage');
-    }
-    
-    // Sincronizar com GitHub (aguardar conclusão)
-    await saveToGitHub();
-  } catch (e) {
-    console.error('Erro ao salvar dados:', e);
-  } finally {
-    isSaving = false;  // Liberar sincronização automática
-  }
+function saveData() {
+  localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
 }
-
-
 
 // ─── Dashboard Render ────────────────────────────────────────────────────────
 
@@ -5838,22 +5603,19 @@ function renderDashboard() {
 function renderAgenda() {
   const content = document.getElementById('content');
   
-  const clientesUnicos = [...new Set(appState.data.pedidos.map(p => p.id_cliente))].map(id => {
-    const pedido = appState.data.pedidos.find(p => p.id_cliente === id);
-    return { id, nome: pedido.cliente };
-  }).sort((a, b) => a.nome.localeCompare(b.nome));
-  
-  appState.clientesUnicos = clientesUnicos;
-  
   content.innerHTML = `
     <div class="agenda">
       <div class="section-header">
         <h2>📅 Agenda de Pedidos</h2>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <input type="text" id="agendaPesquisaRapida" placeholder="🔍 Pesquisar..." onkeyup="filterAgendaBySearch(this.value)" style="padding: 5px 8px; border: 2px solid var(--border); border-radius: 6px; width: 150px; font-size: 12px;">
-          <button class="btn-secondary" onclick="openModal('agendaFiltrosModal')" style="padding: 5px 10px; font-size: 12px;">⚙️ Filtros</button>
-          <button class="btn-primary" onclick="appState.editingPedido = null; openModal('pedidoModal')" style="padding: 5px 10px; font-size: 12px;">+ Novo</button>
-        </div>
+        <button class="btn-primary" onclick="appState.editingPedido = null; openModal('pedidoModal')">+ Novo Pedido</button>
+      </div>
+      
+      <div class="agenda-filters">
+        <label>Filtrar por dia:</label>
+        <select id="agendaDiaSelect" onchange="filterAgendaByDay(this.value)">
+          <option value="">Todos os dias</option>
+          ${DIAS_SEMANA.map(dia => `<option value="${dia}">${dia}</option>`).join('')}
+        </select>
       </div>
       
       <div id="agenda-list"></div>
@@ -5861,68 +5623,12 @@ function renderAgenda() {
   `;
   
   renderAgendaList();
-  renderAgendaFiltrosModal();
 }
 
 function filterAgendaByDay(dia) {
   appState.agendaDiaFiltro = dia || null;
-  // Limpar filtro de clientes quando mudar de dia
-  if (dia) {
-    appState.agendaClientesFiltro = [];
-    // Desmarcar todos os checkboxes
-    document.querySelectorAll('#agendaFiltrosContent input[type="checkbox"]').forEach(cb => {
-      cb.checked = false;
-    });
-  }
   renderAgendaList();
 }
-
-function filterAgendaBySearch(termo) {
-  appState.agendaPesquisa = termo.toLowerCase();
-  renderAgendaList();
-}
-
-function filterAgendaByClientes() {
-  const checkboxes = document.querySelectorAll('#agendaFiltrosContent input[type="checkbox"]:checked');
-  appState.agendaClientesFiltro = Array.from(checkboxes).map(cb => cb.value);
-  renderAgendaList();
-}
-
-function renderAgendaFiltrosModal() {
-  const container = document.getElementById('agendaFiltrosContent');
-  if (!container) return;
-  
-  const clientesUnicos = appState.clientesUnicos || [];
-  const diasSemana = DIAS_SEMANA; // Usar os dias corretos do sistema
-  
-  container.innerHTML = `
-    <div style="display: flex; flex-direction: column; gap: 12px;">
-      <div>
-        <label style="display: block; margin-bottom: 6px; font-weight: 500; font-size: 13px;">Dia:</label>
-        <select id="agendaDiaSelect" onchange="filterAgendaByDay(this.value)" style="width: 100%; padding: 6px 8px; border: 2px solid var(--border); border-radius: 6px; font-size: 13px;">
-          <option value="">Todos os dias</option>
-          ${diasSemana.map(dia => `<option value="${dia}">${dia.charAt(0).toUpperCase() + dia.slice(1)}</option>`).join('')}
-        </select>
-      </div>
-      
-      <div>
-        <label style="display: block; margin-bottom: 6px; font-weight: 500; font-size: 13px;">Clientes:</label>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; max-height: 200px; overflow-y: auto; padding: 8px; border: 2px solid var(--border); border-radius: 6px; background: var(--surface);">
-          ${clientesUnicos.map(cliente => `
-            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 12px;">
-              <input type="checkbox" value="${cliente.id}" onchange="filterAgendaByClientes()" style="cursor: pointer;">
-              <span>${cliente.nome}</span>
-            </label>
-          `).join('')}
-        </div>
-      </div>
-      
-      <button class="btn-primary" onclick="closeModal('agendaFiltrosModal')" style="padding: 8px 12px; font-size: 13px; margin-top: 8px;">Fechar</button>
-    </div>
-  `;
-}
-
-
 
 // ─── Sistema de Prioridade ──────────────────────────────────────────────────────
 
@@ -6004,24 +5710,7 @@ function renderAgendaList() {
   
   const groupedByDay = {};
   diasParaMostrar.forEach(dia => {
-    let pedidosDia = appState.data.pedidos.filter(p => p.dia_semana === dia);
-    
-    // Aplicar filtro de clientes
-    if (appState.agendaClientesFiltro && appState.agendaClientesFiltro.length > 0) {
-      pedidosDia = pedidosDia.filter(p => appState.agendaClientesFiltro.includes(p.id_cliente));
-    }
-    
-    // Aplicar filtro de pesquisa
-    if (appState.agendaPesquisa) {
-      const termo = appState.agendaPesquisa;
-      pedidosDia = pedidosDia.filter(p => 
-        p.cliente.toLowerCase().includes(termo) || 
-        p.produto.toLowerCase().includes(termo) || 
-        (p.observacoes && p.observacoes.toLowerCase().includes(termo))
-      );
-    }
-    
-    groupedByDay[dia] = pedidosDia;
+    groupedByDay[dia] = appState.data.pedidos.filter(p => p.dia_semana === dia);
   });
   
   agendaList.innerHTML = diasParaMostrar.map(dia => {
@@ -6263,7 +5952,7 @@ function notifyPedidoChange(tipo, cliente, produto) {
 
 // ─── Save Functions ────────────────────────────────────────────────────
 
-async function savePedido() {
+function savePedido() {
   const clienteId = document.getElementById('pedidoCliente').value;
   const cliente = appState.data.clientes.find(c => c.id === clienteId);
   
@@ -6343,15 +6032,12 @@ async function savePedido() {
     notifyPedidoChange('novo', cliente.nome, produtoLines.map(p => p.produto).join(', '));
   }
   
-  await saveData();
-  // Limpar o formulário
-  document.getElementById('pedidoForm').reset();
-  document.getElementById('produtosContainer').innerHTML = '<div id="produtoLine_0" class="produto-line"><select class="prod-select"><option value="">Selecionar produto...</option></select><input type="number" class="prod-qty" value="1" min="1"><input type="text" class="prod-cat" placeholder="Categoria"><button type="button" onclick="removeProdutoLine(0)">❌</button></div>';
+  saveData();
   closeModal('pedidoModal');
   renderAgenda();
 }
 
-async function saveCliente() {
+function saveCliente() {
   const nome = document.getElementById('clienteNome').value.trim();
   if (!nome) {
     alert('Nome do cliente é obrigatório');
@@ -6398,13 +6084,13 @@ async function saveCliente() {
     });
   }
   
-  await saveData();
+  saveData();
   sendNotification('👥 Cliente Salvo', { body: nome });
   closeModal('clienteModal');
   renderClientes();
 }
 
-async function saveProduto() {
+function saveProduto() {
    const nome = document.getElementById('produtoNome').value.trim();
    if (!nome) {
      alert('Nome do produto é obrigatório');
@@ -6435,7 +6121,7 @@ async function saveProduto() {
      appState.data.produtos.push(novosDados);
    }
    
-   await saveData();
+   saveData();
    sendNotification('🥬 Produto Salvo', { body: nome });
    closeModal('produtoModal');
    renderProdutos();
@@ -6443,18 +6129,18 @@ async function saveProduto() {
 
 // ─── Delete Functions ────────────────────────────────────────────────────────
 
-async function deletePedido(id) {
+function deletePedido(id) {
   if (userRole === 'operacional') {
     alert('Você não tem permissão para deletar pedidos. Acesso apenas para Administrativo.');
     return;
   }
   if (!confirm('Tem certeza que deseja deletar este pedido?')) return;
   appState.data.pedidos = appState.data.pedidos.filter(p => p.id !== id);
-  await saveData();
+  saveData();
   renderAgenda();
 }
 
-async function deleteCliente(id) {
+function deleteCliente(id) {
   if (userRole === 'operacional') {
     alert('Você não tem permissão para deletar clientes. Acesso apenas para Administrativo.');
     return;
@@ -6462,15 +6148,15 @@ async function deleteCliente(id) {
   if (!confirm('Tem certeza que deseja deletar este cliente?')) return;
   appState.data.clientes = appState.data.clientes.filter(c => c.id !== id);
   appState.data.pedidos = appState.data.pedidos.filter(p => p.id_cliente !== id);
-  await saveData();
+  saveData();
   renderClientes();
 }
 
-async function deleteProduto(nome) {
+function deleteProduto(nome) {
   if (!confirm('Tem certeza que deseja deletar este produto?')) return;
   appState.data.produtos = appState.data.produtos.filter(p => p.nome !== nome);
   appState.data.pedidos = appState.data.pedidos.filter(p => p.produto !== nome);
-  await saveData();
+  saveData();
   renderProdutos();
 }
 
@@ -6561,7 +6247,7 @@ function editProduto(nome) {
 
 // ─── Update Status ─────────────────────────────────────────────────────────
 
-async function updateClientStatus(clientId, status) {
+function updateClientStatus(clientId, status) {
   const hoje = getCurrentDay();
   // Mudar status de todos os pedidos do cliente NO DIA DE HOJE
   appState.data.pedidos.forEach(p => {
@@ -6569,7 +6255,7 @@ async function updateClientStatus(clientId, status) {
       p.status = status;
     }
   });
-  await saveData();
+  saveData();
   renderDashboard();
 }
 
@@ -6585,17 +6271,9 @@ function adicionarPrecoEspecial(produtoNome = '', preco = '') {
       ${appState.data.produtos.map(p => `<option value="${p.nome}" ${p.nome === produtoNome ? 'selected' : ''}>${p.nome}</option>`).join('')}
     </select>
     <input type="number" class="preco-valor-input" placeholder="Preço" value="${preco}" step="0.01" min="0">
-    <button type="button" class="btn-delete" onclick="this.parentElement.remove(); saveClienteAposRemoverPreco();">🗑️</button>
+    <button type="button" class="btn-delete" onclick="this.parentElement.remove()">🗑️</button>
   `;
   container.appendChild(row);
-}
-
-// Salvar cliente após remover preço
-async function saveClienteAposRemoverPreco() {
-  // Aguardar um pouco para a DOM atualizar
-  setTimeout(async () => {
-    await saveCliente();
-  }, 100);
 }
 
 // ─── Helper Functions ────────────────────────────────────────────────────────
@@ -6910,152 +6588,6 @@ async function buscarDadosPlanilha() {
     btn.disabled = false;
   }
 }
-
-
-
-
-
-// ─── Sincronização com GitHub (REESCRITO) ──────────────────────────────────────────────────────────────────────────────
-const GITHUB_REPO = 'fazendasup/fazendas-up';
-const GITHUB_FILE = 'dados-sync.json';
-const GITHUB_BRANCH = 'main';
-const SYNC_INTERVAL = 3000; // 3 segundos
-
-let lastSyncTime = 0;
-let isSyncing = false;
-
-function setupAutoSync() {
-  if (!localStorage.getItem('githubToken')) {
-    const token = prompt('Cole seu token do GitHub:\n\n(Gere em: https://github.com/settings/tokens)');
-    if (token && token.trim()) {
-      localStorage.setItem('githubToken', token.trim());
-    }
-  }
-  syncWithGitHub();
-  setInterval(syncWithGitHub, SYNC_INTERVAL);
-}
-
-async function syncWithGitHub() {
-  if (isSyncing) return;
-  isSyncing = true;
-  
-  try {
-    const token = localStorage.getItem('githubToken');
-    if (!token) {
-      isSyncing = false;
-      return;
-    }
-    
-    const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}?t=${Date.now()}`);
-    
-    if (response.ok) {
-      const remoteData = await response.json();
-      const remoteTime = new Date(remoteData.lastUpdate).getTime();
-      
-      if (remoteTime > lastSyncTime) {
-        console.log('📥 Atualizando dados do GitHub - Timestamp:', remoteData.lastUpdate);
-        appState.data = remoteData.data;
-        appState.lastUpdate = remoteData.lastUpdate;
-        lastSyncTime = remoteTime;
-        console.log('📊 Renderizando dashboard...');
-        renderDashboard();
-        console.log('✅ Dashboard atualizado!');
-      } else {
-        console.log('⏭️ Dados já estão sincronizados. Remoto:', remoteTime, 'Local:', lastSyncTime);
-      }
-    }
-  } catch (e) {
-    console.log('Erro ao sincronizar:', e.message);
-  } finally {
-    isSyncing = false;
-  }
-}
-
-function showSyncNotification(message) {
-  const notif = document.createElement('div');
-  notif.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-size: 14px;
-    z-index: 10000;
-  `;
-  notif.textContent = message;
-  document.body.appendChild(notif);
-  
-  setTimeout(() => notif.remove(), 2000);
-}
-
-// Salvar dados no GitHub quando houver mudanças
-async function saveToGitHub() {
-  try {
-    const token = localStorage.getItem('githubToken');
-    if (!token) return;
-    
-    const now = new Date().toISOString();
-    const dataToSave = {
-      data: appState.data,
-      lastUpdate: now
-    };
-    
-    const content = JSON.stringify(dataToSave, null, 2);
-    const encoder = new TextEncoder();
-    const data = encoder.encode(content);
-    const binaryString = String.fromCharCode.apply(null, data);
-    const base64Content = btoa(binaryString);
-    
-    console.log('📤 Salvando no GitHub...');
-    
-    // Obter SHA do arquivo
-    let sha = null;
-    try {
-      const getResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
-        headers: {
-          'Authorization': `token ${token}`,
-          'Accept': 'application/vnd.github.v3+json'
-        }
-      });
-      if (getResponse.ok) {
-        sha = (await getResponse.json()).sha;
-      }
-    } catch (e) {}
-    
-    // Salvar no GitHub
-    const putBody = {
-      message: `Sincronizar dados - ${new Date().toLocaleString('pt-BR')}`,
-      content: base64Content,
-      branch: GITHUB_BRANCH
-    };
-    
-    if (sha) putBody.sha = sha;
-    
-    const putResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `token ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(putBody)
-    });
-    
-    if (putResponse.ok) {
-      console.log('✅ Salvo no GitHub!');
-    } else if (putResponse.status === 409) {
-      console.log('⚠️ Conflito de SHA, tentando novamente...');
-      await new Promise(r => setTimeout(r, 500));
-      await saveToGitHub();
-    } else {
-      console.error('Erro ao salvar:', await putResponse.json());
-    }
-  } catch (e) {
-    console.error('Erro ao salvar no GitHub:', e.message);
-  }
-}
-
 
 // ─── Initialize ──────────────────────────────────────────────────────────────────────────────
 
