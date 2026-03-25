@@ -1221,25 +1221,23 @@ window.addEventListener('load', () => {
   }
 });
 async function loadData() {
-  // Primeiro, tentar carregar do GitHub se houver token
+  // Se houver token, SEMPRE carregar do GitHub (GitHub eh a fonte de verdade)
   const token = localStorage.getItem('githubToken');
   if (token) {
     try {
       const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}?t=${Date.now()}`);
       if (response.ok) {
         const remoteData = await response.json();
-        if (remoteData.data && remoteData.data.pedidos && remoteData.data.pedidos.length > 0) {
-          appState.data = remoteData.data;
-          appState.lastUpdate = remoteData.lastUpdate;
-          lastRemoteUpdate = new Date(remoteData.lastUpdate).getTime();
-          localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
-          localStorage.setItem('fazendas-up-version', DATA_VERSION);
-          console.log('Dados carregados do GitHub com sucesso! Timestamp:', remoteData.lastUpdate);
-          return;
-        }
+        appState.data = remoteData.data;
+        appState.lastUpdate = remoteData.lastUpdate;
+        lastSyncTime = new Date(remoteData.lastUpdate).getTime();
+        localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
+        localStorage.setItem('fazendas-up-version', DATA_VERSION);
+        console.log('Dados carregados do GitHub! Timestamp:', remoteData.lastUpdate);
+        return;
       }
     } catch (e) {
-      console.log('Não foi possível carregar do GitHub, usando localStorage:', e.message);
+      console.log('Erro ao carregar do GitHub:', e.message);
     }
   }
   
