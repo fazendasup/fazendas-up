@@ -7017,7 +7017,7 @@ async function saveToGitHub() {
     
     if (putResponse.ok) {
       console.log('Dados salvos no GitHub com sucesso!');
-      console.log('DEBUG: Resposta status:', response.status);
+      console.log('DEBUG: Resposta status:', putResponse.status);
       lastRemoteUpdate = new Date().getTime();
       showSyncNotification('✅ Dados salvos no GitHub!');
     } else {
