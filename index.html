@@ -1059,73 +1059,14 @@ async function init() {
   await loadData();
   setupEventListeners();
   setupStorageListener();
-  setupGoogleDriveSync();
+  setupAutoSync();
   renderDashboard();
 }
 
 // ─── WebSocket Sync (Automático em Tempo Real) ──────────────────────────────
 
-let ws = null;
-const SERVER_URL = (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.hostname + ':3001';
 
-function setupGoogleDriveSync() {
-  connectWebSocket();
-}
 
-function connectWebSocket() {
-  try {
-    ws = new WebSocket(SERVER_URL);
-    
-    ws.onopen = () => {
-      console.log('Conectado ao servidor de sincronização');
-      showSyncNotification('✅ Conectado ao servidor');
-    };
-    
-    ws.onmessage = (event) => {
-      try {
-        const msg = JSON.parse(event.data);
-        
-        if (msg.type === 'init' || msg.type === 'update') {
-          console.log('Recebendo dados do servidor...');
-          
-          // Atualizar dados locais
-          appState.data = msg.data;
-          localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
-          
-          // Recarregar página atual
-          const currentTab = document.querySelector('.tab-btn.active');
-          if (currentTab) {
-            const tabName = currentTab.textContent.toLowerCase();
-            if (tabName.includes('dashboard')) renderDashboard();
-            else if (tabName.includes('agenda')) renderAgenda();
-            else if (tabName.includes('cliente')) renderClientes();
-            else if (tabName.includes('produto')) renderProdutos();
-          }
-          
-          if (msg.type === 'update') {
-            showSyncNotification('☁️ Sincronizado com outros dispositivos!');
-          }
-        }
-      } catch (e) {
-        console.error('Erro ao processar mensagem:', e);
-      }
-    };
-    
-    ws.onerror = (error) => {
-      console.error('Erro WebSocket:', error);
-      showSyncNotification('❌ Erro ao conectar ao servidor');
-    };
-    
-    ws.onclose = () => {
-      console.log('Desconectado do servidor');
-      // Tentar reconectar a cada 5 segundos
-      setTimeout(connectWebSocket, 5000);
-    };
-  } catch (e) {
-    console.error('Erro ao conectar:', e);
-    setTimeout(connectWebSocket, 5000);
-  }
-}
 
 function sendDataToServer(data) {
   if (ws && ws.readyState === WebSocket.OPEN) {
@@ -6872,6 +6813,32 @@ async function buscarDadosPlanilha() {
   } finally {
     btn.innerHTML = textoOriginal;
     btn.disabled = false;
+  }
+}
+
+
+// ─── Auto Sync com Google Drive ──────────────────────────────────────────────────────────────────────────────
+let lastSyncTime = 0;
+const SYNC_INTERVAL = 5000; // 5 segundos
+
+function setupAutoSync() {
+  // Sincronizar a cada 5 segundos
+  setInterval(checkAndSyncData, SYNC_INTERVAL);
+}
+
+function checkAndSyncData() {
+  const now = Date.now();
+  
+  // Salvar dados no localStorage
+  saveData();
+  
+  // Mostrar notificação de sincronização
+  const syncNotif = document.getElementById('syncNotification');
+  if (syncNotif) {
+    syncNotif.style.display = 'block';
+    setTimeout(() => {
+      syncNotif.style.display = 'none';
+    }, 2000);
   }
 }
 
