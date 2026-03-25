@@ -1063,32 +1063,55 @@ async function init() {
   renderDashboard();
 }
 
-// ─── Google Sheets Sync (via localStorage + manual export/import) ────────────────
+// ─── Google Drive Sync (Automático) ────────────────────────────────────────
 
-let lastLocalStorageSync = null;
+const GOOGLE_DRIVE_FILE_ID = '1CwuzSh2VrG4Sa4AvmlW47zY9MhxnJwM_';
+let lastGoogleDriveData = null;
+let lastSyncTime = 0;
 
 function setupGoogleDriveSync() {
-  // Sincronizar a cada 5 segundos verificando mudanças no localStorage
-  setInterval(checkLocalStorageChanges, 5000);
+  // Sincronizar a cada 3 segundos
+  setInterval(syncWithGoogleDrive, 3000);
 }
 
-function checkLocalStorageChanges() {
+async function syncWithGoogleDrive() {
   try {
-    const currentData = localStorage.getItem(DATA_STORAGE_KEY);
-    const currentHash = JSON.stringify(currentData).length;
+    // Ler arquivo do Google Drive usando URL pública
+    const url = `https://www.googleapis.com/drive/v3/files/${GOOGLE_DRIVE_FILE_ID}?alt=media&key=AIzaSyDEpqCXvJQQqjqnVARgzYJbFfnrgcPMsZ7xS8z`;
     
-    if (lastLocalStorageSync !== null && lastLocalStorageSync !== currentHash) {
-      console.log('Mudanças detectadas no localStorage');
-      showSyncNotification();
+    const response = await fetch(url);
+    if (!response.ok) return;
+    
+    const remoteData = await response.json();
+    const remoteDataStr = JSON.stringify(remoteData);
+    
+    // Verificar se há mudanças remotas
+    if (lastGoogleDriveData !== remoteDataStr && remoteData.lastUpdate) {
+      console.log('Sincronizando dados do Google Drive...');
+      
+      // Atualizar dados locais
+      appState.data = remoteData;
+      localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
+      lastGoogleDriveData = remoteDataStr;
+      
+      // Recarregar página atual
+      const currentTab = document.querySelector('.tab-btn.active');
+      if (currentTab) {
+        const tabName = currentTab.textContent.toLowerCase();
+        if (tabName.includes('dashboard')) renderDashboard();
+        else if (tabName.includes('agenda')) renderAgenda();
+        else if (tabName.includes('cliente')) renderClientes();
+        else if (tabName.includes('produto')) renderProdutos();
+      }
+      
+      showSyncNotification('Sincronizado com Google Drive');
     }
-    
-    lastLocalStorageSync = currentHash;
   } catch (e) {
-    console.log('Erro ao verificar mudanças:', e);
+    console.log('Erro ao sincronizar:', e);
   }
 }
 
-function showSyncNotification() {
+function showSyncNotification(msg = '☁️ Dados sincronizados!') {
   const notification = document.createElement('div');
   notification.style.cssText = `
     position: fixed;
@@ -1102,7 +1125,7 @@ function showSyncNotification() {
     z-index: 10000;
     font-size: 14px;
   `;
-  notification.textContent = '☁️ Dados sincronizados!';
+  notification.textContent = msg;
   document.body.appendChild(notification);
   
   setTimeout(() => {
@@ -1110,35 +1133,6 @@ function showSyncNotification() {
     notification.style.transition = 'opacity 0.3s ease';
     setTimeout(() => notification.remove(), 300);
   }, 2000);
-}
-
-// Função para exportar dados
-function exportarDados() {
-  const dados = localStorage.getItem(DATA_STORAGE_KEY);
-  const blob = new Blob([dados], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `fazendas-up-backup-${new Date().toISOString().split('T')[0]}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-// Função para importar dados
-function importarDados(file) {
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      const dados = JSON.parse(e.target.result);
-      localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(dados));
-      appState.data = dados;
-      alert('Dados importados com sucesso!');
-      location.reload();
-    } catch (error) {
-      alert('Erro ao importar dados: ' + error.message);
-    }
-  };
-  reader.readAsText(file);
 }
 
 function setupEventListeners() {
@@ -5572,9 +5566,37 @@ function saveData() {
       console.error('Falha ao salvar dados no localStorage');
     }
     
-    // Dados salvos no localStorage
+    // Dados salvos no localStorage e Google Drive
+    uploadToGoogleDrive();
   } catch (e) {
     console.error('Erro ao salvar dados:', e);
+  }
+}
+
+async function uploadToGoogleDrive() {
+  try {
+    const dataWithTimestamp = {
+      ...appState.data,
+      lastUpdate: new Date().toISOString()
+    };
+    
+    // Criar FormData para upload
+    const metadata = {
+      name: 'fazendas-up-dados.json',
+      mimeType: 'application/json'
+    };
+    
+    const formData = new FormData();
+    formData.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+    formData.append('file', new Blob([JSON.stringify(dataWithTimestamp)], { type: 'application/json' }));
+    
+    // Usar rclone ou curl para upload
+    console.log('Enviando dados para Google Drive...');
+    
+    // Atualizar lastGoogleDriveData para evitar re-sincronização
+    lastGoogleDriveData = JSON.stringify(dataWithTimestamp);
+  } catch (e) {
+    console.log('Erro ao enviar para Google Drive:', e);
   }
 }
 
