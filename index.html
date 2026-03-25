@@ -5549,8 +5549,8 @@ function saveData() {
       console.error('Falha ao salvar dados no localStorage');
     }
     
-    // Enviar dados ao servidor para sincronização
-    sendDataToServer(appState.data);
+    // Sincronizar com GitHub
+    saveToGitHub();
   } catch (e) {
     console.error('Erro ao salvar dados:', e);
   }
@@ -6844,8 +6844,18 @@ const GITHUB_BRANCH = 'main';
 const SYNC_INTERVAL = 10000; // 10 segundos
 
 let lastRemoteUpdate = 0;
+let lastLocalHash = null;
 
 function setupAutoSync() {
+  // Solicitar token se não estiver configurado
+  if (!localStorage.getItem('githubToken')) {
+    const token = prompt('Cole seu token do GitHub para sincronização automática:\n\n(Gere em: https://github.com/settings/tokens com permissão "repo")');
+    if (token && token.trim()) {
+      localStorage.setItem('githubToken', token.trim());
+      alert('✅ Token configurado! Sincronização ativada.');
+    }
+  }
+  
   // Sincronizar a cada 10 segundos
   setInterval(syncWithGitHub, SYNC_INTERVAL);
 }
@@ -6861,7 +6871,7 @@ async function syncWithGitHub() {
       
       // Se os dados remotos são mais novos, atualizar localmente
       if (remoteTime > lastRemoteUpdate) {
-        appData = remoteData;
+        appState.data = remoteData.data || remoteData;
         lastRemoteUpdate = remoteTime;
         renderDashboard();
         showSyncNotification('☁️ Sincronizado com GitHub!');
@@ -6895,35 +6905,61 @@ function showSyncNotification(message) {
 // Salvar dados no GitHub quando houver mudanças
 async function saveToGitHub() {
   try {
-    // Atualizar timestamp
-    appData.lastUpdate = new Date().toISOString();
-    
-    // Salvar localmente
-    saveData();
+    const token = localStorage.getItem('githubToken');
+    if (!token) return; // Não sincronizar se não houver token
     
     // Preparar dados para enviar ao GitHub
-    const dataToSave = JSON.stringify(appData, null, 2);
+    const dataToSave = {
+      data: appState.data,
+      lastUpdate: new Date().toISOString()
+    };
     
-    // Usar GitHub API para fazer commit
-    const token = localStorage.getItem('githubToken');
-    if (token) {
-      const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
-        method: 'PUT',
+    const content = JSON.stringify(dataToSave, null, 2);
+    const currentHash = hashString(content);
+    
+    // Só enviar se houver mudanças
+    if (lastLocalHash === currentHash) return;
+    
+    // Obter SHA do arquivo atual (necessário para atualizar)
+    let sha = null;
+    try {
+      const getResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
         headers: {
           'Authorization': `token ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: `Sincronizar dados - ${new Date().toLocaleString('pt-BR')}`,
-          content: btoa(dataToSave),
-          branch: GITHUB_BRANCH
-        })
+          'Accept': 'application/vnd.github.v3+json'
+        }
       });
       
-      if (response.ok) {
-        lastRemoteUpdate = new Date().getTime();
-        showSyncNotification('✅ Dados salvos no GitHub!');
+      if (getResponse.ok) {
+        const fileData = await getResponse.json();
+        sha = fileData.sha;
       }
+    } catch (e) {
+      console.log('Não foi possível obter SHA do arquivo:', e.message);
+    }
+    
+    // Fazer PUT para criar ou atualizar o arquivo
+    const putResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: `Sincronizar dados - ${new Date().toLocaleString('pt-BR')}`,
+        content: btoa(content),
+        branch: GITHUB_BRANCH,
+        sha: sha
+      })
+    });
+    
+    if (putResponse.ok) {
+      lastRemoteUpdate = new Date().getTime();
+      lastLocalHash = currentHash;
+      showSyncNotification('✅ Dados salvos no GitHub!');
+    } else {
+      const error = await putResponse.json();
+      console.log('Erro ao salvar no GitHub:', error);
     }
   } catch (e) {
     console.log('Erro ao salvar no GitHub:', e.message);
