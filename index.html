@@ -6919,9 +6919,25 @@ async function syncWithGitHub() {
         appState.data = remoteData.data;
         appState.lastUpdate = remoteData.lastUpdate;
         lastSyncTime = remoteTime;
-        console.log('📊 Renderizando dashboard...');
-        renderDashboard();
-        console.log('✅ Dashboard atualizado!');
+        console.log('📊 Renderizando aba atual...');
+        
+        // Renderizar a aba que está ativa, não só dashboard
+        const currentTab = document.querySelector('.tab-btn.active');
+        if (currentTab) {
+          const tabName = currentTab.textContent.toLowerCase();
+          if (tabName.includes('dashboard')) {
+            renderDashboard();
+          } else if (tabName.includes('agenda')) {
+            renderAgenda();
+          } else if (tabName.includes('cliente')) {
+            renderClientes();
+          } else if (tabName.includes('produto')) {
+            renderProdutos();
+          }
+        } else {
+          renderDashboard();
+        }
+        console.log('✅ Aba atualizada!');
       } else {
         console.log('⏭️ Dados já estão sincronizados. Remoto:', remoteTime, 'Local:', lastSyncTime);
       }
