@@ -1230,7 +1230,6 @@ async function loadData() {
         const remoteData = await response.json();
         appState.data = remoteData.data;
         appState.lastUpdate = remoteData.lastUpdate;
-        lastSyncTime = new Date(remoteData.lastUpdate).getTime();
         localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
         localStorage.setItem('fazendas-up-version', DATA_VERSION);
         console.log('Dados carregados do GitHub! Timestamp:', remoteData.lastUpdate);
@@ -6999,7 +6998,6 @@ async function saveToGitHub() {
     
     if (putResponse.ok) {
       console.log('✅ Salvo no GitHub!');
-      lastSyncTime = new Date(now).getTime();
     } else {
       console.error('Erro ao salvar:', await putResponse.json());
     }
