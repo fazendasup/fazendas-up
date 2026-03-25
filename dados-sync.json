@@ -3557,7 +3557,7 @@
         "prazoBoletoAcumulo": "",
         "periodoEntrega": "Tarde",
         "horarioMaximo": "17:00",
-        "cobraEntrega": true,
+        "cobraEntrega": false,
         "precos": [
           {
             "produto": "Alface Americana",
@@ -4433,5 +4433,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-25T16:43:49.243Z"
+  "lastUpdate": "2026-03-25T16:44:18.292Z"
 }
