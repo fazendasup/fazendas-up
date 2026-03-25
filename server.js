@@ -1,13 +1,12 @@
 const express = require('express');
 const http = require('http');
+const https = require('https');
 const WebSocket = require('ws');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
 
 // Middleware
 app.use(cors());
@@ -48,13 +47,32 @@ function saveData() {
 }
 
 // Broadcast para todos os clientes
-function broadcast(data) {
+function broadcast(data, wss) {
   wss.clients.forEach(client => {
     if (client.readyState === WebSocket.OPEN) {
       client.send(JSON.stringify(data));
     }
   });
 }
+
+// Criar servidor (HTTP ou HTTPS)
+let server;
+const PORT = process.env.PORT || 3001;
+const USE_HTTPS = process.env.USE_HTTPS === 'true';
+
+if (USE_HTTPS && fs.existsSync('cert.pem') && fs.existsSync('key.pem')) {
+  const options = {
+    cert: fs.readFileSync('cert.pem'),
+    key: fs.readFileSync('key.pem')
+  };
+  server = https.createServer(options, app);
+  console.log('Usando HTTPS');
+} else {
+  server = http.createServer(app);
+  console.log('Usando HTTP');
+}
+
+const wss = new WebSocket.Server({ server });
 
 // WebSocket
 wss.on('connection', (ws) => {
@@ -83,7 +101,7 @@ wss.on('connection', (ws) => {
         broadcast({
           type: 'update',
           data: appData
-        });
+        }, wss);
         
         console.log('Dados atualizados e sincronizados');
       }
@@ -112,7 +130,7 @@ app.post('/api/data', (req, res) => {
     broadcast({
       type: 'update',
       data: appData
-    });
+    }, wss);
     
     res.json({ success: true });
   } catch (e) {
@@ -124,7 +142,7 @@ app.post('/api/data', (req, res) => {
 loadData();
 
 // Iniciar servidor
-const PORT = process.env.PORT || 3001;
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  const protocol = USE_HTTPS ? 'https' : 'http';
+  console.log(`Servidor rodando em ${protocol}://localhost:${PORT}`);
 });

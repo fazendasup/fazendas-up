@@ -1066,7 +1066,7 @@ async function init() {
 // ─── WebSocket Sync (Automático em Tempo Real) ──────────────────────────────
 
 let ws = null;
-const SERVER_URL = 'ws://' + window.location.hostname + ':3001';
+const SERVER_URL = (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.hostname + ':3001';
 
 function setupGoogleDriveSync() {
   connectWebSocket();
