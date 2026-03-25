@@ -3558,12 +3558,7 @@
         "periodoEntrega": "Tarde",
         "horarioMaximo": "17:00",
         "cobraEntrega": false,
-        "precos": [
-          {
-            "produto": "Micro Beterraba",
-            "preco": 12
-          }
-        ]
+        "precos": []
       },
       {
         "id": "36",
@@ -4429,5 +4424,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-25T17:12:14.728Z"
+  "lastUpdate": "2026-03-25T17:15:19.668Z"
 }
