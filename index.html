@@ -6937,7 +6937,10 @@ function showSyncNotification(message) {
 async function saveToGitHub() {
   try {
     const token = localStorage.getItem('githubToken');
-    if (!token) return; // Não sincronizar se não houver token
+    if (!token) {
+      console.log('Token não configurado, pulando sincronização');
+      return;
+    }
     
     // Preparar dados para enviar ao GitHub
     const now = new Date().toISOString();
@@ -6946,16 +6949,11 @@ async function saveToGitHub() {
       lastUpdate: now
     };
     
-    // Atualizar timestamp local
-    appState.lastUpdate = now;
-    
     const content = JSON.stringify(dataToSave, null, 2);
-    const currentHash = hashString(content);
     
-    // Só enviar se houver mudanças
-    if (lastLocalHash === currentHash) return;
+    console.log('Tentando salvar no GitHub...');
     
-    // Obter SHA do arquivo atual (necessário para atualizar)
+    // PASSO 1: Obter SHA do arquivo atual (necessário para atualizar)
     let sha = null;
     try {
       const getResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
@@ -6968,36 +6966,46 @@ async function saveToGitHub() {
       if (getResponse.ok) {
         const fileData = await getResponse.json();
         sha = fileData.sha;
+        console.log('SHA obtido:', sha);
+      } else if (getResponse.status === 404) {
+        console.log('Arquivo não existe, será criado');
+        sha = null; // Arquivo não existe, será criado
       }
     } catch (e) {
-      console.log('Não foi possível obter SHA do arquivo:', e.message);
+      console.log('Erro ao obter SHA:', e.message);
     }
     
-    // Fazer PUT para criar ou atualizar o arquivo
+    // PASSO 2: Fazer PUT para criar ou atualizar o arquivo
+    const putBody = {
+      message: `Sincronizar dados - ${new Date().toLocaleString('pt-BR')}`,
+      content: btoa(content),
+      branch: GITHUB_BRANCH
+    };
+    
+    // Adicionar SHA apenas se o arquivo já existe
+    if (sha) {
+      putBody.sha = sha;
+    }
+    
     const putResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
       method: 'PUT',
       headers: {
         'Authorization': `token ${token}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        message: `Sincronizar dados - ${new Date().toLocaleString('pt-BR')}`,
-        content: btoa(content),
-        branch: GITHUB_BRANCH,
-        sha: sha
-      })
+      body: JSON.stringify(putBody)
     });
     
     if (putResponse.ok) {
+      console.log('Dados salvos no GitHub com sucesso!');
       lastRemoteUpdate = new Date().getTime();
-      lastLocalHash = currentHash;
       showSyncNotification('✅ Dados salvos no GitHub!');
     } else {
       const error = await putResponse.json();
-      console.log('Erro ao salvar no GitHub:', error);
+      console.error('Erro ao salvar no GitHub:', error);
     }
   } catch (e) {
-    console.log('Erro ao salvar no GitHub:', e.message);
+    console.error('Erro ao salvar no GitHub:', e.message);
   }
 }
 
