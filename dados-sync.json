@@ -3558,7 +3558,12 @@
         "periodoEntrega": "Tarde",
         "horarioMaximo": "17:00",
         "cobraEntrega": false,
-        "precos": []
+        "precos": [
+          {
+            "produto": "Micro Rabanete",
+            "preco": 15
+          }
+        ]
       },
       {
         "id": "36",
@@ -4424,5 +4429,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-25T20:13:28.550Z"
+  "lastUpdate": "2026-03-25T20:13:47.091Z"
 }
