@@ -6904,9 +6904,9 @@ async function syncWithGitHub() {
       const remoteTime = new Date(remoteData.lastUpdate).getTime();
       const localTime = appState.lastUpdate ? new Date(appState.lastUpdate).getTime() : 0;
       
-      // Sempre usar a versão mais recente (por timestamp)
-      // Isso garante que todos os dispositivos fiquem sincronizados com a última versão
-      if (remoteTime > localTime) {
+      // Comparar com o último timestamp que sincronizamos (não com o timestamp local)
+      // Isso evita que dados locais mais novos bloqueiem a sincronização
+      if (remoteTime > lastRemoteUpdate) {
         console.log('Atualizando dados locais (remoto é mais recente):', new Date(remoteData.lastUpdate));
         appState.data = remoteData.data || remoteData;
         appState.lastUpdate = remoteData.lastUpdate;
@@ -6914,6 +6914,8 @@ async function syncWithGitHub() {
         lastLocalHash = null; // Resetar hash para evitar conflitos
         renderDashboard();
         showSyncNotification('☁️ Sincronizado com GitHub!');
+      } else {
+        console.log('Dados locais já estão atualizados');
       }
     }
   } catch (e) {
