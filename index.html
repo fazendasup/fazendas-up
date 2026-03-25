@@ -1197,56 +1197,88 @@ async function loadData() {
 
 // ─── Sincronização em Tempo Real ────────────────────────────────────────────────────────
 
+let lastSyncHash = null;
+
 function setupStorageListener() {
   // Detectar mudanças no localStorage de outras abas/dispositivos
   window.addEventListener('storage', (event) => {
     if (event.key === DATA_STORAGE_KEY) {
-      console.log('Dados alterados em outro dispositivo/aba. Atualizando...');
-      
-      // Mostrar notificação de sincronização
-      const notification = document.createElement('div');
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #10b981;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 6px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 10000;
-        font-size: 14px;
-      `;
-      notification.textContent = '🔄 Sincronizando dados...';
-      document.body.appendChild(notification);
-      
-      // Carregar os novos dados
-      const newData = JSON.parse(event.newValue || '{}');
-      appState.data = newData;
-      
-      // Recarregar a página atual
-      const currentTab = document.querySelector('.tab-btn.active');
-      if (currentTab) {
-        const tabName = currentTab.textContent.toLowerCase();
-        if (tabName.includes('dashboard')) {
-          renderDashboard();
-        } else if (tabName.includes('agenda')) {
-          renderAgenda();
-        } else if (tabName.includes('cliente')) {
-          renderClientes();
-        } else if (tabName.includes('produto')) {
-          renderProdutos();
-        }
-      }
-      
-      // Remover notificação após 2 segundos
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transition = 'opacity 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-      }, 2000);
+      console.log('Dados alterados em outra aba. Atualizando...');
+      syncDataFromStorage(event.newValue);
     }
   });
+  
+  // Polling para sincronizar entre dispositivos diferentes
+  setInterval(() => {
+    const stored = localStorage.getItem(DATA_STORAGE_KEY);
+    if (stored) {
+      const currentHash = hashString(stored);
+      if (lastSyncHash && lastSyncHash !== currentHash) {
+        console.log('Dados alterados em outro dispositivo. Atualizando...');
+        syncDataFromStorage(stored);
+      }
+      lastSyncHash = currentHash;
+    }
+  }, 3000); // Verificar a cada 3 segundos
+}
+
+function hashString(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return hash.toString();
+}
+
+function syncDataFromStorage(dataString) {
+  try {
+    // Mostrar notificação de sincronização
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #10b981;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10000;
+      font-size: 14px;
+    `;
+    notification.textContent = '🔄 Sincronizando dados...';
+    document.body.appendChild(notification);
+    
+    // Carregar os novos dados
+    const newData = JSON.parse(dataString || '{}');
+    appState.data = newData;
+    
+    // Recarregar a página atual
+    const currentTab = document.querySelector('.tab-btn.active');
+    if (currentTab) {
+      const tabName = currentTab.textContent.toLowerCase();
+      if (tabName.includes('dashboard')) {
+        renderDashboard();
+      } else if (tabName.includes('agenda')) {
+        renderAgenda();
+      } else if (tabName.includes('cliente')) {
+        renderClientes();
+      } else if (tabName.includes('produto')) {
+        renderProdutos();
+      }
+    }
+    
+    // Remover notificação após 2 segundos
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      notification.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => notification.remove(), 300);
+    }, 2000);
+  } catch (e) {
+    console.error('Erro ao sincronizar dados:', e);
+  }
 }
 
 const DADOS_COMPLETOS = {
