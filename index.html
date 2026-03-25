@@ -6998,6 +6998,10 @@ async function saveToGitHub() {
     
     if (putResponse.ok) {
       console.log('✅ Salvo no GitHub!');
+    } else if (putResponse.status === 409) {
+      console.log('⚠️ Conflito de SHA, tentando novamente...');
+      await new Promise(r => setTimeout(r, 500));
+      await saveToGitHub();
     } else {
       console.error('Erro ao salvar:', await putResponse.json());
     }
