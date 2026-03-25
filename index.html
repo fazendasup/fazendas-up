@@ -6867,7 +6867,7 @@ async function buscarDadosPlanilha() {
 const GITHUB_REPO = 'fazendasup/fazendas-up';
 const GITHUB_FILE = 'dados-sync.json';
 const GITHUB_BRANCH = 'main';
-const SYNC_INTERVAL = 10000; // 10 segundos
+const SYNC_INTERVAL = 5000; // 5 segundos - sincronização mais frequente para evitar conflitos
 
 let lastRemoteUpdate = 0;
 let lastLocalHash = null;
@@ -6888,17 +6888,22 @@ function setupAutoSync() {
 
 async function syncWithGitHub() {
   try {
-    // Ler dados do GitHub
-    const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}`);
+    // Ler dados do GitHub (adicionar timestamp para evitar cache)
+    const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}?t=${Date.now()}`);
     
     if (response.ok) {
       const remoteData = await response.json();
       const remoteTime = new Date(remoteData.lastUpdate).getTime();
+      const localTime = appState.lastUpdate ? new Date(appState.lastUpdate).getTime() : 0;
       
-      // Se os dados remotos são mais novos, atualizar localmente
-      if (remoteTime > lastRemoteUpdate) {
+      // Sempre usar a versão mais recente (por timestamp)
+      // Isso garante que todos os dispositivos fiquem sincronizados com a última versão
+      if (remoteTime > localTime) {
+        console.log('Atualizando dados locais (remoto é mais recente):', new Date(remoteData.lastUpdate));
         appState.data = remoteData.data || remoteData;
+        appState.lastUpdate = remoteData.lastUpdate;
         lastRemoteUpdate = remoteTime;
+        lastLocalHash = null; // Resetar hash para evitar conflitos
         renderDashboard();
         showSyncNotification('☁️ Sincronizado com GitHub!');
       }
@@ -6935,10 +6940,14 @@ async function saveToGitHub() {
     if (!token) return; // Não sincronizar se não houver token
     
     // Preparar dados para enviar ao GitHub
+    const now = new Date().toISOString();
     const dataToSave = {
       data: appState.data,
-      lastUpdate: new Date().toISOString()
+      lastUpdate: now
     };
+    
+    // Atualizar timestamp local
+    appState.lastUpdate = now;
     
     const content = JSON.stringify(dataToSave, null, 2);
     const currentHash = hashString(content);
