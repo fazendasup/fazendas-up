@@ -3558,7 +3558,16 @@
         "periodoEntrega": "Tarde",
         "horarioMaximo": "17:00",
         "cobraEntrega": false,
-        "precos": []
+        "precos": [
+          {
+            "produto": "Micro Beterraba",
+            "preco": 12
+          },
+          {
+            "produto": "Hortel�",
+            "preco": 12
+          }
+        ]
       },
       {
         "id": "36",
@@ -4424,5 +4433,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-25T17:07:34.915Z"
+  "lastUpdate": "2026-03-25T17:10:55.182Z"
 }
