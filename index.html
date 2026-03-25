@@ -5600,7 +5600,7 @@ async function loadSampleData() {
       precoBase: p.precoBase || 0,
     }));
     
-    saveData();
+    await saveData();
   } catch (e) {
     console.error('Erro ao carregar dados de exemplo:', e);
   }
@@ -6897,7 +6897,7 @@ async function buscarDadosPlanilha() {
     appState.data.pedidos = pedidos;
     appState.data.clientes = clientes;
     appState.data.produtos = produtos;
-    saveData();
+    await saveData();
     
     switchTab(appState.currentTab);
     alert(`Dados atualizados da planilha!\n${pedidos.length} pedidos, ${clientes.length} clientes e ${produtos.length} produtos carregados.`);
