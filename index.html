@@ -1363,46 +1363,7 @@ function syncDataFromStorage(dataString) {
   }
 }
 
-// Sincronizar com GitHub (detectar mudanças de outros dispositivos)
-async function syncWithGitHub() {
-  const token = localStorage.getItem('githubToken');
-  if (!token) return;
-  
-  try {
-    const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}?t=${Date.now()}`);
-    if (response.ok) {
-      const remoteData = await response.json();
-      const remoteTimestamp = new Date(remoteData.lastUpdate).getTime();
-      const localTimestamp = appState.lastUpdate ? new Date(appState.lastUpdate).getTime() : 0;
-      
-      // Se GitHub tem dados mais recentes, sincronizar
-      if (remoteTimestamp > localTimestamp) {
-        console.log('📥 Dados mais recentes no GitHub. Sincronizando...');
-        appState.data = remoteData.data;
-        appState.lastUpdate = remoteData.lastUpdate;
-        localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
-        lastGitHubSync = remoteTimestamp;
-        
-        // Recarregar a página atual
-        const currentTab = document.querySelector('.tab-btn.active');
-        if (currentTab) {
-          const tabName = currentTab.textContent.toLowerCase();
-          if (tabName.includes('dashboard')) {
-            renderDashboard();
-          } else if (tabName.includes('agenda')) {
-            renderAgenda();
-          } else if (tabName.includes('cliente')) {
-            renderClientes();
-          } else if (tabName.includes('produto')) {
-            renderProdutos();
-          }
-        }
-      }
-    }
-  } catch (e) {
-    console.log('Erro ao sincronizar com GitHub:', e.message);
-  }
-}
+
 
 const DADOS_COMPLETOS = {
   "orders": [
