@@ -5675,7 +5675,7 @@ function renderAgendaFiltrosModal() {
   if (!container) return;
   
   const clientesUnicos = appState.clientesUnicos || [];
-  const diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
+  const diasSemana = DIAS_SEMANA; // Usar os dias corretos do sistema
   
   container.innerHTML = `
     <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -5683,7 +5683,7 @@ function renderAgendaFiltrosModal() {
         <label style="display: block; margin-bottom: 6px; font-weight: 500; font-size: 13px;">Dia:</label>
         <select id="agendaDiaSelect" onchange="filterAgendaByDay(this.value)" style="width: 100%; padding: 6px 8px; border: 2px solid var(--border); border-radius: 6px; font-size: 13px;">
           <option value="">Todos os dias</option>
-          ${diasSemana.map(dia => `<option value="${dia}">${dia}</option>`).join('')}
+          ${diasSemana.map(dia => `<option value="${dia}">${dia.charAt(0).toUpperCase() + dia.slice(1)}</option>`).join('')}
         </select>
       </div>
       
