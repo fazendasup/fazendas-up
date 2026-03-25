@@ -1063,69 +1063,28 @@ async function init() {
   renderDashboard();
 }
 
-// ─── Google Apps Script Sync ────────────────────────────────────────────────
+// ─── Google Sheets Sync (via localStorage + manual export/import) ────────────────
 
-const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwghkrzx-BqTMBVbfhsoVID-_wH3tsjVJmvBD-CFcZA9BQKnikf8e97DP_iQC2aY86-uQ/exec';
-let lastAppsScriptSync = null;
+let lastLocalStorageSync = null;
 
 function setupGoogleDriveSync() {
-  // Sincronizar a cada 3 segundos
-  setInterval(syncWithAppsScript, 3000);
+  // Sincronizar a cada 5 segundos verificando mudanças no localStorage
+  setInterval(checkLocalStorageChanges, 5000);
 }
 
-async function syncWithAppsScript() {
+function checkLocalStorageChanges() {
   try {
-    // Ler dados do Apps Script
-    const response = await fetch(`${GOOGLE_APPS_SCRIPT_URL}?action=read`);
+    const currentData = localStorage.getItem(DATA_STORAGE_KEY);
+    const currentHash = JSON.stringify(currentData).length;
     
-    if (!response.ok) {
-      console.log('Não conseguiu sincronizar com Apps Script');
-      return;
-    }
-    
-    const result = await response.json();
-    
-    if (!result.success) {
-      console.log('Erro no Apps Script:', result.error);
-      return;
-    }
-    
-    const remoteData = result.data;
-    
-    // Verificar se há mudanças
-    if (remoteData.lastUpdate && remoteData.lastUpdate !== lastAppsScriptSync) {
-      console.log('Dados atualizados no Apps Script. Sincronizando...');
-      
-      // Atualizar dados locais
-      if (remoteData.pedidos) appState.data.pedidos = remoteData.pedidos;
-      if (remoteData.clientes) appState.data.clientes = remoteData.clientes;
-      if (remoteData.produtos) appState.data.produtos = remoteData.produtos;
-      
-      lastAppsScriptSync = remoteData.lastUpdate;
-      
-      // Salvar no localStorage também
-      localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
-      
-      // Recarregar a página atual
-      const currentTab = document.querySelector('.tab-btn.active');
-      if (currentTab) {
-        const tabName = currentTab.textContent.toLowerCase();
-        if (tabName.includes('dashboard')) {
-          renderDashboard();
-        } else if (tabName.includes('agenda')) {
-          renderAgenda();
-        } else if (tabName.includes('cliente')) {
-          renderClientes();
-        } else if (tabName.includes('produto')) {
-          renderProdutos();
-        }
-      }
-      
-      // Mostrar notificação
+    if (lastLocalStorageSync !== null && lastLocalStorageSync !== currentHash) {
+      console.log('Mudanças detectadas no localStorage');
       showSyncNotification();
     }
+    
+    lastLocalStorageSync = currentHash;
   } catch (e) {
-    console.log('Erro ao sincronizar com Apps Script:', e);
+    console.log('Erro ao verificar mudanças:', e);
   }
 }
 
@@ -1143,7 +1102,7 @@ function showSyncNotification() {
     z-index: 10000;
     font-size: 14px;
   `;
-  notification.textContent = '☁️ Sincronizado com outros dispositivos!';
+  notification.textContent = '☁️ Dados sincronizados!';
   document.body.appendChild(notification);
   
   setTimeout(() => {
@@ -1151,6 +1110,35 @@ function showSyncNotification() {
     notification.style.transition = 'opacity 0.3s ease';
     setTimeout(() => notification.remove(), 300);
   }, 2000);
+}
+
+// Função para exportar dados
+function exportarDados() {
+  const dados = localStorage.getItem(DATA_STORAGE_KEY);
+  const blob = new Blob([dados], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `fazendas-up-backup-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Função para importar dados
+function importarDados(file) {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const dados = JSON.parse(e.target.result);
+      localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(dados));
+      appState.data = dados;
+      alert('Dados importados com sucesso!');
+      location.reload();
+    } catch (error) {
+      alert('Erro ao importar dados: ' + error.message);
+    }
+  };
+  reader.readAsText(file);
 }
 
 function setupEventListeners() {
@@ -5584,40 +5572,13 @@ function saveData() {
       console.error('Falha ao salvar dados no localStorage');
     }
     
-    // Também salvar no Google Drive
-    saveToGoogleDrive();
+    // Dados salvos no localStorage
   } catch (e) {
     console.error('Erro ao salvar dados:', e);
   }
 }
 
-async function saveToGoogleDrive() {
-  try {
-    const dataToSave = appState.data;
-    
-    // Enviar para Google Apps Script com o parâmetro action
-    const url = new URL(GOOGLE_APPS_SCRIPT_URL);
-    url.searchParams.append('action', 'write');
-    
-    const response = await fetch(url.toString(), {
-      method: 'POST',
-      body: JSON.stringify(dataToSave),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    
-    const result = await response.json();
-    if (result.success) {
-      console.log('Dados salvos no Google Apps Script');
-      lastAppsScriptSync = new Date().toISOString();
-    } else {
-      console.log('Erro ao salvar:', result.error);
-    }
-  } catch (e) {
-    console.log('Não conseguiu salvar no Apps Script:', e);
-  }
-}
+
 
 // ─── Dashboard Render ────────────────────────────────────────────────────────
 
