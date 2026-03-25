@@ -6951,6 +6951,9 @@ async function saveToGitHub() {
     
     const content = JSON.stringify(dataToSave, null, 2);
     
+    // Converter para UTF-8 antes de fazer base64
+    const utf8Content = unescape(encodeURIComponent(content));
+    
     console.log('Tentando salvar no GitHub...');
     
     // PASSO 1: Obter SHA do arquivo atual (necessário para atualizar)
@@ -6978,7 +6981,7 @@ async function saveToGitHub() {
     // PASSO 2: Fazer PUT para criar ou atualizar o arquivo
     const putBody = {
       message: `Sincronizar dados - ${new Date().toLocaleString('pt-BR')}`,
-      content: btoa(content),
+      content: btoa(utf8Content),
       branch: GITHUB_BRANCH
     };
     
