@@ -5565,7 +5565,7 @@ async function loadSampleData() {
   }
 }
 
-function saveData() {
+async function saveData() {
   try {
     const dataToSave = JSON.stringify(appState.data);
     localStorage.setItem(DATA_STORAGE_KEY, dataToSave);
@@ -5575,8 +5575,8 @@ function saveData() {
       console.error('Falha ao salvar dados no localStorage');
     }
     
-    // Sincronizar com GitHub
-    saveToGitHub();
+    // Sincronizar com GitHub (aguardar conclusão)
+    await saveToGitHub();
   } catch (e) {
     console.error('Erro ao salvar dados:', e);
   }
@@ -6219,7 +6219,7 @@ function notifyPedidoChange(tipo, cliente, produto) {
 
 // ─── Save Functions ────────────────────────────────────────────────────
 
-function savePedido() {
+async function savePedido() {
   const clienteId = document.getElementById('pedidoCliente').value;
   const cliente = appState.data.clientes.find(c => c.id === clienteId);
   
@@ -6299,7 +6299,7 @@ function savePedido() {
     notifyPedidoChange('novo', cliente.nome, produtoLines.map(p => p.produto).join(', '));
   }
   
-  saveData();
+  await saveData();
   // Limpar o formulário
   document.getElementById('pedidoForm').reset();
   document.getElementById('produtosContainer').innerHTML = '<div id="produtoLine_0" class="produto-line"><select class="prod-select"><option value="">Selecionar produto...</option></select><input type="number" class="prod-qty" value="1" min="1"><input type="text" class="prod-cat" placeholder="Categoria"><button type="button" onclick="removeProdutoLine(0)">❌</button></div>';
@@ -6307,7 +6307,7 @@ function savePedido() {
   renderAgenda();
 }
 
-function saveCliente() {
+async function saveCliente() {
   const nome = document.getElementById('clienteNome').value.trim();
   if (!nome) {
     alert('Nome do cliente é obrigatório');
@@ -6354,13 +6354,13 @@ function saveCliente() {
     });
   }
   
-  saveData();
+  await saveData();
   sendNotification('👥 Cliente Salvo', { body: nome });
   closeModal('clienteModal');
   renderClientes();
 }
 
-function saveProduto() {
+async function saveProduto() {
    const nome = document.getElementById('produtoNome').value.trim();
    if (!nome) {
      alert('Nome do produto é obrigatório');
@@ -6391,7 +6391,7 @@ function saveProduto() {
      appState.data.produtos.push(novosDados);
    }
    
-   saveData();
+   await saveData();
    sendNotification('🥬 Produto Salvo', { body: nome });
    closeModal('produtoModal');
    renderProdutos();
@@ -6399,18 +6399,18 @@ function saveProduto() {
 
 // ─── Delete Functions ────────────────────────────────────────────────────────
 
-function deletePedido(id) {
+async function deletePedido(id) {
   if (userRole === 'operacional') {
     alert('Você não tem permissão para deletar pedidos. Acesso apenas para Administrativo.');
     return;
   }
   if (!confirm('Tem certeza que deseja deletar este pedido?')) return;
   appState.data.pedidos = appState.data.pedidos.filter(p => p.id !== id);
-  saveData();
+  await saveData();
   renderAgenda();
 }
 
-function deleteCliente(id) {
+async function deleteCliente(id) {
   if (userRole === 'operacional') {
     alert('Você não tem permissão para deletar clientes. Acesso apenas para Administrativo.');
     return;
@@ -6418,15 +6418,15 @@ function deleteCliente(id) {
   if (!confirm('Tem certeza que deseja deletar este cliente?')) return;
   appState.data.clientes = appState.data.clientes.filter(c => c.id !== id);
   appState.data.pedidos = appState.data.pedidos.filter(p => p.id_cliente !== id);
-  saveData();
+  await saveData();
   renderClientes();
 }
 
-function deleteProduto(nome) {
+async function deleteProduto(nome) {
   if (!confirm('Tem certeza que deseja deletar este produto?')) return;
   appState.data.produtos = appState.data.produtos.filter(p => p.nome !== nome);
   appState.data.pedidos = appState.data.pedidos.filter(p => p.produto !== nome);
-  saveData();
+  await saveData();
   renderProdutos();
 }
 
@@ -6517,7 +6517,7 @@ function editProduto(nome) {
 
 // ─── Update Status ─────────────────────────────────────────────────────────
 
-function updateClientStatus(clientId, status) {
+async function updateClientStatus(clientId, status) {
   const hoje = getCurrentDay();
   // Mudar status de todos os pedidos do cliente NO DIA DE HOJE
   appState.data.pedidos.forEach(p => {
@@ -6525,7 +6525,7 @@ function updateClientStatus(clientId, status) {
       p.status = status;
     }
   });
-  saveData();
+  await saveData();
   renderDashboard();
 }
 
