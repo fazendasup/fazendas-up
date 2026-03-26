@@ -484,7 +484,7 @@
       {
         "id": "order_40",
         "id_cliente": "13",
-        "dia_semana": "terça-feira",
+        "dia_semana": "sábado",
         "cliente": "BAREBURGUER",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
@@ -4487,5 +4487,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-26T23:12:27.953Z"
+  "lastUpdate": "2026-03-26T23:12:45.970Z"
 }
