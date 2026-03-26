@@ -2528,7 +2528,7 @@
         "cliente": "Anntipastti",
         "produto": "Baby Manjericão",
         "categoria": "",
-        "quantidade": 4,
+        "quantidade": 8,
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
@@ -4480,5 +4480,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-26T12:53:18.566Z"
+  "lastUpdate": "2026-03-26T13:16:04.546Z"
 }
