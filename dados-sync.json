@@ -1559,7 +1559,7 @@
         "quantidade": 20,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_130",
@@ -1571,7 +1571,7 @@
         "quantidade": 0,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_131",
@@ -1583,7 +1583,7 @@
         "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_132",
@@ -1595,7 +1595,7 @@
         "quantidade": 0,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_133",
@@ -1607,7 +1607,7 @@
         "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_134",
@@ -1619,7 +1619,7 @@
         "quantidade": 6,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_135",
@@ -1631,7 +1631,7 @@
         "quantidade": 4,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_136",
@@ -4025,5 +4025,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-26T14:53:44.729Z"
+  "lastUpdate": "2026-03-26T16:08:43.970Z"
 }
