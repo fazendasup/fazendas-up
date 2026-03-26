@@ -2138,18 +2138,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_178",
-        "id_cliente": "49",
-        "dia_semana": "quinta-feira",
-        "cliente": "Eduardo Favoretti",
-        "produto": "Flores",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_179",
         "id_cliente": "34",
         "dia_semana": "quinta-feira",
@@ -4499,5 +4487,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-26T22:56:05.540Z"
+  "lastUpdate": "2026-03-26T23:12:27.953Z"
 }
