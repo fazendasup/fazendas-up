@@ -3208,7 +3208,7 @@
       {
         "id": "order_268",
         "id_cliente": "13",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "sábado",
         "cliente": "BAREBURGUER",
         "produto": "Alface Crespa Verde",
         "categoria": "",
@@ -4487,5 +4487,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-26T23:12:45.970Z"
+  "lastUpdate": "2026-03-26T23:13:14.483Z"
 }
