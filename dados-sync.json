@@ -2468,7 +2468,7 @@
         "cliente": "Fiorentina",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 15,
+        "quantidade": 20,
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
@@ -4516,5 +4516,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-25T20:30:05.914Z"
+  "lastUpdate": "2026-03-26T12:51:54.314Z"
 }
