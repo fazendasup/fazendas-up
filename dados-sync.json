@@ -482,18 +482,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_40",
-        "id_cliente": "13",
-        "dia_semana": "sábado",
-        "cliente": "BAREBURGUER",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 3,
-        "tipo_venda": "",
-        "observacoes": "MIX CHEFE",
-        "status": "pendente"
-      },
-      {
         "id": "order_41",
         "id_cliente": "13",
         "dia_semana": "terça-feira",
@@ -4487,5 +4475,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-26T23:13:14.483Z"
+  "lastUpdate": "2026-03-26T23:13:21.576Z"
 }
