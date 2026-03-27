@@ -3609,7 +3609,12 @@
         "periodoEntrega": "Manhã",
         "horarioMaximo": "18:00",
         "cobraEntrega": false,
-        "precos": []
+        "precos": [
+          {
+            "produto": "Alface Crespa Verde",
+            "preco": 5.9
+          }
+        ]
       },
       {
         "id": "9",
@@ -4475,5 +4480,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:13:23.873Z"
+  "lastUpdate": "2026-03-27T13:33:57.921Z"
 }
