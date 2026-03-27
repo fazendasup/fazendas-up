@@ -7003,7 +7003,7 @@ function showSyncNotification(message) {
 }
 
 // Forcar sincronizacao imediata com GitHub (para administrador)
-async function forcarSincronizacaoGitHub() {
+function forcarSincronizacaoGitHub() {
   if (userRole !== 'administrativo') {
     alert('Apenas administradores podem sincronizar com GitHub');
     return;
@@ -7014,27 +7014,33 @@ async function forcarSincronizacaoGitHub() {
   btn.disabled = true;
   btn.textContent = '⏳ Sincronizando...';
   
-  try {
-    // Limpar localStorage para forcar recarregamento do GitHub
-    localStorage.removeItem(DATA_STORAGE_KEY);
-    
-    // Forcar sincronizacao
-    lastSyncTime = 0;
-    lastSyncSha = null;
-    isSyncing = false;
-    
-    // Chamar syncWithGitHub
-    await syncWithGitHub();
-    
-    showSyncNotification('✅ Dados sincronizados com sucesso!');
-    console.log('✅ Sincronizacao forcada concluida');
-  } catch (e) {
-    showSyncNotification('❌ Erro ao sincronizar: ' + e.message);
-    console.error('Erro ao sincronizar:', e);
-  } finally {
-    btn.disabled = false;
-    btn.textContent = textoOriginal;
-  }
+  console.log('🔄 Iniciando sincronizacao forcada');
+  
+  // Limpar localStorage
+  localStorage.removeItem(DATA_STORAGE_KEY);
+  console.log('✅ localStorage limpo');
+  
+  // Resetar variaveis
+  lastSyncTime = 0;
+  lastSyncSha = null;
+  isSyncing = false;
+  console.log('✅ Variaveis resetadas');
+  
+  // Aguardar e sincronizar
+  setTimeout(() => {
+    syncWithGitHub().then(() => {
+      console.log('✅ Sincronizacao concluida');
+      showSyncNotification('✅ Dados sincronizados!');
+      renderCurrentTab();
+      btn.disabled = false;
+      btn.textContent = textoOriginal;
+    }).catch(e => {
+      console.error('❌ Erro:', e);
+      showSyncNotification('❌ Erro: ' + e.message);
+      btn.disabled = false;
+      btn.textContent = textoOriginal;
+    });
+  }, 500);
 }
 
 // Salvar dados no GitHub quando houver mudancas
