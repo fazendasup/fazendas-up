@@ -2610,9 +2610,9 @@
         "id_cliente": "41",
         "dia_semana": "sexta-feira",
         "cliente": "Cupulla",
-        "produto": "Micro Repolho",
+        "produto": "Micro Mostarda",
         "categoria": "Pote",
-        "quantidade": 0,
+        "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -3513,6 +3513,30 @@
         "produto": "Mix Chefe- Seleção Especial",
         "categoria": "",
         "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774617182831_1",
+        "id_cliente": "41",
+        "cliente": "Cupulla",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774617182831_2",
+        "id_cliente": "41",
+        "cliente": "Cupulla",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4487,5 +4511,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:12:24.427Z"
+  "lastUpdate": "2026-03-27T13:13:02.833Z"
 }
