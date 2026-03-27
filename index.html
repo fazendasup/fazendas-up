@@ -877,8 +877,9 @@ window.addEventListener('load', setupGitHubToken);
                 <button class="tab-btn" data-tab="clientes">👥 Clientes</button>
                 <button class="tab-btn" data-tab="produtos">🥬 Produtos</button>
             </div>
-            <div style="margin-top: auto; padding-top: 30px;">
+            <div style="margin-top: auto; padding-top: 30px; display: flex; flex-direction: column; gap: 8px;">
                 <button onclick="buscarDadosPlanilha()" id="btnAtualizar" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; width: 100%;" title="Buscar dados atualizados da planilha Google Sheets">🔄 Atualizar da Planilha</button>
+                <button onclick="forcarSincronizacaoGitHub()" id="btnSincronizar" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; width: 100%; display: none;" title="Forçar sincronização com GitHub">🔄 Sincronizar com GitHub</button>
             </div>
         </div>
 
@@ -1186,21 +1187,21 @@ function verifyAdminPassword() {
 function updateUIByRole() {
   const tabs = document.querySelectorAll('.tab-btn');
   const updateBtn = document.getElementById('btnAtualizar');
+  const syncBtn = document.getElementById('btnSincronizar');
   
   if (userRole === 'operacional') {
-    // Ocultar abas de edição
-    tabs[1].style.display = 'none'; // Agenda
-    tabs[2].style.display = 'none'; // Clientes
-    tabs[3].style.display = 'none'; // Produtos
+    tabs[1].style.display = 'none';
+    tabs[2].style.display = 'none';
+    tabs[3].style.display = 'none';
     updateBtn.style.display = 'none';
-    // Forçar Dashboard
+    syncBtn.style.display = 'none';
     showTab('dashboard');
   } else {
-    // Mostrar todas as abas
     tabs[1].style.display = 'block';
     tabs[2].style.display = 'block';
     tabs[3].style.display = 'block';
     updateBtn.style.display = 'block';
+    syncBtn.style.display = 'block';
   }
 }
 
@@ -7001,7 +7002,42 @@ function showSyncNotification(message) {
   setTimeout(() => notif.remove(), 2000);
 }
 
-// Salvar dados no GitHub quando houver mudanças
+// Forcar sincronizacao imediata com GitHub (para administrador)
+async function forcarSincronizacaoGitHub() {
+  if (userRole !== 'administrativo') {
+    alert('Apenas administradores podem sincronizar com GitHub');
+    return;
+  }
+  
+  const btn = document.getElementById('btnSincronizar');
+  const textoOriginal = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '⏳ Sincronizando...';
+  
+  try {
+    // Limpar localStorage para forcar recarregamento do GitHub
+    localStorage.removeItem(DATA_STORAGE_KEY);
+    
+    // Forcar sincronizacao
+    lastSyncTime = 0;
+    lastSyncSha = null;
+    isSyncing = false;
+    
+    // Chamar syncWithGitHub
+    await syncWithGitHub();
+    
+    showSyncNotification('✅ Dados sincronizados com sucesso!');
+    console.log('✅ Sincronizacao forcada concluida');
+  } catch (e) {
+    showSyncNotification('❌ Erro ao sincronizar: ' + e.message);
+    console.error('Erro ao sincronizar:', e);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = textoOriginal;
+  }
+}
+
+// Salvar dados no GitHub quando houver mudancas
 async function saveToGitHub() {
   try {
     const token = localStorage.getItem('githubToken');
