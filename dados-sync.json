@@ -4460,8 +4460,15 @@
         "nome": "Baby Rúcula",
         "categorias": [],
         "precoBase": 0
+      },
+      {
+        "nome": "Mix Chefe- Seleção Especial",
+        "precoBase": 8.07,
+        "categorias": [
+          "Desfolhado"
+        ]
       }
     ]
   },
-  "lastUpdate": "2026-03-27T12:19:55.418Z"
+  "lastUpdate": "2026-03-27T12:57:46.935Z"
 }
