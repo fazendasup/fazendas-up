@@ -3874,13 +3874,13 @@
         "id": "28",
         "nome": "Hotel Juma",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "7 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "18:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -4487,5 +4487,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:01:41.683Z"
+  "lastUpdate": "2026-03-27T13:02:25.546Z"
 }
