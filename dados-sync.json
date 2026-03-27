@@ -3822,13 +3822,13 @@
         "id": "24",
         "nome": "La Vaca Negra",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "7 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "17:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -4487,5 +4487,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:03:24.673Z"
+  "lastUpdate": "2026-03-27T13:03:46.934Z"
 }
