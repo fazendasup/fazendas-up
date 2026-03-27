@@ -3504,6 +3504,18 @@
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1774616289779_1",
+        "id_cliente": "35",
+        "cliente": "Felicori",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Chefe- Seleção Especial",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4470,5 +4482,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T12:57:46.935Z"
+  "lastUpdate": "2026-03-27T12:58:09.781Z"
 }
