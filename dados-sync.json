@@ -1646,18 +1646,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_140",
-        "id_cliente": "41",
-        "dia_semana": "quarta-feira",
-        "cliente": "Cupulla",
-        "produto": "Micro Coentro",
-        "categoria": "Pote",
-        "quantidade": 0,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_141",
         "id_cliente": "33",
         "dia_semana": "quarta-feira",
@@ -4487,5 +4475,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:13:18.035Z"
+  "lastUpdate": "2026-03-27T13:13:23.873Z"
 }
