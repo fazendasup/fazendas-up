@@ -3615,11 +3615,11 @@
         "nome": "Subway Manauara",
         "observacoes": "",
         "prazoBoleto": "",
-        "acumulaPedidos": false,
-        "diasAcumulo": "",
-        "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
+        "acumulaPedidos": true,
+        "diasAcumulo": "15",
+        "prazoBoletoAcumulo": "10",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "18:00",
         "cobraEntrega": false,
         "precos": []
       },
@@ -4487,5 +4487,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:05:47.354Z"
+  "lastUpdate": "2026-03-27T13:06:24.309Z"
 }
