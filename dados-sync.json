@@ -3718,7 +3718,20 @@
         "periodoEntrega": "Manhã",
         "horarioMaximo": "17:00",
         "cobraEntrega": false,
-        "precos": []
+        "precos": [
+          {
+            "produto": "Alface Crespa Verde",
+            "preco": 7.59
+          },
+          {
+            "produto": "Alface Americana",
+            "preco": 7.59
+          },
+          {
+            "produto": "Alface Crespa Roxa",
+            "preco": 7.59
+          }
+        ]
       },
       {
         "id": "17",
@@ -4480,5 +4493,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:33:57.921Z"
+  "lastUpdate": "2026-03-27T13:35:19.417Z"
 }
