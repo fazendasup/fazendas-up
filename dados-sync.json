@@ -1646,18 +1646,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_138",
-        "id_cliente": "41",
-        "dia_semana": "quarta-feira",
-        "cliente": "Cupulla",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_139",
         "id_cliente": "41",
         "dia_semana": "quarta-feira",
@@ -4511,5 +4499,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:13:02.833Z"
+  "lastUpdate": "2026-03-27T13:13:14.358Z"
 }
