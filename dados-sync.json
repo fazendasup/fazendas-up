@@ -3639,13 +3639,13 @@
       {
         "id": "10",
         "nome": "Padoca",
-        "observacoes": "",
+        "observacoes": "Pagamento antecipado ",
         "prazoBoleto": "",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "18:00",
         "cobraEntrega": false,
         "precos": []
       },
@@ -4487,5 +4487,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:05:16.899Z"
+  "lastUpdate": "2026-03-27T13:05:47.354Z"
 }
