@@ -2564,7 +2564,7 @@
         "cliente": "Cupulla",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 0,
+        "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4487,5 +4487,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:07:46.283Z"
+  "lastUpdate": "2026-03-27T13:11:25.751Z"
 }
