@@ -3107,7 +3107,7 @@
         "quantidade": 30,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_264",
@@ -3119,7 +3119,7 @@
         "quantidade": 40,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_265",
@@ -3131,7 +3131,7 @@
         "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_266",
@@ -3143,7 +3143,7 @@
         "quantidade": 0,
         "tipo_venda": "",
         "observacoes": "BOLETO PARA 7 DIAS",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_267",
@@ -4493,5 +4493,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T14:23:01.759Z"
+  "lastUpdate": "2026-03-27T14:23:04.904Z"
 }
