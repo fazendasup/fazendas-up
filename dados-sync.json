@@ -4225,13 +4225,13 @@
         "id": "56",
         "nome": "Tio Armenio Amazonas",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "7 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Tarde",
+        "horarioMaximo": "18:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -4482,5 +4482,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:00:33.865Z"
+  "lastUpdate": "2026-03-27T13:00:50.626Z"
 }
