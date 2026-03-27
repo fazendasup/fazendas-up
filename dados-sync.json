@@ -3692,13 +3692,13 @@
         "id": "14",
         "nome": "Fitz",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "7 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "18:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -4487,5 +4487,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:05:05.021Z"
+  "lastUpdate": "2026-03-27T13:05:16.899Z"
 }
