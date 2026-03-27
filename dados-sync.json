@@ -3965,12 +3965,12 @@
         "id": "35",
         "nome": "Felicori",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "7 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "17:00",
         "cobraEntrega": false,
         "precos": []
       },
@@ -4482,5 +4482,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T12:58:09.781Z"
+  "lastUpdate": "2026-03-27T12:58:45.019Z"
 }
