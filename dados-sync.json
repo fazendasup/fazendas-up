@@ -3744,13 +3744,13 @@
         "id": "18",
         "nome": "Mori Izakaya",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "3 dias ",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "18:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -4487,5 +4487,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T13:04:45.869Z"
+  "lastUpdate": "2026-03-27T13:05:02.233Z"
 }
