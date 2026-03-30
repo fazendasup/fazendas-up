@@ -110,30 +110,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_12",
-        "id_cliente": "4",
-        "dia_semana": "segunda-feira",
-        "cliente": "Rodrigues Ponta Negra",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
-        "id": "order_13",
-        "id_cliente": "4",
-        "dia_semana": "segunda-feira",
-        "cliente": "Rodrigues Ponta Negra",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "Boleto p/ 21 dias",
-        "status": "pendente"
-      },
-      {
         "id": "order_14",
         "id_cliente": "4",
         "dia_semana": "segunda-feira",
@@ -4445,5 +4421,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-30T17:47:03.315Z"
+  "lastUpdate": "2026-03-30T17:47:06.027Z"
 }
