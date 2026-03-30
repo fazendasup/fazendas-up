@@ -134,18 +134,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_11",
-        "id_cliente": "3",
-        "dia_semana": "segunda-feira",
-        "cliente": "Rodrigues Jacira Reis",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "Boleto p/ 21 dias",
-        "status": "pendente"
-      },
-      {
         "id": "order_12",
         "id_cliente": "4",
         "dia_semana": "segunda-feira",
@@ -4481,5 +4469,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-27T15:30:12.663Z"
+  "lastUpdate": "2026-03-30T17:46:53.418Z"
 }
