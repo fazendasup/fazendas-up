@@ -110,18 +110,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_15",
-        "id_cliente": "5",
-        "dia_semana": "segunda-feira",
-        "cliente": "Rodrigues Vieiralves",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_16",
         "id_cliente": "5",
         "dia_semana": "segunda-feira",
@@ -4409,5 +4397,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-30T17:47:18.351Z"
+  "lastUpdate": "2026-03-30T17:47:21.096Z"
 }
