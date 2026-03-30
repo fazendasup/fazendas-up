@@ -122,18 +122,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_10",
-        "id_cliente": "3",
-        "dia_semana": "segunda-feira",
-        "cliente": "Rodrigues Jacira Reis",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_12",
         "id_cliente": "4",
         "dia_semana": "segunda-feira",
@@ -4469,5 +4457,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-30T17:46:53.418Z"
+  "lastUpdate": "2026-03-30T17:46:56.940Z"
 }
