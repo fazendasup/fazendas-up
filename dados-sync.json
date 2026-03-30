@@ -3230,18 +3230,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_288",
-        "id_cliente": "61",
-        "dia_semana": "segunda-feira",
-        "cliente": "Nihan",
-        "produto": "Micro Nabo",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_289",
         "id_cliente": "60",
         "dia_semana": "sábado",
@@ -4337,5 +4325,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-30T17:49:32.504Z"
+  "lastUpdate": "2026-03-30T17:49:36.197Z"
 }
