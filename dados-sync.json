@@ -4048,14 +4048,19 @@
         "id": "53",
         "nome": "Anntipastti",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "3 dias ",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
-        "precos": []
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "15:00",
+        "cobraEntrega": true,
+        "precos": [
+          {
+            "produto": "Hortelã",
+            "preco": 5.15
+          }
+        ]
       },
       {
         "id": "54",
@@ -4349,5 +4354,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-30T23:49:39.348Z"
+  "lastUpdate": "2026-03-30T23:53:03.400Z"
 }
