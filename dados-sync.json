@@ -110,18 +110,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_9",
-        "id_cliente": "3",
-        "dia_semana": "segunda-feira",
-        "cliente": "Rodrigues Jacira Reis",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_12",
         "id_cliente": "4",
         "dia_semana": "segunda-feira",
@@ -4457,5 +4445,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-30T17:46:56.940Z"
+  "lastUpdate": "2026-03-30T17:46:58.888Z"
 }
