@@ -110,30 +110,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_16",
-        "id_cliente": "5",
-        "dia_semana": "segunda-feira",
-        "cliente": "Rodrigues Vieiralves",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "Boleto p/ 21 dias",
-        "status": "pendente"
-      },
-      {
-        "id": "order_17",
-        "id_cliente": "5",
-        "dia_semana": "segunda-feira",
-        "cliente": "Rodrigues Vieiralves",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_18",
         "id_cliente": "6",
         "dia_semana": "segunda-feira",
@@ -4397,5 +4373,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-30T17:47:24.112Z"
+  "lastUpdate": "2026-03-30T17:47:27.596Z"
 }
