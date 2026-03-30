@@ -3355,14 +3355,14 @@
       {
         "id": "2",
         "nome": "Grand Amazon",
-        "observacoes": "",
-        "prazoBoleto": "",
+        "observacoes": "TAXA de entrega 31,00",
+        "prazoBoleto": "7 dias ",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "17:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -4325,5 +4325,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-30T17:50:37.069Z"
+  "lastUpdate": "2026-03-30T17:51:37.634Z"
 }
