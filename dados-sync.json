@@ -2360,7 +2360,7 @@
         "cliente": "Anntipastti",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 3,
+        "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4349,5 +4349,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-30T22:20:03.175Z"
+  "lastUpdate": "2026-03-30T23:46:25.717Z"
 }
