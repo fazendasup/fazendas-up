@@ -3230,18 +3230,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_285",
-        "id_cliente": "61",
-        "dia_semana": "segunda-feira",
-        "cliente": "Nihan",
-        "produto": "Micro Coentro",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_286",
         "id_cliente": "61",
         "dia_semana": "segunda-feira",
@@ -4373,5 +4361,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-30T17:47:33.698Z"
+  "lastUpdate": "2026-03-30T17:49:25.396Z"
 }
