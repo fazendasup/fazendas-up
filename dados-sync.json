@@ -882,9 +882,9 @@
         "id_cliente": "28",
         "dia_semana": "terça-feira",
         "cliente": "Hotel Juma",
-        "produto": "Alface Crespa Verde",
+        "produto": "Alface MIX",
         "categoria": "Buque",
-        "quantidade": 3,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4306,5 +4306,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T00:30:33.430Z"
+  "lastUpdate": "2026-03-31T00:30:51.464Z"
 }
