@@ -530,18 +530,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_54",
-        "id_cliente": "18",
-        "dia_semana": "terça-feira",
-        "cliente": "Mori Izakaya",
-        "produto": "Micro Nabo",
-        "categoria": "Pote",
-        "quantidade": 0,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_55",
         "id_cliente": "18",
         "dia_semana": "terça-feira",
@@ -4354,5 +4342,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T00:28:56.664Z"
+  "lastUpdate": "2026-03-31T00:29:15.332Z"
 }
