@@ -1706,18 +1706,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_164",
-        "id_cliente": "46",
-        "dia_semana": "quinta-feira",
-        "cliente": "Patio Adrianópolis",
-        "produto": "Alface Crespa Roxa",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_165",
         "id_cliente": "46",
         "dia_semana": "quinta-feira",
@@ -4291,5 +4279,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T16:25:51.165Z"
+  "lastUpdate": "2026-03-31T16:25:56.749Z"
 }
