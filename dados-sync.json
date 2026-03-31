@@ -3216,6 +3216,54 @@
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1774998132614_0",
+        "id_cliente": "client_1774997686517",
+        "cliente": "Mari Mari",
+        "dia_semana": "quarta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774998132614_1",
+        "id_cliente": "client_1774997686517",
+        "cliente": "Mari Mari",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Chefe- Seleção Especial",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774998132614_2",
+        "id_cliente": "client_1774997686517",
+        "cliente": "Mari Mari",
+        "dia_semana": "quarta-feira",
+        "produto": "Baby Rúcula",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774998132614_3",
+        "id_cliente": "client_1774997686517",
+        "cliente": "Mari Mari",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4277,5 +4325,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T23:00:34.396Z"
+  "lastUpdate": "2026-03-31T23:02:12.616Z"
 }
