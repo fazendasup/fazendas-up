@@ -1112,7 +1112,7 @@
         "cliente": "Subway Manauara",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 1,
+        "quantidade": 30,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "somente orçamento",
         "status": "pendente"
@@ -4300,5 +4300,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T00:54:55.769Z"
+  "lastUpdate": "2026-03-31T12:55:35.257Z"
 }
