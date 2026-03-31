@@ -1652,7 +1652,7 @@
         "cliente": "Patio Djalma",
         "produto": "Baby Manjericão",
         "categoria": "Desfolhado",
-        "quantidade": 0,
+        "quantidade": 5,
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
@@ -4315,5 +4315,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T16:24:33.241Z"
+  "lastUpdate": "2026-03-31T16:24:40.342Z"
 }
