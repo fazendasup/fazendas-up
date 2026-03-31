@@ -878,18 +878,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_86",
-        "id_cliente": "28",
-        "dia_semana": "terça-feira",
-        "cliente": "Hotel Juma",
-        "produto": "Alface Mimosa Roxa",
-        "categoria": "Buque",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_87",
         "id_cliente": "28",
         "dia_semana": "terça-feira",
@@ -4318,5 +4306,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T00:30:25.964Z"
+  "lastUpdate": "2026-03-31T00:30:33.430Z"
 }
