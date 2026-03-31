@@ -2054,18 +2054,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_195",
-        "id_cliente": "51",
-        "dia_semana": "quinta-feira",
-        "cliente": "Veneza Parque 10",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_196",
         "id_cliente": "52",
         "dia_semana": "quinta-feira",
@@ -4322,5 +4310,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T16:34:37.583Z"
+  "lastUpdate": "2026-03-31T16:34:45.891Z"
 }
