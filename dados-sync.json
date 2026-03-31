@@ -3167,7 +3167,7 @@
         "quantidade": 50,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1774974409852_1",
@@ -4250,5 +4250,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T18:38:48.781Z"
+  "lastUpdate": "2026-03-31T18:39:06.871Z"
 }
