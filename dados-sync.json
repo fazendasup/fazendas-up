@@ -3786,13 +3786,13 @@
         "id": "37",
         "nome": "Porteira",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "7 dias ",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -4305,5 +4305,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T13:42:33.756Z"
+  "lastUpdate": "2026-03-31T13:42:58.428Z"
 }
