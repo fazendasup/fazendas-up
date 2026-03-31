@@ -4267,8 +4267,15 @@
         "categorias": [
           "Desfolhado"
         ]
+      },
+      {
+        "nome": "Mix Folhas - Salada Leve",
+        "precoBase": 6.68,
+        "categorias": [
+          "Desfolhado"
+        ]
       }
     ]
   },
-  "lastUpdate": "2026-03-31T23:00:31.543Z"
+  "lastUpdate": "2026-03-31T23:00:34.396Z"
 }
