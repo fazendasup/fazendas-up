@@ -3778,7 +3778,7 @@
         "id": "36",
         "nome": "Burgers & Burgers",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "3 dias ",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
@@ -4310,5 +4310,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T13:46:57.795Z"
+  "lastUpdate": "2026-03-31T13:48:22.197Z"
 }
