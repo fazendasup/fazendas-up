@@ -3348,6 +3348,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
+      },
+      {
+        "id": "order_1774916564045_0",
+        "id_cliente": "33",
+        "cliente": "Fiorentina",
+        "dia_semana": "sábado",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4342,5 +4354,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T00:21:07.886Z"
+  "lastUpdate": "2026-03-31T00:22:44.048Z"
 }
