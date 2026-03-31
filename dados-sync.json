@@ -3218,18 +3218,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1774998132614_0",
-        "id_cliente": "client_1774997686517",
-        "cliente": "Mari Mari",
-        "dia_semana": "quarta-feira",
-        "produto": "Hortelã",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1774998132614_1",
         "id_cliente": "client_1774997686517",
         "cliente": "Mari Mari",
@@ -4338,5 +4326,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T23:02:56.524Z"
+  "lastUpdate": "2026-03-31T23:03:59.377Z"
 }
