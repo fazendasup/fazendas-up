@@ -3734,14 +3734,19 @@
         "id": "33",
         "nome": "Fiorentina",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "3 dias ",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "10:00",
         "cobraEntrega": false,
-        "precos": []
+        "precos": [
+          {
+            "produto": "Alface Crespa Verde",
+            "preco": 5.9
+          }
+        ]
       },
       {
         "id": "34",
@@ -4305,5 +4310,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T13:46:21.405Z"
+  "lastUpdate": "2026-03-31T13:46:57.795Z"
 }
