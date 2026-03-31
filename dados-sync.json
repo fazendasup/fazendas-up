@@ -3886,10 +3886,15 @@
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
+        "periodoEntrega": "Manhã",
         "horarioMaximo": "",
         "cobraEntrega": false,
-        "precos": []
+        "precos": [
+          {
+            "produto": "Baby Manjericão",
+            "preco": 6.97
+          }
+        ]
       },
       {
         "id": "45",
@@ -4310,5 +4315,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T13:48:22.197Z"
+  "lastUpdate": "2026-03-31T13:50:06.417Z"
 }
