@@ -3777,9 +3777,9 @@
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "17:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -4305,5 +4305,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T13:41:31.645Z"
+  "lastUpdate": "2026-03-31T13:42:27.625Z"
 }
