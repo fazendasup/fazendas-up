@@ -3124,11 +3124,11 @@
       {
         "id": "order_291",
         "id_cliente": "57",
-        "dia_semana": "sábado",
+        "dia_semana": "quarta-feira",
         "cliente": "Ancho",
         "produto": "Alface Americana",
         "categoria": "Desfolhado",
-        "quantidade": 15,
+        "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4298,5 +4298,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T16:32:10.708Z"
+  "lastUpdate": "2026-03-31T16:32:56.548Z"
 }
