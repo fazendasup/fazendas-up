@@ -530,18 +530,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_55",
-        "id_cliente": "18",
-        "dia_semana": "terça-feira",
-        "cliente": "Mori Izakaya",
-        "produto": "Flores",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Boleto para 3 dias",
-        "status": "pendente"
-      },
-      {
         "id": "order_56",
         "id_cliente": "19",
         "dia_semana": "terça-feira",
@@ -4342,5 +4330,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T00:29:15.332Z"
+  "lastUpdate": "2026-03-31T00:29:33.744Z"
 }
