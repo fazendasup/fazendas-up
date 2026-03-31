@@ -1214,18 +1214,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_116",
-        "id_cliente": "35",
-        "dia_semana": "terça-feira",
-        "cliente": "Felicori",
-        "produto": "Alface Crespa Roxa",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_117",
         "id_cliente": "35",
         "dia_semana": "terça-feira",
@@ -4294,5 +4282,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T00:32:30.486Z"
+  "lastUpdate": "2026-03-31T00:32:42.574Z"
 }
