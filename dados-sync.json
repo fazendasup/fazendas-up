@@ -1268,7 +1268,7 @@
         "cliente": "Veneza Tarumã",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 0,
+        "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
@@ -3264,6 +3264,30 @@
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1774974877581_1",
+        "id_cliente": "34",
+        "cliente": "Veneza Tarumã",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774974877581_2",
+        "id_cliente": "34",
+        "cliente": "Veneza Tarumã",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4298,5 +4322,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T16:33:15.283Z"
+  "lastUpdate": "2026-03-31T16:34:37.583Z"
 }
