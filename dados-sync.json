@@ -1796,7 +1796,7 @@
         "cliente": "Patio Aleixo",
         "produto": "Alface Crespa Verde",
         "categoria": "",
-        "quantidade": 20,
+        "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
@@ -4291,5 +4291,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T16:27:04.099Z"
+  "lastUpdate": "2026-03-31T16:27:12.777Z"
 }
