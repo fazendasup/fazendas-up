@@ -3882,12 +3882,12 @@
         "id": "44",
         "nome": "Restaurante Girão's",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "3 dias ",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
         "periodoEntrega": "Manhã",
-        "horarioMaximo": "",
+        "horarioMaximo": "15:00",
         "cobraEntrega": false,
         "precos": [
           {
@@ -4315,5 +4315,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T13:50:06.417Z"
+  "lastUpdate": "2026-03-31T13:50:25.404Z"
 }
