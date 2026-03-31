@@ -1772,7 +1772,7 @@
         "cliente": "Patio Aleixo",
         "produto": "Alface Americana",
         "categoria": "Desfolhado",
-        "quantidade": 10,
+        "quantidade": 15,
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
@@ -4291,5 +4291,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T16:26:49.854Z"
+  "lastUpdate": "2026-03-31T16:27:04.099Z"
 }
