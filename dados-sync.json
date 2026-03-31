@@ -1118,18 +1118,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_107",
-        "id_cliente": "32",
-        "dia_semana": "terça-feira",
-        "cliente": "Cliente",
-        "produto": "Flores",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "retirada",
-        "status": "pendente"
-      },
-      {
         "id": "order_108",
         "id_cliente": "33",
         "dia_semana": "terça-feira",
@@ -4306,5 +4294,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T00:30:51.464Z"
+  "lastUpdate": "2026-03-31T00:32:30.486Z"
 }
