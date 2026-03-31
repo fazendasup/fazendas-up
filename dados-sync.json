@@ -3216,6 +3216,54 @@
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1774998323504_0",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "quarta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774998323504_1",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "quarta-feira",
+        "produto": "Baby Rúcula",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774998323504_2",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Chefe- Seleção Especial",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774998323504_3",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4290,5 +4338,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T23:04:17.654Z"
+  "lastUpdate": "2026-03-31T23:05:23.506Z"
 }
