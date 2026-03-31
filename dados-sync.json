@@ -1676,7 +1676,7 @@
         "cliente": "Patio Djalma",
         "produto": "Micro Nabo",
         "categoria": "Desfolhado",
-        "quantidade": 0,
+        "quantidade": 4,
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
@@ -4291,5 +4291,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T16:25:09.237Z"
+  "lastUpdate": "2026-03-31T16:25:17.929Z"
 }
