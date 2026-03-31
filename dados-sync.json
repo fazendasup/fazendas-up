@@ -3288,6 +3288,114 @@
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1774918456012_0",
+        "id_cliente": "client_1774918251748",
+        "cliente": "Ghiotto Pizzaria",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774918462232_0",
+        "id_cliente": "client_1774918251748",
+        "cliente": "Ghiotto Pizzaria",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774918464348_0",
+        "id_cliente": "client_1774918251748",
+        "cliente": "Ghiotto Pizzaria",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774918465062_0",
+        "id_cliente": "client_1774918251748",
+        "cliente": "Ghiotto Pizzaria",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774918465288_0",
+        "id_cliente": "client_1774918251748",
+        "cliente": "Ghiotto Pizzaria",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774918467990_0",
+        "id_cliente": "client_1774918251748",
+        "cliente": "Ghiotto Pizzaria",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774918471813_0",
+        "id_cliente": "client_1774918251748",
+        "cliente": "Ghiotto Pizzaria",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774918471854_0",
+        "id_cliente": "client_1774918251748",
+        "cliente": "Ghiotto Pizzaria",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1774918472031_0",
+        "id_cliente": "client_1774918251748",
+        "cliente": "Ghiotto Pizzaria",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 50,
+        "tipo_venda": "",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4300,5 +4408,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T00:54:11.131Z"
+  "lastUpdate": "2026-03-31T00:54:33.352Z"
 }
