@@ -3456,13 +3456,13 @@
         "id": "13",
         "nome": "BAREBURGUER",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "3 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Tarde",
+        "horarioMaximo": "18:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -4300,5 +4300,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T13:27:55.723Z"
+  "lastUpdate": "2026-03-31T13:39:49.303Z"
 }
