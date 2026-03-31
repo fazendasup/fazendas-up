@@ -4059,6 +4059,19 @@
             "preco": 6.97
           }
         ]
+      },
+      {
+        "id": "client_1774997686517",
+        "nome": "Mari Mari",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -4250,5 +4263,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-03-31T18:40:15.516Z"
+  "lastUpdate": "2026-03-31T22:54:46.521Z"
 }
