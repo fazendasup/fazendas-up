@@ -4109,6 +4109,19 @@
         "horarioMaximo": "",
         "cobraEntrega": false,
         "precos": []
+      },
+      {
+        "id": "client_1775083898066",
+        "nome": "Ana Galotta",
+        "observacoes": "",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -4314,5 +4327,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-04-01T22:23:35.816Z"
+  "lastUpdate": "2026-04-01T22:51:38.071Z"
 }
