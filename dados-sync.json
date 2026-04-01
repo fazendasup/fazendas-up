@@ -1235,7 +1235,7 @@
         "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "cancelado"
       },
       {
         "id": "order_123",
@@ -3143,7 +3143,7 @@
         "quantidade": 20,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "cancelado"
       },
       {
         "id": "order_1774974877581_2",
@@ -3155,7 +3155,7 @@
         "quantidade": 15,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pendente"
+        "status": "cancelado"
       },
       {
         "id": "order_1774998323504_0",
@@ -4401,5 +4401,5 @@
     ],
     "prioridades": {}
   },
-  "lastUpdate": "2026-04-01T23:52:18.707Z"
+  "lastUpdate": "2026-04-01T23:52:33.017Z"
 }
