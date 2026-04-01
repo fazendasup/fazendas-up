@@ -1226,15 +1226,15 @@
         "status": "pendente"
       },
       {
-        "id": "order_119",
+        "id": "order_120",
         "id_cliente": "16",
         "dia_semana": "quarta-feira",
         "cliente": "Novotel",
-        "produto": "Alface Americana",
+        "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
         "quantidade": 0,
         "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
+        "observacoes": "SOMENTE ORÇAMENTO",
         "status": "pronto"
       },
       {
@@ -4412,5 +4412,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-04-01T23:03:04.876Z"
+  "lastUpdate": "2026-04-01T23:03:06.876Z"
 }
