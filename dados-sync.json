@@ -4158,6 +4158,19 @@
         "horarioMaximo": "",
         "cobraEntrega": false,
         "precos": []
+      },
+      {
+        "id": "client_1775084316617",
+        "nome": "Velho Monge",
+        "observacoes": "",
+        "prazoBoleto": "7 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": true,
+        "precos": []
       }
     ],
     "produtos": [
@@ -4363,5 +4376,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-04-01T22:55:54.580Z"
+  "lastUpdate": "2026-04-01T22:58:36.618Z"
 }
