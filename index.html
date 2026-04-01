@@ -1278,6 +1278,16 @@ async function loadData() {
     await loadSampleData();
     localStorage.setItem('fazendas-up-version', DATA_VERSION);
   }
+  
+  // Carregar prioridades do appState se existirem, senão do localStorage
+  if (appState.data && appState.data.prioridades) {
+    localStorage.setItem('fazendas-up-prioridades', JSON.stringify(appState.data.prioridades));
+  } else {
+    const prioridades = localStorage.getItem('fazendas-up-prioridades');
+    if (prioridades && appState.data) {
+      appState.data.prioridades = JSON.parse(prioridades);
+    }
+  }
 }
 
 // ─── Sincronização em Tempo Real ────────────────────────────────────────────────────────
@@ -5947,6 +5957,10 @@ function salvarPrioridades() {
   const prioridades = JSON.parse(localStorage.getItem('fazendas-up-prioridades') || '{}');
   prioridades[diaKey] = novaOrdem;
   localStorage.setItem('fazendas-up-prioridades', JSON.stringify(prioridades));
+  
+  // Sincronizar prioridades com appState e GitHub
+  appState.prioridades = prioridades;
+  saveData();
   
   closeModal('prioridadeModal');
   alert('Prioridades salvas com sucesso!');
