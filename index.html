@@ -45,50 +45,83 @@
             overflow: hidden;
         }
 
-        /* Sidebar */
+        /* Sidebar - Design Sofisticado e Minimalista */
         .sidebar {
-            width: 250px;
-            background: var(--secondary);
+            width: 280px;
+            background: linear-gradient(135deg, var(--secondary) 0%, #5a1f6b 100%);
             color: white;
-            padding: 20px;
+            padding: 30px 20px;
             overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 8px 0 32px rgba(74, 18, 86, 0.3);
+            display: flex;
+            flex-direction: column;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-tabs {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
+            flex: 1;
         }
 
         .tab-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 12px 16px;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 14px 18px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 14px;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: left;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
         }
 
         .tab-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .tab-btn:hover::before {
+            left: 100%;
         }
 
         .tab-btn.active {
-            background: rgba(255, 255, 255, 0.4);
-            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-color: var(--primary-light);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(230, 31, 147, 0.3);
         }
 
         /* Main Content */
@@ -100,15 +133,21 @@
         }
 
         .header {
-            background: var(--surface);
-            padding: 20px;
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(135deg, var(--surface) 0%, rgba(255, 255, 255, 0.5) 100%);
+            padding: 24px 30px;
+            border-bottom: 1px solid rgba(230, 31, 147, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            backdrop-filter: blur(10px);
         }
 
         .header h1 {
-            font-size: 24px;
-            color: var(--primary);
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
         }
 
         #content {
@@ -119,11 +158,19 @@
 
         /* Sections */
         .section {
-            background: var(--surface);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+            padding: 28px;
+            margin-bottom: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(230, 31, 147, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.35s ease;
+        }
+
+        .section:hover {
+            border-color: rgba(230, 31, 147, 0.2);
+            box-shadow: 0 8px 32px rgba(230, 31, 147, 0.1);
         }
 
         .section-header {
@@ -135,8 +182,10 @@
 
         .section h3 {
             color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 16px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         /* Stats Grid */
@@ -148,22 +197,55 @@
         }
 
         .stat-card {
-            background: var(--secondary);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(230, 31, 147, 0.05), rgba(74, 18, 86, 0.05));
+            border: 1px solid rgba(230, 31, 147, 0.15);
+            color: var(--text);
+            padding: 24px;
+            border-radius: 16px;
             text-align: center;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(230, 31, 147, 0.1), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(230, 31, 147, 0.3);
+            box-shadow: 0 12px 32px rgba(230, 31, 147, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .stat-card:hover::before {
+            top: -25%;
+            right: -25%;
         }
 
         .stat-value {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stat-label {
-            font-size: 12px;
-            opacity: 0.9;
+            font-size: 13px;
+            opacity: 0.7;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         /* Status Grid */
@@ -174,10 +256,35 @@
         }
 
         .status-card {
-            padding: 20px;
-            border-radius: 8px;
+            padding: 24px;
+            border-radius: 16px;
             text-align: center;
             color: white;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.5s ease;
+        }
+
+        .status-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .status-card:hover::before {
+            left: 100%;
         }
 
         .status-card.pending {
@@ -197,13 +304,15 @@
         }
 
         .status-value {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
         .status-label {
-            font-size: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0.95;
         }
 
         /* Volume List */
