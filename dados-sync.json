@@ -2864,7 +2864,7 @@
         "cliente": "Rodrigues Jacira Reis",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 10,
+        "quantidade": 20,
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
@@ -4400,5 +4400,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-04-01T23:08:19.680Z"
+  "lastUpdate": "2026-04-01T23:08:33.716Z"
 }
