@@ -2816,7 +2816,7 @@
         "cliente": "Rodrigues Ponta Negra",
         "produto": "Alface Americana",
         "categoria": "Desfolhado",
-        "quantidade": 10,
+        "quantidade": 20,
         "tipo_venda": "",
         "observacoes": "",
         "status": "pendente"
@@ -4400,5 +4400,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-04-01T23:09:31.674Z"
+  "lastUpdate": "2026-04-01T23:09:52.134Z"
 }
