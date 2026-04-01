@@ -1283,7 +1283,7 @@
         "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pronto"
       },
       {
         "id": "order_127",
@@ -1295,7 +1295,7 @@
         "quantidade": 10,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pronto"
       },
       {
         "id": "order_128",
@@ -1307,7 +1307,7 @@
         "quantidade": 5,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pronto"
       },
       {
         "id": "order_129",
@@ -1319,7 +1319,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pronto"
       },
       {
         "id": "order_130",
@@ -1331,7 +1331,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pronto"
       },
       {
         "id": "order_131",
@@ -4399,7 +4399,46 @@
         ]
       }
     ],
-    "prioridades": {}
+    "prioridades": {
+      "sexta-feira": [
+        "33",
+        "35",
+        "58",
+        "57",
+        "8",
+        "16",
+        "38",
+        "41",
+        "42",
+        "14",
+        "19",
+        "24",
+        "54",
+        "18",
+        "30",
+        "22",
+        "3",
+        "4",
+        "5",
+        "55",
+        "56"
+      ],
+      "quarta-feira": [
+        "38",
+        "42",
+        "57",
+        "33",
+        "43",
+        "client_1774998176523",
+        "50",
+        "40",
+        "16",
+        "37",
+        "44",
+        "39",
+        "34"
+      ]
+    }
   },
-  "lastUpdate": "2026-04-01T23:56:22.726Z"
+  "lastUpdate": "2026-04-01T23:56:42.475Z"
 }
