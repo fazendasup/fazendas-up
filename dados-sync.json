@@ -1391,7 +1391,7 @@
         "quantidade": 2,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_136",
@@ -1403,7 +1403,7 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "plano",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_137",
@@ -1415,7 +1415,7 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_141",
@@ -4400,5 +4400,5 @@
       }
     ]
   },
-  "lastUpdate": "2026-04-01T23:10:39.067Z"
+  "lastUpdate": "2026-04-01T23:29:11.861Z"
 }
