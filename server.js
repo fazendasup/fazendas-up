@@ -11,6 +11,17 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+// Evita HTML/CSS “preso” no cache do navegador ao iterar o layout (Ctrl+F5 também ajuda)
+app.use(express.static(__dirname, {
+  setHeaders(res, filePath) {
+    const base = path.basename(filePath);
+    if (base.endsWith('.html') || base === 'index.html') {
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+    }
+  }
+}));
 
 // Arquivo de dados
 const DATA_FILE = path.join(__dirname, 'dados-sync.json');

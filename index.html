@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FazendasUp - Gestão de Pedidos</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>Fazendas Up · Central de comando</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,32 +16,129 @@
             box-sizing: border-box;
         }
 
+        /* Tokens alinhados a fuBrand (apps/web): esmeralda + índigo + slate */
         :root {
-            --primary: #e61f93;
-            --primary-dark: #c4177d;
-            --primary-light: #f472b6;
-            --secondary: #4a1256;
-            --secondary-light: #6b2080;
-            --accent: #7c3aed;
-            --danger: #ef4444;
+            --fu-primary: #10b981;
+            --fu-primary-hover: #059669;
+            --fu-secondary: #1e40af;
+            --fu-secondary-hover: #1d4ed8;
+            --fu-accent: #f59e0b;
+            --fu-surface-deep: #030712;
+
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #6ee7b7;
+            --secondary: #1e40af;
+            --secondary-light: #1d4ed8;
+            --accent: #f59e0b;
+            --danger: #dc2626;
             --warning: #f59e0b;
             --success: #10b981;
             --pending: #f59e0b;
             --delivered: #10b981;
             --cancelled: #ef4444;
-            --ready: #7c3aed;
-            --bg: #faf5f8;
+            --ready: #6366f1;
+            --bg: #f1f5f9;
             --surface: #ffffff;
-            --text: #2d1b33;
-            --text-light: #6b5570;
-            --border: #e8d5ec;
+            --card-bg: rgba(255, 255, 255, 0.82);
+            --muted-bg: #f1f5f9;
+            --text: #0f172a;
+            --text-light: #475569;
+            --border: rgba(148, 163, 184, 0.55);
+            --sidebar-bg: rgba(255, 255, 255, 0.78);
+            --sidebar-border: rgba(148, 163, 184, 0.45);
+            --glass-bg: rgba(255, 255, 255, 0.82);
+            --header-bg: rgba(255, 255, 255, 0.88);
+            --main-bg: linear-gradient(165deg, #f1f5f9 0%, #f8fafc 40%, #e2e8f0 100%);
+            --shadow-strong: 0 12px 40px rgba(15, 23, 42, 0.12);
+            --shadow-soft: 0 2px 8px rgba(15, 23, 42, 0.06);
+            --shadow-card: 0 4px 24px rgba(15, 23, 42, 0.08);
+            --bg-mesh-1: rgba(16, 185, 129, 0.08);
+            --bg-mesh-2: rgba(30, 64, 175, 0.06);
+            --bg-mesh-3: rgba(245, 158, 11, 0.06);
+            --volume-track: #e2e8f0;
+            --focus-ring: rgba(16, 185, 129, 0.28);
+            --nav-active-glow: 0 0 24px rgba(34, 211, 238, 0.18);
+        }
+
+        :root[data-theme="dark"] {
+            --primary: #34d399;
+            --primary-dark: #10b981;
+            --primary-light: #6ee7b7;
+            --secondary: #60a5fa;
+            --secondary-light: #3b82f6;
+            --bg: #030712;
+            --surface: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --muted-bg: #0f172a;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+            --sidebar-bg: rgba(15, 23, 42, 0.92);
+            --sidebar-border: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --header-bg: rgba(15, 23, 42, 0.88);
+            --main-bg: linear-gradient(165deg, #030712 0%, #0f172a 50%, #020617 100%);
+            --shadow-strong: 0 12px 48px rgba(0, 0, 0, 0.55);
+            --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.45);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.45);
+            --bg-mesh-1: rgba(52, 211, 153, 0.08);
+            --bg-mesh-2: rgba(96, 165, 250, 0.07);
+            --bg-mesh-3: rgba(251, 191, 36, 0.05);
+            --volume-track: #334155;
+            --focus-ring: rgba(52, 211, 153, 0.35);
+            --nav-active-glow: 0 0 28px rgba(34, 211, 238, 0.22);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            pointer-events: none;
+            z-index: -2;
+            border-radius: 50%;
+            filter: blur(50px);
+        }
+
+        body::before {
+            width: 44vw;
+            height: 44vw;
+            top: -18vw;
+            left: -14vw;
+            background: var(--bg-mesh-1);
+        }
+
+        body::after {
+            width: 40vw;
+            height: 40vw;
+            right: -14vw;
+            bottom: -16vw;
+            background: var(--bg-mesh-2);
+        }
+
+        .container::before {
+            content: "";
+            position: fixed;
+            width: 35vw;
+            height: 35vw;
+            top: 24vh;
+            left: 28vw;
+            background: var(--bg-mesh-3);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
@@ -45,83 +147,240 @@
             overflow: hidden;
         }
 
-        /* Sidebar - Design Sofisticado e Minimalista */
+        /* Sidebar — central de comando (referência executiva) */
         .sidebar {
-            width: 280px;
-            background: linear-gradient(135deg, var(--secondary) 0%, #5a1f6b 100%);
-            color: white;
-            padding: 30px 20px;
+            width: 240px;
+            min-width: 240px;
+            background: var(--sidebar-bg);
+            color: var(--text);
+            padding: 20px 16px;
             overflow-y: auto;
-            box-shadow: 8px 0 32px rgba(74, 18, 86, 0.3);
+            box-shadow: 4px 0 32px rgba(15, 23, 42, 0.08);
             display: flex;
             flex-direction: column;
+            border-right: 1px solid var(--sidebar-border);
+            z-index: 2;
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 40px;
+        :root[data-theme="dark"] .sidebar {
+            box-shadow: 4px 0 36px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar-brand {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-brand-row {
             display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text);
+        }
+
+        .logo-sub {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-top: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .sidebar-brand-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--text);
+            cursor: pointer;
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            justify-content: center;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        :root[data-theme="dark"] .icon-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .icon-btn:hover {
+            border-color: rgba(34, 211, 238, 0.45);
+            background: color-mix(in srgb, var(--primary) 8%, rgba(255, 255, 255, 0.85));
+        }
+
+        :root[data-theme="dark"] .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .icon-svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .icon-svg-sm {
+            width: 15px;
+            height: 15px;
         }
 
         .nav-tabs {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             flex: 1;
         }
 
         .tab-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-light);
+            padding: 11px 14px;
             border-radius: 12px;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
             text-align: left;
-            backdrop-filter: blur(10px);
             position: relative;
-            overflow: hidden;
         }
 
-        .tab-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
+        .tab-btn .tab-btn-label {
+            flex: 1;
+            min-width: 0;
         }
 
         .tab-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            transform: translateX(4px);
+            background: color-mix(in srgb, var(--text) 5%, transparent);
+            border-color: rgba(148, 163, 184, 0.35);
+            color: var(--text);
         }
 
-        .tab-btn:hover::before {
-            left: 100%;
-        }
-
+        /* Nav ativa: gradiente esmeralda/ciano + borda cyan (fuBrand / AppShell) */
         .tab-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-color: var(--primary-light);
-            color: white;
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.12));
+            border: 1px solid rgba(34, 211, 238, 0.45);
+            color: #0f766e;
+            box-shadow: var(--nav-active-glow);
+        }
+
+        :root[data-theme="dark"] .tab-btn.active {
+            color: #a5f3fc;
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.22), rgba(6, 182, 212, 0.14));
+            border-color: rgba(34, 211, 238, 0.38);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-ic {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .side-action-btn--ic {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+
+        .login-brand-title {
+            text-align: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            background: linear-gradient(100deg, #0f172a 0%, #10b981 50%, #1e40af 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        :root[data-theme="dark"] .login-brand-title {
+            background: linear-gradient(100deg, #fff 0%, #6ee7b7 45%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .login-actions-fu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .login-btn-fu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
             font-weight: 600;
-            box-shadow: 0 8px 24px rgba(230, 31, 147, 0.3);
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+            transition: filter 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .login-btn-fu:hover {
+            filter: brightness(1.06);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+        }
+
+        .login-btn-fu--amber {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+        }
+
+        .login-btn-fu--primary {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+
+        .login-btn-ic {
+            display: inline-flex;
+        }
+
+        .fu-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .fu-section-title .fu-sec-ic {
+            display: inline-flex;
+            color: var(--primary);
+            opacity: 0.95;
         }
 
         /* Main Content */
@@ -130,24 +389,72 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            min-width: 0;
+            background: var(--main-bg);
+            color: var(--text);
         }
 
         .header {
-            background: linear-gradient(135deg, var(--surface) 0%, rgba(255, 255, 255, 0.5) 100%);
-            padding: 24px 30px;
-            border-bottom: 1px solid rgba(230, 31, 147, 0.1);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-            backdrop-filter: blur(10px);
+            background: var(--header-bg);
+            padding: 18px 28px 19px;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 18px rgba(16, 24, 40, 0.06);
+            backdrop-filter: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            position: relative;
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 72%, var(--secondary)) 100%);
+            pointer-events: none;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+        }
+
+        .header-kicker {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: #155e75;
+        }
+
+        :root[data-theme="dark"] .header-kicker {
+            color: rgba(34, 211, 238, 0.75);
         }
 
         .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            text-transform: none;
+            background: linear-gradient(100deg, #0f172a 0%, #334155 55%, #64748b 100%);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -0.5px;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        :root[data-theme="dark"] .header h1 {
+            background: linear-gradient(100deg, #ffffff 0%, #e2e8f0 45%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
         }
 
         #content {
@@ -156,21 +463,36 @@
             padding: 20px;
         }
 
-        /* Sections */
+        /* Sections — glass (fuGlass): blur + borda slate / dark white/10 */
         .section {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
-            padding: 28px;
-            margin-bottom: 24px;
-            border-radius: 16px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(230, 31, 147, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.35s ease;
+            background: var(--card-bg);
+            padding: 22px 24px;
+            margin-bottom: 20px;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-card);
+            border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        :root[data-theme="dark"] .section {
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+        }
+
+        .section::before {
+            display: none;
         }
 
         .section:hover {
-            border-color: rgba(230, 31, 147, 0.2);
-            box-shadow: 0 8px 32px rgba(230, 31, 147, 0.1);
+            border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+            box-shadow: var(--shadow-strong);
+        }
+
+        :root[data-theme="dark"] .section {
+            box-shadow: var(--shadow-card);
         }
 
         .section-header {
@@ -180,12 +502,144 @@
             margin-bottom: 20px;
         }
 
-        .section h3 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-size: 18px;
+        /* Shell executivo — Agenda, Clientes, Produtos */
+        .page-shell {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4px 2px 16px;
+        }
+
+        .page-shell--inner::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 20px;
+            pointer-events: none;
+            opacity: 0.4;
+            z-index: 0;
+            background:
+                radial-gradient(900px 240px at 10% -20%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 55%),
+                radial-gradient(700px 200px at 90% 0%, color-mix(in srgb, var(--secondary) 14%, transparent), transparent 50%);
+        }
+
+        .page-shell--inner > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-toolbar {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            padding: 16px 18px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            box-shadow: var(--shadow-card);
+        }
+
+        .page-toolbar-text {
+            min-width: 0;
+        }
+
+        .page-kicker {
+            display: block;
+            font-size: 10px;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .page-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin: 0 0 4px 0;
+            line-height: 1.15;
+        }
+
+        .page-sub {
+            font-size: 12px;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.4;
+            max-width: 520px;
+        }
+
+        .page-toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .page-kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .page-kpi-card {
+            position: relative;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--primary);
+            background: var(--card-bg);
+            box-shadow: var(--shadow-card);
+        }
+
+        .page-kpi-card.page-kpi-card--blue {
+            border-left-color: var(--secondary);
+        }
+
+        .page-kpi-card .page-kpi-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .page-kpi-card.page-kpi-card--blue .page-kpi-label {
+            color: var(--secondary);
+        }
+
+        .page-kpi-value {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-variant-numeric: tabular-nums;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+        }
+
+        .page-kpi-hint {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        .page-list {
+            min-height: 40px;
+        }
+
+        .section h3 {
+            color: var(--text);
+            margin-bottom: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         /* Stats Grid */
@@ -197,55 +651,92 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, rgba(230, 31, 147, 0.05), rgba(74, 18, 86, 0.05));
-            border: 1px solid rgba(230, 31, 147, 0.15);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             color: var(--text);
-            padding: 24px;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
+            padding: 14px 16px;
+            border-radius: 14px;
+            text-align: left;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow-card);
         }
 
         .stat-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(230, 31, 147, 0.1), transparent);
-            transition: all 0.6s ease;
+            display: none;
         }
 
         .stat-card:hover {
-            border-color: rgba(230, 31, 147, 0.3);
-            box-shadow: 0 12px 32px rgba(230, 31, 147, 0.15);
-            transform: translateY(-4px);
-        }
-
-        .stat-card:hover::before {
-            top: -25%;
-            right: -25%;
+            border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+            box-shadow: var(--shadow-strong);
         }
 
         .stat-value {
-            font-size: 36px;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-variant-numeric: tabular-nums;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 6px;
+            color: var(--text);
+            background: none;
+            -webkit-text-fill-color: currentColor;
+            letter-spacing: -0.04em;
         }
 
         .stat-label {
             font-size: 13px;
-            opacity: 0.7;
+            opacity: 0.9;
             font-weight: 500;
             letter-spacing: 0.5px;
+            color: var(--text-light);
+        }
+
+        .side-action-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            width: 100%;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .side-action-btn:hover {
+            background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+            border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+        }
+
+        .theme-toggle-btn {
+            background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+            border-color: color-mix(in srgb, var(--primary) 28%, var(--border));
+            color: var(--text);
+        }
+
+        :root[data-theme="dark"] input,
+        :root[data-theme="dark"] select,
+        :root[data-theme="dark"] textarea,
+        :root[data-theme="dark"] .modal-content,
+        :root[data-theme="dark"] .cliente-item,
+        :root[data-theme="dark"] .pedido-item,
+        :root[data-theme="dark"] .produto-item {
+            background-color: var(--card-bg) !important;
+            color: var(--text) !important;
+            border-color: var(--border) !important;
+        }
+
+        :root[data-theme="dark"] #diaSelect {
+            background: var(--card-bg) !important;
+            color: var(--text) !important;
+            border-color: var(--border) !important;
+        }
+
+        :root[data-theme="dark"] .form-group label {
+            color: var(--text);
         }
 
         /* Status Grid */
@@ -256,63 +747,102 @@
         }
 
         .status-card {
-            padding: 24px;
-            border-radius: 16px;
-            text-align: center;
-            color: white;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 12px 14px;
+            border-radius: 14px;
+            text-align: left;
+            color: var(--text);
+            transition: all 0.28s ease;
             font-weight: 600;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
             position: relative;
             overflow: hidden;
-        }
-
-        .status-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: left 0.5s ease;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            box-shadow: var(--shadow-card);
         }
 
         .status-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .status-card:hover::before {
-            left: 100%;
+            transform: translateY(-2px);
+            border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
         }
 
         .status-card.pending {
-            background: var(--warning);
+            border-left: 4px solid var(--warning);
         }
 
         .status-card.delivered {
-            background: var(--success);
+            border-left: 4px solid var(--success);
         }
 
         .status-card.cancelled {
-            background: var(--danger);
+            border-left: 4px solid var(--danger);
         }
 
         .status-card.ready {
+            border-left: 4px solid var(--ready);
+        }
+
+        .status-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .status-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .status-icon .icon-svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+        }
+
+        .status-card.pending .status-icon {
+            background: var(--warning);
+        }
+
+        .status-card.ready .status-icon {
             background: var(--ready);
         }
 
+        .status-card.delivered .status-icon {
+            background: var(--success);
+        }
+
+        .status-card.cancelled .status-icon {
+            background: var(--danger);
+        }
+
         .status-value {
-            font-size: 32px;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-variant-numeric: tabular-nums;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 8px;
+            line-height: 1;
+            margin-bottom: 0;
+            letter-spacing: -0.04em;
         }
 
         .status-label {
-            font-size: 13px;
-            font-weight: 500;
-            opacity: 0.95;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 3px;
+        }
+
+        .status-sub {
+            font-size: 10px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
         }
 
         /* Volume List */
@@ -337,14 +867,15 @@
         .volume-bar {
             flex: 1;
             height: 20px;
-            background: var(--bg);
-            border-radius: 4px;
+            background: var(--volume-track);
+            border-radius: 999px;
             overflow: hidden;
+            border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
         }
 
         .volume-fill {
             height: 100%;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
             transition: width 0.3s ease;
         }
 
@@ -378,8 +909,9 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px;
-            background: var(--bg);
-            border-radius: 6px;
+            background: var(--muted-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
             border-left: 4px solid var(--primary);
         }
 
@@ -405,10 +937,12 @@
         }
 
         .client-delivery-card {
-            background: var(--bg);
-            padding: 15px;
-            border-radius: 8px;
+            background: var(--card-bg);
+            padding: 16px 18px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
             border-left: 4px solid var(--primary);
+            box-shadow: var(--shadow-soft);
         }
 
         .client-header {
@@ -478,11 +1012,12 @@
 
         /* Day Sections */
         .day-section {
-            background: var(--surface);
+            background: var(--card-bg);
             padding: 20px;
             margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-soft);
         }
 
         .day-section h3 {
@@ -498,9 +1033,10 @@
         }
 
         .cliente-group {
-            background: var(--bg);
+            background: var(--muted-bg);
             padding: 12px;
-            border-radius: 6px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
             border-left: 4px solid var(--primary);
         }
 
@@ -517,22 +1053,17 @@
         }
 
         .pedido-item {
-            background: white;
+            background: var(--card-bg);
             padding: 10px;
-            border-radius: 4px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
             border-left: 3px solid var(--secondary);
         }
 
-        .pedido-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-        }
-
         .pedido-produto {
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text);
+            font-size: 12px;
         }
 
         .pedido-qty {
@@ -560,19 +1091,41 @@
             border-radius: 3px;
         }
 
+        .pedido-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
         .pedido-actions {
             display: flex;
             gap: 8px;
             margin-top: 8px;
         }
 
-        .status-select {
-            flex: 1;
-            padding: 6px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 12px;
+        .prod-line-remove {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            border: none;
+            border-radius: 8px;
             cursor: pointer;
+            flex-shrink: 0;
+            background: color-mix(in srgb, var(--danger) 14%, transparent);
+            color: var(--danger);
+        }
+
+        .prod-line-remove:hover {
+            background: color-mix(in srgb, var(--danger) 22%, transparent);
+        }
+
+        .prod-line-remove .icon-svg {
+            width: 16px;
+            height: 16px;
         }
 
         .btn-edit,
@@ -582,6 +1135,393 @@
             background: transparent;
             cursor: pointer;
             font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-delete .icon-svg {
+            width: 16px;
+            height: 16px;
+            color: var(--danger);
+        }
+
+        /* ═══ Agenda — toolbar combina .page-toolbar + controles ═══ */
+
+        .agenda-hud-kicker {
+            /* alias visual — manter compatibilidade */
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .agenda-hud-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin: 0 0 4px 0;
+            line-height: 1.15;
+        }
+
+        .agenda-hud-sub {
+            font-size: 12px;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .agenda-hud-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .agenda-hud-search {
+            min-width: 200px;
+            padding: 8px 12px 8px 14px;
+            font-size: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .agenda-hud-search:focus {
+            border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+            box-shadow: 0 0 0 3px var(--focus-ring);
+        }
+
+        .agenda-hud-btn {
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text);
+            transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .agenda-hud-btn:hover {
+            border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+        }
+
+        .agenda-hud-btn-accent {
+            border: none;
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--primary) 72%, var(--secondary)));
+            box-shadow: 0 4px 16px color-mix(in srgb, var(--primary) 35%, transparent);
+        }
+
+        .agenda-hud-btn-accent:hover {
+            transform: translateY(-1px);
+        }
+
+        .agenda-hud-body {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .agenda-hud-day {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            box-shadow: var(--shadow-card);
+        }
+
+        .agenda-hud-day-bar {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 8px 14px 8px 16px;
+            background: linear-gradient(90deg, color-mix(in srgb, var(--primary) 14%, var(--muted-bg)), var(--card-bg));
+            border-bottom: 1px solid var(--border);
+        }
+
+        .agenda-hud-day-bar::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 0 2px 2px 0;
+        }
+
+        .agenda-hud-day-left {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .agenda-hud-day-code {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: var(--text);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .agenda-hud-day-full {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-light);
+        }
+
+        .agenda-hud-day-metric {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: color-mix(in srgb, var(--primary) 10%, var(--card-bg));
+            color: var(--text);
+        }
+
+        .agenda-hud-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 10px 12px 12px;
+        }
+
+        .agenda-hud-client.agenda-tone-0 { --agenda-client-accent: #0d9488; }
+        .agenda-hud-client.agenda-tone-1 { --agenda-client-accent: #7c3aed; }
+        .agenda-hud-client.agenda-tone-2 { --agenda-client-accent: #059669; }
+        .agenda-hud-client.agenda-tone-3 { --agenda-client-accent: #d97706; }
+        .agenda-hud-client.agenda-tone-4 { --agenda-client-accent: #e11d48; }
+        .agenda-hud-client.agenda-tone-5 { --agenda-client-accent: #2563eb; }
+
+        .agenda-hud-client {
+            position: relative;
+            border-radius: 12px;
+            border: 1px solid color-mix(in srgb, var(--agenda-client-accent) 35%, var(--border));
+            background: color-mix(in srgb, var(--agenda-client-accent) 6%, var(--card-bg));
+            box-shadow: inset 0 1px 0 color-mix(in srgb, var(--agenda-client-accent) 18%, transparent);
+            overflow: hidden;
+        }
+
+        .agenda-hud-client::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--agenda-client-accent), color-mix(in srgb, var(--agenda-client-accent) 45%, var(--card-bg)));
+        }
+
+        .agenda-hud-client-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 10px 5px 12px;
+            border-bottom: 1px solid color-mix(in srgb, var(--agenda-client-accent) 18%, var(--border));
+            background: color-mix(in srgb, var(--agenda-client-accent) 10%, var(--muted-bg));
+        }
+
+        .agenda-hud-client-idx {
+            font-size: 10px;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.06em;
+            color: var(--agenda-client-accent);
+            opacity: 0.85;
+            min-width: 22px;
+        }
+
+        .agenda-hud-client-id {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .agenda-hud-client-name {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .agenda-hud-client-meta {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        .agenda-hud-table {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .agenda-hud-line {
+            display: grid;
+            grid-template-columns: 10px 1fr auto;
+            align-items: center;
+            gap: 6px 10px;
+            padding: 3px 8px 3px 10px;
+            min-height: 28px;
+            border-bottom: 1px solid color-mix(in srgb, var(--agenda-client-accent) 12%, var(--border));
+            transition: background 0.12s;
+        }
+
+        .agenda-hud-line:last-child {
+            border-bottom: none;
+        }
+
+        .agenda-hud-line:hover {
+            background: color-mix(in srgb, var(--agenda-client-accent) 7%, transparent);
+        }
+
+        .agenda-hud-line-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--agenda-client-accent);
+            box-shadow: 0 0 8px color-mix(in srgb, var(--agenda-client-accent) 55%, transparent);
+            justify-self: center;
+        }
+
+        .agenda-hud-line-main {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px 8px;
+            min-width: 0;
+        }
+
+        .agenda-hud-prod {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .agenda-hud-tag {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid color-mix(in srgb, var(--agenda-client-accent) 35%, var(--border));
+            color: var(--text-light);
+            background: color-mix(in srgb, var(--agenda-client-accent) 6%, var(--card-bg));
+        }
+
+        .agenda-hud-qty {
+            font-size: 11px;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+            padding: 1px 7px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: color-mix(in srgb, var(--card-bg) 94%, var(--muted-bg));
+        }
+
+        .agenda-hud-note {
+            flex: 1 1 160px;
+            min-width: 0;
+            font-size: 10px;
+            font-style: italic;
+            color: var(--text-light);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .agenda-hud-line-actions {
+            display: flex;
+            gap: 2px;
+            opacity: 0.35;
+            transition: opacity 0.15s;
+        }
+
+        .agenda-hud-line:hover .agenda-hud-line-actions {
+            opacity: 1;
+        }
+
+        @media (hover: none) {
+            .agenda-hud-line-actions {
+                opacity: 0.65;
+            }
+        }
+
+        .agenda-hud-icon-btn {
+            font-family: inherit;
+            font-size: 12px;
+            line-height: 1;
+            padding: 4px 7px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text-light);
+        }
+
+        .agenda-hud-icon-btn:hover {
+            background: color-mix(in srgb, var(--primary) 12%, transparent);
+            color: var(--text);
+        }
+
+        .agenda-hud-icon-btn.danger:hover {
+            background: color-mix(in srgb, var(--danger) 12%, transparent);
+            color: var(--danger);
+        }
+
+        .agenda-hud-icon-btn .icon-svg {
+            display: block;
+            width: 15px;
+            height: 15px;
+        }
+
+        @media (max-width: 640px) {
+            .agenda-hud-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .agenda-hud-controls {
+                width: 100%;
+            }
+            .agenda-hud-search {
+                flex: 1;
+                min-width: 0;
+            }
+        }
+
+        .status-select {
+            flex: 1;
+            padding: 6px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
         }
 
         /* Grids */
@@ -594,11 +1534,12 @@
 
         .cliente-card,
         .produto-card {
-            background: var(--surface);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-top: 4px solid var(--primary);
+            background: var(--card-bg);
+            padding: 18px 18px 16px;
+            border-radius: 14px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
         }
 
         .cliente-header,
@@ -609,10 +1550,22 @@
             margin-bottom: 15px;
         }
 
+        .card-entity-kicker {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
         .cliente-header h3,
         .produto-header h3 {
             color: var(--text);
-            font-size: 16px;
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         .cliente-section {
@@ -622,10 +1575,18 @@
         }
 
         .cliente-section h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-size: 12px;
             color: var(--primary);
             margin-bottom: 8px;
             text-transform: uppercase;
+        }
+
+        .cliente-section h4 .fu-sec-ic {
+            display: inline-flex;
+            color: var(--primary);
         }
 
         .cliente-info {
@@ -639,9 +1600,10 @@
         .cliente-obs {
             font-size: 13px;
             color: var(--text);
-            background: var(--bg);
+            background: var(--muted-bg);
             padding: 10px;
-            border-radius: 4px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
         }
 
         .precos-list {
@@ -654,9 +1616,10 @@
             display: flex;
             justify-content: space-between;
             font-size: 12px;
-            padding: 6px;
-            background: var(--bg);
-            border-radius: 4px;
+            padding: 8px 10px;
+            background: var(--muted-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
         }
 
         .produto-info,
@@ -675,31 +1638,33 @@
         .btn-delete {
             padding: 10px 16px;
             border: none;
-            border-radius: 6px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            transition: background 0.2s ease, transform 0.15s ease;
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: #10b981;
             color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
+            background: #059669;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
         }
 
         .btn-secondary {
-            background: var(--secondary);
+            background: #1e40af;
             color: white;
             width: 100%;
             margin-top: 10px;
         }
 
         .btn-secondary:hover {
-            background: var(--secondary-light);
+            background: #1d4ed8;
         }
 
         .btn-delete {
@@ -729,14 +1694,16 @@
         }
 
         .modal-content {
-            background: var(--surface);
+            background: var(--card-bg);
+            color: var(--text);
             padding: 30px;
-            border-radius: 12px;
+            border-radius: 16px;
             max-width: 500px;
             width: 90%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-strong);
         }
 
         .modal h2 {
@@ -777,7 +1744,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(230, 31, 147, 0.15);
+            box-shadow: 0 0 0 3px var(--focus-ring);
         }
 
         .form-group-checkbox {
@@ -833,10 +1800,11 @@
 
         /* Agenda Filters */
         .agenda-filters {
-            background: var(--surface);
+            background: var(--card-bg);
             padding: 15px;
             margin-bottom: 20px;
-            border-radius: 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
             display: flex;
             align-items: center;
             gap: 15px;
@@ -859,14 +1827,15 @@
         .status-select-client {
             padding: 8px 12px;
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 12px;
             cursor: pointer;
-            background: white;
+            background: var(--card-bg);
+            color: var(--text);
         }
 
         .client-delivery-card.completed {
-            opacity: 0.7;
+            opacity: 0.92;
         }
 
         .client-delivery-card.ready-card {
@@ -897,6 +1866,363 @@
             border-left: 2px solid var(--primary);
             margin-bottom: 4px;
             color: var(--text);
+        }
+
+        /* Visual V4 — fundo sem mesh; paleta no :root global */
+        body::before,
+        body::after,
+        .container::before {
+            display: none !important;
+        }
+
+        body {
+            background: var(--bg);
+        }
+
+        .header h1 {
+            color: var(--text);
+            background: none;
+            -webkit-text-fill-color: currentColor;
+            letter-spacing: -0.03em;
+            text-transform: none;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .section,
+        .stat-card,
+        .status-card,
+        .pedido-item,
+        .cliente-item,
+        .produto-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-card);
+            border-radius: 14px;
+        }
+
+        .section::before,
+        .stat-card::before,
+        .status-card::before {
+            display: none;
+        }
+
+        .stat-value {
+            background: none;
+            -webkit-text-fill-color: currentColor;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 34px;
+        }
+
+        .side-action-btn {
+            background: var(--card-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            box-shadow: none;
+        }
+
+        .theme-toggle-btn {
+            background: color-mix(in srgb, var(--primary) 20%, var(--surface));
+            border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+        }
+
+        /* Cartões: sempre superfície elevada + texto legível */
+        :root[data-theme="light"] .stat-card,
+        :root[data-theme="light"] .section {
+            background: var(--card-bg) !important;
+            color: var(--text) !important;
+            border-color: var(--border) !important;
+        }
+
+        :root[data-theme="dark"] .stat-card,
+        :root[data-theme="dark"] .section {
+            background: var(--card-bg) !important;
+            color: var(--text) !important;
+            border-color: var(--border) !important;
+        }
+
+        :root[data-theme="dark"] .prod-name-bar,
+        :root[data-theme="dark"] .volume-count,
+        :root[data-theme="dark"] .volume-day {
+            color: var(--text) !important;
+        }
+
+        :root[data-theme="dark"] .client-obs {
+            background: rgba(245, 158, 11, 0.12);
+            color: #fde68a;
+            border: 1px solid rgba(245, 158, 11, 0.35);
+        }
+
+        :root[data-theme="dark"] .custom-prices {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: var(--primary);
+            color: var(--text);
+        }
+
+        :root[data-theme="dark"] .modal {
+            background: rgba(0, 0, 0, 0.72);
+        }
+
+        :root[data-theme="dark"] .tag {
+            color: #0f172a;
+        }
+
+        /* Dashboard v3: visual premium e leitura clara */
+        .dashboard-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .dashboard-toolbar h2 {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        .dashboard-toolbar-lead .page-kicker {
+            margin-bottom: 6px;
+        }
+
+        .dashboard-indicators .stats-grid {
+            margin-bottom: 0;
+            grid-template-columns: repeat(4, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .dashboard-indicators .stat-card {
+            position: relative;
+            padding: 16px 44px 16px 18px;
+            border-radius: 16px;
+            text-align: left;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            background: linear-gradient(145deg, color-mix(in srgb, var(--card-bg) 92%, var(--primary) 8%) 0%, var(--card-bg) 55%);
+            box-shadow: var(--shadow-card);
+        }
+
+        .dashboard-indicators .stat-card:nth-child(2),
+        .dashboard-indicators .stat-card:nth-child(4) {
+            border-left-color: var(--secondary);
+        }
+
+        .stat-card-icon {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            font-size: 15px;
+            line-height: 1;
+            opacity: 0.5;
+            color: var(--text-light);
+        }
+
+        :root[data-theme="dark"] .stat-card-icon {
+            opacity: 0.85;
+            color: #94a3b8;
+        }
+
+        .stat-head {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .stat-head--accent {
+            color: var(--primary);
+        }
+
+        .stat-head--accent-blue {
+            color: #1e40af;
+        }
+
+        :root[data-theme="dark"] .stat-head--accent-blue {
+            color: #60a5fa;
+        }
+
+        .dashboard-indicators .stat-value {
+            font-size: 34px;
+            margin-bottom: 0;
+            line-height: 1.1;
+        }
+
+        .dashboard-indicators .stat-label {
+            font-size: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        .dashboard-status .status-grid {
+            gap: 10px;
+            grid-template-columns: repeat(4, minmax(110px, 1fr));
+        }
+
+        .dashboard-status .status-card {
+            padding: 12px 12px;
+            border-radius: 12px;
+        }
+
+        .dashboard-status .status-value {
+            font-size: 24px;
+            margin-bottom: 2px;
+        }
+
+        .dashboard-volume-stack {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Cartões de volume no dashboard — densidade alta, menos altura por linha */
+        .section.dashboard-volume-block {
+            padding: 12px 14px;
+            margin-bottom: 12px;
+        }
+
+        .dashboard-volume-block h4 {
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .dashboard-volume-block .volume-list {
+            gap: 4px;
+        }
+
+        .products-today-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 8px;
+        }
+
+        .dashboard-volume-block .volume-item {
+            gap: 8px;
+            padding: 3px 8px;
+            min-height: 0;
+            border-radius: 8px;
+            background: color-mix(in srgb, var(--muted-bg) 88%, var(--primary) 10%);
+            border: 1px solid var(--border);
+        }
+
+        :root[data-theme="dark"] .dashboard-volume-block .volume-item {
+            background: color-mix(in srgb, var(--card-bg) 90%, var(--primary) 12%);
+        }
+
+        .dashboard-volume-block .prod-name-bar {
+            min-width: 0;
+            width: auto;
+            max-width: 200px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .dashboard-volume-block .volume-day {
+            width: 30px;
+            min-width: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--primary);
+        }
+
+        .dashboard-volume-block .volume-bar {
+            height: 8px;
+            border-radius: 999px;
+        }
+
+        .dashboard-volume-block .volume-count {
+            width: auto;
+            min-width: 40px;
+            font-size: 11px;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            text-align: right;
+            color: var(--text);
+        }
+
+        .dashboard-deliveries-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+
+        .today-deliveries {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 10px;
+        }
+
+        .client-delivery-card {
+            padding: 12px;
+            border-left: 3px solid var(--primary);
+            border-radius: 10px;
+        }
+
+        .client-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .client-info h4 {
+            margin-bottom: 1px;
+            font-size: 14px;
+        }
+
+        .client-meta {
+            font-size: 11px;
+        }
+
+        .client-produtos {
+            margin-bottom: 8px;
+            padding: 8px;
+        }
+
+        .produtos-list-vertical li {
+            padding: 4px 0 4px 10px;
+            font-size: 12px;
+        }
+
+        .client-tags {
+            margin-bottom: 8px;
+            gap: 6px;
+        }
+
+        .tag {
+            padding: 3px 8px;
+            font-size: 10px;
+            border-radius: 10px;
+        }
+
+        .custom-prices,
+        .client-obs {
+            margin-bottom: 8px;
+        }
+
+        .form-error {
+            margin-top: 8px;
+            color: var(--danger);
+            font-size: 12px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .input-error {
+            border-color: var(--danger) !important;
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--danger) 50%, transparent);
         }
 
         /* Responsive */
@@ -931,6 +2257,20 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .dashboard-top-grid,
+            .dashboard-volume-grid,
+            .dashboard-volume-stack {
+                grid-template-columns: 1fr;
+            }
+
+            .products-today-list {
+                grid-template-columns: 1fr;
+            }
+
+            .today-deliveries {
+                grid-template-columns: 1fr;
+            }
+
             .clientes-grid,
             .produtos-grid {
                 grid-template-columns: 1fr;
@@ -945,6 +2285,72 @@
 </head>
 <body>
 <script>
+const THEME_STORAGE_KEY = 'fazendas-up-theme';
+
+/** Ícones SVG estilo Lucide (identidade Fazendas Up / sem emoji na UI) */
+function fuIcon(name, cls) {
+  const c = cls || 'icon-svg';
+  const a = `class="${c}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"`;
+  const icons = {
+    layout: `<svg ${a}><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>`,
+    calendar: `<svg ${a}><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>`,
+    users: `<svg ${a}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    package: `<svg ${a}><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>`,
+    logOut: `<svg ${a}><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>`,
+    refreshCw: `<svg ${a}><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>`,
+    github: `<svg ${a}><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>`,
+    moon: `<svg ${a}><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`,
+    sun: `<svg ${a}><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`,
+    settings: `<svg ${a}><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>`,
+    shield: `<svg ${a}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>`,
+    truck: `<svg ${a}><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>`,
+    barChart: `<svg ${a}><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>`,
+    mapPin: `<svg ${a}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    listOrdered: `<svg ${a}><line x1="10" x2="21" y1="6" y2="6"/><line x1="10" x2="21" y1="12" y2="12"/><line x1="10" x2="21" y1="18" y2="18"/><path d="M4 6h1v4"/><path d="M4 10h2"/><path d="M6 18H4c0-1 2-2 2-3s-1-1-2-1"/></svg>`,
+    filter: `<svg ${a}><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>`,
+    trash2: `<svg ${a}><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>`,
+    pencil: `<svg ${a}><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`,
+    clock: `<svg ${a}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    packageOpen: `<svg ${a}><path d="M12 22v-9"/><path d="M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.93 1.93 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z"/><path d="M3.29 7 12 12l8.71-5"/><path d="M12 22H3.41a.59.59 0 0 1-.42-.59L3 12.43"/></svg>`,
+    check: `<svg ${a}><path d="M20 6 9 17l-5-5"/></svg>`,
+    x: `<svg ${a}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`,
+    fileText: `<svg ${a}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>`,
+    tags: `<svg ${a}><path d="M9 5H2v7l6.29 6.29a1 1 0 0 0 1.41 0l3.3-3.29a1 1 0 0 0 0-1.42L9.29 5.29A1 1 0 0 0 8.58 5H9z"/><path d="M6 9.01V9"/><path d="m15 5 6.3 6.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L9 11"/></svg>`,
+    messageSquare: `<svg ${a}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+  };
+  return icons[name] || '';
+}
+
+function applyTheme(theme) {
+  const normalizedTheme = theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', normalizedTheme);
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, normalizedTheme);
+  } catch (e) {}
+  updateThemeButton();
+}
+
+function updateThemeButton() {
+  const themeBtn = document.getElementById('btnTema');
+  if (!themeBtn) return;
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  themeBtn.innerHTML = currentTheme === 'dark' ? fuIcon('sun') : fuIcon('moon');
+  themeBtn.title = currentTheme === 'dark' ? 'Tema claro' : 'Tema escuro';
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+}
+
+// Aplicar tema salvo antes da inicialização da interface
+try {
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+} catch (e) {
+  document.documentElement.setAttribute('data-theme', 'light');
+}
+
 // Solicitar token do GitHub na primeira vez
 function setupGitHubToken() {
   if (!localStorage.getItem('githubTokenConfigured')) {
@@ -952,23 +2358,26 @@ function setupGitHubToken() {
     if (token && token.trim()) {
       localStorage.setItem('githubToken', token.trim());
       localStorage.setItem('githubTokenConfigured', 'true');
-      alert('✅ Token configurado! Sincronização ativada.');
+      alert('Token configurado. Sincronização ativada.');
     }
   }
 }
 
 // Chamar ao carregar a página
-window.addEventListener('load', setupGitHubToken);
+window.addEventListener('load', () => {
+  setupGitHubToken();
+  updateThemeButton();
+});
 </script>
 
     <!-- Modal de Login -->
     <div id="loginModal" class="modal" style="display: flex;">
-        <div class="modal-content" style="max-width: 400px; margin: auto;">
-            <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px;">🌱 Fazendas Up</h2>
-            <p style="text-align: center; color: var(--text); margin-bottom: 20px; font-size: 14px;">Selecione seu nível de acesso:</p>
-            <div style="display: flex; gap: 10px; flex-direction: column;">
-                <button onclick="setUserRole('operacional')" style="background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600;">👷 Operacional</button>
-                <button onclick="showAdminPassword()" style="background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600;">🔐 Administrativo</button>
+        <div class="modal-content login-card-fu" style="max-width: 400px; margin: auto;">
+            <h2 class="login-brand-title">Fazendas Up</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 20px; font-size: 14px;">Selecione seu nível de acesso:</p>
+            <div class="login-actions-fu">
+                <button type="button" class="login-btn-fu login-btn-fu--amber" onclick="setUserRole('operacional')"><span class="login-btn-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>Operacional</button>
+                <button type="button" class="login-btn-fu login-btn-fu--primary" onclick="showAdminPassword()"><span class="login-btn-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></span>Administrativo</button>
             </div>
             <div id="adminPasswordDiv" style="display: none; margin-top: 20px;">
                 <input type="password" id="adminPassword" placeholder="Digite a senha" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; box-sizing: border-box;">
@@ -979,22 +2388,36 @@ window.addEventListener('load', setupGitHubToken);
 
     <div class="container" style="display: none;" id="appContainer">
         <div class="sidebar">
-            <div class="logo">🌱 Fazendas Up</div>
-            <div class="nav-tabs">
-                <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
-                <button class="tab-btn" data-tab="agenda">📅 Agenda</button>
-                <button class="tab-btn" data-tab="clientes">👥 Clientes</button>
-                <button class="tab-btn" data-tab="produtos">🥬 Produtos</button>
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-row">
+                    <div>
+                        <div class="logo-mark">FAZENDAS UP</div>
+                        <div class="logo-sub">Central de comando</div>
+                    </div>
+                    <div class="sidebar-brand-actions">
+                        <button type="button" onclick="toggleTheme()" id="btnTema" class="icon-btn theme-toggle-btn" title="Tema escuro"></button>
+                    </div>
+                </div>
             </div>
-            <div style="margin-top: auto; padding-top: 30px; display: flex; flex-direction: column; gap: 8px;">
-                <button onclick="buscarDadosPlanilha()" id="btnAtualizar" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; width: 100%;" title="Buscar dados atualizados da planilha Google Sheets">🔄 Atualizar da Planilha</button>
-                <button onclick="forcarSincronizacaoGitHub()" id="btnSincronizar" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; width: 100%; display: none;" title="Forçar sincronização com GitHub">🔄 Sincronizar com GitHub</button>
+            <nav class="nav-tabs" aria-label="Navegação principal">
+                <button type="button" class="tab-btn active" data-tab="dashboard"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></span><span class="tab-btn-label">Dashboard</span></button>
+                <button type="button" class="tab-btn" data-tab="agenda"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span><span class="tab-btn-label">Agenda</span></button>
+                <button type="button" class="tab-btn" data-tab="clientes"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="tab-btn-label">Clientes</span></button>
+                <button type="button" class="tab-btn" data-tab="produtos"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></span><span class="tab-btn-label">Produtos</span></button>
+            </nav>
+            <div class="sidebar-footer">
+                <button type="button" onclick="logout()" id="btnSair" class="side-action-btn side-action-btn--ic" title="Sair e voltar para a tela de login"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span><span>Sair</span></button>
+                <button type="button" onclick="buscarDadosPlanilha()" id="btnAtualizar" class="side-action-btn side-action-btn--ic" title="Buscar dados atualizados da planilha Google Sheets"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></span><span>Atualizar da Planilha</span></button>
+                <button type="button" onclick="forcarSincronizacaoGitHub()" id="btnSincronizar" class="side-action-btn side-action-btn--ic" style="display: none;" title="Forçar sincronização com GitHub"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></span><span>Sincronizar com GitHub</span></button>
             </div>
         </div>
 
         <div class="main">
             <div class="header">
-                <h1>Fazendas Up - Gestão de Pedidos e Entregas</h1>
+                <div class="header-left">
+                    <span class="header-kicker" id="headerKicker">Operações</span>
+                    <h1 id="headerTitle">Dashboard executivo</h1>
+                </div>
             </div>
             <div id="content"></div>
         </div>
@@ -1003,14 +2426,14 @@ window.addEventListener('load', setupGitHubToken);
     <!-- Modals -->
     <div id="prioridadeModal" class="modal">
         <div class="modal-content">
-            <h2>🎯 Definir Prioridade de Entrega</h2>
+            <h2 class="fu-section-title"><span class="fu-sec-ic" aria-hidden="true"><svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" x2="21" y1="6" y2="6"/><line x1="10" x2="21" y1="12" y2="12"/><line x1="10" x2="21" y1="18" y2="18"/><path d="M4 6h1v4"/><path d="M4 10h2"/><path d="M6 18H4c0-1 2-2 2-3s-1-1-2-1"/></svg></span>Definir prioridade de entrega</h2>
             <div id="prioridadeContent"></div>
         </div>
     </div>
     
     <div id="agendaFiltrosModal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
-            <h2 style="margin-bottom: 15px;">🔍 Filtros</h2>
+            <h2 class="fu-section-title" style="margin-bottom: 15px;"><span class="fu-sec-ic" aria-hidden="true"><svg class="icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></span>Filtros</h2>
             <div id="agendaFiltrosContent"></div>
         </div>
     </div>
@@ -1052,7 +2475,7 @@ window.addEventListener('load', setupGitHubToken);
                 </div>
                 <div style="border-top: 2px solid var(--primary); margin-top: 15px; padding-top: 15px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <label style="font-weight: 600; color: var(--primary); font-size: 15px; margin: 0;">📦 Produtos</label>
+                        <label class="fu-section-title" style="font-weight: 600; color: var(--primary); font-size: 15px; margin: 0;"><span class="fu-sec-ic"><svg class="icon-svg icon-svg-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></span>Produtos</label>
                         <button type="button" onclick="addProdutoLine()" style="background: var(--primary); color: white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;">+ Adicionar Produto</button>
                     </div>
                     <div id="produtosContainer"></div>
@@ -1061,6 +2484,7 @@ window.addEventListener('load', setupGitHubToken);
                     <button type="button" class="btn-primary" onclick="savePedido()">Salvar</button>
                     <button type="button" class="btn-secondary" onclick="closeModal('pedidoModal')">Cancelar</button>
                 </div>
+                <div id="pedidoFormError" class="form-error"></div>
             </form>
         </div>
     </div>
@@ -1078,7 +2502,7 @@ window.addEventListener('load', setupGitHubToken);
                     <textarea id="clienteObservacoes" placeholder="Ex: Boleto para 21 dias..."></textarea>
                 </div>
                 
-                <h3 style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;">📍 Entrega</h3>
+                <h3 class="fu-section-title" style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;"><span class="fu-sec-ic"><svg class="icon-svg icon-svg-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></span>Entrega</h3>
                 <div class="form-group">
                     <label>Período de Entrega</label>
                     <select id="clientePeriodo">
@@ -1096,7 +2520,7 @@ window.addEventListener('load', setupGitHubToken);
                     <label for="clienteCobraEntrega">Cobra taxa de entrega</label>
                 </div>
 
-                <h3 style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;">💰 Faturamento</h3>
+                <h3 class="fu-section-title" style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;"><span class="fu-sec-ic"><svg class="icon-svg icon-svg-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>Faturamento</h3>
                 <div class="form-group">
                     <label>Prazo do Boleto</label>
                     <input type="text" id="clientePrazoBoleto" placeholder="Ex: 10 dias, 30 dias">
@@ -1114,7 +2538,7 @@ window.addEventListener('load', setupGitHubToken);
                     <input type="text" id="clientePrazoBoletoAcumulo" placeholder="Ex: 10 dias">
                 </div>
 
-                <h3 style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;">💵 Preços Especiais</h3>
+                <h3 class="fu-section-title" style="color: var(--primary); margin-top: 20px; margin-bottom: 15px;"><span class="fu-sec-ic"><svg class="icon-svg icon-svg-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>Preços especiais</h3>
                 <div id="precosContainer"></div>
                 <button type="button" class="btn-primary" style="width: 100%; margin-bottom: 15px;" onclick="adicionarPrecoEspecial()">+ Adicionar Preço Especial</button>
 
@@ -1183,19 +2607,21 @@ const CATEGORIAS = ['Buque', 'Desfolhado', 'Pote'];
 // ─── Inicialização ───────────────────────────────────────────────────────────
 
 async function init() {
-  console.log('🚀 Iniciando app...');
+  console.log('[app] Iniciando...');
   await loadData();
-  console.log('📦 Dados carregados. appState:', JSON.stringify(appState, null, 2).substring(0, 200));
+  console.log('[app] Dados carregados. appState:', JSON.stringify(appState, null, 2).substring(0, 200));
   setupEventListeners();
   setupStorageListener();
   setupAutoSync();
   
   // Sincronizar com GitHub imediatamente
-  console.log('🔄 Sincronizando com GitHub na inicialização...');
+  console.log('[sync] Sincronizando com GitHub na inicialização...');
   await syncWithGitHub();
-  console.log('✅ Sincronização inicial concluída');
+  console.log('[sync] Sincronização inicial concluída');
   
   renderDashboard();
+  updateHeaderForTab(appState.currentTab || 'dashboard');
+  updateThemeButton();
 }
 
 // ─── WebSocket Sync (Automático em Tempo Real) ──────────────────────────────
@@ -1212,30 +2638,6 @@ function sendDataToServer(data) {
   }
 }
 
-function showSyncNotification(msg = '☁️ Dados sincronizados!') {
-  const notification = document.createElement('div');
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #4285f4;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 10000;
-    font-size: 14px;
-  `;
-  notification.textContent = msg;
-  document.body.appendChild(notification);
-  
-  setTimeout(() => {
-    notification.style.opacity = '0';
-    notification.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => notification.remove(), 300);
-  }, 2000);
-}
-
 function setupEventListeners() {
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1245,12 +2647,29 @@ function setupEventListeners() {
   });
 }
 
+const TAB_HEADER_META = {
+  dashboard: { kicker: 'Operações', title: 'Dashboard executivo' },
+  agenda: { kicker: 'Logística', title: 'Agenda' },
+  clientes: { kicker: 'Relacionamento', title: 'Clientes' },
+  produtos: { kicker: 'Catálogo', title: 'Produtos' }
+};
+
+function updateHeaderForTab(tab) {
+  const meta = TAB_HEADER_META[tab];
+  const k = document.getElementById('headerKicker');
+  const t = document.getElementById('headerTitle');
+  if (meta && k) k.textContent = meta.kicker;
+  if (meta && t) t.textContent = meta.title;
+}
+
 function switchTab(tab) {
   appState.currentTab = tab;
   
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.tab === tab);
   });
+  
+  updateHeaderForTab(tab);
   
   if (tab === 'dashboard') renderDashboard();
   else if (tab === 'agenda') renderAgenda();
@@ -1304,7 +2723,7 @@ function updateUIByRole() {
     tabs[3].style.display = 'none';
     updateBtn.style.display = 'none';
     syncBtn.style.display = 'none';
-    showTab('dashboard');
+    switchTab('dashboard');
   } else {
     tabs[1].style.display = 'block';
     tabs[2].style.display = 'block';
@@ -1445,7 +2864,7 @@ function syncDataFromStorage(dataString) {
       z-index: 10000;
       font-size: 14px;
     `;
-    notification.textContent = '🔄 Sincronizando dados...';
+    notification.textContent = 'Sincronizando dados…';
     document.body.appendChild(notification);
     
     // Carregar os novos dados
@@ -5734,104 +7153,134 @@ function renderDashboard() {
   const opcoesHtml = `<option value="hoje" ${diaVisualizacao === 'hoje' ? 'selected' : ''}>Hoje</option>` + diasSemana.map(dia => `<option value="${dia}" ${diaVisualizacao === dia ? 'selected' : ''}>${dia}</option>`).join('');
   
   content.innerHTML = `
-    <div class="dashboard">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h2>📊 Dashboard</h2>
+    <div class="dashboard page-shell">
+      <div class="dashboard-toolbar">
+        <div class="dashboard-toolbar-lead">
+          <span class="page-kicker">Operações · visão do dia</span>
+          <h2 class="fu-section-title" style="margin:0;font-size:17px;font-weight:800;"><span class="fu-sec-ic">${fuIcon('layout','icon-svg')}</span>Painel operacional</h2>
+        </div>
         <div style="display: flex; align-items: center; gap: 10px;">
-          <label for="diaSelect" style="font-weight: 500; color: var(--text);">Visualizar:</label>
-           <select id="diaSelect" style="padding: 8px 12px; border: 2px solid var(--border); border-radius: 6px; background: white; color: var(--text); font-size: 14px; cursor: pointer;">
+          <label for="diaSelect" style="font-weight: 500; color: var(--text); font-size: 13px;">Visualizar:</label>
+           <select id="diaSelect" style="padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--card-bg); color: var(--text); font-size: 14px; cursor: pointer;">
             ${opcoesHtml}
           </select>
         </div>
       </div>
-      
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-value">${stats.totalPedidos}</div>
-          <div class="stat-label">Pedidos</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">${stats.totalQuantidade}</div>
-          <div class="stat-label">Itens</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">${stats.clientesUnicos}</div>
-          <div class="stat-label">Clientes</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">${stats.produtosUnicos}</div>
-          <div class="stat-label">Produtos</div>
+
+      <div class="section dashboard-indicators">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-card-icon" aria-hidden="true">${fuIcon('barChart','icon-svg icon-svg-sm')}</span>
+            <div class="stat-head stat-head--accent">Pedidos</div>
+            <div class="stat-value">${stats.totalPedidos}</div>
+            <div class="stat-label">No período selecionado</div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card-icon" aria-hidden="true">${fuIcon('packageOpen','icon-svg icon-svg-sm')}</span>
+            <div class="stat-head stat-head--accent-blue">Itens</div>
+            <div class="stat-value">${stats.totalQuantidade}</div>
+            <div class="stat-label">Unidades somadas</div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card-icon" aria-hidden="true">${fuIcon('users','icon-svg icon-svg-sm')}</span>
+            <div class="stat-head stat-head--accent">Clientes</div>
+            <div class="stat-value">${stats.clientesUnicos}</div>
+            <div class="stat-label">Clientes distintos</div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card-icon" aria-hidden="true">${fuIcon('package','icon-svg icon-svg-sm')}</span>
+            <div class="stat-head stat-head--accent-blue">Produtos</div>
+            <div class="stat-value">${stats.produtosUnicos}</div>
+            <div class="stat-label">SKUs no recorte</div>
+          </div>
         </div>
       </div>
 
-      <div class="section">
-        <h3 id="statusTitle">🚚 Status de Entregas (por cliente - hoje)</h3>
+      <div class="section dashboard-status">
+        <h3 id="statusTitle" class="fu-section-title"><span class="fu-sec-ic">${fuIcon('truck','icon-svg icon-svg-sm')}</span><span id="statusTitleText">Status de Entregas (por cliente - hoje)</span></h3>
         <div class="status-grid">
           <div class="status-card pending">
-            <div class="status-value">${stats.pendentes}</div>
+            <div class="status-card-top">
+              <span class="status-icon">${fuIcon('clock','icon-svg icon-svg-sm')}</span>
+              <div class="status-value">${stats.pendentes}</div>
+            </div>
             <div class="status-label">Pendentes</div>
+            <div class="status-sub">aguardando ação</div>
           </div>
           <div class="status-card ready">
-            <div class="status-value">${stats.prontos}</div>
+            <div class="status-card-top">
+              <span class="status-icon">${fuIcon('packageOpen','icon-svg icon-svg-sm')}</span>
+              <div class="status-value">${stats.prontos}</div>
+            </div>
             <div class="status-label">Prontos</div>
+            <div class="status-sub">prontos para entrega</div>
           </div>
           <div class="status-card delivered">
-            <div class="status-value">${stats.entregues}</div>
+            <div class="status-card-top">
+              <span class="status-icon">${fuIcon('check','icon-svg icon-svg-sm')}</span>
+              <div class="status-value">${stats.entregues}</div>
+            </div>
             <div class="status-label">Entregues</div>
+            <div class="status-sub">finalizados no dia</div>
           </div>
           <div class="status-card cancelled">
-            <div class="status-value">${stats.cancelados}</div>
+            <div class="status-card-top">
+              <span class="status-icon">${fuIcon('x','icon-svg icon-svg-sm')}</span>
+              <div class="status-value">${stats.cancelados}</div>
+            </div>
             <div class="status-label">Cancelados</div>
+            <div class="status-sub">itens interrompidos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-volume-stack">
+        <div class="section dashboard-volume-block">
+          <h4 class="fu-section-title" style="font-size:12px;margin:0 0 6px 0;"><span class="fu-sec-ic">${fuIcon('package','icon-svg icon-svg-sm')}</span>Produtos de Hoje</h4>
+          <div class="volume-list products-today-list">
+            ${(() => {
+              const prods = getProdutosHoje();
+              const maxQtd = Math.max(...prods.map(p => p.quantidade), 1);
+              return prods.map((p, i) => {
+                const pct = (p.quantidade / maxQtd) * 100;
+                return `
+                  <div class="volume-item">
+                    <span class="prod-name-bar">${p.nome}</span>
+                    <div class="volume-bar">
+                      <div class="volume-fill" style="width: ${pct}%"></div>
+                    </div>
+                    <span class="volume-count">${p.quantidade} un</span>
+                  </div>
+                `;
+              }).join('');
+            })()}
+          </div>
+        </div>
+        <div class="section dashboard-volume-block">
+          <h4 class="fu-section-title" style="font-size:12px;margin:0 0 6px 0;"><span class="fu-sec-ic">${fuIcon('barChart','icon-svg icon-svg-sm')}</span>Volume por Dia</h4>
+          <div class="volume-list">
+            ${DIAS_SEMANA.map(dia => {
+              const volume = volumeByDay[dia] || 0;
+              const maxVol = Math.max(...DIAS_SEMANA.map(d => volumeByDay[d] || 0)) || 1;
+              const percentage = (volume / maxVol) * 100;
+              return `
+                <div class="volume-item">
+                  <span class="volume-day">${DIAS_CURTOS[dia]}</span>
+                  <div class="volume-bar">
+                    <div class="volume-fill" style="width: ${percentage}%"></div>
+                  </div>
+                  <span class="volume-count">${volume}</span>
+                </div>
+              `;
+            }).join('')}
           </div>
         </div>
       </div>
 
       <div class="section">
-        <h3>📦 Produtos de Hoje</h3>
-        <div class="volume-list">
-          ${(() => {
-            const prods = getProdutosHoje();
-            const maxQtd = Math.max(...prods.map(p => p.quantidade), 1);
-            return prods.map((p, i) => {
-              const pct = (p.quantidade / maxQtd) * 100;
-              return `
-                <div class="volume-item">
-                  <span class="prod-name-bar">${p.nome}</span>
-                  <div class="volume-bar">
-                    <div class="volume-fill" style="width: ${pct}%"></div>
-                  </div>
-                  <span class="volume-count">${p.quantidade} un</span>
-                </div>
-              `;
-            }).join('');
-          })()}
-        </div>
-      </div>
-
-      <div class="section">
-        <h3>📈 Volume por Dia</h3>
-        <div class="volume-list">
-          ${DIAS_SEMANA.map(dia => {
-            const volume = volumeByDay[dia] || 0;
-            const maxVol = Math.max(...DIAS_SEMANA.map(d => volumeByDay[d] || 0)) || 1;
-            const percentage = (volume / maxVol) * 100;
-            return `
-              <div class="volume-item">
-                <span class="volume-day">${DIAS_CURTOS[dia]}</span>
-                <div class="volume-bar">
-                  <div class="volume-fill" style="width: ${percentage}%"></div>
-                </div>
-                <span class="volume-count">${volume}</span>
-              </div>
-            `;
-          }).join('')}
-        </div>
-      </div>
-
-      <div class="section">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-          <h3 id="entregasTitle">🛍 Entregas de Hoje</h3>
-          ${userRole === 'administrativo' ? `<button class="btn-secondary" onclick="abrirModalPrioridade()" style="padding: 8px 16px; font-size: 12px;">🎯 Definir Prioridade</button>` : ''}
+        <div class="dashboard-deliveries-header">
+          <h3 id="entregasTitle" class="fu-section-title"><span class="fu-sec-ic">${fuIcon('mapPin','icon-svg icon-svg-sm')}</span><span id="entregasTitleText">Entregas de Hoje</span></h3>
+          ${userRole === 'administrativo' ? `<button type="button" class="btn-secondary" onclick="abrirModalPrioridade()" style="padding: 8px 16px; font-size: 12px; width: auto; margin: 0; display: inline-flex; align-items: center; gap: 6px;">${fuIcon('listOrdered','icon-svg icon-svg-sm')}Definir Prioridade</button>` : ''}
         </div>
         <div class="today-deliveries">
           ${clientesHoje.length > 0 ? clientesHoje.map(grupo => {
@@ -5840,9 +7289,6 @@ function renderDashboard() {
             const statusCliente = grupo.pedidos[0]?.status || 'pendente';
             const todoEntregue = statusCliente === 'entregue';
             const todoPronto = statusCliente === 'pronto';
-            
-            // Listar produtos do cliente
-            const produtos = grupo.pedidos.map(p => `${p.produto} (${p.categoria || 'sem cat.'}) x${p.quantidade}`).join(', ');
             
             return `
               <div class="client-delivery-card ${todoEntregue ? 'completed' : ''} ${todoPronto ? 'ready-card' : ''}">
@@ -5902,8 +7348,10 @@ function renderDashboard() {
   // Atualizar títulos com o dia selecionado
   const diaExibicao = diaVisualizacao === 'hoje' ? 'hoje' : diaVisualizacao.toLowerCase();
   const diaCapitalizado = diaVisualizacao === 'hoje' ? 'Hoje' : diaVisualizacao;
-  document.getElementById('statusTitle').textContent = `🚚 Status de Entregas (por cliente - ${diaExibicao})`;
-  document.getElementById('entregasTitle').textContent = `🛍 Entregas de ${diaCapitalizado}`;
+  const st = document.getElementById('statusTitleText');
+  const et = document.getElementById('entregasTitleText');
+  if (st) st.textContent = `Status de Entregas (por cliente - ${diaExibicao})`;
+  if (et) et.textContent = `Entregas de ${diaCapitalizado}`;
   
   // Setup event listener para o seletor de dia
   setTimeout(() => setupDiaSelectListener(), 0);
@@ -5921,18 +7369,48 @@ function renderAgenda() {
   
   appState.clientesUnicos = clientesUnicos;
   
+  const pedidos = appState.data.pedidos || [];
+  const totalPedidos = pedidos.length;
+  const totalUnidades = pedidos.reduce((s, p) => s + (p.quantidade || 0), 0);
+  const diasCobertos = new Set(pedidos.map(p => p.dia_semana).filter(Boolean)).size;
+  
   content.innerHTML = `
-    <div class="agenda">
-      <div class="section-header">
-        <h2>📅 Agenda de Pedidos</h2>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <input type="text" id="agendaPesquisaRapida" placeholder="🔍 Pesquisar..." onkeyup="filterAgendaBySearch(this.value)" style="padding: 5px 8px; border: 2px solid var(--border); border-radius: 6px; width: 150px; font-size: 12px;">
-          <button class="btn-secondary" onclick="openModal('agendaFiltrosModal')" style="padding: 5px 10px; font-size: 12px;">⚙️ Filtros</button>
-          <button class="btn-primary" onclick="appState.editingPedido = null; openModal('pedidoModal')" style="padding: 5px 10px; font-size: 12px;">+ Novo</button>
+    <div class="agenda agenda-hud page-shell page-shell--inner">
+      <header class="agenda-hud-toolbar page-toolbar">
+        <div class="page-toolbar-text">
+          <span class="agenda-hud-kicker page-kicker">Logística · semana</span>
+          <h2 class="agenda-hud-title page-title">Agenda de pedidos</h2>
+          <p class="agenda-hud-sub">Busque por cliente ou produto, filtre por dia e acompanhe o pipeline.</p>
+        </div>
+        <div class="agenda-hud-controls page-toolbar-actions">
+          <input type="text" id="agendaPesquisaRapida" class="agenda-hud-search" placeholder="Buscar cliente ou produto…" onkeyup="filterAgendaBySearch(this.value)" autocomplete="off">
+          <button type="button" class="agenda-hud-btn" onclick="openModal('agendaFiltrosModal')">Filtros</button>
+          <button type="button" class="agenda-hud-btn agenda-hud-btn-accent" onclick="appState.editingPedido = null; openModal('pedidoModal')">+ Novo pedido</button>
+        </div>
+      </header>
+      <div class="page-kpi-strip" aria-label="Resumo da agenda">
+        <div class="page-kpi-card">
+          <div class="page-kpi-label">Pedidos</div>
+          <div class="page-kpi-value">${totalPedidos}</div>
+          <div class="page-kpi-hint">Linhas cadastradas</div>
+        </div>
+        <div class="page-kpi-card page-kpi-card--blue">
+          <div class="page-kpi-label">Unidades</div>
+          <div class="page-kpi-value">${totalUnidades}</div>
+          <div class="page-kpi-hint">Soma de quantidades</div>
+        </div>
+        <div class="page-kpi-card">
+          <div class="page-kpi-label">Clientes</div>
+          <div class="page-kpi-value">${clientesUnicos.length}</div>
+          <div class="page-kpi-hint">Com pedido na base</div>
+        </div>
+        <div class="page-kpi-card page-kpi-card--blue">
+          <div class="page-kpi-label">Dias</div>
+          <div class="page-kpi-value">${diasCobertos}</div>
+          <div class="page-kpi-hint">Dias da semana com pedido</div>
         </div>
       </div>
-      
-      <div id="agenda-list"></div>
+      <div id="agenda-list" class="agenda-hud-body page-list"></div>
     </div>
   `;
   
@@ -6117,32 +7595,53 @@ function renderAgendaList() {
     });
     
     return `
-      <div class="day-section">
-        <h3>${DIAS_CURTOS[dia]} - ${dia} (${pedidosDia.length})</h3>
-        <div class="clientes-list">
-          ${Object.values(porCliente).length > 0 ? Object.values(porCliente).map(grupo => `
-            <div class="cliente-group">
-              <div class="cliente-name">${grupo.cliente}</div>
-              <div class="pedidos-group">
-                ${grupo.pedidos.map(p => `
-                  <div class="pedido-item">
-                    <div class="pedido-top">
-                      <span class="pedido-produto">${p.produto}</span>
-                      <span class="pedido-qty">x${p.quantidade}</span>
+      <section class="agenda-hud-day">
+        <div class="agenda-hud-day-bar">
+          <div class="agenda-hud-day-left">
+            <span class="agenda-hud-day-code">${DIAS_CURTOS[dia]}</span>
+            <span class="agenda-hud-day-full">${dia}</span>
+          </div>
+          <span class="agenda-hud-day-metric">${pedidosDia.length} pedidos</span>
+        </div>
+        <div class="agenda-hud-stack">
+          ${Object.values(porCliente).length > 0 ? Object.values(porCliente).map((grupo, clientIdx) => {
+            const totalItens = grupo.pedidos.reduce((s, p) => s + (p.quantidade || 0), 0);
+            const toneClass = 'agenda-tone-' + (clientIdx % 6);
+            const idxLabel = String(clientIdx + 1).padStart(2, '0');
+            return `
+            <article class="agenda-hud-client ${toneClass}">
+              <div class="agenda-hud-client-top">
+                <span class="agenda-hud-client-idx">${idxLabel}</span>
+                <div class="agenda-hud-client-id">
+                  <span class="agenda-hud-client-name">${grupo.cliente}</span>
+                  <span class="agenda-hud-client-meta">${grupo.pedidos.length} linhas · ${totalItens} un</span>
+                </div>
+              </div>
+              <div class="agenda-hud-table">
+                ${grupo.pedidos.map(p => {
+                  const obsEsc = p.observacoes ? String(p.observacoes).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;') : '';
+                  return `
+                  <div class="agenda-hud-line">
+                    <span class="agenda-hud-line-dot" aria-hidden="true"></span>
+                    <div class="agenda-hud-line-main">
+                      <span class="agenda-hud-prod">${p.produto}</span>
+                      ${p.categoria ? `<span class="agenda-hud-tag">${p.categoria}</span>` : ''}
+                      <span class="agenda-hud-qty">×${p.quantidade}</span>
+                      ${p.observacoes ? `<span class="agenda-hud-note" title="${obsEsc}">${p.observacoes}</span>` : ''}
                     </div>
-                    ${p.categoria ? `<div class="pedido-categoria">${p.categoria}</div>` : ''}
-                    ${p.observacoes ? `<div class="pedido-obs">${p.observacoes}</div>` : ''}
-                    <div class="pedido-actions">
-                      <button class="btn-edit" onclick="editPedido('${p.id}')">✏️</button>
-                      <button class="btn-delete" onclick="deletePedido('${p.id}')">🗑️</button>
+                    <div class="agenda-hud-line-actions">
+                      <button type="button" class="agenda-hud-icon-btn" onclick="editPedido('${p.id}')" title="Editar">${fuIcon('pencil', 'icon-svg')}</button>
+                      <button type="button" class="agenda-hud-icon-btn danger" onclick="deletePedido('${p.id}')" title="Excluir">${fuIcon('trash2', 'icon-svg')}</button>
                     </div>
                   </div>
-                `).join('')}
+                `;
+                }).join('')}
               </div>
-            </div>
-          `).join('') : '<div class="empty-state">Nenhum pedido</div>'}
+            </article>
+          `;
+          }).join('') : '<div class="empty-state">Nenhum pedido</div>'}
         </div>
-      </div>
+      </section>
     `;
   }).join('');
 }
@@ -6151,14 +7650,47 @@ function renderAgendaList() {
 
 function renderClientes() {
   const content = document.getElementById('content');
+  const clientes = appState.data.clientes || [];
+  const n = clientes.length;
+  const comPrecos = clientes.filter(c => c.precos && c.precos.length > 0).length;
+  const comObs = clientes.filter(c => c.observacoes && String(c.observacoes).trim()).length;
+  const comEntrega = clientes.filter(c => c.periodoEntrega || c.horarioMaximo).length;
   
   content.innerHTML = `
-    <div class="clientes">
-      <div class="section-header">
-        <h2>👥 Clientes</h2>
-        <button class="btn-primary" onclick="appState.editingCliente = null; openModal('clienteModal')">+ Novo Cliente</button>
+    <div class="clientes page-shell page-shell--inner">
+      <header class="page-toolbar">
+        <div class="page-toolbar-text">
+          <span class="page-kicker">Relacionamento</span>
+          <h2 class="page-title">Clientes</h2>
+          <p class="page-sub">Cadastro completo: entrega, faturamento, preços especiais e observações.</p>
+        </div>
+        <div class="page-toolbar-actions">
+          <button type="button" class="btn-primary" onclick="appState.editingCliente = null; openModal('clienteModal')">+ Novo cliente</button>
+        </div>
+      </header>
+      <div class="page-kpi-strip" aria-label="Resumo de clientes">
+        <div class="page-kpi-card">
+          <div class="page-kpi-label">Cadastrados</div>
+          <div class="page-kpi-value">${n}</div>
+          <div class="page-kpi-hint">Total na base</div>
+        </div>
+        <div class="page-kpi-card page-kpi-card--blue">
+          <div class="page-kpi-label">Preços especiais</div>
+          <div class="page-kpi-value">${comPrecos}</div>
+          <div class="page-kpi-hint">Com tabela personalizada</div>
+        </div>
+        <div class="page-kpi-card">
+          <div class="page-kpi-label">Logística</div>
+          <div class="page-kpi-value">${comEntrega}</div>
+          <div class="page-kpi-hint">Com período ou horário</div>
+        </div>
+        <div class="page-kpi-card page-kpi-card--blue">
+          <div class="page-kpi-label">Observações</div>
+          <div class="page-kpi-value">${comObs}</div>
+          <div class="page-kpi-hint">Com notas em texto</div>
+        </div>
       </div>
-      <div id="clientes-list"></div>
+      <div id="clientes-list" class="page-list"></div>
     </div>
   `;
   
@@ -6174,12 +7706,15 @@ function renderClientesList() {
       ${appState.data.clientes.map(c => `
         <div class="cliente-card">
           <div class="cliente-header">
-            <h3>${c.nome}</h3>
-            <button class="btn-delete" onclick="deleteCliente('${c.id}')">🗑️</button>
+            <div>
+              <span class="card-entity-kicker">Cliente</span>
+              <h3>${c.nome}</h3>
+            </div>
+            <button type="button" class="btn-delete" onclick="deleteCliente('${c.id}')" title="Excluir cliente">${fuIcon('trash2', 'icon-svg')}</button>
           </div>
           
           <div class="cliente-section">
-            <h4>📍 Entrega</h4>
+            <h4><span class="fu-sec-ic">${fuIcon('truck', 'icon-svg icon-svg-sm')}</span>Entrega</h4>
             <div class="cliente-info">
               <span>Período: ${c.periodoEntrega || 'Não definido'}</span>
               <span>Horário: ${c.horarioMaximo || 'Não definido'}</span>
@@ -6188,7 +7723,7 @@ function renderClientesList() {
           </div>
           
           <div class="cliente-section">
-            <h4>💰 Faturamento</h4>
+            <h4><span class="fu-sec-ic">${fuIcon('fileText', 'icon-svg icon-svg-sm')}</span>Faturamento</h4>
             <div class="cliente-info">
               <span>Boleto: ${c.prazoBoleto || 'Não definido'}</span>
               <span>Acumula: ${c.acumulaPedidos ? 'Sim' : 'Não'}</span>
@@ -6199,7 +7734,7 @@ function renderClientesList() {
           
           ${c.precos && c.precos.length > 0 ? `
             <div class="cliente-section">
-              <h4>💵 Preços Especiais</h4>
+              <h4><span class="fu-sec-ic">${fuIcon('tags', 'icon-svg icon-svg-sm')}</span>Preços especiais</h4>
               <div class="precos-list">
                 ${c.precos.map(p => `
                   <div class="preco-item">
@@ -6213,7 +7748,7 @@ function renderClientesList() {
           
           ${c.observacoes ? `
             <div class="cliente-section">
-              <h4>📝 Observações</h4>
+              <h4><span class="fu-sec-ic">${fuIcon('messageSquare', 'icon-svg icon-svg-sm')}</span>Observações</h4>
               <div class="cliente-obs">${c.observacoes}</div>
             </div>
           ` : ''}
@@ -6229,14 +7764,49 @@ function renderClientesList() {
 
 function renderProdutos() {
   const content = document.getElementById('content');
+  const produtos = appState.data.produtos || [];
+  const pedidos = appState.data.pedidos || [];
+  const n = produtos.length;
+  const linhasPedido = pedidos.length;
+  const totalUnidades = pedidos.reduce((s, p) => s + (p.quantidade || 0), 0);
+  const categoriasSet = new Set();
+  produtos.forEach(p => (p.categorias || []).forEach(c => categoriasSet.add(c)));
   
   content.innerHTML = `
-    <div class="produtos">
-      <div class="section-header">
-        <h2>🥬 Produtos</h2>
-        <button class="btn-primary" onclick="appState.editingProduto = null; openModal('produtoModal'); document.querySelector('#produtoModal h2').textContent = 'Novo Produto';">+ Novo Produto</button>
+    <div class="produtos page-shell page-shell--inner">
+      <header class="page-toolbar">
+        <div class="page-toolbar-text">
+          <span class="page-kicker">Catálogo</span>
+          <h2 class="page-title">Produtos</h2>
+          <p class="page-sub">Preço base, categorias e estatísticas de uso nos pedidos.</p>
+        </div>
+        <div class="page-toolbar-actions">
+          <button type="button" class="btn-primary" onclick="appState.editingProduto = null; openModal('produtoModal'); document.querySelector('#produtoModal h2').textContent = 'Novo Produto';">+ Novo produto</button>
+        </div>
+      </header>
+      <div class="page-kpi-strip" aria-label="Resumo de produtos">
+        <div class="page-kpi-card">
+          <div class="page-kpi-label">SKUs</div>
+          <div class="page-kpi-value">${n}</div>
+          <div class="page-kpi-hint">Itens no catálogo</div>
+        </div>
+        <div class="page-kpi-card page-kpi-card--blue">
+          <div class="page-kpi-label">Linhas de pedido</div>
+          <div class="page-kpi-value">${linhasPedido}</div>
+          <div class="page-kpi-hint">Vínculos pedido × produto</div>
+        </div>
+        <div class="page-kpi-card">
+          <div class="page-kpi-label">Unidades</div>
+          <div class="page-kpi-value">${totalUnidades}</div>
+          <div class="page-kpi-hint">Volume total pedido</div>
+        </div>
+        <div class="page-kpi-card page-kpi-card--blue">
+          <div class="page-kpi-label">Categorias</div>
+          <div class="page-kpi-value">${categoriasSet.size}</div>
+          <div class="page-kpi-hint">Tags distintas em uso</div>
+        </div>
       </div>
-      <div id="produtos-list"></div>
+      <div id="produtos-list" class="page-list"></div>
     </div>
   `;
   
@@ -6258,8 +7828,11 @@ function renderProdutosList() {
         return `
           <div class="produto-card">
             <div class="produto-header">
-              <h3>${p.nome}</h3>
-              <button class="btn-delete" onclick="deleteProduto('${p.nome}')">🗑️</button>
+              <div>
+                <span class="card-entity-kicker">Produto</span>
+                <h3>${p.nome}</h3>
+              </div>
+              <button type="button" class="btn-delete" onclick="deleteProduto('${p.nome}')" title="Excluir produto">${fuIcon('trash2', 'icon-svg')}</button>
             </div>
             
             <div class="produto-info">
@@ -6297,6 +7870,7 @@ function openModal(modalId) {
       if (modalTitle) modalTitle.textContent = 'Editar Cliente';
     }
   } else if (modalId === 'pedidoModal') {
+    clearPedidoValidationError();
     updateClientSelects();
     // Só resetar se NÃO for edição (editPedido define editingPedido antes de chamar openModal)
     if (!appState.editingPedido) {
@@ -6311,8 +7885,35 @@ function openModal(modalId) {
 
 function closeModal(modalId) {
   document.getElementById(modalId).classList.remove('active');
+  if (modalId === 'pedidoModal') {
+    clearPedidoValidationError();
+  }
   appState.editingPedido = null;
   appState.editingCliente = null;
+}
+
+function clearPedidoValidationError() {
+  const errorEl = document.getElementById('pedidoFormError');
+  if (errorEl) {
+    errorEl.textContent = '';
+    errorEl.style.display = 'none';
+  }
+  ['pedidoCliente', 'pedidoTipoVenda'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('input-error');
+  });
+}
+
+function setPedidoValidationError(message, fieldIds = []) {
+  const errorEl = document.getElementById('pedidoFormError');
+  if (errorEl) {
+    errorEl.textContent = message;
+    errorEl.style.display = 'block';
+  }
+  fieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('input-error');
+  });
 }
 
 // ─── Save Functions ────────────────────────────────────────────────────────
@@ -6327,16 +7928,12 @@ function requestNotificationPermission() {
 
 function sendNotification(title, options = {}) {
   if ('Notification' in window && Notification.permission === 'granted') {
-    new Notification(title, {
-      icon: '🌾',
-      badge: '🌾',
-      ...options
-    });
+    new Notification(title, options);
   }
 }
 
 function notifyPedidoChange(tipo, cliente, produto) {
-  const title = tipo === 'novo' ? '📦 Novo Pedido' : '✏️ Pedido Alterado';
+  const title = tipo === 'novo' ? 'Novo pedido' : 'Pedido alterado';
   const body = `${cliente} - ${produto}`;
   sendNotification(title, { body });
 }
@@ -6344,24 +7941,25 @@ function notifyPedidoChange(tipo, cliente, produto) {
 // ─── Save Functions ────────────────────────────────────────────────────
 
 async function savePedido() {
+  clearPedidoValidationError();
   const clienteId = document.getElementById('pedidoCliente').value;
   const cliente = appState.data.clientes.find(c => c.id === clienteId);
   
   if (!cliente) {
-    alert('Selecione um cliente');
+    setPedidoValidationError('Selecione um cliente para salvar o pedido.', ['pedidoCliente']);
     return;
   }
   
   const produtoLines = getProdutoLines();
   if (produtoLines.length === 0) {
-    alert('Adicione pelo menos um produto');
+    setPedidoValidationError('Adicione pelo menos um produto com quantidade válida.');
     return;
   }
   
   // Validar quantidades
   for (const pl of produtoLines) {
     if (!pl.quantidade || pl.quantidade <= 0) {
-      alert(`Quantidade de "${pl.produto}" deve ser maior que 0`);
+      setPedidoValidationError(`Quantidade de "${pl.produto || 'produto'}" deve ser maior que 0.`);
       return;
     }
   }
@@ -6369,6 +7967,11 @@ async function savePedido() {
   const diaSemana = document.getElementById('pedidoDia').value;
   const tipoVenda = document.getElementById('pedidoTipoVenda').value || '';
   const observacoes = document.getElementById('pedidoObservacoes').value || '';
+
+  if (!tipoVenda) {
+    setPedidoValidationError('Selecione o tipo de venda antes de salvar.', ['pedidoTipoVenda']);
+    return;
+  }
   
   if (appState.editingPedido) {
     // Edição: se só tem 1 produto, atualizar o pedido existente
@@ -6426,7 +8029,8 @@ async function savePedido() {
   await saveData();
   // Limpar o formulário
   document.getElementById('pedidoForm').reset();
-  document.getElementById('produtosContainer').innerHTML = '<div id="produtoLine_0" class="produto-line"><select class="prod-select"><option value="">Selecionar produto...</option></select><input type="number" class="prod-qty" value="1" min="1"><input type="text" class="prod-cat" placeholder="Categoria"><button type="button" onclick="removeProdutoLine(0)">❌</button></div>';
+  clearPedidoValidationError();
+  document.getElementById('produtosContainer').innerHTML = '<div id="produtoLine_0" class="produto-line"><select class="prod-select"><option value="">Selecionar produto...</option></select><input type="number" class="prod-qty" value="1" min="1"><input type="text" class="prod-cat" placeholder="Categoria"><button type="button" class="prod-line-remove" onclick="removeProdutoLine(0)" title="Remover linha">' + fuIcon('x', 'icon-svg') + '</button></div>';
   closeModal('pedidoModal');
   renderAgenda();
 }
@@ -6479,7 +8083,7 @@ async function saveCliente() {
   }
   
   await saveData();
-  sendNotification('👥 Cliente Salvo', { body: nome });
+  sendNotification('Cliente salvo', { body: nome });
   closeModal('clienteModal');
   renderClientes();
 }
@@ -6516,7 +8120,7 @@ async function saveProduto() {
    }
    
    await saveData();
-   sendNotification('🥬 Produto Salvo', { body: nome });
+   sendNotification('Produto salvo', { body: nome });
    closeModal('produtoModal');
    renderProdutos();
  }
@@ -6665,7 +8269,7 @@ function adicionarPrecoEspecial(produtoNome = '', preco = '') {
       ${appState.data.produtos.map(p => `<option value="${p.nome}" ${p.nome === produtoNome ? 'selected' : ''}>${p.nome}</option>`).join('')}
     </select>
     <input type="number" class="preco-valor-input" placeholder="Preço" value="${preco}" step="0.01" min="0">
-    <button type="button" class="btn-delete" onclick="this.parentElement.remove(); saveClienteAposRemoverPreco();">🗑️</button>
+    <button type="button" class="btn-delete" onclick="this.parentElement.remove(); saveClienteAposRemoverPreco();" title="Remover linha">${fuIcon('trash2', 'icon-svg')}</button>
   `;
   container.appendChild(row);
 }
@@ -6884,7 +8488,7 @@ function parseCSV(text) {
 async function buscarDadosPlanilha() {
   const btn = document.getElementById('btnAtualizar');
   const textoOriginal = btn.innerHTML;
-  btn.innerHTML = '⏳ Buscando...';
+  btn.innerHTML = 'Buscando…';
   btn.disabled = true;
   
   try {
@@ -7076,7 +8680,7 @@ async function syncWithGitHub() {
       const remoteTime = new Date(remoteData.lastUpdate).getTime();
       
       if (remoteTime > lastSyncTime) {
-        console.log('📥 Sincronizando dados do GitHub - Timestamp:', remoteData.lastUpdate);
+        console.log('[sync] Sincronizando dados do GitHub —', remoteData.lastUpdate);
         appState.data = remoteData.data;
         appState.lastUpdate = remoteData.lastUpdate;
         lastSyncTime = remoteTime;
@@ -7089,15 +8693,15 @@ async function syncWithGitHub() {
         renderCurrentTab();
         
         // Mostrar notificação
-        showSyncNotification('🔄 Dados sincronizados!');
-        console.log('✅ Dados sincronizados e aba atualizada!');
+        showSyncNotification('Dados sincronizados.', 'success');
+        console.log('[sync] Dados sincronizados e aba atualizada.');
       } else {
         lastSyncSha = apiData.sha;
       }
     } else if (response.status === 403) {
-      console.log('⚠️ Rate limit do GitHub atingido. Aguardando...');
+      console.log('[sync] Rate limit do GitHub atingido. Aguardando...');
     } else {
-      console.log('⚠️ Erro ao sincronizar:', response.status, response.statusText);
+      console.log('[sync] Erro ao sincronizar:', response.status, response.statusText);
     }
   } catch (e) {
     console.log('Erro ao sincronizar:', e.message);
@@ -7106,23 +8710,29 @@ async function syncWithGitHub() {
   }
 }
 
-function showSyncNotification(message) {
+function showSyncNotification(message, variant = 'success') {
   const notif = document.createElement('div');
+  const bg = variant === 'error' ? '#b91c1c' : variant === 'info' ? '#1e40af' : '#059669';
   notif.style.cssText = `
     position: fixed;
     top: 20px;
     right: 20px;
-    background: #4CAF50;
+    background: ${bg};
     color: white;
-    padding: 12px 20px;
-    border-radius: 4px;
+    padding: 12px 18px;
+    border-radius: 12px;
     font-size: 14px;
+    font-weight: 600;
     z-index: 10000;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   `;
   notif.textContent = message;
   document.body.appendChild(notif);
-  
-  setTimeout(() => notif.remove(), 2000);
+  setTimeout(() => {
+    notif.style.opacity = '0';
+    notif.style.transition = 'opacity 0.25s ease';
+    setTimeout(() => notif.remove(), 250);
+  }, 2200);
 }
 
 // Forcar sincronizacao imediata com GitHub (para administrador)
@@ -7135,31 +8745,31 @@ function forcarSincronizacaoGitHub() {
   const btn = document.getElementById('btnSincronizar');
   const textoOriginal = btn.textContent;
   btn.disabled = true;
-  btn.textContent = '⏳ Sincronizando...';
+  btn.textContent = 'Sincronizando…';
   
-  console.log('🔄 Iniciando sincronizacao forcada');
+  console.log('[sync] Iniciando sincronização forçada');
   
   // Limpar localStorage
   localStorage.removeItem(DATA_STORAGE_KEY);
-  console.log('✅ localStorage limpo');
+  console.log('[sync] localStorage limpo');
   
   // Resetar variaveis
   lastSyncTime = 0;
   lastSyncSha = null;
   isSyncing = false;
-  console.log('✅ Variaveis resetadas');
+  console.log('[sync] Variáveis resetadas');
   
   // Aguardar e sincronizar
   setTimeout(() => {
     syncWithGitHub().then(() => {
-      console.log('✅ Sincronizacao concluida');
-      showSyncNotification('✅ Dados sincronizados!');
+      console.log('[sync] Sincronização concluída');
+      showSyncNotification('Dados sincronizados.', 'success');
       renderCurrentTab();
       btn.disabled = false;
       btn.textContent = textoOriginal;
     }).catch(e => {
-      console.error('❌ Erro:', e);
-      showSyncNotification('❌ Erro: ' + e.message);
+      console.error('[sync] Erro:', e);
+      showSyncNotification('Erro: ' + e.message, 'error');
       btn.disabled = false;
       btn.textContent = textoOriginal;
     });
@@ -7184,7 +8794,7 @@ async function saveToGitHub() {
     const binaryString = String.fromCharCode.apply(null, data);
     const base64Content = btoa(binaryString);
     
-    console.log('📤 Salvando no GitHub...');
+    console.log('[sync] Salvando no GitHub...');
     
     // Obter SHA do arquivo
     let sha = null;
@@ -7219,9 +8829,9 @@ async function saveToGitHub() {
     });
     
     if (putResponse.ok) {
-      console.log('✅ Salvo no GitHub!');
+      console.log('[sync] Salvo no GitHub.');
     } else if (putResponse.status === 409) {
-      console.log('⚠️ Conflito de SHA, tentando novamente...');
+      console.log('[sync] Conflito de SHA, tentando novamente...');
       await new Promise(r => setTimeout(r, 500));
       await saveToGitHub();
     } else {
