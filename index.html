@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Fazendas Up · Central de comando</title>
+    <script>
+      window.addEventListener('pageshow', function (ev) {
+        if (ev.persisted) window.location.reload();
+      });
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -768,18 +774,38 @@
 
         .status-card.pending {
             border-left: 4px solid var(--warning);
+            background: color-mix(in srgb, var(--warning) 10%, var(--card-bg));
         }
 
         .status-card.delivered {
             border-left: 4px solid var(--success);
+            background: color-mix(in srgb, var(--success) 10%, var(--card-bg));
         }
 
         .status-card.cancelled {
             border-left: 4px solid var(--danger);
+            background: color-mix(in srgb, var(--danger) 10%, var(--card-bg));
         }
 
         .status-card.ready {
             border-left: 4px solid var(--ready);
+            background: color-mix(in srgb, var(--ready) 11%, var(--card-bg));
+        }
+
+        :root[data-theme="dark"] .status-card.pending {
+            background: color-mix(in srgb, var(--warning) 14%, var(--card-bg));
+        }
+
+        :root[data-theme="dark"] .status-card.delivered {
+            background: color-mix(in srgb, var(--success) 12%, var(--card-bg));
+        }
+
+        :root[data-theme="dark"] .status-card.cancelled {
+            background: color-mix(in srgb, var(--danger) 12%, var(--card-bg));
+        }
+
+        :root[data-theme="dark"] .status-card.ready {
+            background: color-mix(in srgb, var(--ready) 14%, var(--card-bg));
         }
 
         .status-card-top {
@@ -1834,16 +1860,40 @@
             color: var(--text);
         }
 
-        .client-delivery-card.completed {
-            opacity: 0.92;
+        .client-delivery-card--pendente {
+            border-left-color: var(--warning) !important;
+            background: color-mix(in srgb, var(--warning) 9%, var(--card-bg));
         }
 
-        .client-delivery-card.ready-card {
-            border-left: 4px solid var(--ready);
+        .client-delivery-card--pronto {
+            border-left-color: var(--ready) !important;
+            background: color-mix(in srgb, var(--ready) 11%, var(--card-bg));
         }
 
-        .client-delivery-card.completed .client-produtos {
-            opacity: 0.8;
+        .client-delivery-card--entregue {
+            border-left-color: var(--success) !important;
+            background: color-mix(in srgb, var(--success) 10%, var(--card-bg));
+        }
+
+        .client-delivery-card--cancelado {
+            border-left-color: var(--danger) !important;
+            background: color-mix(in srgb, var(--danger) 10%, var(--card-bg));
+        }
+
+        :root[data-theme="dark"] .client-delivery-card--pendente {
+            background: color-mix(in srgb, var(--warning) 14%, var(--card-bg));
+        }
+
+        :root[data-theme="dark"] .client-delivery-card--pronto {
+            background: color-mix(in srgb, var(--ready) 14%, var(--card-bg));
+        }
+
+        :root[data-theme="dark"] .client-delivery-card--entregue {
+            background: color-mix(in srgb, var(--success) 12%, var(--card-bg));
+        }
+
+        :root[data-theme="dark"] .client-delivery-card--cancelado {
+            background: color-mix(in srgb, var(--danger) 12%, var(--card-bg));
         }
 
         .client-produtos {
@@ -3140,11 +3190,10 @@ function renderDashboard() {
             const cliente = appState.data.clientes.find(c => c.id === grupo.clientId);
             const totalQtd = grupo.pedidos.reduce((s, p) => s + p.quantidade, 0);
             const statusCliente = grupo.pedidos[0]?.status || 'pendente';
-            const todoEntregue = statusCliente === 'entregue';
-            const todoPronto = statusCliente === 'pronto';
+            const statusCard = ['pendente', 'pronto', 'entregue', 'cancelado'].includes(statusCliente) ? statusCliente : 'pendente';
             
             return `
-              <div class="client-delivery-card ${todoEntregue ? 'completed' : ''} ${todoPronto ? 'ready-card' : ''}">
+              <div class="client-delivery-card client-delivery-card--${statusCard}">
                 <div class="client-header">
                   <div class="client-info">
                     <h4>${grupo.clientName}</h4>
@@ -4099,10 +4148,9 @@ function editProduto(nome) {
 // ─── Update Status ─────────────────────────────────────────────────────────
 
 async function updateClientStatus(clientId, status) {
-  const hoje = getCurrentDay();
-  // Mudar status de todos os pedidos do cliente NO DIA DE HOJE
+  const diaKey = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
   appState.data.pedidos.forEach(p => {
-    if (p.id_cliente === clientId && p.dia_semana === hoje) {
+    if (p.id_cliente === clientId && p.dia_semana === diaKey) {
       p.status = status;
     }
   });
@@ -4659,16 +4707,11 @@ function forcarSincronizacaoGitHub() {
   btn.textContent = 'Sincronizando…';
   
   console.log('[sync] Iniciando sincronização forçada');
-  
-  // Limpar localStorage
-  localStorage.removeItem(DATA_STORAGE_KEY);
-  console.log('[sync] localStorage limpo');
-  
-  // Resetar variaveis
+  // Não apagar localStorage: mantém cópia local se a API falhar; só força nova leitura no GitHub.
   lastSyncTime = 0;
   lastSyncSha = null;
   isSyncing = false;
-  console.log('[sync] Variáveis resetadas');
+  console.log('[sync] Cursor de sync resetado (dados locais preservados)');
   
   // Aguardar e sincronizar
   setTimeout(() => {

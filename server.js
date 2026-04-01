@@ -11,12 +11,20 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-// Evita HTML/CSS “preso” no cache do navegador ao iterar o layout (Ctrl+F5 também ajuda)
+// Evita servir HTML/JSON antigos: sem ETag/Last-Modified o navegador não faz 304 com cópia velha.
 app.use(express.static(__dirname, {
+  etag: false,
+  lastModified: false,
+  maxAge: 0,
   setHeaders(res, filePath) {
+    const ext = path.extname(filePath);
     const base = path.basename(filePath);
-    if (base.endsWith('.html') || base === 'index.html') {
-      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    const noCache =
+      ext === '.html' ||
+      ext === '.json' ||
+      base === 'index.html';
+    if (noCache) {
+      res.setHeader('Cache-Control', 'private, no-store, no-cache, must-revalidate, max-age=0');
       res.setHeader('Pragma', 'no-cache');
       res.setHeader('Expires', '0');
     }
