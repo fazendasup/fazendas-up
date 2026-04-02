@@ -1860,42 +1860,6 @@
             color: var(--text);
         }
 
-        .client-delivery-card--pendente {
-            border-left-color: var(--warning) !important;
-            background: color-mix(in srgb, var(--warning) 9%, var(--card-bg));
-        }
-
-        .client-delivery-card--pronto {
-            border-left-color: var(--ready) !important;
-            background: color-mix(in srgb, var(--ready) 11%, var(--card-bg));
-        }
-
-        .client-delivery-card--entregue {
-            border-left-color: var(--success) !important;
-            background: color-mix(in srgb, var(--success) 10%, var(--card-bg));
-        }
-
-        .client-delivery-card--cancelado {
-            border-left-color: var(--danger) !important;
-            background: color-mix(in srgb, var(--danger) 10%, var(--card-bg));
-        }
-
-        :root[data-theme="dark"] .client-delivery-card--pendente {
-            background: color-mix(in srgb, var(--warning) 14%, var(--card-bg));
-        }
-
-        :root[data-theme="dark"] .client-delivery-card--pronto {
-            background: color-mix(in srgb, var(--ready) 14%, var(--card-bg));
-        }
-
-        :root[data-theme="dark"] .client-delivery-card--entregue {
-            background: color-mix(in srgb, var(--success) 12%, var(--card-bg));
-        }
-
-        :root[data-theme="dark"] .client-delivery-card--cancelado {
-            background: color-mix(in srgb, var(--danger) 12%, var(--card-bg));
-        }
-
         .client-produtos {
             font-size: 12px;
             color: var(--text-light);
@@ -2213,9 +2177,8 @@
             gap: 10px;
         }
 
-        .client-delivery-card {
+        .today-deliveries .client-delivery-card {
             padding: 12px;
-            border-left: 3px solid var(--primary);
             border-radius: 10px;
         }
 
@@ -2330,6 +2293,47 @@
                 width: 95%;
                 padding: 20px;
             }
+        }
+
+        /* Status nas entregas — no fim do CSS (vence regras genéricas de .client-delivery-card) */
+        .today-deliveries .client-delivery-card.client-delivery-card--pendente {
+            border-left: 4px solid var(--warning) !important;
+            background: rgba(245, 158, 11, 0.12) !important;
+            background: color-mix(in srgb, var(--warning) 14%, var(--card-bg)) !important;
+        }
+
+        .today-deliveries .client-delivery-card.client-delivery-card--pronto {
+            border-left: 4px solid var(--ready) !important;
+            background: rgba(99, 102, 241, 0.12) !important;
+            background: color-mix(in srgb, var(--ready) 14%, var(--card-bg)) !important;
+        }
+
+        .today-deliveries .client-delivery-card.client-delivery-card--entregue {
+            border-left: 4px solid var(--success) !important;
+            background: rgba(16, 185, 129, 0.12) !important;
+            background: color-mix(in srgb, var(--success) 13%, var(--card-bg)) !important;
+        }
+
+        .today-deliveries .client-delivery-card.client-delivery-card--cancelado {
+            border-left: 4px solid var(--danger) !important;
+            background: rgba(220, 38, 38, 0.1) !important;
+            background: color-mix(in srgb, var(--danger) 12%, var(--card-bg)) !important;
+        }
+
+        :root[data-theme="dark"] .today-deliveries .client-delivery-card.client-delivery-card--pendente {
+            background: color-mix(in srgb, var(--warning) 18%, var(--card-bg)) !important;
+        }
+
+        :root[data-theme="dark"] .today-deliveries .client-delivery-card.client-delivery-card--pronto {
+            background: color-mix(in srgb, var(--ready) 18%, var(--card-bg)) !important;
+        }
+
+        :root[data-theme="dark"] .today-deliveries .client-delivery-card.client-delivery-card--entregue {
+            background: color-mix(in srgb, var(--success) 16%, var(--card-bg)) !important;
+        }
+
+        :root[data-theme="dark"] .today-deliveries .client-delivery-card.client-delivery-card--cancelado {
+            background: color-mix(in srgb, var(--danger) 16%, var(--card-bg)) !important;
         }
     </style>
 </head>
@@ -2737,6 +2741,8 @@ let diaVisualizacao = 'hoje'; // 'hoje' ou um dos dias da semana
 // Sistema de Permissões
 let userRole = null; // Não persistir - pedir login toda vez
 const DATA_STORAGE_KEY = 'fazendas-up-data'; // Continuar salvando dados
+/** ms da última gravação local (evita que F5 traga arquivo do Git mais velho e apague alterações só no navegador) */
+const CLIENT_DATA_TS_KEY = 'fazendas-up-client-data-ts';
 
 function setUserRole(role) {
   userRole = role;
@@ -2806,6 +2812,41 @@ window.addEventListener('load', () => {
 async function loadData() {
   const fresh = await fetchLatestDadosSync();
   if (fresh && fresh.bundle && fresh.bundle.data) {
+    const remoteTs = new Date(fresh.bundle.lastUpdate || 0).getTime();
+    const clientTs = parseInt(localStorage.getItem(CLIENT_DATA_TS_KEY), 10) || 0;
+    const storedRaw = localStorage.getItem(DATA_STORAGE_KEY);
+
+    if (clientTs > remoteTs && storedRaw) {
+      try {
+        const parsed = JSON.parse(storedRaw);
+        if (parsed && Array.isArray(parsed.pedidos) && Array.isArray(parsed.clientes)) {
+          appState.data = {
+            pedidos: parsed.pedidos,
+            clientes: parsed.clientes,
+            produtos: Array.isArray(parsed.produtos) ? parsed.produtos : [],
+            prioridades: parsed.prioridades != null ? parsed.prioridades : {},
+          };
+          appState.lastUpdate = new Date(clientTs).toISOString();
+          lastSyncTime = clientTs;
+          if (fresh.sha) lastSyncSha = fresh.sha;
+          localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
+          localStorage.setItem('fazendas-up-version', DATA_VERSION);
+          if (appState.data.prioridades && Object.keys(appState.data.prioridades).length) {
+            localStorage.setItem('fazendas-up-prioridades', JSON.stringify(appState.data.prioridades));
+          } else {
+            const prioridades = localStorage.getItem('fazendas-up-prioridades');
+            if (prioridades && appState.data) {
+              appState.data.prioridades = JSON.parse(prioridades);
+            }
+          }
+          console.log('[data] Mantendo alterações locais (mais recentes que o arquivo remoto).');
+          return;
+        }
+      } catch (e) {
+        console.log('[data] Cópia local inválida, usando remoto:', e.message);
+      }
+    }
+
     const d = fresh.bundle.data;
     appState.data = {
       pedidos: Array.isArray(d.pedidos) ? d.pedidos : [],
@@ -2819,6 +2860,7 @@ async function loadData() {
       lastSyncTime = new Date(appState.lastUpdate).getTime();
     }
     localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
+    localStorage.setItem(CLIENT_DATA_TS_KEY, String(remoteTs));
     localStorage.setItem('fazendas-up-version', DATA_VERSION);
     if (appState.data.prioridades && Object.keys(appState.data.prioridades).length) {
       localStorage.setItem('fazendas-up-prioridades', JSON.stringify(appState.data.prioridades));
@@ -2987,6 +3029,9 @@ async function loadSampleData() {
         };
         if (root.lastUpdate) appState.lastUpdate = root.lastUpdate;
         localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
+        if (root.lastUpdate) {
+          localStorage.setItem(CLIENT_DATA_TS_KEY, String(new Date(root.lastUpdate).getTime()));
+        }
         if (appState.data.prioridades && Object.keys(appState.data.prioridades).length) {
           localStorage.setItem('fazendas-up-prioridades', JSON.stringify(appState.data.prioridades));
         }
@@ -3009,18 +3054,17 @@ async function saveData() {
     isSaving = true;  // Bloquear sincronização automática
     const dataToSave = JSON.stringify(appState.data);
     localStorage.setItem(DATA_STORAGE_KEY, dataToSave);
-    // Verificar se foi salvo corretamente
+    localStorage.setItem(CLIENT_DATA_TS_KEY, String(Date.now()));
     const savedData = localStorage.getItem(DATA_STORAGE_KEY);
     if (!savedData) {
       console.error('Falha ao salvar dados no localStorage');
     }
-    
-    // Sincronizar com GitHub (aguardar conclusão)
+
     await saveToGitHub();
   } catch (e) {
     console.error('Erro ao salvar dados:', e);
   } finally {
-    isSaving = false;  // Liberar sincronização automática
+    isSaving = false;
   }
 }
 
@@ -4645,9 +4689,9 @@ async function syncWithGitHub() {
         lastSyncTime = remoteTime;
         lastSyncSha = apiData.sha;
         
-        // Salvar no localStorage também
         localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
-        
+        localStorage.setItem(CLIENT_DATA_TS_KEY, String(remoteTime));
+
         // Renderizar a aba atual
         renderCurrentTab();
         
@@ -4783,6 +4827,8 @@ async function saveToGitHub() {
     });
     
     if (putResponse.ok) {
+      appState.lastUpdate = now;
+      localStorage.setItem(CLIENT_DATA_TS_KEY, String(new Date(now).getTime()));
       console.log('[sync] Salvo no GitHub.');
     } else if (putResponse.status === 409) {
       console.log('[sync] Conflito de SHA, tentando novamente...');
