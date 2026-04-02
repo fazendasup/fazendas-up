@@ -3117,7 +3117,7 @@
         "produto": "Agrião",
         "categoria": "",
         "quantidade": 10,
-        "tipo_venda": "",
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -3286,6 +3286,18 @@
         "categoria": "",
         "quantidade": 2,
         "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775135466603_1",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "quinta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       }
@@ -4442,5 +4454,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T13:10:16.611Z"
+  "lastUpdate": "2026-04-02T13:11:06.605Z"
 }
