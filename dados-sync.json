@@ -1895,7 +1895,7 @@
         "quantidade": 4,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_188",
@@ -1907,7 +1907,7 @@
         "quantidade": 30,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_189",
@@ -4440,5 +4440,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T00:06:47.232Z"
+  "lastUpdate": "2026-04-02T00:06:53.413Z"
 }
