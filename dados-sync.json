@@ -2936,7 +2936,7 @@
         "cliente": "Frigorifico Amazonas P10",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 0,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -3321,6 +3321,18 @@
         "produto": "Alface Americana",
         "categoria": "",
         "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775140423638_1",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4485,5 +4497,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T14:33:24.591Z"
+  "lastUpdate": "2026-04-02T14:33:43.640Z"
 }
