@@ -4231,6 +4231,19 @@
         "horarioMaximo": "",
         "cobraEntrega": true,
         "precos": []
+      },
+      {
+        "id": "client_1775156367289",
+        "nome": "Amostra",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -4497,5 +4510,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T15:31:38.164Z"
+  "lastUpdate": "2026-04-02T18:59:27.293Z"
 }
