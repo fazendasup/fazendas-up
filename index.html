@@ -65,6 +65,10 @@
             --volume-track: #e2e8f0;
             --focus-ring: rgba(16, 185, 129, 0.28);
             --nav-active-glow: 0 0 24px rgba(34, 211, 238, 0.18);
+            /* Pedidos — superfície editorial (restrito, sem brilho) */
+            --order-surface: var(--card-bg);
+            --order-muted: color-mix(in srgb, var(--muted-bg) 70%, var(--card-bg));
+            --order-line: color-mix(in srgb, var(--border) 70%, transparent);
         }
 
         :root[data-theme="dark"] {
@@ -94,6 +98,9 @@
             --volume-track: #334155;
             --focus-ring: rgba(52, 211, 153, 0.35);
             --nav-active-glow: 0 0 28px rgba(34, 211, 238, 0.22);
+            --order-surface: var(--card-bg);
+            --order-muted: color-mix(in srgb, var(--muted-bg) 55%, var(--card-bg));
+            --order-line: color-mix(in srgb, var(--border) 85%, transparent);
         }
 
         body {
@@ -955,7 +962,7 @@
             font-weight: bold;
         }
 
-        /* Today Deliveries */
+        /* Today Deliveries — cartão limpo (produto / dashboard) */
         .today-deliveries {
             display: flex;
             flex-direction: column;
@@ -963,11 +970,12 @@
         }
 
         .client-delivery-card {
-            background: var(--card-bg);
-            padding: 16px 18px;
-            border-radius: 14px;
+            position: relative;
+            background: var(--order-surface);
+            padding: 16px 16px 16px 18px;
+            border-radius: 12px;
             border: 1px solid var(--border);
-            border-left: 4px solid var(--primary);
+            border-left: 3px solid var(--primary);
             box-shadow: var(--shadow-soft);
         }
 
@@ -1134,11 +1142,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             padding: 0;
             border: none;
-            border-radius: 8px;
+            border-radius: 7px;
             cursor: pointer;
             flex-shrink: 0;
             background: color-mix(in srgb, var(--danger) 14%, transparent);
@@ -1150,8 +1158,8 @@
         }
 
         .prod-line-remove .icon-svg {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
         }
 
         .btn-edit,
@@ -1177,42 +1185,42 @@
         .agenda-hud-kicker {
             /* alias visual — manter compatibilidade */
             display: block;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--text-light);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .agenda-hud-title {
-            font-size: 22px;
+            font-size: 19px;
             font-weight: 800;
             letter-spacing: -0.03em;
             color: var(--text);
-            margin: 0 0 4px 0;
+            margin: 0 0 2px 0;
             line-height: 1.15;
         }
 
         .agenda-hud-sub {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-light);
             margin: 0;
-            line-height: 1.4;
+            line-height: 1.35;
         }
 
         .agenda-hud-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .agenda-hud-search {
-            min-width: 200px;
-            padding: 8px 12px 8px 14px;
-            font-size: 12px;
-            border-radius: 10px;
+            min-width: 180px;
+            padding: 6px 10px 6px 12px;
+            font-size: 11px;
+            border-radius: 9px;
             border: 1px solid var(--border);
             background: var(--card-bg);
             color: var(--text);
@@ -1227,10 +1235,10 @@
 
         .agenda-hud-btn {
             font-family: inherit;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            padding: 8px 14px;
-            border-radius: 10px;
+            padding: 6px 11px;
+            border-radius: 9px;
             cursor: pointer;
             border: 1px solid var(--border);
             background: var(--card-bg);
@@ -1257,15 +1265,15 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
         }
 
         .agenda-hud-day {
             position: relative;
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border);
-            background: var(--card-bg);
+            background: var(--order-surface);
             box-shadow: var(--shadow-card);
         }
 
@@ -1275,20 +1283,13 @@
             align-items: center;
             justify-content: space-between;
             gap: 12px;
-            padding: 8px 14px 8px 16px;
-            background: linear-gradient(90deg, color-mix(in srgb, var(--primary) 14%, var(--muted-bg)), var(--card-bg));
-            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            background: var(--order-muted);
+            border-bottom: 1px solid var(--order-line);
         }
 
         .agenda-hud-day-bar::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
-            border-radius: 0 2px 2px 0;
+            display: none;
         }
 
         .agenda-hud-day-left {
@@ -1298,9 +1299,9 @@
         }
 
         .agenda-hud-day-code {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.04em;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
             color: var(--text);
             font-variant-numeric: tabular-nums;
         }
@@ -1315,19 +1316,19 @@
 
         .agenda-hud-day-metric {
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 600;
             padding: 4px 10px;
             border-radius: 999px;
             border: 1px solid var(--border);
-            background: color-mix(in srgb, var(--primary) 10%, var(--card-bg));
-            color: var(--text);
+            background: var(--order-surface);
+            color: var(--text-light);
         }
 
         .agenda-hud-stack {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            padding: 10px 12px 12px;
+            gap: 12px;
+            padding: 12px;
         }
 
         .agenda-hud-client.agenda-tone-0 { --agenda-client-accent: #0d9488; }
@@ -1339,10 +1340,10 @@
 
         .agenda-hud-client {
             position: relative;
-            border-radius: 12px;
-            border: 1px solid color-mix(in srgb, var(--agenda-client-accent) 35%, var(--border));
-            background: color-mix(in srgb, var(--agenda-client-accent) 6%, var(--card-bg));
-            box-shadow: inset 0 1px 0 color-mix(in srgb, var(--agenda-client-accent) 18%, transparent);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--order-surface);
+            box-shadow: var(--shadow-soft);
             overflow: hidden;
         }
 
@@ -1353,16 +1354,16 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(180deg, var(--agenda-client-accent), color-mix(in srgb, var(--agenda-client-accent) 45%, var(--card-bg)));
+            background: var(--agenda-client-accent);
         }
 
         .agenda-hud-client-top {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 5px 10px 5px 12px;
-            border-bottom: 1px solid color-mix(in srgb, var(--agenda-client-accent) 18%, var(--border));
-            background: color-mix(in srgb, var(--agenda-client-accent) 10%, var(--muted-bg));
+            padding: 10px 12px 10px 14px;
+            border-bottom: 1px solid var(--order-line);
+            background: var(--order-muted);
         }
 
         .agenda-hud-client-idx {
@@ -1387,7 +1388,7 @@
 
         .agenda-hud-client-name {
             font-size: 13px;
-            font-weight: 800;
+            font-weight: 700;
             letter-spacing: -0.02em;
             color: var(--text);
         }
@@ -1404,17 +1405,18 @@
         .agenda-hud-table {
             display: flex;
             flex-direction: column;
+            padding: 0;
         }
 
         .agenda-hud-line {
             display: grid;
-            grid-template-columns: 10px 1fr auto;
-            align-items: center;
-            gap: 6px 10px;
-            padding: 3px 8px 3px 10px;
-            min-height: 28px;
-            border-bottom: 1px solid color-mix(in srgb, var(--agenda-client-accent) 12%, var(--border));
-            transition: background 0.12s;
+            grid-template-columns: 10px minmax(0, 1fr) auto auto;
+            align-items: start;
+            gap: 10px 12px;
+            padding: 12px 12px 12px 10px;
+            min-height: 0;
+            border-bottom: 1px solid var(--order-line);
+            transition: background 0.12s ease;
         }
 
         .agenda-hud-line:last-child {
@@ -1422,71 +1424,115 @@
         }
 
         .agenda-hud-line:hover {
-            background: color-mix(in srgb, var(--agenda-client-accent) 7%, transparent);
+            background: color-mix(in srgb, var(--muted-bg) 50%, transparent);
         }
 
         .agenda-hud-line-dot {
-            width: 5px;
-            height: 5px;
+            display: block;
+            width: 6px;
+            height: 6px;
+            margin-top: 6px;
             border-radius: 50%;
             background: var(--agenda-client-accent);
-            box-shadow: 0 0 8px color-mix(in srgb, var(--agenda-client-accent) 55%, transparent);
+            opacity: 0.45;
             justify-self: center;
         }
 
         .agenda-hud-line-main {
             display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .agenda-hud-prod-row {
+            display: flex;
             align-items: center;
             flex-wrap: wrap;
-            gap: 4px 8px;
+            gap: 6px 8px;
             min-width: 0;
         }
 
         .agenda-hud-prod {
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text);
+            letter-spacing: 0.01em;
+            line-height: 1.35;
         }
 
         .agenda-hud-tag {
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid color-mix(in srgb, var(--agenda-client-accent) 35%, var(--border));
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: none;
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
             color: var(--text-light);
-            background: color-mix(in srgb, var(--agenda-client-accent) 6%, var(--card-bg));
+            background: var(--order-muted);
         }
 
-        .agenda-hud-qty {
-            font-size: 11px;
-            font-weight: 800;
+        .agenda-hud-qty-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-start;
+            gap: 2px;
+            padding: 2px 0 0;
+            min-width: 42px;
+            align-self: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .agenda-hud-qty-eyebrow {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-light);
+        }
+
+        .agenda-hud-qty-num {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 13px;
+            font-weight: 600;
             font-variant-numeric: tabular-nums;
-            padding: 1px 7px;
+            line-height: 1;
+            padding: 4px 9px;
             border-radius: 6px;
             border: 1px solid var(--border);
             color: var(--text);
-            background: color-mix(in srgb, var(--card-bg) 94%, var(--muted-bg));
+            background: var(--order-muted);
+        }
+
+        :root[data-theme="dark"] .agenda-hud-qty-num {
+            background: var(--order-muted);
         }
 
         .agenda-hud-note {
-            flex: 1 1 160px;
-            min-width: 0;
-            font-size: 10px;
+            font-size: 9px;
             font-style: italic;
             color: var(--text-light);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            max-width: 100%;
+            line-height: 1.2;
         }
 
         .agenda-hud-line-actions {
             display: flex;
-            gap: 2px;
-            opacity: 0.35;
+            gap: 4px;
+            opacity: 0.4;
             transition: opacity 0.15s;
+            align-self: start;
+            padding-top: 2px;
+            position: relative;
+            z-index: 1;
         }
 
         .agenda-hud-line:hover .agenda-hud-line-actions {
@@ -1501,18 +1547,19 @@
 
         .agenda-hud-icon-btn {
             font-family: inherit;
-            font-size: 12px;
+            font-size: 11px;
             line-height: 1;
-            padding: 4px 7px;
+            padding: 6px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             background: transparent;
             color: var(--text-light);
+            transition: background 0.15s, color 0.15s;
         }
 
         .agenda-hud-icon-btn:hover {
-            background: color-mix(in srgb, var(--primary) 12%, transparent);
+            background: color-mix(in srgb, var(--muted-bg) 80%, var(--primary));
             color: var(--text);
         }
 
@@ -1523,8 +1570,8 @@
 
         .agenda-hud-icon-btn .icon-svg {
             display: block;
-            width: 15px;
-            height: 15px;
+            width: 14px;
+            height: 14px;
         }
 
         @media (max-width: 640px) {
@@ -1795,6 +1842,76 @@
             flex: 1;
         }
 
+        /* Pedido — modal mais compacto (grade de produtos) */
+        #pedidoModal .modal-content {
+            padding: 20px 22px 22px;
+            max-width: 460px;
+        }
+
+        #pedidoModal .modal-content > h2 {
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+        }
+
+        #pedidoModal .form-group {
+            margin-bottom: 10px;
+        }
+
+        #pedidoModal .form-group label {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        #pedidoModal .form-group input,
+        #pedidoModal .form-group select,
+        #pedidoModal .form-group textarea {
+            padding: 7px 9px;
+            font-size: 13px;
+        }
+
+        #pedidoModal .modal-buttons {
+            margin-top: 14px;
+        }
+
+        #pedidoModal .fu-pedido-produtos-wrap {
+            border-top: 1px solid var(--order-line);
+            margin-top: 12px;
+            padding-top: 14px;
+        }
+
+        #pedidoModal .fu-pedido-produtos-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            gap: 8px;
+        }
+
+        #pedidoModal .fu-pedido-produtos-head .fu-section-title {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 13px;
+            margin: 0;
+        }
+
+        #pedidoModal .fu-btn-add-produto {
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--order-surface);
+            color: var(--text);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        #pedidoModal .fu-btn-add-produto:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
         /* Preço Especial */
         .preco-input-row {
             display: flex;
@@ -1863,23 +1980,252 @@
         .client-produtos {
             font-size: 12px;
             color: var(--text-light);
+            margin-bottom: 8px;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--order-muted);
+        }
+
+        .client-produtos-kicker {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--text-light);
             margin-bottom: 10px;
-            padding: 8px;
-            background: var(--bg);
-            border-radius: 4px;
         }
 
         .produtos-list-vertical {
             list-style: none;
-            margin: 8px 0 0 0;
+            margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
 
-        .produtos-list-vertical li {
-            padding: 6px 0 6px 16px;
-            border-left: 2px solid var(--primary);
-            margin-bottom: 4px;
+        .pedido-item-line {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 12px 16px;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--order-line);
+            background: transparent;
+        }
+
+        .pedido-item-line:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .pedido-item-line__info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .pedido-item-line__name {
+            font-size: 13px;
+            font-weight: 600;
             color: var(--text);
+            letter-spacing: -0.01em;
+            line-height: 1.4;
+        }
+
+        .pedido-item-line__cat {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-light);
+            padding: 2px 0;
+            border-radius: 0;
+            align-self: flex-start;
+            background: transparent;
+            border: none;
+            letter-spacing: 0;
+        }
+
+        .pedido-item-line__cat--empty {
+            font-weight: 500;
+            font-style: italic;
+            opacity: 0.85;
+        }
+
+        .pedido-item-line__qty {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .pedido-item-line__qty-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .pedido-item-line__qty-val {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 14px;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+            padding: 0;
+            border-radius: 0;
+            color: var(--text);
+            background: transparent;
+            border: none;
+        }
+
+        :root[data-theme="dark"] .pedido-item-line__qty-val {
+            color: var(--text);
+        }
+
+        /* Modal pedido — grade sóbria */
+        .fu-prod-grid-head {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) 62px minmax(84px, 1fr) 30px;
+            gap: 8px;
+            align-items: end;
+            padding: 0 0 8px;
+            margin: 0 0 4px;
+            border-bottom: 1px solid var(--order-line);
+        }
+
+        .fu-prod-grid-head__col {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0;
+            text-transform: none;
+            color: var(--text-light);
+        }
+
+        .fu-prod-grid-body .fu-prod-line {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) 62px minmax(84px, 1fr) 30px;
+            gap: 8px;
+            align-items: stretch;
+            margin-bottom: 0;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--order-line);
+        }
+
+        .fu-prod-grid-body .fu-prod-line:last-child {
+            border-bottom: none;
+        }
+
+        .fu-prod-line__cell {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 0;
+            min-width: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fu-prod-line .prod-select,
+        .fu-prod-line .prod-qty,
+        .fu-prod-line .prod-cat {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            background: var(--order-surface);
+            color: var(--text);
+            box-sizing: border-box;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .fu-prod-line .prod-select:focus,
+        .fu-prod-line .prod-qty:focus,
+        .fu-prod-line .prod-cat:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--focus-ring);
+        }
+
+        .fu-prod-line .prod-qty {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            text-align: center;
+        }
+
+        .fu-prod-line__cell--act {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 2px;
+        }
+
+        .fu-prod-line .prod-line-remove {
+            width: 26px;
+            height: 26px;
+        }
+
+        .fu-prod-line .prod-line-remove .icon-svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        @media (max-width: 560px) {
+            .fu-prod-grid-head {
+                display: none;
+            }
+
+            .fu-prod-grid-body .fu-prod-line {
+                grid-template-columns: 1fr;
+                padding: 12px 0;
+                border-bottom: 1px solid var(--order-line);
+                background: transparent;
+            }
+
+            .fu-prod-grid-body .fu-prod-line:last-child {
+                border-bottom: none;
+            }
+
+            .fu-prod-line__cell--act {
+                justify-content: flex-end;
+            }
+
+            .fu-prod-line__cell--prod::before {
+                content: 'Produto';
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0;
+                text-transform: none;
+                color: var(--text-light);
+                margin-bottom: 6px;
+                display: block;
+            }
+
+            .fu-prod-line__cell--qty::before {
+                content: 'Quantidade';
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0;
+                text-transform: none;
+                color: var(--text-light);
+                margin-bottom: 6px;
+                display: block;
+            }
+
+            .fu-prod-line__cell--cat::before {
+                content: 'Categoria';
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0;
+                text-transform: none;
+                color: var(--text-light);
+                margin-bottom: 6px;
+                display: block;
+            }
         }
 
         /* Visual V4 — fundo sem mesh; paleta no :root global */
@@ -2174,12 +2520,12 @@
         .today-deliveries {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 10px;
+            gap: 14px;
         }
 
         .today-deliveries .client-delivery-card {
-            padding: 12px;
-            border-radius: 10px;
+            padding: 14px 16px;
+            border-radius: 12px;
         }
 
         .client-header {
@@ -2197,16 +2543,6 @@
 
         .client-meta {
             font-size: 11px;
-        }
-
-        .client-produtos {
-            margin-bottom: 8px;
-            padding: 8px;
-        }
-
-        .produtos-list-vertical li {
-            padding: 4px 0 4px 10px;
-            font-size: 12px;
         }
 
         .client-tags {
@@ -2295,45 +2631,41 @@
             }
         }
 
-        /* Status nas entregas — no fim do CSS (vence regras genéricas de .client-delivery-card) */
+        /* Status nas entregas — faixa esquerda + fundo leve (vence regras genéricas) */
         .today-deliveries .client-delivery-card.client-delivery-card--pendente {
-            border-left: 4px solid var(--warning) !important;
-            background: rgba(245, 158, 11, 0.12) !important;
-            background: color-mix(in srgb, var(--warning) 14%, var(--card-bg)) !important;
+            border-left-color: var(--warning) !important;
+            background: color-mix(in srgb, var(--warning) 6%, var(--order-surface)) !important;
         }
 
         .today-deliveries .client-delivery-card.client-delivery-card--pronto {
-            border-left: 4px solid var(--ready) !important;
-            background: rgba(99, 102, 241, 0.12) !important;
-            background: color-mix(in srgb, var(--ready) 14%, var(--card-bg)) !important;
+            border-left-color: var(--ready) !important;
+            background: color-mix(in srgb, var(--ready) 6%, var(--order-surface)) !important;
         }
 
         .today-deliveries .client-delivery-card.client-delivery-card--entregue {
-            border-left: 4px solid var(--success) !important;
-            background: rgba(16, 185, 129, 0.12) !important;
-            background: color-mix(in srgb, var(--success) 13%, var(--card-bg)) !important;
+            border-left-color: var(--success) !important;
+            background: color-mix(in srgb, var(--success) 6%, var(--order-surface)) !important;
         }
 
         .today-deliveries .client-delivery-card.client-delivery-card--cancelado {
-            border-left: 4px solid var(--danger) !important;
-            background: rgba(220, 38, 38, 0.1) !important;
-            background: color-mix(in srgb, var(--danger) 12%, var(--card-bg)) !important;
+            border-left-color: var(--danger) !important;
+            background: color-mix(in srgb, var(--danger) 5%, var(--order-surface)) !important;
         }
 
         :root[data-theme="dark"] .today-deliveries .client-delivery-card.client-delivery-card--pendente {
-            background: color-mix(in srgb, var(--warning) 18%, var(--card-bg)) !important;
+            background: color-mix(in srgb, var(--warning) 10%, var(--order-surface)) !important;
         }
 
         :root[data-theme="dark"] .today-deliveries .client-delivery-card.client-delivery-card--pronto {
-            background: color-mix(in srgb, var(--ready) 18%, var(--card-bg)) !important;
+            background: color-mix(in srgb, var(--ready) 10%, var(--order-surface)) !important;
         }
 
         :root[data-theme="dark"] .today-deliveries .client-delivery-card.client-delivery-card--entregue {
-            background: color-mix(in srgb, var(--success) 16%, var(--card-bg)) !important;
+            background: color-mix(in srgb, var(--success) 8%, var(--order-surface)) !important;
         }
 
         :root[data-theme="dark"] .today-deliveries .client-delivery-card.client-delivery-card--cancelado {
-            background: color-mix(in srgb, var(--danger) 16%, var(--card-bg)) !important;
+            background: color-mix(in srgb, var(--danger) 8%, var(--order-surface)) !important;
         }
     </style>
 </head>
@@ -2527,12 +2859,18 @@ window.addEventListener('load', () => {
                     <label>Observações</label>
                     <textarea id="pedidoObservacoes" placeholder="Observações sobre o pedido..."></textarea>
                 </div>
-                <div style="border-top: 2px solid var(--primary); margin-top: 15px; padding-top: 15px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <label class="fu-section-title" style="font-weight: 600; color: var(--primary); font-size: 15px; margin: 0;"><span class="fu-sec-ic"><svg class="icon-svg icon-svg-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></span>Produtos</label>
-                        <button type="button" onclick="addProdutoLine()" style="background: var(--primary); color: white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;">+ Adicionar Produto</button>
+                <div class="fu-pedido-produtos-wrap">
+                    <div class="fu-pedido-produtos-head">
+                        <label class="fu-section-title"><span class="fu-sec-ic"><svg class="icon-svg icon-svg-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></span>Produtos</label>
+                        <button type="button" class="fu-btn-add-produto" onclick="addProdutoLine()">+ Adicionar</button>
                     </div>
-                    <div id="produtosContainer"></div>
+                    <div class="fu-prod-grid-head" aria-hidden="true">
+                        <span class="fu-prod-grid-head__col fu-prod-grid-head__col--prod">Produto</span>
+                        <span class="fu-prod-grid-head__col fu-prod-grid-head__col--qty">Qtd</span>
+                        <span class="fu-prod-grid-head__col fu-prod-grid-head__col--cat">Categoria</span>
+                        <span class="fu-prod-grid-head__col fu-prod-grid-head__col--act"></span>
+                    </div>
+                    <div id="produtosContainer" class="fu-prod-grid-body"></div>
                 </div>
                 <div class="modal-buttons">
                     <button type="button" class="btn-primary" onclick="savePedido()">Salvar</button>
@@ -3252,9 +3590,19 @@ function renderDashboard() {
                 </div>
                 
                 <div class="client-produtos">
-                  <strong>Produtos:</strong>
+                  <span class="client-produtos-kicker">Itens do pedido</span>
                   <ul class="produtos-list-vertical">
-                    ${grupo.pedidos.map(p => `<li>${p.produto} (${p.categoria || 'sem cat.'}) x${p.quantidade}</li>`).join('')}
+                    ${grupo.pedidos.map(p => `
+                    <li class="pedido-item-line">
+                      <div class="pedido-item-line__info">
+                        <span class="pedido-item-line__name">${p.produto}</span>
+                        ${p.categoria ? `<span class="pedido-item-line__cat">${p.categoria}</span>` : '<span class="pedido-item-line__cat pedido-item-line__cat--empty">Sem categoria</span>'}
+                      </div>
+                      <div class="pedido-item-line__qty" title="Quantidade">
+                        <span class="pedido-item-line__qty-label">Qtd</span>
+                        <span class="pedido-item-line__qty-val">${p.quantidade}</span>
+                      </div>
+                    </li>`).join('')}
                   </ul>
                 </div>
                 
@@ -3570,10 +3918,15 @@ function renderAgendaList() {
                   <div class="agenda-hud-line">
                     <span class="agenda-hud-line-dot" aria-hidden="true"></span>
                     <div class="agenda-hud-line-main">
-                      <span class="agenda-hud-prod">${p.produto}</span>
-                      ${p.categoria ? `<span class="agenda-hud-tag">${p.categoria}</span>` : ''}
-                      <span class="agenda-hud-qty">×${p.quantidade}</span>
+                      <div class="agenda-hud-prod-row">
+                        <span class="agenda-hud-prod">${p.produto}</span>
+                        ${p.categoria ? `<span class="agenda-hud-tag">${p.categoria}</span>` : ''}
+                      </div>
                       ${p.observacoes ? `<span class="agenda-hud-note" title="${obsEsc}">${p.observacoes}</span>` : ''}
+                    </div>
+                    <div class="agenda-hud-qty-stack" title="Quantidade">
+                      <span class="agenda-hud-qty-eyebrow">Qtd</span>
+                      <span class="agenda-hud-qty-num">${p.quantidade}</span>
                     </div>
                     <div class="agenda-hud-line-actions">
                       <button type="button" class="agenda-hud-icon-btn" onclick="editPedido('${p.id}')" title="Editar">${fuIcon('pencil', 'icon-svg')}</button>
@@ -3821,8 +4174,9 @@ function openModal(modalId) {
     // Só resetar se NÃO for edição (editPedido define editingPedido antes de chamar openModal)
     if (!appState.editingPedido) {
       document.getElementById('pedidoForm').reset();
+      produtoLineCounter = 0;
       document.getElementById('produtosContainer').innerHTML = '';
-      addProdutoLine(); // Adicionar uma linha de produto vazia
+      addProdutoLine();
       const modalTitle = document.querySelector('#pedidoModal .modal-content h2');
       if (modalTitle) modalTitle.textContent = 'Novo Pedido';
     }
@@ -3976,7 +4330,9 @@ async function savePedido() {
   // Limpar o formulário
   document.getElementById('pedidoForm').reset();
   clearPedidoValidationError();
-  document.getElementById('produtosContainer').innerHTML = '<div id="produtoLine_0" class="produto-line"><select class="prod-select"><option value="">Selecionar produto...</option></select><input type="number" class="prod-qty" value="1" min="1"><input type="text" class="prod-cat" placeholder="Categoria"><button type="button" class="prod-line-remove" onclick="removeProdutoLine(0)" title="Remover linha">' + fuIcon('x', 'icon-svg') + '</button></div>';
+  produtoLineCounter = 0;
+  document.getElementById('produtosContainer').innerHTML = '';
+  addProdutoLine();
   closeModal('pedidoModal');
   renderAgenda();
 }
@@ -4126,7 +4482,7 @@ function editPedido(id) {
   document.getElementById('pedidoTipoVenda').value = pedido.tipo_venda || '';
   document.getElementById('pedidoObservacoes').value = pedido.observacoes || '';
   
-  // Limpar e adicionar a linha de produto com os dados existentes
+  produtoLineCounter = 0;
   document.getElementById('produtosContainer').innerHTML = '';
   addProdutoLine(pedido.produto, pedido.quantidade, pedido.categoria);
   
@@ -4253,19 +4609,27 @@ function addProdutoLine(produto, quantidade, categoria) {
   const lineId = produtoLineCounter++;
   const div = document.createElement('div');
   div.id = `produtoLine_${lineId}`;
-  div.style.cssText = 'display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap;';
+  div.className = 'fu-prod-line produto-line';
   div.innerHTML = `
-    <select style="flex: 2; min-width: 120px; padding: 8px; border: 1px solid var(--border); border-radius: 6px;" class="prod-select">
+    <div class="fu-prod-line__cell fu-prod-line__cell--prod">
+      <select class="prod-select" aria-label="Produto">
       ${getProductOptions(produto || '')}
-    </select>
-    <input type="number" min="1" value="${quantidade || 1}" placeholder="Qtd" style="flex: 0.7; min-width: 60px; padding: 8px; border: 1px solid var(--border); border-radius: 6px; text-align: center;" class="prod-qty">
-    <select style="flex: 1; min-width: 100px; padding: 8px; border: 1px solid var(--border); border-radius: 6px;" class="prod-cat">
-      <option value="" ${!categoria ? 'selected' : ''}>Categoria...</option>
+      </select>
+    </div>
+    <div class="fu-prod-line__cell fu-prod-line__cell--qty">
+      <input type="number" min="1" value="${quantidade || 1}" class="prod-qty" aria-label="Quantidade" inputmode="numeric">
+    </div>
+    <div class="fu-prod-line__cell fu-prod-line__cell--cat">
+      <select class="prod-cat" aria-label="Categoria">
+      <option value="" ${!categoria ? 'selected' : ''}>Categoria…</option>
       <option value="Buque" ${categoria === 'Buque' ? 'selected' : ''}>Buque</option>
       <option value="Desfolhado" ${categoria === 'Desfolhado' ? 'selected' : ''}>Desfolhado</option>
       <option value="Pote" ${categoria === 'Pote' ? 'selected' : ''}>Pote</option>
-    </select>
-    <button type="button" onclick="removeProdutoLine('produtoLine_${lineId}')" style="background: var(--error); color: white; border: none; width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 16px; flex-shrink: 0;">&times;</button>
+      </select>
+    </div>
+    <div class="fu-prod-line__cell fu-prod-line__cell--act">
+      <button type="button" class="prod-line-remove" onclick="removeProdutoLine('produtoLine_${lineId}')" title="Remover linha">${fuIcon('x', 'icon-svg')}</button>
+    </div>
   `;
   container.appendChild(div);
 }
