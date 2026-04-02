@@ -2942,18 +2942,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_289",
-        "id_cliente": "60",
-        "dia_semana": "sábado",
-        "cliente": "Frigorifico Amazonas P10",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_290",
         "id_cliente": "60",
         "dia_semana": "sábado",
@@ -4509,5 +4497,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T14:33:01.297Z"
+  "lastUpdate": "2026-04-02T14:33:19.616Z"
 }
