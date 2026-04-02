@@ -2930,18 +2930,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_284",
-        "id_cliente": "60",
-        "dia_semana": "sábado",
-        "cliente": "Frigorifico Amazonas P10",
-        "produto": "Alface Americana",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_290",
         "id_cliente": "60",
         "dia_semana": "sábado",
@@ -4497,5 +4485,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T14:33:19.616Z"
+  "lastUpdate": "2026-04-02T14:33:24.591Z"
 }
