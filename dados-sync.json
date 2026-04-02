@@ -1118,18 +1118,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_108",
-        "id_cliente": "33",
-        "dia_semana": "terça-feira",
-        "cliente": "Fiorentina",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 20,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_109",
         "id_cliente": "34",
         "dia_semana": "terça-feira",
@@ -4440,5 +4428,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T00:12:19.055Z"
+  "lastUpdate": "2026-04-02T12:45:20.959Z"
 }
