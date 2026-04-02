@@ -4471,6 +4471,13 @@
         "categorias": [
           "Desfolhado"
         ]
+      },
+      {
+        "nome": "Mix Crocante - Base para Salada",
+        "precoBase": 2.4,
+        "categorias": [
+          "Desfolhado"
+        ]
       }
     ],
     "prioridades": {
@@ -4514,5 +4521,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T14:31:18.189Z"
+  "lastUpdate": "2026-04-02T14:32:41.478Z"
 }
