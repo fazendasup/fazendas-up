@@ -2752,12 +2752,12 @@
       {
         "id": "order_264",
         "id_cliente": "16",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "quinta-feira",
         "cliente": "Novotel",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
         "quantidade": 50,
-        "tipo_venda": "",
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
       },
@@ -4454,5 +4454,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T13:14:48.743Z"
+  "lastUpdate": "2026-04-02T13:15:09.310Z"
 }
