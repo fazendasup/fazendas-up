@@ -4392,6 +4392,13 @@
         "categorias": [
           "Desfolhado"
         ]
+      },
+      {
+        "nome": "Mix Clássico - Salada Completa",
+        "precoBase": 7.13,
+        "categorias": [
+          "Desfolhado"
+        ]
       }
     ],
     "prioridades": {
@@ -4435,5 +4442,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T13:10:13.737Z"
+  "lastUpdate": "2026-04-02T13:10:16.611Z"
 }
