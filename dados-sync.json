@@ -2426,18 +2426,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_238",
-        "id_cliente": "22",
-        "dia_semana": "sexta-feira",
-        "cliente": "Pasta Morada 1",
-        "produto": "Micro Repolho",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_239",
         "id_cliente": "18",
         "dia_semana": "sexta-feira",
@@ -4442,5 +4430,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T13:19:16.345Z"
+  "lastUpdate": "2026-04-02T13:19:23.077Z"
 }
