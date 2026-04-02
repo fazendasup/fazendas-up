@@ -2882,18 +2882,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_282",
-        "id_cliente": "59",
-        "dia_semana": "sábado",
-        "cliente": "Frigorifico A. Adrianópolis",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 18,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_283",
         "id_cliente": "59",
         "dia_semana": "sábado",
@@ -4594,5 +4582,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T19:15:35.019Z"
+  "lastUpdate": "2026-04-02T19:15:39.265Z"
 }
