@@ -272,7 +272,7 @@
         "cliente": "Renato",
         "produto": "Alface Frisee",
         "categoria": "Buque",
-        "quantidade": 2,
+        "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "",
         "status": "pendente"
@@ -4440,5 +4440,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T00:12:09.215Z"
+  "lastUpdate": "2026-04-02T00:12:19.055Z"
 }
