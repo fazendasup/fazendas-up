@@ -2894,18 +2894,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_294",
-        "id_cliente": "57",
-        "dia_semana": "sábado",
-        "cliente": "ROUTE PUB",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1774616289779_1",
         "id_cliente": "35",
         "cliente": "Felicori",
@@ -4558,5 +4546,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-02T19:15:55.215Z"
+  "lastUpdate": "2026-04-02T19:16:00.819Z"
 }
