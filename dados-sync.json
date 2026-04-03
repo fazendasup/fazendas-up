@@ -1948,12 +1948,12 @@
       {
         "id": "order_196",
         "id_cliente": "52",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sábado",
         "cliente": "Frigorifica Amazona P.N",
         "produto": "Alface Americana",
         "categoria": "",
         "quantidade": 10,
-        "tipo_venda": "",
+        "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
       },
@@ -4570,5 +4570,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-03T20:25:20.687Z"
+  "lastUpdate": "2026-04-03T20:26:46.370Z"
 }
