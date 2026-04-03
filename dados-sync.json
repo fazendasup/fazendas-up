@@ -2300,9 +2300,9 @@
         "cliente": "Barollo",
         "produto": "Alface MIX",
         "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "",
-        "observacoes": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "70G CRESPA ROXA + 25G AMERICANA + 25G CRESPA ",
         "status": "pronto"
       },
       {
@@ -4522,5 +4522,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-03T14:23:57.685Z"
+  "lastUpdate": "2026-04-03T14:24:30.071Z"
 }
