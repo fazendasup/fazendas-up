@@ -3005,7 +3005,8 @@ async function init() {
   setupEventListeners();
   setupStorageListener();
   setupAutoSync();
-  
+  connectWebSocket();
+
   // Sincronizar com GitHub imediatamente
   console.log('[sync] Sincronizando com GitHub na inicialização...');
   await syncWithGitHub();
@@ -3016,18 +3017,113 @@ async function init() {
   updateThemeButton();
 }
 
-// ─── WebSocket Sync (Automático em Tempo Real) ──────────────────────────────
+// ─── WebSocket Sync (tempo real na mesma rede / mesmo servidor) ─────────────
+let ws = null;
+let wsReconnectTimer = null;
 
-
-
-
-function sendDataToServer(data) {
-  if (ws && ws.readyState === WebSocket.OPEN) {
-    ws.send(JSON.stringify({
-      type: 'update',
-      data: data
-    }));
+function normalizeServerBundle(raw) {
+  if (!raw) return null;
+  if (raw.data && typeof raw.data === 'object') {
+    return {
+      data: {
+        pedidos: Array.isArray(raw.data.pedidos) ? raw.data.pedidos : [],
+        clientes: Array.isArray(raw.data.clientes) ? raw.data.clientes : [],
+        produtos: Array.isArray(raw.data.produtos) ? raw.data.produtos : [],
+        prioridades: raw.data.prioridades != null ? raw.data.prioridades : {},
+      },
+      lastUpdate: raw.lastUpdate || new Date().toISOString(),
+    };
   }
+  if (Array.isArray(raw.pedidos)) {
+    return {
+      data: {
+        pedidos: raw.pedidos,
+        clientes: Array.isArray(raw.clientes) ? raw.clientes : [],
+        produtos: Array.isArray(raw.produtos) ? raw.produtos : [],
+        prioridades: raw.prioridades != null ? raw.prioridades : {},
+      },
+      lastUpdate: raw.lastUpdate || new Date().toISOString(),
+    };
+  }
+  return null;
+}
+
+function applyRemoteSyncBundle(bundle) {
+  const d = bundle.data;
+  appState.data = {
+    pedidos: d.pedidos,
+    clientes: d.clientes,
+    produtos: d.produtos,
+    prioridades: d.prioridades != null ? d.prioridades : {},
+  };
+  appState.lastUpdate = bundle.lastUpdate;
+  lastSyncTime = new Date(bundle.lastUpdate).getTime();
+  localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
+  localStorage.setItem(CLIENT_DATA_TS_KEY, String(lastSyncTime));
+  if (appState.data.prioridades && Object.keys(appState.data.prioridades).length) {
+    localStorage.setItem('fazendas-up-prioridades', JSON.stringify(appState.data.prioridades));
+  }
+  renderCurrentTab();
+}
+
+function connectWebSocket() {
+  if (location.protocol === 'file:') return;
+  if (wsReconnectTimer) {
+    clearTimeout(wsReconnectTimer);
+    wsReconnectTimer = null;
+  }
+  const scheme = location.protocol === 'https:' ? 'wss' : 'ws';
+  const url = `${scheme}://${location.host}`;
+  try {
+    ws = new WebSocket(url);
+  } catch (e) {
+    console.warn('[sync] WebSocket:', e.message);
+    scheduleWsReconnect();
+    return;
+  }
+  ws.addEventListener('open', () => console.log('[sync] WebSocket conectado', url));
+  ws.addEventListener('message', (ev) => {
+    try {
+      const msg = JSON.parse(ev.data);
+      if (msg.type !== 'init' && msg.type !== 'update') return;
+      const bundle = normalizeServerBundle(msg.data);
+      if (!bundle) return;
+      applyRemoteSyncBundle(bundle);
+    } catch (e) {
+      console.warn('[sync] Mensagem WS inválida', e);
+    }
+  });
+  ws.addEventListener('close', () => {
+    console.log('[sync] WebSocket desconectado; tentando reconectar…');
+    ws = null;
+    scheduleWsReconnect();
+  });
+  ws.addEventListener('error', () => {
+    /* close handler faz reconnect */
+  });
+}
+
+function scheduleWsReconnect() {
+  if (location.protocol === 'file:') return;
+  if (wsReconnectTimer) return;
+  wsReconnectTimer = setTimeout(() => {
+    wsReconnectTimer = null;
+    connectWebSocket();
+  }, 3000);
+}
+
+/** Envia o mesmo formato de dados-sync.json para todos os clientes via servidor. */
+function pushDataToServer(bundle) {
+  const payload = JSON.stringify({ type: 'update', data: bundle });
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(payload);
+    return;
+  }
+  fetch('/api/data', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bundle),
+  }).catch((e) => console.warn('[sync] POST /api/data indisponível:', e.message));
 }
 
 function setupEventListeners() {
@@ -3154,7 +3250,7 @@ async function loadData() {
     const clientTs = parseInt(localStorage.getItem(CLIENT_DATA_TS_KEY), 10) || 0;
     const storedRaw = localStorage.getItem(DATA_STORAGE_KEY);
 
-    if (clientTs > remoteTs && storedRaw) {
+    if (fresh.source !== 'api' && clientTs > remoteTs && storedRaw) {
       try {
         const parsed = JSON.parse(storedRaw);
         if (parsed && Array.isArray(parsed.pedidos) && Array.isArray(parsed.clientes)) {
@@ -3390,13 +3486,19 @@ async function loadSampleData() {
 async function saveData() {
   try {
     isSaving = true;  // Bloquear sincronização automática
+    const now = new Date().toISOString();
     const dataToSave = JSON.stringify(appState.data);
     localStorage.setItem(DATA_STORAGE_KEY, dataToSave);
-    localStorage.setItem(CLIENT_DATA_TS_KEY, String(Date.now()));
+    localStorage.setItem(CLIENT_DATA_TS_KEY, String(new Date(now).getTime()));
     const savedData = localStorage.getItem(DATA_STORAGE_KEY);
     if (!savedData) {
       console.error('Falha ao salvar dados no localStorage');
     }
+
+    const bundle = { data: appState.data, lastUpdate: now };
+    appState.lastUpdate = now;
+    lastSyncTime = new Date(now).getTime();
+    pushDataToServer(bundle);
 
     await saveToGitHub();
   } catch (e) {
@@ -4914,6 +5016,30 @@ const GITHUB_FILE = 'dados-sync.json';
 const GITHUB_BRANCH = 'main';
 const SYNC_INTERVAL = 5000; // 5 segundos
 
+function isGitHubPagesHost() {
+  return typeof location !== 'undefined' && /\.github\.io$/i.test(location.hostname);
+}
+
+/** Servidor local (Node na LAN, etc.) — priorizar dados-sync.json da origem, não a API do repo */
+function isLikelyLocalDevServer() {
+  if (typeof location === 'undefined') return false;
+  const h = location.hostname;
+  return (
+    h === 'localhost' ||
+    h === '127.0.0.1' ||
+    /^192\.168\.\d{1,3}\.\d{1,3}$/.test(h) ||
+    /^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(h)
+  );
+}
+
+/** Pages (github.io ou domínio próprio): JSON estático costuma ficar em cache na CDN — ler via API */
+function shouldUseGithubContentsApiFirst() {
+  return isGitHubPagesHost() || !isLikelyLocalDevServer();
+}
+
+/** ETag da API Contents — permite 304 (sem gastar rate limit) no polling */
+let githubContentsEtag = null;
+
 let lastSyncTime = 0;
 let lastSyncSha = null;
 
@@ -4928,33 +5054,54 @@ function decodeGithubContentsJson(apiData) {
   return JSON.parse(content);
 }
 
-/** Sempre dados frescos: arquivo local > API GitHub (sem cache CDN) > raw (último recurso). */
+/** Sempre dados frescos: no GitHub Pages o JSON na mesma origem fica em cache na CDN — priorizar API. */
 async function fetchLatestDadosSync() {
+  const token = localStorage.getItem('githubToken');
+  const apiHeaders = { Accept: 'application/vnd.github.v3+json' };
+  if (token) apiHeaders.Authorization = `token ${token}`;
+
+  if (shouldUseGithubContentsApiFirst()) {
+    try {
+      const r = await fetch(
+        `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}?ref=${GITHUB_BRANCH}`,
+        { headers: apiHeaders, cache: 'no-store' }
+      );
+      if (r.ok) {
+        const etag = r.headers.get('ETag');
+        if (etag) githubContentsEtag = etag;
+        const apiData = await r.json();
+        const bundle = decodeGithubContentsJson(apiData);
+        console.log('[data] Fonte: API GitHub (deploy público — sem cache CDN do JSON estático)', bundle.lastUpdate || '');
+        return { bundle, sha: apiData.sha, source: 'api' };
+      }
+    } catch (e) {
+      console.log('[data] API GitHub (Pages):', e.message);
+    }
+  }
+
   try {
     const r = await fetch('dados-sync.json', { cache: 'no-store' });
     if (r.ok) {
       const j = await r.json();
       if (j && j.data) {
         console.log('[data] Fonte: dados-sync.json (servidor local ou deploy)', j.lastUpdate || '');
-        return { bundle: j, sha: null };
+        return { bundle: j, sha: null, source: 'static' };
       }
     }
   } catch (e) {}
 
-  const token = localStorage.getItem('githubToken');
-  const headers = { Accept: 'application/vnd.github.v3+json' };
-  if (token) headers.Authorization = `token ${token}`;
-
   try {
     const r = await fetch(
       `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}?ref=${GITHUB_BRANCH}`,
-      { headers, cache: 'no-store' }
+      { headers: apiHeaders, cache: 'no-store' }
     );
     if (r.ok) {
+      const etag = r.headers.get('ETag');
+      if (etag) githubContentsEtag = etag;
       const apiData = await r.json();
       const bundle = decodeGithubContentsJson(apiData);
       console.log('[data] Fonte: API GitHub (evita cache do raw)', bundle.lastUpdate || '');
-      return { bundle, sha: apiData.sha };
+      return { bundle, sha: apiData.sha, source: 'api' };
     }
   } catch (e) {
     console.log('[data] API GitHub:', e.message);
@@ -4968,7 +5115,7 @@ async function fetchLatestDadosSync() {
     if (r.ok) {
       const bundle = await r.json();
       console.warn('[data] Fonte: raw.githubusercontent (pode estar defasado por CDN)');
-      return { bundle, sha: null };
+      return { bundle, sha: null, source: 'raw' };
     }
   } catch (e) {}
 
@@ -4978,7 +5125,11 @@ let isSyncing = false;
 
 function setupAutoSync() {
   if (!localStorage.getItem('githubToken')) {
-    const token = prompt('Cole seu token do GitHub:\n\n(Gere em: https://github.com/settings/tokens)');
+    const token = prompt(
+      'Token do GitHub (opcional para gravar alterações no repositório).\n\n' +
+      'Deixe vazio se este aparelho só precisa receber atualizações — a leitura usa o arquivo do site.\n\n' +
+      'Criar token: https://github.com/settings/tokens'
+    );
     if (token && token.trim()) {
       localStorage.setItem('githubToken', token.trim());
     }
@@ -5007,68 +5158,79 @@ function renderCurrentTab() {
 }
 
 async function syncWithGitHub() {
-  // NÃO sincronizar enquanto está salvando (isSaving = true)
   if (isSyncing || isSaving) return;
   isSyncing = true;
-  
-  try {
-    const token = localStorage.getItem('githubToken');
-    if (!token) {
-      isSyncing = false;
+
+  function applyRemoteFromGitHub(remoteData, shaOrNull) {
+    if (!remoteData || !remoteData.data || !remoteData.lastUpdate) return;
+    if (remoteData.lastUpdate === appState.lastUpdate) {
+      if (shaOrNull) lastSyncSha = shaOrNull;
       return;
     }
-    
-    // USAR API DO GITHUB (sem cache!) em vez de raw.githubusercontent.com (cache de 5 min)
-    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}?ref=${GITHUB_BRANCH}`, {
-      headers: {
-        'Authorization': `token ${token}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'If-None-Match': ''  // Forçar sem cache
+    const remoteTime = new Date(remoteData.lastUpdate).getTime();
+    if (!Number.isFinite(remoteTime)) return;
+    console.log('[sync] Aplicando dados remotos —', remoteData.lastUpdate);
+    appState.data = remoteData.data;
+    appState.lastUpdate = remoteData.lastUpdate;
+    lastSyncTime = remoteTime;
+    if (shaOrNull) lastSyncSha = shaOrNull;
+    else lastSyncSha = null;
+
+    localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
+    localStorage.setItem(CLIENT_DATA_TS_KEY, String(remoteTime));
+    if (appState.data.prioridades && Object.keys(appState.data.prioridades).length) {
+      localStorage.setItem('fazendas-up-prioridades', JSON.stringify(appState.data.prioridades));
+    }
+
+    renderCurrentTab();
+    showSyncNotification('Dados sincronizados.', 'success');
+    console.log('[sync] Dados sincronizados e aba atualizada.');
+  }
+
+  try {
+    if (isLikelyLocalDevServer() && typeof location !== 'undefined' && location.protocol !== 'file:') {
+      try {
+        const r = await fetch(`dados-sync.json?poll=${Date.now()}`, { cache: 'no-store' });
+        if (r.ok) {
+          const remoteData = await r.json();
+          if (remoteData && remoteData.data && remoteData.lastUpdate) {
+            applyRemoteFromGitHub(remoteData, null);
+          }
+        }
+      } catch (e) {
+        console.log('[sync] dados-sync.json (servidor local):', e.message);
       }
-    });
-    
+      return;
+    }
+
+    const token = localStorage.getItem('githubToken');
+    const headers = { Accept: 'application/vnd.github.v3+json' };
+    if (token) headers.Authorization = `token ${token}`;
+    if (githubContentsEtag) headers['If-None-Match'] = githubContentsEtag;
+
+    const apiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}?ref=${GITHUB_BRANCH}`;
+    const response = await fetch(apiUrl, { headers, cache: 'no-store' });
+
+    if (response.status === 304) {
+      return;
+    }
+
     if (response.ok) {
+      const etag = response.headers.get('ETag');
+      if (etag) githubContentsEtag = etag;
       const apiData = await response.json();
-      
-      // Se o SHA não mudou, não precisa decodificar
       if (apiData.sha === lastSyncSha) {
         return;
       }
-      
-      // Decodificar conteúdo base64 (suporte UTF-8 para acentos)
-      const rawContent = apiData.content.replace(/\n/g, '');
-      const binaryString = atob(rawContent);
-      const bytes = new Uint8Array(binaryString.length);
-      for (let i = 0; i < binaryString.length; i++) {
-        bytes[i] = binaryString.charCodeAt(i);
-      }
-      const content = new TextDecoder('utf-8').decode(bytes);
-      const remoteData = JSON.parse(content);
-      const remoteTime = new Date(remoteData.lastUpdate).getTime();
-      
-      if (remoteTime > lastSyncTime) {
-        console.log('[sync] Sincronizando dados do GitHub —', remoteData.lastUpdate);
-        appState.data = remoteData.data;
-        appState.lastUpdate = remoteData.lastUpdate;
-        lastSyncTime = remoteTime;
-        lastSyncSha = apiData.sha;
-        
-        localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
-        localStorage.setItem(CLIENT_DATA_TS_KEY, String(remoteTime));
+      const remoteData = decodeGithubContentsJson(apiData);
+      applyRemoteFromGitHub(remoteData, apiData.sha);
+      return;
+    }
 
-        // Renderizar a aba atual
-        renderCurrentTab();
-        
-        // Mostrar notificação
-        showSyncNotification('Dados sincronizados.', 'success');
-        console.log('[sync] Dados sincronizados e aba atualizada.');
-      } else {
-        lastSyncSha = apiData.sha;
-      }
-    } else if (response.status === 403) {
+    if (response.status === 403) {
       console.log('[sync] Rate limit do GitHub atingido. Aguardando...');
     } else {
-      console.log('[sync] Erro ao sincronizar:', response.status, response.statusText);
+      console.log('[sync] API GitHub:', response.status, response.statusText);
     }
   } catch (e) {
     console.log('Erro ao sincronizar:', e.message);
@@ -5118,6 +5280,7 @@ function forcarSincronizacaoGitHub() {
   // Não apagar localStorage: mantém cópia local se a API falhar; só força nova leitura no GitHub.
   lastSyncTime = 0;
   lastSyncSha = null;
+  githubContentsEtag = null;
   isSyncing = false;
   console.log('[sync] Cursor de sync resetado (dados locais preservados)');
   
@@ -5193,6 +5356,7 @@ async function saveToGitHub() {
     if (putResponse.ok) {
       appState.lastUpdate = now;
       localStorage.setItem(CLIENT_DATA_TS_KEY, String(new Date(now).getTime()));
+      githubContentsEtag = null;
       console.log('[sync] Salvo no GitHub.');
     } else if (putResponse.status === 409) {
       console.log('[sync] Conflito de SHA, tentando novamente...');

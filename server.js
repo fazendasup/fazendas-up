@@ -34,12 +34,15 @@ app.use(express.static(__dirname, {
 // Arquivo de dados
 const DATA_FILE = path.join(__dirname, 'dados-sync.json');
 
-// Dados em memória
+// Dados em memória (mesmo formato que dados-sync.json)
 let appData = {
-  pedidos: [],
-  clientes: [],
-  produtos: [],
-  lastUpdate: new Date().toISOString()
+  data: {
+    pedidos: [],
+    clientes: [],
+    produtos: [],
+    prioridades: {},
+  },
+  lastUpdate: new Date().toISOString(),
 };
 
 // Carregar dados do arquivo ao iniciar
