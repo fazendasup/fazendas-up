@@ -3125,11 +3125,11 @@
         "id": "order_1775135466603_1",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sábado",
         "produto": "Mix Clássico - Salada Completa",
         "categoria": "",
         "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
+        "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
       },
@@ -4570,5 +4570,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-03T21:35:45.171Z"
+  "lastUpdate": "2026-04-03T21:35:57.406Z"
 }
