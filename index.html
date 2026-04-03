@@ -5316,8 +5316,20 @@ function forcarSincronizacaoGitHub() {
   }, 500);
 }
 
+/** Base64 de UTF-8 sem estourar a pilha (apply não aceita milhões de argumentos). */
+function utf8JsonToBase64(content) {
+  const encoder = new TextEncoder();
+  const bytes = encoder.encode(content);
+  const chunk = 0x8000;
+  let binary = '';
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, Math.min(i + chunk, bytes.length)));
+  }
+  return btoa(binary);
+}
+
 // Salvar dados no GitHub quando houver mudancas
-async function saveToGitHub() {
+async function saveToGitHub(retryCount = 0) {
   let loadingToast = null;
   try {
     let token = localStorage.getItem('githubToken');
@@ -5348,10 +5360,7 @@ async function saveToGitHub() {
     };
 
     const content = JSON.stringify(dataToSave, null, 2);
-    const encoder = new TextEncoder();
-    const data = encoder.encode(content);
-    const binaryString = String.fromCharCode.apply(null, data);
-    const base64Content = btoa(binaryString);
+    const base64Content = utf8JsonToBase64(content);
 
     console.log('[sync] Salvando no GitHub...');
 
@@ -5395,9 +5404,13 @@ async function saveToGitHub() {
       console.log('[sync] Salvo no GitHub.');
       showSyncNotification('Salvo no GitHub.', 'success');
     } else if (putResponse.status === 409) {
+      if (retryCount >= 8) {
+        showSyncNotification('Conflito ao salvar no GitHub após várias tentativas. Sincronize e tente de novo.', 'error', 7000);
+        return;
+      }
       console.log('[sync] Conflito de SHA, tentando novamente...');
       await new Promise((r) => setTimeout(r, 500));
-      await saveToGitHub();
+      await saveToGitHub(retryCount + 1);
     } else {
       let detail = putResponse.statusText;
       try {
