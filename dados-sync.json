@@ -2276,8 +2276,8 @@
         "cliente": "Barollo",
         "produto": "Alface Americana",
         "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "",
+        "quantidade": 12,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
       },
@@ -4522,5 +4522,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-03T14:23:45.046Z"
+  "lastUpdate": "2026-04-03T14:23:57.685Z"
 }
