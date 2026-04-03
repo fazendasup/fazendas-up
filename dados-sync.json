@@ -2255,7 +2255,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 3 dias",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_224",
@@ -2267,7 +2267,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_225",
@@ -2279,7 +2279,7 @@
         "quantidade": 12,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_226",
@@ -2291,7 +2291,7 @@
         "quantidade": 6,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_227",
@@ -2303,7 +2303,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "70G CRESPA ROXA + 25G AMERICANA + 25G CRESPA ",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_228",
@@ -4558,5 +4558,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-03T14:25:56.584Z"
+  "lastUpdate": "2026-04-03T14:28:48.285Z"
 }
