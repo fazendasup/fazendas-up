@@ -5126,9 +5126,9 @@ let isSyncing = false;
 function setupAutoSync() {
   if (!localStorage.getItem('githubToken')) {
     const token = prompt(
-      'Token do GitHub (opcional para gravar alterações no repositório).\n\n' +
-      'Deixe vazio se este aparelho só precisa receber atualizações — a leitura usa o arquivo do site.\n\n' +
-      'Criar token: https://github.com/settings/tokens'
+      'Token do GitHub — necessário neste aparelho para ENVIAR alterações ao repositório.\n\n' +
+      '(Quem só consulta pode cancelar; quem edita precisa do token com permissão no repo.)\n\n' +
+      'Criar em: https://github.com/settings/tokens'
     );
     if (token && token.trim()) {
       localStorage.setItem('githubToken', token.trim());
@@ -5239,13 +5239,21 @@ async function syncWithGitHub() {
   }
 }
 
-function showSyncNotification(message, variant = 'success') {
+function showSyncNotification(message, variant = 'success', durationMs = 2800) {
   const notif = document.createElement('div');
-  const bg = variant === 'error' ? '#b91c1c' : variant === 'info' ? '#1e40af' : '#059669';
+  const bg =
+    variant === 'error'
+      ? '#b91c1c'
+      : variant === 'info'
+        ? '#1e40af'
+        : variant === 'warning'
+          ? '#c2410c'
+          : '#059669';
   notif.style.cssText = `
     position: fixed;
     top: 20px;
     right: 20px;
+    max-width: min(420px, calc(100vw - 32px));
     background: ${bg};
     color: white;
     padding: 12px 18px;
@@ -5257,11 +5265,18 @@ function showSyncNotification(message, variant = 'success') {
   `;
   notif.textContent = message;
   document.body.appendChild(notif);
-  setTimeout(() => {
+  let done = false;
+  let timer = null;
+  function dismiss() {
+    if (done) return;
+    done = true;
+    if (timer) clearTimeout(timer);
     notif.style.opacity = '0';
     notif.style.transition = 'opacity 0.25s ease';
     setTimeout(() => notif.remove(), 250);
-  }, 2200);
+  }
+  timer = setTimeout(dismiss, durationMs);
+  return { dismiss, el: notif };
 }
 
 // Forcar sincronizacao imediata com GitHub (para administrador)
@@ -5303,70 +5318,99 @@ function forcarSincronizacaoGitHub() {
 
 // Salvar dados no GitHub quando houver mudancas
 async function saveToGitHub() {
+  let loadingToast = null;
   try {
-    const token = localStorage.getItem('githubToken');
-    if (!token) return;
-    
+    let token = localStorage.getItem('githubToken');
+    if (!token || !String(token).trim()) {
+      showSyncNotification(
+        'Sem token do GitHub — nada foi enviado ao repositório. Cole o token na próxima janela ou recarregue a página.',
+        'warning',
+        5500
+      );
+      const t = prompt(
+        'Para enviar pedidos/clientes/produtos ao GitHub, cole um Personal Access Token com acesso ao repositório fazendasup/fazendas-up:\n\n(Cancelar = continuar só neste aparelho)'
+      );
+      if (t && String(t).trim()) {
+        localStorage.setItem('githubToken', String(t).trim());
+        token = localStorage.getItem('githubToken');
+      }
+    }
+    if (!token || !String(token).trim()) {
+      return;
+    }
+
+    loadingToast = showSyncNotification('Sincronizando com o GitHub…', 'info', 120000);
+
     const now = new Date().toISOString();
     const dataToSave = {
       data: appState.data,
       lastUpdate: now
     };
-    
+
     const content = JSON.stringify(dataToSave, null, 2);
     const encoder = new TextEncoder();
     const data = encoder.encode(content);
     const binaryString = String.fromCharCode.apply(null, data);
     const base64Content = btoa(binaryString);
-    
+
     console.log('[sync] Salvando no GitHub...');
-    
-    // Obter SHA do arquivo
+
     let sha = null;
     try {
       const getResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
         headers: {
-          'Authorization': `token ${token}`,
-          'Accept': 'application/vnd.github.v3+json'
-        }
+          Authorization: `token ${token}`,
+          Accept: 'application/vnd.github.v3+json',
+        },
       });
       if (getResponse.ok) {
         sha = (await getResponse.json()).sha;
       }
     } catch (e) {}
-    
-    // Salvar no GitHub
+
     const putBody = {
       message: `Sincronizar dados - ${new Date().toLocaleString('pt-BR')}`,
       content: base64Content,
-      branch: GITHUB_BRANCH
+      branch: GITHUB_BRANCH,
     };
-    
+
     if (sha) putBody.sha = sha;
-    
+
     const putResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
       method: 'PUT',
       headers: {
-        'Authorization': `token ${token}`,
-        'Content-Type': 'application/json'
+        Authorization: `token ${token}`,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(putBody)
+      body: JSON.stringify(putBody),
     });
-    
+
+    loadingToast.dismiss();
+    loadingToast = null;
+
     if (putResponse.ok) {
       appState.lastUpdate = now;
       localStorage.setItem(CLIENT_DATA_TS_KEY, String(new Date(now).getTime()));
       githubContentsEtag = null;
       console.log('[sync] Salvo no GitHub.');
+      showSyncNotification('Salvo no GitHub.', 'success');
     } else if (putResponse.status === 409) {
       console.log('[sync] Conflito de SHA, tentando novamente...');
-      await new Promise(r => setTimeout(r, 500));
+      await new Promise((r) => setTimeout(r, 500));
       await saveToGitHub();
     } else {
-      console.error('Erro ao salvar:', await putResponse.json());
+      let detail = putResponse.statusText;
+      try {
+        const errBody = await putResponse.json();
+        if (errBody && errBody.message) detail = errBody.message;
+      } catch (x) {}
+      console.error('Erro ao salvar:', detail);
+      showSyncNotification('Falha ao salvar no GitHub: ' + detail, 'error', 7000);
     }
   } catch (e) {
+    if (loadingToast) loadingToast.dismiss();
     console.error('Erro ao salvar no GitHub:', e.message);
+    showSyncNotification('Erro ao salvar no GitHub: ' + e.message, 'error', 6000);
   }
 }
 
