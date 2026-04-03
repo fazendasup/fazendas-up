@@ -1292,9 +1292,9 @@
         "cliente": "Barollo",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 5,
-        "tipo_venda": "",
-        "observacoes": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "70G CRESPA ROXA + 25G CRESPA VERDE + 25G AMERICANA",
         "status": "entregue"
       },
       {
@@ -3348,6 +3348,18 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775226124462_1",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "70G CRESPA ROXA + 25G CRESPA VERDE + 25G AMERICANA",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4522,5 +4534,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-03T14:15:07.361Z"
+  "lastUpdate": "2026-04-03T14:22:04.464Z"
 }
