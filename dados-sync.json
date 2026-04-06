@@ -11,7 +11,7 @@
         "quantidade": 2,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1",
@@ -23,7 +23,7 @@
         "quantidade": 2,
         "tipo_venda": "Plano",
         "observacoes": "Entrega de manhã",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_2",
@@ -35,7 +35,7 @@
         "quantidade": 2,
         "tipo_venda": "Plano",
         "observacoes": "pagamento mensal",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_3",
@@ -47,7 +47,7 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_4",
@@ -4618,5 +4618,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-06T19:18:21.941Z"
+  "lastUpdate": "2026-04-06T19:18:26.596Z"
 }
