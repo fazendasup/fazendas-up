@@ -410,18 +410,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_44",
-        "id_cliente": "15",
-        "dia_semana": "terça-feira",
-        "cliente": "Banzeiro",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_45",
         "id_cliente": "16",
         "dia_semana": "terça-feira",
@@ -4534,5 +4522,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-06T13:25:35.878Z"
+  "lastUpdate": "2026-04-06T13:25:52.759Z"
 }
