@@ -674,18 +674,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_69",
-        "id_cliente": "23",
-        "dia_semana": "terça-feira",
-        "cliente": "Pasta Morada 2",
-        "produto": "Micro Couve",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Boleto para 3 dias",
-        "status": "pronto"
-      },
-      {
         "id": "order_70",
         "id_cliente": "23",
         "dia_semana": "terça-feira",
@@ -4594,5 +4582,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-06T13:25:17.411Z"
+  "lastUpdate": "2026-04-06T13:25:20.202Z"
 }
