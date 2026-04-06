@@ -3384,6 +3384,18 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775481450554_0",
+        "id_cliente": "8",
+        "cliente": "Subway Manauara",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 30,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4558,5 +4570,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-06T12:11:03.147Z"
+  "lastUpdate": "2026-04-06T13:17:30.558Z"
 }
