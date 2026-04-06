@@ -638,18 +638,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_67",
-        "id_cliente": "22",
-        "dia_semana": "terça-feira",
-        "cliente": "Pasta Morada 1",
-        "produto": "Micro Rabanete",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_71",
         "id_cliente": "24",
         "dia_semana": "terça-feira",
@@ -4546,5 +4534,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-06T13:25:32.651Z"
+  "lastUpdate": "2026-04-06T13:25:35.878Z"
 }
