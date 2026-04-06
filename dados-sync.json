@@ -3317,10 +3317,10 @@
         "id": "order_1775481568044_2",
         "id_cliente": "59",
         "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "segunda-feira",
+        "dia_semana": "terça-feira",
         "produto": "Alface MIX",
         "categoria": "",
-        "quantidade": 10,
+        "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIAS \n5 CRESPAS \n5 MIX \n1 AMERICANA ",
         "status": "pendente"
@@ -4618,5 +4618,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-06T19:20:26.380Z"
+  "lastUpdate": "2026-04-06T19:20:42.201Z"
 }
