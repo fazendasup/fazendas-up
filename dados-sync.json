@@ -3408,6 +3408,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775488461218_0",
+        "id_cliente": "22",
+        "cliente": "Pasta Morada 1",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775488461218_1",
+        "id_cliente": "22",
+        "cliente": "Pasta Morada 1",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775488461218_2",
+        "id_cliente": "22",
+        "cliente": "Pasta Morada 1",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4582,5 +4618,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-06T14:28:30.776Z"
+  "lastUpdate": "2026-04-06T15:14:21.225Z"
 }
