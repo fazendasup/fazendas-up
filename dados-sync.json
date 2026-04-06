@@ -3305,7 +3305,7 @@
         "id": "order_1775481568044_1",
         "id_cliente": "59",
         "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "segunda-feira",
+        "dia_semana": "terça-feira",
         "produto": "Alface Americana",
         "categoria": "",
         "quantidade": 10,
@@ -4618,5 +4618,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-06T19:20:18.914Z"
+  "lastUpdate": "2026-04-06T19:20:26.380Z"
 }
