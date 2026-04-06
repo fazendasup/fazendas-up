@@ -380,8 +380,8 @@
         "cliente": "Fitz",
         "produto": "Alface Crespa Roxa",
         "categoria": "Desfolhado",
-        "quantidade": 9,
-        "tipo_venda": "",
+        "quantidade": 12,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -4618,5 +4618,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-06T19:20:42.201Z"
+  "lastUpdate": "2026-04-06T19:23:07.834Z"
 }
