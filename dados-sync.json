@@ -2906,18 +2906,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1774893266869_0",
-        "id_cliente": "33",
-        "cliente": "Fiorentina",
-        "dia_semana": "segunda-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1774918451129_0",
         "id_cliente": "client_1774918251748",
         "cliente": "Ghiotto Pizzaria",
@@ -4570,5 +4558,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-03T21:35:57.406Z"
+  "lastUpdate": "2026-04-06T12:11:03.147Z"
 }
