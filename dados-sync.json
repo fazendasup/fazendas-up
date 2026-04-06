@@ -3293,7 +3293,7 @@
         "id": "order_1775481568044_0",
         "id_cliente": "59",
         "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "segunda-feira",
+        "dia_semana": "terça-feira",
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 10,
@@ -4618,5 +4618,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-06T19:20:09.660Z"
+  "lastUpdate": "2026-04-06T19:20:18.914Z"
 }
