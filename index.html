@@ -3189,7 +3189,14 @@ function setUserRole(role) {
 
 function showAdminPassword() {
   document.getElementById('adminPasswordDiv').style.display = 'block';
-  document.getElementById('adminPassword').focus();
+  const input = document.getElementById('adminPassword');
+  input.focus();
+  input.onkeydown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      verifyAdminPassword();
+    }
+  };
 }
 
 function verifyAdminPassword() {
@@ -3883,16 +3890,22 @@ function abrirModalPrioridade() {
   const prioridadesDia = prioridades[diaKey] || [];
   
   const html = `
-    <div style="max-height: 500px; overflow-y: auto;">
-      <p style="margin-bottom: 15px; color: var(--text-light);">Use os botões ↑ e ↓ para reordenar. O primeiro será a prioridade.</p>
-      <div id="prioridadeList" style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="max-height: 62vh; overflow-y: auto;">
+      <p style="margin-bottom: 10px; color: var(--text-light); font-size: 13px;">
+        Mais rápido: use ↑↑ para topo, ↓↓ para fim, ou digite a posição e clique em Ir.
+      </p>
+      <div id="prioridadeList" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 8px;">
         ${clientesHoje.length > 0 ? clientesHoje.map((grupo, idx) => {
           const ordem = prioridadesDia.indexOf(grupo.clientId);
           return `
-            <div data-client-id="${grupo.clientId}" style="padding: 12px; background: var(--surface); border: 2px solid var(--border); border-radius: 6px; display: flex; align-items: center; gap: 10px;">
-              <span style="font-weight: 500; flex: 1;">${ordem >= 0 ? `${ordem + 1}. ` : ''}${grupo.clientName}</span>
-              <button onclick="moverPrioridadeUp('${grupo.clientId}')" style="padding: 6px 10px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">↑</button>
-              <button onclick="moverPrioridadeDown('${grupo.clientId}')" style="padding: 6px 10px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">↓</button>
+            <div data-client-id="${grupo.clientId}" style="padding: 8px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; gap: 6px; min-height: 42px;">
+              <span style="font-weight: 600; flex: 1; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${grupo.clientName}">${ordem >= 0 ? `${ordem + 1}. ` : ''}${grupo.clientName}</span>
+              <button onclick="moverPrioridadeTop('${grupo.clientId}')" style="padding: 4px 7px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;" title="Levar para o topo">↑↑</button>
+              <button onclick="moverPrioridadeUp('${grupo.clientId}')" style="padding: 4px 7px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;" title="Subir uma posição">↑</button>
+              <button onclick="moverPrioridadeDown('${grupo.clientId}')" style="padding: 4px 7px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;" title="Descer uma posição">↓</button>
+              <button onclick="moverPrioridadeBottom('${grupo.clientId}')" style="padding: 4px 7px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;" title="Levar para o fim">↓↓</button>
+              <input type="number" min="1" placeholder="#" id="pos-${grupo.clientId}" style="width: 48px; padding: 4px; border: 1px solid var(--border); border-radius: 4px; font-size: 12px;">
+              <button onclick="moverPrioridadeParaPosicao('${grupo.clientId}')" style="padding: 4px 7px; background: #111827; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;" title="Ir para posição">Ir</button>
             </div>
           `;
         }).join('') : '<div class="empty-state">Nenhum cliente para hoje</div>'}
@@ -3932,9 +3945,42 @@ function moverPrioridadeDown(clientId) {
   }
 }
 
+function moverPrioridadeTop(clientId) {
+  const list = document.getElementById('prioridadeList');
+  const item = list.querySelector(`[data-client-id="${clientId}"]`);
+  if (!item || !list.firstElementChild || item === list.firstElementChild) return;
+  list.insertBefore(item, list.firstElementChild);
+}
+
+function moverPrioridadeBottom(clientId) {
+  const list = document.getElementById('prioridadeList');
+  const item = list.querySelector(`[data-client-id="${clientId}"]`);
+  if (!item || !list.lastElementChild || item === list.lastElementChild) return;
+  list.appendChild(item);
+}
+
+function moverPrioridadeParaPosicao(clientId) {
+  const list = document.getElementById('prioridadeList');
+  const items = Array.from(list.querySelectorAll('[data-client-id]'));
+  const input = document.getElementById(`pos-${clientId}`);
+  if (!input) return;
+  const targetRaw = parseInt(input.value, 10);
+  if (!Number.isFinite(targetRaw)) return;
+  const targetIndex = Math.max(0, Math.min(items.length - 1, targetRaw - 1));
+  const item = list.querySelector(`[data-client-id="${clientId}"]`);
+  if (!item) return;
+  const anchor = list.children[targetIndex];
+  if (!anchor) {
+    list.appendChild(item);
+    return;
+  }
+  if (anchor === item) return;
+  list.insertBefore(item, anchor);
+}
+
 async function salvarPrioridades() {
   const diaKey = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
-  const items = document.querySelectorAll('[data-client-id]');
+  const items = document.querySelectorAll('#prioridadeList [data-client-id]');
   const novaOrdem = Array.from(items).map(item => item.getAttribute('data-client-id')).filter(Boolean);
   
   const prioridades = { ...(appState.data.prioridades || {}) };
