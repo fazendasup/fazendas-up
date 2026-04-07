@@ -1298,18 +1298,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_151",
-        "id_cliente": "44",
-        "dia_semana": "quarta-feira",
-        "cliente": "Restaurante Girão's",
-        "produto": "Alface Americana",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_153",
         "id_cliente": "45",
         "dia_semana": "quinta-feira",
@@ -4485,5 +4473,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T16:29:51.774Z"
+  "lastUpdate": "2026-04-07T16:29:55.771Z"
 }
