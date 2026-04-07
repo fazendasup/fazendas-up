@@ -3299,7 +3299,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIAS \n5 CRESPAS \n5 MIX \n1 AMERICANA ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1775481568044_1",
@@ -3311,7 +3311,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIAS \n5 CRESPAS \n5 MIX \n1 AMERICANA ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1775481568044_2",
@@ -3323,7 +3323,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIAS \n5 CRESPAS \n5 MIX \n1 AMERICANA ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1775485710769_3",
@@ -4605,5 +4605,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T13:30:20.901Z"
+  "lastUpdate": "2026-04-07T13:31:30.595Z"
 }
