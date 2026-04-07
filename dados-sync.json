@@ -890,18 +890,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_96",
-        "id_cliente": "25",
-        "dia_semana": "terça-feira",
-        "cliente": "Moquem",
-        "produto": "Micro Rucula",
-        "categoria": "Pote",
-        "quantidade": 0,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_98",
         "id_cliente": "30",
         "dia_semana": "terça-feira",
@@ -4629,5 +4617,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T16:28:04.308Z"
+  "lastUpdate": "2026-04-07T16:28:06.298Z"
 }
