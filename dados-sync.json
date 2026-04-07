@@ -3276,6 +3276,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775579532782_0",
+        "id_cliente": "19",
+        "cliente": "Jhon sushi",
+        "dia_semana": "quinta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775579532782_1",
+        "id_cliente": "19",
+        "cliente": "Jhon sushi",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775579532782_2",
+        "id_cliente": "19",
+        "cliente": "Jhon sushi",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4473,5 +4509,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T16:29:55.771Z"
+  "lastUpdate": "2026-04-07T16:32:12.786Z"
 }
