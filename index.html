@@ -2009,9 +2009,9 @@
         .pedido-item-line {
             display: grid;
             grid-template-columns: minmax(0, 1fr) auto;
-            gap: 12px 16px;
+            gap: 8px 10px;
             align-items: center;
-            padding: 10px 0;
+            padding: 6px 0;
             border-bottom: 1px solid var(--order-line);
             background: transparent;
         }
@@ -2029,18 +2029,18 @@
         }
 
         .pedido-item-line__name {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--text);
             letter-spacing: -0.01em;
-            line-height: 1.4;
+            line-height: 1.25;
         }
 
         .pedido-item-line__cat {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 500;
             color: var(--text-light);
-            padding: 2px 0;
+            padding: 1px 0;
             border-radius: 0;
             align-self: flex-start;
             background: transparent;
@@ -2058,19 +2058,19 @@
             display: flex;
             flex-direction: row;
             align-items: baseline;
-            gap: 8px;
+            gap: 6px;
             flex-shrink: 0;
         }
 
         .pedido-item-line__qty-label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 500;
             color: var(--text-light);
         }
 
         .pedido-item-line__qty-val {
             font-family: 'JetBrains Mono', ui-monospace, monospace;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             font-variant-numeric: tabular-nums;
             line-height: 1;
@@ -2524,8 +2524,8 @@
         }
 
         .today-deliveries .client-delivery-card {
-            padding: 14px 16px;
-            border-radius: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
         }
 
         .client-header {
@@ -2533,32 +2533,77 @@
             justify-content: space-between;
             align-items: flex-start;
             gap: 8px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .client-info h4 {
             margin-bottom: 1px;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .client-meta {
-            font-size: 11px;
+            font-size: 10px;
+        }
+
+        .status-select-client {
+            padding: 4px 8px;
+            font-size: 12px;
+            min-height: 30px;
         }
 
         .client-tags {
-            margin-bottom: 8px;
-            gap: 6px;
+            margin: 6px 0 0;
+            gap: 5px;
         }
 
         .tag {
-            padding: 3px 8px;
+            padding: 2px 7px;
             font-size: 10px;
             border-radius: 10px;
         }
 
         .custom-prices,
         .client-obs {
-            margin-bottom: 8px;
+            margin-top: 6px;
+            margin-bottom: 0;
+        }
+
+        .client-produtos-kicker {
+            font-size: 11px;
+            margin-bottom: 3px;
+            display: inline-block;
+        }
+
+        .client-more-items {
+            margin-top: 4px;
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        .client-extra {
+            margin-top: 6px;
+            border-top: 1px dashed var(--border);
+            padding-top: 6px;
+        }
+
+        .client-extra > summary {
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-light);
+            list-style: none;
+        }
+
+        .client-extra > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .client-extra > summary::before {
+            content: "▸ ";
+        }
+
+        .client-extra[open] > summary::before {
+            content: "▾ ";
         }
 
         .form-error {
@@ -3682,6 +3727,8 @@ function renderDashboard() {
             const totalQtd = grupo.pedidos.reduce((s, p) => s + p.quantidade, 0);
             const statusCliente = grupo.pedidos[0]?.status || 'pendente';
             const statusCard = ['pendente', 'pronto', 'entregue', 'cancelado'].includes(statusCliente) ? statusCliente : 'pendente';
+            const pedidosPreview = grupo.pedidos.slice(0, 3);
+            const pedidosRestantes = Math.max(0, grupo.pedidos.length - pedidosPreview.length);
             
             return `
               <div class="client-delivery-card client-delivery-card--${statusCard}">
@@ -3699,9 +3746,9 @@ function renderDashboard() {
                 </div>
                 
                 <div class="client-produtos">
-                  <span class="client-produtos-kicker">Itens do pedido</span>
+                  <span class="client-produtos-kicker">Itens (${grupo.pedidos.length})</span>
                   <ul class="produtos-list-vertical">
-                    ${grupo.pedidos.map(p => `
+                    ${pedidosPreview.map(p => `
                     <li class="pedido-item-line">
                       <div class="pedido-item-line__info">
                         <span class="pedido-item-line__name">${p.produto}</span>
@@ -3713,32 +3760,32 @@ function renderDashboard() {
                       </div>
                     </li>`).join('')}
                   </ul>
+                  ${pedidosRestantes > 0 ? `<div class="client-more-items">+ ${pedidosRestantes} item(ns) nesta entrega</div>` : ''}
                 </div>
                 
                 ${cliente ? `
-                  <div class="client-tags">
-                    ${cliente.periodoEntrega ? `<span class="tag">${cliente.periodoEntrega}</span>` : ''}
-                    ${cliente.horarioMaximo ? `<span class="tag">até ${cliente.horarioMaximo}</span>` : ''}
-                    ${cliente.prazoBoleto ? `<span class="tag">Boleto ${cliente.prazoBoleto}</span>` : ''}
-                    ${cliente.acumulaPedidos ? `<span class="tag">Acumula ${cliente.diasAcumulo || 'pedidos'}</span>` : ''}
-                    ${cliente.cobraEntrega ? `<span class="tag">Cobra entrega</span>` : ''}
-                  </div>
-                ` : ''}
-                
-                ${cliente && cliente.observacoes ? `
-                  <div class="client-obs">${cliente.observacoes}</div>
-                ` : ''}
-                
-                ${cliente && cliente.precos && cliente.precos.length > 0 ? `
-                  <div class="custom-prices">
-                    <span class="prices-label">Preços Personalizados:</span>
-                    ${cliente.precos.map(p => `
-                      <div class="price-row">
-                        <span>${p.produto}</span>
-                        <span>R$ ${p.preco.toFixed(2)}</span>
+                  <details class="client-extra">
+                    <summary>Ver detalhes do cliente</summary>
+                    <div class="client-tags">
+                      ${cliente.periodoEntrega ? `<span class="tag">${cliente.periodoEntrega}</span>` : ''}
+                      ${cliente.horarioMaximo ? `<span class="tag">até ${cliente.horarioMaximo}</span>` : ''}
+                      ${cliente.prazoBoleto ? `<span class="tag">Boleto ${cliente.prazoBoleto}</span>` : ''}
+                      ${cliente.acumulaPedidos ? `<span class="tag">Acumula ${cliente.diasAcumulo || 'pedidos'}</span>` : ''}
+                      ${cliente.cobraEntrega ? `<span class="tag">Cobra entrega</span>` : ''}
+                    </div>
+                    ${cliente.observacoes ? `<div class="client-obs">${cliente.observacoes}</div>` : ''}
+                    ${cliente.precos && cliente.precos.length > 0 ? `
+                      <div class="custom-prices">
+                        <span class="prices-label">Preços Personalizados:</span>
+                        ${cliente.precos.map(p => `
+                          <div class="price-row">
+                            <span>${p.produto}</span>
+                            <span>R$ ${p.preco.toFixed(2)}</span>
+                          </div>
+                        `).join('')}
                       </div>
-                    `).join('')}
-                  </div>
+                    ` : ''}
+                  </details>
                 ` : ''}
               </div>
             `;
