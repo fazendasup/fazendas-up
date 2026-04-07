@@ -1624,7 +1624,7 @@
       {
         "id": "order_188",
         "id_cliente": "50",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "quinta-feira",
         "cliente": "Mirante do Negro",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
@@ -4485,5 +4485,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T19:18:17.873Z"
+  "lastUpdate": "2026-04-07T19:19:00.949Z"
 }
