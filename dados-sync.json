@@ -878,18 +878,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_95",
-        "id_cliente": "25",
-        "dia_semana": "terça-feira",
-        "cliente": "Moquem",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_98",
         "id_cliente": "30",
         "dia_semana": "terça-feira",
@@ -4617,5 +4605,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T16:28:06.298Z"
+  "lastUpdate": "2026-04-07T16:28:08.471Z"
 }
