@@ -1226,18 +1226,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_137",
-        "id_cliente": "40",
-        "dia_semana": "quarta-feira",
-        "cliente": "Nora Minev",
-        "produto": "Baby Manjericão",
-        "categoria": "Desfolhado",
-        "quantidade": 1,
-        "tipo_venda": "Plano",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_142",
         "id_cliente": "42",
         "dia_semana": "quarta-feira",
@@ -4545,5 +4533,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T16:29:08.486Z"
+  "lastUpdate": "2026-04-07T16:29:22.521Z"
 }
