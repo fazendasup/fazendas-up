@@ -1016,7 +1016,7 @@
         "cliente": "Veneza Tarumã",
         "produto": "Alface Americana",
         "categoria": "Desfolhado",
-        "quantidade": 0,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4641,5 +4641,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T13:28:32.483Z"
+  "lastUpdate": "2026-04-07T13:29:23.285Z"
 }
