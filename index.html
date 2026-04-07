@@ -3878,7 +3878,7 @@ function renderAgendaFiltrosModal() {
 
 function abrirModalPrioridade() {
   const clientesHoje = getClientesHoje();
-  const prioridades = JSON.parse(localStorage.getItem('fazendas-up-prioridades') || '{}');
+  const prioridades = appState.data.prioridades || {};
   const diaKey = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
   const prioridadesDia = prioridades[diaKey] || [];
   
@@ -3932,18 +3932,18 @@ function moverPrioridadeDown(clientId) {
   }
 }
 
-function salvarPrioridades() {
+async function salvarPrioridades() {
   const diaKey = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
   const items = document.querySelectorAll('[data-client-id]');
   const novaOrdem = Array.from(items).map(item => item.getAttribute('data-client-id')).filter(Boolean);
   
-  const prioridades = JSON.parse(localStorage.getItem('fazendas-up-prioridades') || '{}');
+  const prioridades = { ...(appState.data.prioridades || {}) };
   prioridades[diaKey] = novaOrdem;
   localStorage.setItem('fazendas-up-prioridades', JSON.stringify(prioridades));
   
-  // Sincronizar prioridades com appState e GitHub
-  appState.prioridades = prioridades;
-  saveData();
+  // Sincronizar prioridades no bundle principal e enviar ao GitHub
+  appState.data.prioridades = prioridades;
+  await saveData();
   
   closeModal('prioridadeModal');
   alert('Prioridades salvas com sucesso!');
@@ -4835,7 +4835,7 @@ function getClientesHoje() {
   let clientes = Object.values(grouped);
   
   // Aplicar priorização se existir
-  const prioridades = JSON.parse(localStorage.getItem('fazendas-up-prioridades') || '{}');
+  const prioridades = appState.data.prioridades || {};
   const diaKey = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
   const prioridadesDia = prioridades[diaKey] || [];
   
