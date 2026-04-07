@@ -1298,11 +1298,11 @@
         "status": "entregue"
       },
       {
-        "id": "order_152",
+        "id": "order_151",
         "id_cliente": "44",
         "dia_semana": "quarta-feira",
         "cliente": "Restaurante Girão's",
-        "produto": "Alface MIX",
+        "produto": "Alface Americana",
         "categoria": "Desfolhado",
         "quantidade": 10,
         "tipo_venda": "",
@@ -4485,5 +4485,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T16:29:44.778Z"
+  "lastUpdate": "2026-04-07T16:29:51.774Z"
 }
