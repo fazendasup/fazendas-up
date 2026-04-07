@@ -1028,7 +1028,7 @@
         "cliente": "Veneza Tarumã",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 0,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4641,5 +4641,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T13:29:44.461Z"
+  "lastUpdate": "2026-04-07T13:29:51.754Z"
 }
