@@ -2798,18 +2798,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1774918451129_0",
-        "id_cliente": "client_1774918251748",
-        "cliente": "Ghiotto Pizzaria",
-        "dia_semana": "terça-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 50,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1774974409852_1",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
@@ -4653,5 +4641,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T16:27:08.958Z"
+  "lastUpdate": "2026-04-07T16:27:46.871Z"
 }
