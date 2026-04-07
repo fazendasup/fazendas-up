@@ -1202,18 +1202,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_135",
-        "id_cliente": "40",
-        "dia_semana": "quarta-feira",
-        "cliente": "Nora Minev",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 2,
-        "tipo_venda": "Plano",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_142",
         "id_cliente": "42",
         "dia_semana": "quarta-feira",
@@ -4521,5 +4509,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T16:29:25.949Z"
+  "lastUpdate": "2026-04-07T16:29:28.549Z"
 }
