@@ -1058,18 +1058,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_122",
-        "id_cliente": "34",
-        "dia_semana": "quarta-feira",
-        "cliente": "Veneza Tarumã",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_123",
         "id_cliente": "37",
         "dia_semana": "quarta-feira",
@@ -4581,5 +4569,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T16:28:37.718Z"
+  "lastUpdate": "2026-04-07T16:28:44.467Z"
 }
