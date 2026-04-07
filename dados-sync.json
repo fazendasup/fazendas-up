@@ -1214,18 +1214,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_136",
-        "id_cliente": "40",
-        "dia_semana": "quarta-feira",
-        "cliente": "Nora Minev",
-        "produto": "Micro 3 variedades",
-        "categoria": "Buque",
-        "quantidade": 1,
-        "tipo_venda": "Plano",
-        "observacoes": "plano",
-        "status": "entregue"
-      },
-      {
         "id": "order_142",
         "id_cliente": "42",
         "dia_semana": "quarta-feira",
@@ -4533,5 +4521,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-07T16:29:22.521Z"
+  "lastUpdate": "2026-04-07T16:29:25.949Z"
 }
