@@ -2009,9 +2009,9 @@
         .pedido-item-line {
             display: grid;
             grid-template-columns: minmax(0, 1fr) auto;
-            gap: 8px 10px;
+            gap: 6px 8px;
             align-items: center;
-            padding: 6px 0;
+            padding: 4px 0;
             border-bottom: 1px solid var(--order-line);
             background: transparent;
         }
@@ -2024,7 +2024,7 @@
         .pedido-item-line__info {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 1px;
             min-width: 0;
         }
 
@@ -3727,9 +3727,6 @@ function renderDashboard() {
             const totalQtd = grupo.pedidos.reduce((s, p) => s + p.quantidade, 0);
             const statusCliente = grupo.pedidos[0]?.status || 'pendente';
             const statusCard = ['pendente', 'pronto', 'entregue', 'cancelado'].includes(statusCliente) ? statusCliente : 'pendente';
-            const pedidosPreview = grupo.pedidos.slice(0, 3);
-            const pedidosRestantes = Math.max(0, grupo.pedidos.length - pedidosPreview.length);
-            
             return `
               <div class="client-delivery-card client-delivery-card--${statusCard}">
                 <div class="client-header">
@@ -3748,7 +3745,7 @@ function renderDashboard() {
                 <div class="client-produtos">
                   <span class="client-produtos-kicker">Itens (${grupo.pedidos.length})</span>
                   <ul class="produtos-list-vertical">
-                    ${pedidosPreview.map(p => `
+                    ${grupo.pedidos.map(p => `
                     <li class="pedido-item-line">
                       <div class="pedido-item-line__info">
                         <span class="pedido-item-line__name">${p.produto}</span>
@@ -3760,12 +3757,9 @@ function renderDashboard() {
                       </div>
                     </li>`).join('')}
                   </ul>
-                  ${pedidosRestantes > 0 ? `<div class="client-more-items">+ ${pedidosRestantes} item(ns) nesta entrega</div>` : ''}
                 </div>
                 
                 ${cliente ? `
-                  <details class="client-extra">
-                    <summary>Ver detalhes do cliente</summary>
                     <div class="client-tags">
                       ${cliente.periodoEntrega ? `<span class="tag">${cliente.periodoEntrega}</span>` : ''}
                       ${cliente.horarioMaximo ? `<span class="tag">até ${cliente.horarioMaximo}</span>` : ''}
@@ -3785,7 +3779,6 @@ function renderDashboard() {
                         `).join('')}
                       </div>
                     ` : ''}
-                  </details>
                 ` : ''}
               </div>
             `;
