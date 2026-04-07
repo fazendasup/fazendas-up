@@ -3892,13 +3892,13 @@ function abrirModalPrioridade() {
   const html = `
     <div style="max-height: 62vh; overflow-y: auto;">
       <p style="margin-bottom: 10px; color: var(--text-light); font-size: 13px;">
-        Mais rápido: use ↑↑ para topo, ↓↓ para fim, ou digite a posição e clique em Ir.
+        Arraste e solte para reordenar. Também pode usar ↑↑/↓↓ ou ir direto para uma posição.
       </p>
       <div id="prioridadeList" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 8px;">
         ${clientesHoje.length > 0 ? clientesHoje.map((grupo, idx) => {
           const ordem = prioridadesDia.indexOf(grupo.clientId);
           return `
-            <div data-client-id="${grupo.clientId}" style="padding: 8px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; gap: 6px; min-height: 42px;">
+            <div data-client-id="${grupo.clientId}" draggable="true" style="padding: 8px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; gap: 6px; min-height: 42px; cursor: grab;">
               <span style="font-weight: 600; flex: 1; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${grupo.clientName}">${ordem >= 0 ? `${ordem + 1}. ` : ''}${grupo.clientName}</span>
               <button onclick="moverPrioridadeTop('${grupo.clientId}')" style="padding: 4px 7px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;" title="Levar para o topo">↑↑</button>
               <button onclick="moverPrioridadeUp('${grupo.clientId}')" style="padding: 4px 7px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;" title="Subir uma posição">↑</button>
@@ -3918,7 +3918,39 @@ function abrirModalPrioridade() {
   `;
   
   document.getElementById('prioridadeContent').innerHTML = html;
+  setupPrioridadeDragAndDrop();
   openModal('prioridadeModal');
+}
+
+let prioridadeDragItem = null;
+
+function setupPrioridadeDragAndDrop() {
+  const list = document.getElementById('prioridadeList');
+  if (!list) return;
+  const cards = list.querySelectorAll('[data-client-id]');
+  cards.forEach((card) => {
+    card.addEventListener('dragstart', () => {
+      prioridadeDragItem = card;
+      card.style.opacity = '0.55';
+      card.style.cursor = 'grabbing';
+    });
+    card.addEventListener('dragend', () => {
+      card.style.opacity = '';
+      card.style.cursor = 'grab';
+      prioridadeDragItem = null;
+    });
+    card.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      if (!prioridadeDragItem || prioridadeDragItem === card) return;
+      const rect = card.getBoundingClientRect();
+      const before = e.clientY < rect.top + rect.height / 2;
+      if (before) list.insertBefore(prioridadeDragItem, card);
+      else list.insertBefore(prioridadeDragItem, card.nextSibling);
+    });
+    card.addEventListener('drop', (e) => {
+      e.preventDefault();
+    });
+  });
 }
 
 function moverPrioridadeUp(clientId) {
