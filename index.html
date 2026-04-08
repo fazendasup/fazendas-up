@@ -2606,6 +2606,77 @@
             content: "▾ ";
         }
 
+        /* Estoque vivo — tabela compacta */
+        .estoque-vivo-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .estoque-vivo-hint {
+            font-size: 12px;
+            color: var(--text-light);
+            line-height: 1.45;
+            margin-bottom: 12px;
+            max-width: 720px;
+        }
+        .fu-estoque-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card-bg);
+        }
+        .fu-estoque-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .fu-estoque-table th,
+        .fu-estoque-table td {
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .fu-estoque-table th {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--text-light);
+            background: color-mix(in srgb, var(--muted-bg) 65%, transparent);
+        }
+        .fu-estoque-table tr:last-child td {
+            border-bottom: none;
+        }
+        .fu-estoque-table .fu-estoque-num {
+            font-variant-numeric: tabular-nums;
+            font-family: ui-monospace, monospace;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .fu-estoque-table .estoque-fator-input {
+            width: 72px;
+            padding: 4px 6px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 13px;
+            background: var(--surface);
+            color: var(--text);
+        }
+        .fu-estoque-foot {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .fu-estoque-foot span {
+            font-variant-numeric: tabular-nums;
+        }
+
         .form-error {
             margin-top: 8px;
             color: var(--danger);
@@ -2835,6 +2906,7 @@ window.addEventListener('load', () => {
                 <button type="button" class="tab-btn" data-tab="agenda"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span><span class="tab-btn-label">Agenda</span></button>
                 <button type="button" class="tab-btn" data-tab="clientes"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="tab-btn-label">Clientes</span></button>
                 <button type="button" class="tab-btn" data-tab="produtos"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></span><span class="tab-btn-label">Produtos</span></button>
+                <button type="button" class="tab-btn" data-tab="estoque"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></svg></span><span class="tab-btn-label">Estoque vivo</span></button>
             </nav>
             <div class="sidebar-footer">
                 <button type="button" onclick="logout()" id="btnSair" class="side-action-btn side-action-btn--ic" title="Sair e voltar para a tela de login"><span class="nav-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span><span>Sair</span></button>
@@ -3024,11 +3096,27 @@ let appState = {
     pedidos: [],
     clientes: [],
     produtos: [],
+    estoqueFatores: {},
   },
   editingPedido: null,
   editingCliente: null,
   agendaDiaFiltro: null,
 };
+
+/** Garante shape estável de appState.data (inclui fatores de compra por produto). */
+function normalizeDataShape(d) {
+  const src = d || {};
+  return {
+    pedidos: Array.isArray(src.pedidos) ? src.pedidos : [],
+    clientes: Array.isArray(src.clientes) ? src.clientes : [],
+    produtos: Array.isArray(src.produtos) ? src.produtos : [],
+    prioridades: src.prioridades != null ? src.prioridades : {},
+    estoqueFatores:
+      src.estoqueFatores != null && typeof src.estoqueFatores === 'object' && !Array.isArray(src.estoqueFatores)
+        ? { ...src.estoqueFatores }
+        : {},
+  };
+}
 
 const DIAS_SEMANA = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
 const DIAS_CURTOS = {
@@ -3075,6 +3163,10 @@ function normalizeServerBundle(raw) {
         clientes: Array.isArray(raw.data.clientes) ? raw.data.clientes : [],
         produtos: Array.isArray(raw.data.produtos) ? raw.data.produtos : [],
         prioridades: raw.data.prioridades != null ? raw.data.prioridades : {},
+        estoqueFatores:
+          raw.data.estoqueFatores != null && typeof raw.data.estoqueFatores === 'object' && !Array.isArray(raw.data.estoqueFatores)
+            ? raw.data.estoqueFatores
+            : {},
       },
       lastUpdate: raw.lastUpdate || new Date().toISOString(),
     };
@@ -3086,6 +3178,10 @@ function normalizeServerBundle(raw) {
         clientes: Array.isArray(raw.clientes) ? raw.clientes : [],
         produtos: Array.isArray(raw.produtos) ? raw.produtos : [],
         prioridades: raw.prioridades != null ? raw.prioridades : {},
+        estoqueFatores:
+          raw.estoqueFatores != null && typeof raw.estoqueFatores === 'object' && !Array.isArray(raw.estoqueFatores)
+            ? raw.estoqueFatores
+            : {},
       },
       lastUpdate: raw.lastUpdate || new Date().toISOString(),
     };
@@ -3095,12 +3191,7 @@ function normalizeServerBundle(raw) {
 
 function applyRemoteSyncBundle(bundle) {
   const d = bundle.data;
-  appState.data = {
-    pedidos: d.pedidos,
-    clientes: d.clientes,
-    produtos: d.produtos,
-    prioridades: d.prioridades != null ? d.prioridades : {},
-  };
+  appState.data = normalizeDataShape(d);
   appState.lastUpdate = bundle.lastUpdate;
   lastSyncTime = new Date(bundle.lastUpdate).getTime();
   localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
@@ -3184,7 +3275,8 @@ const TAB_HEADER_META = {
   dashboard: { kicker: 'Operações', title: 'Dashboard executivo' },
   agenda: { kicker: 'Logística', title: 'Agenda' },
   clientes: { kicker: 'Relacionamento', title: 'Clientes' },
-  produtos: { kicker: 'Catálogo', title: 'Produtos' }
+  produtos: { kicker: 'Catálogo', title: 'Produtos' },
+  estoque: { kicker: 'Compras', title: 'Estoque vivo' },
 };
 
 function updateHeaderForTab(tab) {
@@ -3208,6 +3300,7 @@ function switchTab(tab) {
   else if (tab === 'agenda') renderAgenda();
   else if (tab === 'clientes') renderClientes();
   else if (tab === 'produtos') renderProdutos();
+  else if (tab === 'estoque') renderEstoqueVivo();
 }
 
 // ─── Data Management ─────────────────────────────────────────────────────────
@@ -3255,21 +3348,24 @@ function verifyAdminPassword() {
 }
 
 function updateUIByRole() {
-  const tabs = document.querySelectorAll('.tab-btn');
   const updateBtn = document.getElementById('btnAtualizar');
   const syncBtn = document.getElementById('btnSincronizar');
-  
+
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
+    const tab = btn.dataset.tab;
+    if (userRole === 'operacional') {
+      const show = tab === 'dashboard' || tab === 'estoque';
+      btn.style.display = show ? 'block' : 'none';
+    } else {
+      btn.style.display = 'block';
+    }
+  });
+
   if (userRole === 'operacional') {
-    tabs[1].style.display = 'none';
-    tabs[2].style.display = 'none';
-    tabs[3].style.display = 'none';
     updateBtn.style.display = 'none';
     syncBtn.style.display = 'none';
     switchTab('dashboard');
   } else {
-    tabs[1].style.display = 'block';
-    tabs[2].style.display = 'block';
-    tabs[3].style.display = 'block';
     updateBtn.style.display = 'block';
     syncBtn.style.display = 'block';
   }
@@ -3306,12 +3402,7 @@ async function loadData() {
       try {
         const parsed = JSON.parse(storedRaw);
         if (parsed && Array.isArray(parsed.pedidos) && Array.isArray(parsed.clientes)) {
-          appState.data = {
-            pedidos: parsed.pedidos,
-            clientes: parsed.clientes,
-            produtos: Array.isArray(parsed.produtos) ? parsed.produtos : [],
-            prioridades: parsed.prioridades != null ? parsed.prioridades : {},
-          };
+          appState.data = normalizeDataShape(parsed);
           appState.lastUpdate = new Date(clientTs).toISOString();
           lastSyncTime = clientTs;
           if (fresh.sha) lastSyncSha = fresh.sha;
@@ -3334,12 +3425,7 @@ async function loadData() {
     }
 
     const d = fresh.bundle.data;
-    appState.data = {
-      pedidos: Array.isArray(d.pedidos) ? d.pedidos : [],
-      clientes: Array.isArray(d.clientes) ? d.clientes : [],
-      produtos: Array.isArray(d.produtos) ? d.produtos : [],
-      prioridades: d.prioridades != null ? d.prioridades : {},
-    };
+    appState.data = normalizeDataShape(d);
     if (fresh.bundle.lastUpdate) appState.lastUpdate = fresh.bundle.lastUpdate;
     if (fresh.sha) lastSyncSha = fresh.sha;
     if (appState.lastUpdate) {
@@ -3381,7 +3467,7 @@ async function loadData() {
     try {
       const parsed = JSON.parse(stored);
       if (parsed.pedidos && parsed.pedidos.length > 0 && parsed.clientes && parsed.clientes.length > 0) {
-        appState.data = parsed;
+        appState.data = normalizeDataShape(parsed);
       } else {
         console.log('Dados incompletos no localStorage, recarregando...');
         await loadSampleData();
@@ -3458,21 +3544,17 @@ function syncDataFromStorage(dataString) {
     
     // Carregar os novos dados
     const newData = JSON.parse(dataString || '{}');
-    appState.data = newData;
-    
+    appState.data = normalizeDataShape(newData);
+
     // Recarregar a página atual
     const currentTab = document.querySelector('.tab-btn.active');
     if (currentTab) {
-      const tabName = currentTab.textContent.toLowerCase();
-      if (tabName.includes('dashboard')) {
-        renderDashboard();
-      } else if (tabName.includes('agenda')) {
-        renderAgenda();
-      } else if (tabName.includes('cliente')) {
-        renderClientes();
-      } else if (tabName.includes('produto')) {
-        renderProdutos();
-      }
+      const tab = currentTab.dataset.tab;
+      if (tab === 'dashboard') renderDashboard();
+      else if (tab === 'agenda') renderAgenda();
+      else if (tab === 'clientes') renderClientes();
+      else if (tab === 'produtos') renderProdutos();
+      else if (tab === 'estoque') renderEstoqueVivo();
     }
     
     // Remover notificação após 2 segundos
@@ -3507,12 +3589,7 @@ async function loadSampleData() {
         const root = await tryLoad(url);
         if (!root || !root.data) continue;
         const d = root.data;
-        appState.data = {
-          pedidos: Array.isArray(d.pedidos) ? d.pedidos : [],
-          clientes: Array.isArray(d.clientes) ? d.clientes : [],
-          produtos: Array.isArray(d.produtos) ? d.produtos : [],
-          prioridades: d.prioridades != null ? d.prioridades : {},
-        };
+        appState.data = normalizeDataShape(d);
         if (root.lastUpdate) appState.lastUpdate = root.lastUpdate;
         localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
         if (root.lastUpdate) {
@@ -3530,7 +3607,7 @@ async function loadSampleData() {
   } catch (e) {
     console.error('[data] loadSampleData:', e);
   }
-  appState.data = { pedidos: [], clientes: [], produtos: [], prioridades: {} };
+  appState.data = normalizeDataShape({ pedidos: [], clientes: [], produtos: [], prioridades: {} });
   localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
   console.warn('[data] Base vazia: não foi possível carregar dados-sync.json.');
 }
@@ -4923,19 +5000,115 @@ function calculateVolumeByDay() {
   return volume;
 }
 
-function getProdutosHoje() {
-  let diaFiltro = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
-  const pedidosHoje = appState.data.pedidos.filter(p => p.dia_semana === diaFiltro);
-  
+function getProdutosAgregadosDiaSelecionado() {
+  const diaFiltro = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
+  const pedidosDia = appState.data.pedidos.filter((p) => p.dia_semana === diaFiltro);
   const prodMap = {};
-  pedidosHoje.forEach(p => {
-    if (!prodMap[p.produto]) {
-      prodMap[p.produto] = { nome: p.produto, quantidade: 0 };
-    }
-    prodMap[p.produto].quantidade += (p.quantidade || 0);
+  pedidosDia.forEach((p) => {
+    const nome = (p.produto && String(p.produto).trim()) || '(sem nome)';
+    if (!prodMap[nome]) prodMap[nome] = { nome, quantidade: 0 };
+    prodMap[nome].quantidade += p.quantidade || 0;
   });
-  
   return Object.values(prodMap).sort((a, b) => b.quantidade - a.quantidade);
+}
+
+function getProdutosHoje() {
+  return getProdutosAgregadosDiaSelecionado();
+}
+
+function getFatorEstoqueParaProduto(nomeProduto) {
+  const m = appState.data.estoqueFatores && appState.data.estoqueFatores[nomeProduto];
+  const n = typeof m === 'number' ? m : parseFloat(String(m).replace(',', '.'));
+  return Number.isFinite(n) && n > 0 ? n : 1;
+}
+
+async function aplicarFatorEstoque(nomeProduto, inputEl) {
+  let v = parseFloat(String(inputEl.value).replace(',', '.'));
+  if (!Number.isFinite(v) || v <= 0) v = 1;
+  inputEl.value = String(v);
+  if (!appState.data.estoqueFatores) appState.data.estoqueFatores = {};
+  appState.data.estoqueFatores[nomeProduto] = v;
+  await saveData();
+  renderEstoqueVivo();
+}
+
+function handleEstoqueDiaChange(e) {
+  diaVisualizacao = e.target.value;
+  renderEstoqueVivo();
+}
+
+function setupEstoqueDiaSelectListener() {
+  const el = document.getElementById('estoqueDiaSelect');
+  if (!el) return;
+  el.removeEventListener('change', handleEstoqueDiaChange);
+  el.addEventListener('change', handleEstoqueDiaChange);
+}
+
+function renderEstoqueVivo() {
+  const content = document.getElementById('content');
+  const prods = getProdutosAgregadosDiaSelecionado();
+  const diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
+  const opcoesHtml =
+    `<option value="hoje" ${diaVisualizacao === 'hoje' ? 'selected' : ''}>Hoje</option>` +
+    diasSemana.map((dia) => `<option value="${dia}" ${diaVisualizacao === dia ? 'selected' : ''}>${dia}</option>`).join('');
+
+  let sumNec = 0;
+  let sumComp = 0;
+  const rowsHtml = prods.length
+    ? prods
+        .map((p) => {
+          const fator = getFatorEstoqueParaProduto(p.nome);
+          const comprar = Math.ceil(p.quantidade * fator);
+          sumNec += p.quantidade;
+          sumComp += comprar;
+          const enc = encodeURIComponent(p.nome);
+          return `
+          <tr>
+            <td>${p.nome}</td>
+            <td class="fu-estoque-num">${p.quantidade}</td>
+            <td class="fu-estoque-num">
+              <input type="number" min="0.01" step="0.01" class="estoque-fator-input" data-produto="${enc}" value="${fator}" aria-label="Fator para ${p.nome.replace(/"/g, '&quot;')}" />
+            </td>
+            <td class="fu-estoque-num">${comprar}</td>
+          </tr>`;
+        })
+        .join('')
+    : `<tr><td colspan="4" style="text-align:center;color:var(--text-light);padding:20px;">Nenhum pedido para este dia.</td></tr>`;
+
+  content.innerHTML = `
+    <div class="dashboard page-shell estoque-vivo">
+      <div class="estoque-vivo-toolbar">
+        <div class="dashboard-toolbar-lead">
+          <span class="page-kicker">Compras · indicativo</span>
+          <h2 class="fu-section-title" style="margin:0;font-size:17px;font-weight:800;"><span class="fu-sec-ic">${fuIcon('package', 'icon-svg')}</span>Estoque vivo</h2>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <label for="estoqueDiaSelect" style="font-weight:500;color:var(--text);font-size:13px;">Dia:</label>
+          <select id="estoqueDiaSelect" style="padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:var(--card-bg);color:var(--text);font-size:14px;cursor:pointer;">
+            ${opcoesHtml}
+          </select>
+        </div>
+      </div>
+      <p class="estoque-vivo-hint">
+        A <strong>necessidade</strong> soma as quantidades dos pedidos no dia selecionado. O <strong>fator</strong> ajusta quanto de insumo você precisa por unidade vendida (ex.: 1,1 ou 2). O fator fica <strong>salvo por produto</strong> até alterar. <strong>A comprar</strong> = arredondamento para cima de necessidade × fator.
+      </p>
+      <div class="fu-estoque-wrap">
+        <table class="fu-estoque-table">
+          <thead><tr><th>Produto / variedade</th><th>Necessidade (un.)</th><th>Fator</th><th>A comprar (un.)</th></tr></thead>
+          <tbody>${rowsHtml}</tbody>
+        </table>
+      </div>
+      ${prods.length ? `<div class="fu-estoque-foot"><span>Total necessidade: ${sumNec}</span><span>Total a comprar: ${sumComp}</span></div>` : ''}
+    </div>
+  `;
+
+  setupEstoqueDiaSelectListener();
+  content.querySelectorAll('.estoque-fator-input').forEach((inp) => {
+    inp.addEventListener('change', async () => {
+      const nome = decodeURIComponent(inp.dataset.produto || '');
+      await aplicarFatorEstoque(nome, inp);
+    });
+  });
 }
 
 function getClientesHoje() {
@@ -5260,16 +5433,12 @@ function setupAutoSync() {
 function renderCurrentTab() {
   const currentTab = document.querySelector('.tab-btn.active');
   if (currentTab) {
-    const tabName = currentTab.textContent.toLowerCase();
-    if (tabName.includes('dashboard')) {
-      renderDashboard();
-    } else if (tabName.includes('agenda')) {
-      renderAgenda();
-    } else if (tabName.includes('cliente')) {
-      renderClientes();
-    } else if (tabName.includes('produto')) {
-      renderProdutos();
-    }
+    const tab = currentTab.dataset.tab;
+    if (tab === 'dashboard') renderDashboard();
+    else if (tab === 'agenda') renderAgenda();
+    else if (tab === 'clientes') renderClientes();
+    else if (tab === 'produtos') renderProdutos();
+    else if (tab === 'estoque') renderEstoqueVivo();
   } else {
     renderDashboard();
   }
@@ -5288,7 +5457,7 @@ async function syncWithGitHub() {
     const remoteTime = new Date(remoteData.lastUpdate).getTime();
     if (!Number.isFinite(remoteTime)) return;
     console.log('[sync] Aplicando dados remotos —', remoteData.lastUpdate);
-    appState.data = remoteData.data;
+    appState.data = normalizeDataShape(remoteData.data);
     appState.lastUpdate = remoteData.lastUpdate;
     lastSyncTime = remoteTime;
     if (shaOrNull) lastSyncSha = shaOrNull;

@@ -41,6 +41,7 @@ let appData = {
     clientes: [],
     produtos: [],
     prioridades: {},
+    estoqueFatores: {},
   },
   lastUpdate: new Date().toISOString(),
 };
