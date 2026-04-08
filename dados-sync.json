@@ -2630,18 +2630,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775083962921_2",
-        "id_cliente": "client_1775083898066",
-        "cliente": "Ana Galotta",
-        "dia_semana": "quinta-feira",
-        "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1775084538835_0",
         "id_cliente": "client_1775084316617",
         "cliente": "Velho Monge",
@@ -4523,5 +4511,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:36:31.420Z"
+  "lastUpdate": "2026-04-08T17:36:33.695Z"
 }
