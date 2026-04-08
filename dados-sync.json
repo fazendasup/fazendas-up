@@ -2678,18 +2678,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1774998323504_3",
-        "id_cliente": "client_1774998176523",
-        "cliente": "Marinara",
-        "dia_semana": "quarta-feira",
-        "produto": "Mix Folhas - Salada Leve",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1775083962921_0",
         "id_cliente": "client_1775083898066",
         "cliente": "Ana Galotta",
@@ -4655,5 +4643,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T14:14:00.686Z"
+  "lastUpdate": "2026-04-08T14:14:04.681Z"
 }
