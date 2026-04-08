@@ -1508,8 +1508,8 @@
         "cliente": "Patio Aleixo",
         "produto": "Micro Repolho",
         "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -4547,5 +4547,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:35:15.810Z"
+  "lastUpdate": "2026-04-08T17:35:46.539Z"
 }
