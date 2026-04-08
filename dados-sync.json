@@ -2622,10 +2622,10 @@
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
         "dia_semana": "quinta-feira",
-        "produto": "Micro Nabo",
+        "produto": "Micro Mostarda",
         "categoria": "",
         "quantidade": 4,
-        "tipo_venda": "",
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -4559,5 +4559,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:32:31.072Z"
+  "lastUpdate": "2026-04-08T17:32:39.081Z"
 }
