@@ -3237,11 +3237,43 @@ let appState = {
   agendaDiaFiltro: null,
 };
 
+/** Chave estável por variedade: trim + Unicode NFC (evita duplicar mapas no estoque). */
+function nomeChaveEstoque(raw) {
+  const base = raw != null && String(raw).trim() !== '' ? String(raw).trim() : '(sem nome)';
+  try {
+    return base.normalize('NFC');
+  } catch (e) {
+    return base;
+  }
+}
+
+function safeDecodeNomeProdutoEstoque(encoded) {
+  if (encoded == null || String(encoded) === '') return '';
+  try {
+    return decodeURIComponent(String(encoded));
+  } catch (err) {
+    return String(encoded);
+  }
+}
+
+function estoqueNomeDoDataset(el) {
+  return nomeChaveEstoque(safeDecodeNomeProdutoEstoque(el && el.dataset ? el.dataset.produto : ''));
+}
+
+function escapeHtmlEstoque(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function normalizeEstoqueDesativados(raw) {
   if (raw == null || typeof raw !== 'object' || Array.isArray(raw)) return {};
   const out = {};
   for (const k of Object.keys(raw)) {
-    if (k && raw[k]) out[k] = true;
+    if (!k || !raw[k]) continue;
+    out[nomeChaveEstoque(k)] = true;
   }
   return out;
 }
@@ -3251,9 +3283,10 @@ function normalizeEstoqueRendimentoKilo(raw) {
   const out = {};
   for (const k of Object.keys(raw)) {
     if (!k) continue;
+    const kn = nomeChaveEstoque(k);
     const v = raw[k];
     const n = typeof v === 'number' ? v : parseFloat(String(v).replace(',', '.'));
-    if (Number.isFinite(n) && n > 0) out[k] = n;
+    if (Number.isFinite(n) && n > 0) out[kn] = n;
   }
   return out;
 }
@@ -3264,9 +3297,20 @@ function normalizeEstoqueModoCompra(raw) {
   const out = {};
   for (const k of Object.keys(raw)) {
     if (!k) continue;
+    const kn = nomeChaveEstoque(k);
     const v = raw[k];
-    if (v === 'kilo') out[k] = 'kilo';
-    else if (v === 'unidade') out[k] = 'unidade';
+    if (v === 'kilo') out[kn] = 'kilo';
+    else if (v === 'unidade') out[kn] = 'unidade';
+  }
+  return out;
+}
+
+function normalizeEstoqueFatores(raw) {
+  if (raw == null || typeof raw !== 'object' || Array.isArray(raw)) return {};
+  const out = {};
+  for (const k of Object.keys(raw)) {
+    if (!k) continue;
+    out[nomeChaveEstoque(k)] = raw[k];
   }
   return out;
 }
@@ -3279,10 +3323,7 @@ function normalizeDataShape(d) {
     clientes: Array.isArray(src.clientes) ? src.clientes : [],
     produtos: Array.isArray(src.produtos) ? src.produtos : [],
     prioridades: src.prioridades != null ? src.prioridades : {},
-    estoqueFatores:
-      src.estoqueFatores != null && typeof src.estoqueFatores === 'object' && !Array.isArray(src.estoqueFatores)
-        ? { ...src.estoqueFatores }
-        : {},
+    estoqueFatores: normalizeEstoqueFatores(src.estoqueFatores),
     estoqueDesativados: normalizeEstoqueDesativados(src.estoqueDesativados),
     estoqueMix: normalizeEstoqueDesativados(src.estoqueMix),
     estoqueModoCompra: normalizeEstoqueModoCompra(src.estoqueModoCompra),
@@ -3335,10 +3376,7 @@ function normalizeServerBundle(raw) {
         clientes: Array.isArray(raw.data.clientes) ? raw.data.clientes : [],
         produtos: Array.isArray(raw.data.produtos) ? raw.data.produtos : [],
         prioridades: raw.data.prioridades != null ? raw.data.prioridades : {},
-        estoqueFatores:
-          raw.data.estoqueFatores != null && typeof raw.data.estoqueFatores === 'object' && !Array.isArray(raw.data.estoqueFatores)
-            ? raw.data.estoqueFatores
-            : {},
+        estoqueFatores: normalizeEstoqueFatores(raw.data.estoqueFatores),
         estoqueDesativados: normalizeEstoqueDesativados(raw.data.estoqueDesativados),
         estoqueMix: normalizeEstoqueDesativados(raw.data.estoqueMix),
         estoqueModoCompra: normalizeEstoqueModoCompra(raw.data.estoqueModoCompra),
@@ -3354,10 +3392,7 @@ function normalizeServerBundle(raw) {
         clientes: Array.isArray(raw.clientes) ? raw.clientes : [],
         produtos: Array.isArray(raw.produtos) ? raw.produtos : [],
         prioridades: raw.prioridades != null ? raw.prioridades : {},
-        estoqueFatores:
-          raw.estoqueFatores != null && typeof raw.estoqueFatores === 'object' && !Array.isArray(raw.estoqueFatores)
-            ? raw.estoqueFatores
-            : {},
+        estoqueFatores: normalizeEstoqueFatores(raw.estoqueFatores),
         estoqueDesativados: normalizeEstoqueDesativados(raw.estoqueDesativados),
         estoqueMix: normalizeEstoqueDesativados(raw.estoqueMix),
         estoqueModoCompra: normalizeEstoqueModoCompra(raw.estoqueModoCompra),
@@ -5185,7 +5220,7 @@ function getProdutosAgregadosDiaSelecionado() {
   const pedidosDia = appState.data.pedidos.filter((p) => p.dia_semana === diaFiltro);
   const prodMap = {};
   pedidosDia.forEach((p) => {
-    const nome = (p.produto && String(p.produto).trim()) || '(sem nome)';
+    const nome = nomeChaveEstoque(p.produto);
     if (!prodMap[nome]) prodMap[nome] = { nome, quantidade: 0 };
     prodMap[nome].quantidade += Number(p.quantidade) || 0;
   });
@@ -5198,7 +5233,8 @@ function getProdutosHoje() {
 
 /** Fator salvo pelo usuário, ou null se ainda não informado (não inventa valor padrão). */
 function getFatorEstoqueParaProduto(nomeProduto) {
-  const m = appState.data.estoqueFatores && appState.data.estoqueFatores[nomeProduto];
+  const k = nomeChaveEstoque(nomeProduto);
+  const m = appState.data.estoqueFatores && appState.data.estoqueFatores[k];
   if (m === undefined || m === null || m === '') return null;
   const n = typeof m === 'number' ? m : parseFloat(String(m).replace(',', '.'));
   if (!Number.isFinite(n) || n <= 0) return null;
@@ -5206,18 +5242,19 @@ function getFatorEstoqueParaProduto(nomeProduto) {
 }
 
 async function aplicarFatorEstoque(nomeProduto, inputEl) {
+  const k = nomeChaveEstoque(nomeProduto);
   const raw = String(inputEl.value).trim().replace(',', '.');
   if (!appState.data.estoqueFatores) appState.data.estoqueFatores = {};
   if (raw === '' || raw === '0') {
-    delete appState.data.estoqueFatores[nomeProduto];
+    delete appState.data.estoqueFatores[k];
     inputEl.value = '';
   } else {
     const v = parseFloat(raw);
     if (!Number.isFinite(v) || v <= 0) {
-      delete appState.data.estoqueFatores[nomeProduto];
+      delete appState.data.estoqueFatores[k];
       inputEl.value = '';
     } else {
-      appState.data.estoqueFatores[nomeProduto] = v;
+      appState.data.estoqueFatores[k] = v;
       inputEl.value = String(v);
     }
   }
@@ -5229,16 +5266,19 @@ async function aplicarFatorEstoque(nomeProduto, inputEl) {
 const ESTOQUE_MIX_MULT = 1.34;
 
 function isEstoqueMixAtivo(nomeProduto) {
-  return !!(appState.data.estoqueMix && appState.data.estoqueMix[nomeProduto]);
+  const k = nomeChaveEstoque(nomeProduto);
+  return !!(appState.data.estoqueMix && appState.data.estoqueMix[k]);
 }
 
 function getEstoqueModoCompra(nomeProduto) {
-  const m = appState.data.estoqueModoCompra && appState.data.estoqueModoCompra[nomeProduto];
+  const k = nomeChaveEstoque(nomeProduto);
+  const m = appState.data.estoqueModoCompra && appState.data.estoqueModoCompra[k];
   return m === 'kilo' ? 'kilo' : 'unidade';
 }
 
 function getRendimentoKiloParaProduto(nomeProduto) {
-  const m = appState.data.estoqueRendimentoKilo && appState.data.estoqueRendimentoKilo[nomeProduto];
+  const k = nomeChaveEstoque(nomeProduto);
+  const m = appState.data.estoqueRendimentoKilo && appState.data.estoqueRendimentoKilo[k];
   const n = typeof m === 'number' ? m : parseFloat(String(m).replace(',', '.'));
   return Number.isFinite(n) && n > 0 ? n : 0;
 }
@@ -5261,36 +5301,39 @@ function formatKgPt(kg) {
 }
 
 async function setEstoqueMix(nomeProduto, ativo) {
-  if (!nomeProduto) return;
+  const k = nomeChaveEstoque(nomeProduto);
+  if (!k) return;
   if (!appState.data.estoqueMix) appState.data.estoqueMix = {};
-  if (ativo) appState.data.estoqueMix[nomeProduto] = true;
-  else delete appState.data.estoqueMix[nomeProduto];
+  if (ativo) appState.data.estoqueMix[k] = true;
+  else delete appState.data.estoqueMix[k];
   await saveData();
   renderEstoqueVivo();
 }
 
 async function setEstoqueModoCompra(nomeProduto, modo) {
-  if (!nomeProduto) return;
+  const k = nomeChaveEstoque(nomeProduto);
+  if (!k) return;
   const m = modo === 'kilo' ? 'kilo' : 'unidade';
   if (!appState.data.estoqueModoCompra) appState.data.estoqueModoCompra = {};
-  appState.data.estoqueModoCompra[nomeProduto] = m;
+  appState.data.estoqueModoCompra[k] = m;
   await saveData();
   renderEstoqueVivo();
 }
 
 async function aplicarRendimentoKiloEstoque(nomeProduto, inputEl) {
+  const k = nomeChaveEstoque(nomeProduto);
   const raw = String(inputEl.value).trim().replace(',', '.');
   if (!appState.data.estoqueRendimentoKilo) appState.data.estoqueRendimentoKilo = {};
   if (raw === '' || raw === '0') {
-    delete appState.data.estoqueRendimentoKilo[nomeProduto];
+    delete appState.data.estoqueRendimentoKilo[k];
     inputEl.value = '';
   } else {
     const v = parseFloat(raw);
     if (!Number.isFinite(v) || v <= 0) {
-      delete appState.data.estoqueRendimentoKilo[nomeProduto];
+      delete appState.data.estoqueRendimentoKilo[k];
       inputEl.value = '';
     } else {
-      appState.data.estoqueRendimentoKilo[nomeProduto] = v;
+      appState.data.estoqueRendimentoKilo[k] = v;
       inputEl.value = String(v);
     }
   }
@@ -5299,10 +5342,11 @@ async function aplicarRendimentoKiloEstoque(nomeProduto, inputEl) {
 }
 
 async function setEstoqueProdutoDesativado(nomeProduto, desativar) {
-  if (!nomeProduto) return;
+  const k = nomeChaveEstoque(nomeProduto);
+  if (!k) return;
   if (!appState.data.estoqueDesativados) appState.data.estoqueDesativados = {};
-  if (desativar) appState.data.estoqueDesativados[nomeProduto] = true;
-  else delete appState.data.estoqueDesativados[nomeProduto];
+  if (desativar) appState.data.estoqueDesativados[k] = true;
+  else delete appState.data.estoqueDesativados[k];
   await saveData();
   renderEstoqueVivo();
 }
@@ -5366,21 +5410,21 @@ function renderEstoqueVivo() {
         }
         sumNec += unidadesPedido;
         const enc = encodeURIComponent(p.nome);
-        const mixLabel = p.nome.replace(/"/g, '&quot;');
+        const mixEsc = escapeHtmlEstoque(p.nome);
         const fatorHtml =
           modo === 'kilo'
             ? '<span class="estoque-cell-na">—</span>'
-            : `<input type="number" min="0.01" step="0.01" class="estoque-fator-input" data-produto="${enc}" value="${fator != null ? fator : ''}" placeholder="ex. 1,1" aria-label="Fator (unidade de insumo por unidade vendida) para ${mixLabel}" title="Salvo até você alterar ou limpar o campo" />`;
+            : `<input type="number" min="0.01" step="0.01" class="estoque-fator-input" data-produto="${enc}" value="${fator != null ? fator : ''}" placeholder="ex. 1,1" autocomplete="off" aria-label="Fator para ${mixEsc}" title="Salvo até você alterar ou limpar o campo" />`;
         const rendHtml =
           modo === 'unidade'
             ? '<span class="estoque-cell-na">—</span>'
-            : `<input type="number" min="0.01" step="0.01" class="estoque-rendimento-input" data-produto="${enc}" value="${rend > 0 ? rend : ''}" placeholder="ex. 8" aria-label="Rendimento: produtos por 1 kg para ${mixLabel}" title="Quantos produtos (unidades vendidas) saem de 1 kg. Ex.: 8 → 1 kg rende 8. Kg a comprar = necessidade ÷ este número (após mix, se marcar)" />`;
+            : `<input type="number" min="0.01" step="0.01" class="estoque-rendimento-input" data-produto="${enc}" value="${rend > 0 ? rend : ''}" placeholder="ex. 8" autocomplete="off" aria-label="Rendimento produtos por kg para ${mixEsc}" title="Quantos produtos saem de 1 kg (ex.: 8). Kg a comprar = necessidade ÷ este número (após mix)" />`;
         return `
           <tr>
-            <td>${p.nome}</td>
+            <td>${mixEsc}</td>
             <td class="fu-estoque-num">${unidadesPedido}</td>
             <td>
-              <select class="estoque-modo-select" data-produto="${enc}" aria-label="Comprar por unidade ou por kilo (${mixLabel})">
+              <select class="estoque-modo-select" data-produto="${enc}" autocomplete="off" aria-label="Compra por unidade ou kilo: ${mixEsc}">
                 <option value="unidade" ${modo === 'unidade' ? 'selected' : ''}>Unidade</option>
                 <option value="kilo" ${modo === 'kilo' ? 'selected' : ''}>Kilo</option>
               </select>
@@ -5388,7 +5432,7 @@ function renderEstoqueVivo() {
             <td class="fu-estoque-num">${fatorHtml}</td>
             <td class="fu-estoque-num">${rendHtml}</td>
             <td class="fu-estoque-mix" title="Em mix: multiplica a necessidade do dia por ${ESTOQUE_MIX_MULT} (+34%) antes dos demais cálculos">
-              <input type="checkbox" class="estoque-mix-cb" data-produto="${enc}" ${mix ? 'checked' : ''} aria-label="Mix para ${mixLabel}" />
+              <input type="checkbox" class="estoque-mix-cb" data-produto="${enc}" ${mix ? 'checked' : ''} aria-label="Mix para ${mixEsc}" />
             </td>
             <td class="fu-estoque-num">${comprarCell}</td>
             <td class="fu-estoque-acoes">
@@ -5405,7 +5449,7 @@ function renderEstoqueVivo() {
           const enc = encodeURIComponent(nome);
           const noDia = prodsTodos.some((p) => p.nome === nome);
           return `<li>
-            <span>${nome}</span>
+            <span>${escapeHtmlEstoque(nome)}</span>
             ${noDia ? '<span class="estoque-tag-dia" title="Ainda aparece nos pedidos deste dia">Neste dia</span>' : ''}
             <button type="button" class="estoque-reativar-btn" data-produto="${enc}">Reativar</button>
           </li>`;
@@ -5448,38 +5492,32 @@ function renderEstoqueVivo() {
   setupEstoqueDiaSelectListener();
   content.querySelectorAll('.estoque-fator-input').forEach((inp) => {
     inp.addEventListener('change', async () => {
-      const nome = decodeURIComponent(inp.dataset.produto || '');
-      await aplicarFatorEstoque(nome, inp);
+      await aplicarFatorEstoque(estoqueNomeDoDataset(inp), inp);
     });
   });
   content.querySelectorAll('.estoque-mix-cb').forEach((cb) => {
     cb.addEventListener('change', async () => {
-      const nome = decodeURIComponent(cb.dataset.produto || '');
-      await setEstoqueMix(nome, cb.checked);
+      await setEstoqueMix(estoqueNomeDoDataset(cb), cb.checked);
     });
   });
   content.querySelectorAll('.estoque-modo-select').forEach((sel) => {
     sel.addEventListener('change', async () => {
-      const nome = decodeURIComponent(sel.dataset.produto || '');
-      await setEstoqueModoCompra(nome, sel.value);
+      await setEstoqueModoCompra(estoqueNomeDoDataset(sel), sel.value);
     });
   });
   content.querySelectorAll('.estoque-rendimento-input').forEach((inp) => {
     inp.addEventListener('change', async () => {
-      const nome = decodeURIComponent(inp.dataset.produto || '');
-      await aplicarRendimentoKiloEstoque(nome, inp);
+      await aplicarRendimentoKiloEstoque(estoqueNomeDoDataset(inp), inp);
     });
   });
   content.querySelectorAll('.estoque-btn-desativar').forEach((btn) => {
     btn.addEventListener('click', async () => {
-      const nome = decodeURIComponent(btn.dataset.produto || '');
-      await setEstoqueProdutoDesativado(nome, true);
+      await setEstoqueProdutoDesativado(estoqueNomeDoDataset(btn), true);
     });
   });
   content.querySelectorAll('.estoque-reativar-btn').forEach((btn) => {
     btn.addEventListener('click', async () => {
-      const nome = decodeURIComponent(btn.dataset.produto || '');
-      await setEstoqueProdutoDesativado(nome, false);
+      await setEstoqueProdutoDesativado(estoqueNomeDoDataset(btn), false);
     });
   });
 }
