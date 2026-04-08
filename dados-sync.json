@@ -1436,8 +1436,8 @@
         "cliente": "Patio Adrianópolis",
         "produto": "Micro Repolho",
         "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -4571,5 +4571,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:32:03.091Z"
+  "lastUpdate": "2026-04-08T17:32:24.889Z"
 }
