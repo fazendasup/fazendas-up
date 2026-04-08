@@ -4570,7 +4570,9 @@
     "estoqueModoCompra": {
       "Baby Manjericão": "kilo"
     },
-    "estoqueRendimentoKilo": {}
+    "estoqueRendimentoKilo": {
+      "Baby Manjericão": 0.01
+    }
   },
-  "lastUpdate": "2026-04-08T20:10:10.539Z"
+  "lastUpdate": "2026-04-08T20:10:19.615Z"
 }
