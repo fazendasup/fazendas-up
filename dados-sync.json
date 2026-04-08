@@ -4568,7 +4568,6 @@
       "Mix Folhas - Salada Leve": true
     },
     "estoqueMix": {
-      "Alface Crespa Verde": true,
       "Alface Americana": true,
       "Alface Crespa Roxa": true
     },
@@ -4591,5 +4590,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T20:32:25.273Z"
+  "lastUpdate": "2026-04-08T20:32:33.116Z"
 }
