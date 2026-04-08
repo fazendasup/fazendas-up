@@ -4565,7 +4565,8 @@
       "Molho": true,
       "Micro Coentro": true,
       "Alface MIX": true,
-      "Mix Folhas - Salada Leve": true
+      "Mix Folhas - Salada Leve": true,
+      "Micro Beterraba": true
     },
     "estoqueMix": {
       "Alface Crespa Verde": true,
@@ -4591,5 +4592,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T21:01:25.645Z"
+  "lastUpdate": "2026-04-08T21:01:34.678Z"
 }
