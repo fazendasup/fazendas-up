@@ -4547,7 +4547,7 @@
       ]
     },
     "estoqueFatores": {
-      "Alface Crespa Verde": 2,
+      "Alface Crespa Verde": 1.5,
       "Alface Americana": 1.5,
       "Alface Crespa Roxa": 2,
       "Baby Manjericão": 1.5
@@ -4563,9 +4563,8 @@
       "Micro Mostarda": true,
       "Flores": true,
       "Baby Acelga": true,
-      "Molho": true,
-      "Micro Coentro": true
+      "Molho": true
     }
   },
-  "lastUpdate": "2026-04-08T19:55:56.511Z"
+  "lastUpdate": "2026-04-08T19:59:24.300Z"
 }
