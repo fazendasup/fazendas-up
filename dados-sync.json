@@ -1310,18 +1310,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_154",
-        "id_cliente": "45",
-        "dia_semana": "quinta-feira",
-        "cliente": "Patio Djalma",
-        "produto": "Alface Crespa Roxa",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
-      },
-      {
         "id": "order_155",
         "id_cliente": "45",
         "dia_semana": "quinta-feira",
@@ -4583,5 +4571,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:29:41.096Z"
+  "lastUpdate": "2026-04-08T17:29:49.137Z"
 }
