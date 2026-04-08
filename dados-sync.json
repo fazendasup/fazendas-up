@@ -4569,11 +4569,11 @@
     },
     "estoqueMix": {},
     "estoqueModoCompra": {
-      "Baby Manjericão": "kilo"
+      "Baby Manjericão": "unidade"
     },
     "estoqueRendimentoKilo": {
       "Baby Manjericão": 8
     }
   },
-  "lastUpdate": "2026-04-08T20:16:13.493Z"
+  "lastUpdate": "2026-04-08T20:16:25.058Z"
 }
