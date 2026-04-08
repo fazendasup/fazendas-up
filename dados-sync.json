@@ -2630,18 +2630,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775083962921_0",
-        "id_cliente": "client_1775083898066",
-        "cliente": "Ana Galotta",
-        "dia_semana": "quinta-feira",
-        "produto": "Mix Folhas - Salada Leve",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1775083962921_1",
         "id_cliente": "client_1775083898066",
         "cliente": "Ana Galotta",
@@ -4547,5 +4535,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:36:10.273Z"
+  "lastUpdate": "2026-04-08T17:36:25.942Z"
 }
