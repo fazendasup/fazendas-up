@@ -4209,6 +4209,19 @@
         "horarioMaximo": "16:00",
         "cobraEntrega": true,
         "precos": []
+      },
+      {
+        "id": "client_1775608904239",
+        "nome": "Franco's",
+        "observacoes": "",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:00",
+        "cobraEntrega": true,
+        "precos": []
       }
     ],
     "produtos": [
@@ -4498,5 +4511,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T00:41:43.027Z"
+  "lastUpdate": "2026-04-08T00:41:45.748Z"
 }
