@@ -4567,7 +4567,9 @@
       "Micro Coentro": true,
       "Alface MIX": true
     },
-    "estoqueMix": {},
+    "estoqueMix": {
+      "Alface Crespa Verde": true
+    },
     "estoqueModoCompra": {
       "Baby Manjericão": "kilo",
       "Baby Rúcula": "kilo",
@@ -4577,7 +4579,15 @@
       "Baby Manjericão": 8,
       "Baby Rúcula": 8,
       "Agrião": 10
+    },
+    "estoqueMixFolhaLeve": {
+      "referenciaProduto": "Alface MIX",
+      "variedades": [
+        "Alface Crespa Verde",
+        "Alface Crespa Roxa",
+        "Alface Americana"
+      ]
     }
   },
-  "lastUpdate": "2026-04-08T20:21:08.245Z"
+  "lastUpdate": "2026-04-08T20:30:00.363Z"
 }
