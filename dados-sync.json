@@ -3233,7 +3233,7 @@
         "id": "order_1775657482077_3",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "quinta-feira",
         "produto": "Baby Manjericão",
         "categoria": "",
         "quantidade": 10,
@@ -4595,5 +4595,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T21:40:09.129Z"
+  "lastUpdate": "2026-04-08T21:40:29.266Z"
 }
