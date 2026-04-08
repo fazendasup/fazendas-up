@@ -5187,7 +5187,7 @@ function getProdutosAgregadosDiaSelecionado() {
   pedidosDia.forEach((p) => {
     const nome = (p.produto && String(p.produto).trim()) || '(sem nome)';
     if (!prodMap[nome]) prodMap[nome] = { nome, quantidade: 0 };
-    prodMap[nome].quantidade += p.quantidade || 0;
+    prodMap[nome].quantidade += Number(p.quantidade) || 0;
   });
   return Object.values(prodMap).sort((a, b) => b.quantidade - a.quantidade);
 }
@@ -5225,7 +5225,7 @@ async function aplicarFatorEstoque(nomeProduto, inputEl) {
   renderEstoqueVivo();
 }
 
-/** Multiplicador quando o item entra em mix (sobre necessidade × fator, antes do arredondamento). */
+/** Multiplicador quando o item entra em mix (sobre a necessidade em unidades, antes de fator ou rendimento). */
 const ESTOQUE_MIX_MULT = 1.34;
 
 function isEstoqueMixAtivo(nomeProduto) {
@@ -5243,14 +5243,21 @@ function getRendimentoKiloParaProduto(nomeProduto) {
   return Number.isFinite(n) && n > 0 ? n : 0;
 }
 
-/** kg arredondado para cima em 3 casas (grama) — pedido mínimo realista no hortifruti */
-function kgComprarArredondado(rawKg) {
-  if (!Number.isFinite(rawKg) || rawKg <= 0) return 0;
-  return Math.ceil(rawKg * 1000) / 1000;
+/**
+ * Kg a comprar (arredonda para cima no milésimo = grama).
+ * Fórmula: unidades necessárias ÷ (quantas unidades 1 kg rende).
+ */
+function kgComprarPorRendimento(unidadesNecessarias, produtosPorKg) {
+  const u = Number(unidadesNecessarias) || 0;
+  const r = Number(produtosPorKg) || 0;
+  if (r <= 0 || u <= 0) return 0;
+  const raw = u / r;
+  return Math.ceil(raw * 1000) / 1000;
 }
 
 function formatKgPt(kg) {
-  return kg.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 3 });
+  if (!Number.isFinite(kg) || kg <= 0) return '0';
+  return kg.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 3 });
 }
 
 async function setEstoqueMix(nomeProduto, ativo) {
@@ -5337,26 +5344,27 @@ function renderEstoqueVivo() {
         const modo = getEstoqueModoCompra(p.nome);
         const mix = isEstoqueMixAtivo(p.nome);
         const mixMult = mix ? ESTOQUE_MIX_MULT : 1;
-        const needEff = p.quantidade * mixMult;
+        const unidadesPedido = Number(p.quantidade) || 0;
+        const unidadesParaCompra = unidadesPedido * mixMult;
         const fator = getFatorEstoqueParaProduto(p.nome);
         const rend = getRendimentoKiloParaProduto(p.nome);
         let comprarCell;
         if (modo === 'kilo') {
           if (rend > 0) {
-            const kg = kgComprarArredondado(needEff / rend);
+            const kg = kgComprarPorRendimento(unidadesParaCompra, rend);
             sumKg += kg;
-            comprarCell = `<span class="fu-estoque-num">${formatKgPt(kg)} kg</span>`;
+            comprarCell = `<span class="fu-estoque-num" title="Necessidade ${unidadesPedido} un. (× mix ${mixMult}) ÷ ${rend} produtos/kg">${formatKgPt(kg)} kg</span>`;
           } else {
-            comprarCell = '<span class="estoque-cell-na" title="Informe o rendimento (unidades vendidas por 1 kg)">—</span>';
+            comprarCell = '<span class="estoque-cell-na" title="Informe quantos produtos 1 kg rende (ex.: 8)">—</span>';
           }
         } else if (fator == null) {
           comprarCell = '<span class="estoque-cell-na" title="Informe o fator (insumo por unidade vendida)">—</span>';
         } else {
-          const un = Math.ceil(needEff * fator);
+          const un = Math.ceil(unidadesParaCompra * fator);
           sumUn += un;
           comprarCell = `<span class="fu-estoque-num">${un} un.</span>`;
         }
-        sumNec += p.quantidade;
+        sumNec += unidadesPedido;
         const enc = encodeURIComponent(p.nome);
         const mixLabel = p.nome.replace(/"/g, '&quot;');
         const fatorHtml =
@@ -5366,11 +5374,11 @@ function renderEstoqueVivo() {
         const rendHtml =
           modo === 'unidade'
             ? '<span class="estoque-cell-na">—</span>'
-            : `<input type="number" min="0.01" step="0.01" class="estoque-rendimento-input" data-produto="${enc}" value="${rend > 0 ? rend : ''}" placeholder="un./kg" aria-label="Rendimento do kg para ${mixLabel}" title="Unidades vendidas por 1 kg de insumo — salvo até você alterar ou limpar" />`;
+            : `<input type="number" min="0.01" step="0.01" class="estoque-rendimento-input" data-produto="${enc}" value="${rend > 0 ? rend : ''}" placeholder="ex. 8" aria-label="Rendimento: produtos por 1 kg para ${mixLabel}" title="Quantos produtos (unidades vendidas) saem de 1 kg. Ex.: 8 → 1 kg rende 8. Kg a comprar = necessidade ÷ este número (após mix, se marcar)" />`;
         return `
           <tr>
             <td>${p.nome}</td>
-            <td class="fu-estoque-num">${p.quantidade}</td>
+            <td class="fu-estoque-num">${unidadesPedido}</td>
             <td>
               <select class="estoque-modo-select" data-produto="${enc}" aria-label="Comprar por unidade ou por kilo (${mixLabel})">
                 <option value="unidade" ${modo === 'unidade' ? 'selected' : ''}>Unidade</option>
@@ -5420,11 +5428,11 @@ function renderEstoqueVivo() {
         </div>
       </div>
       <p class="estoque-vivo-hint">
-        Em cada linha escolha <strong>Unidade</strong> ou <strong>Kilo</strong>. <strong>Fator</strong> e <strong>Rend. / kg</strong> ficam <strong>gravados</strong> no mesmo arquivo dos pedidos até você digitar outro valor ou <strong>apagar o campo</strong> (salva ao sair do campo). <strong>Unidade</strong>: fator = insumo por unidade vendida; <strong>a comprar</strong> = arredonda (necessidade × mix × fator). <strong>Kilo</strong>: rendimento = unidades vendidas por 1 kg; <strong>a comprar</strong> = (necessidade × mix) ÷ rendimento em kg (arredonda para cima até o grama). <strong>Mix</strong> (+34%) sobre a necessidade antes do fator ou rendimento. <strong>Ocultar</strong> até <strong>Reativar</strong>.
+        Em cada linha escolha <strong>Unidade</strong> ou <strong>Kilo</strong>. <strong>Fator</strong> e <strong>Rend. (prod/kg)</strong> ficam gravados até você alterar ou apagar. <strong>Modo Kilo</strong>: em <strong>Rend.</strong> coloque quantos <strong>produtos</strong> saem de <strong>1 kg</strong> (ex.: <strong>8</strong> = 1 kg rende 8 produtos). <strong>Kg a comprar</strong> = (necessidade do dia × mix, se marcar) ÷ esse número, em <strong>kg</strong> na coluna A comprar (ex.: 24 un. ÷ 8 = <strong>3 kg</strong>). <strong>Modo Unidade</strong>: <strong>a comprar</strong> = arredonda (necessidade × mix × fator) em unidades de insumo. <strong>Ocultar</strong> até <strong>Reativar</strong>.
       </p>
       <div class="fu-estoque-wrap">
         <table class="fu-estoque-table">
-          <thead><tr><th>Produto / variedade</th><th>Necessidade (un.)</th><th>Compra</th><th title="Só em modo Unidade">Fator</th><th title="Unidades vendidas por 1 kg — só em modo Kilo">Rend. / kg</th><th class="fu-estoque-mix" title="Mix +34% sobre a necessidade">Mix</th><th>A comprar</th><th class="fu-estoque-acoes">Lista</th></tr></thead>
+          <thead><tr><th>Produto / variedade</th><th>Necessidade (un.)</th><th>Compra</th><th title="Só em modo Unidade">Fator</th><th title="Só em modo Kilo: 1 kg rende N produtos">Rend. (prod/kg)</th><th class="fu-estoque-mix" title="Mix +34% sobre a necessidade">Mix</th><th title="Un. ou kg conforme o modo">A comprar</th><th class="fu-estoque-acoes">Lista</th></tr></thead>
           <tbody>${rowsHtml}</tbody>
         </table>
       </div>
