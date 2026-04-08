@@ -1103,7 +1103,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_127",
@@ -1115,7 +1115,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_128",
@@ -1127,7 +1127,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "70G CRESPA ROXA + 25G CRESPA VERDE + 25G AMERICANA",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_129",
@@ -1139,7 +1139,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_130",
@@ -1151,7 +1151,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_131",
@@ -3299,7 +3299,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1775673999839_1",
@@ -3311,7 +3311,7 @@
         "quantidade": 8,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1775674150422_1",
@@ -4643,5 +4643,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T21:48:51.609Z"
+  "lastUpdate": "2026-04-08T21:49:00.730Z"
 }
