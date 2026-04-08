@@ -2646,9 +2646,24 @@
             letter-spacing: 0.02em;
             color: var(--text-light);
             background: color-mix(in srgb, var(--muted-bg) 65%, transparent);
+            vertical-align: bottom;
+        }
+        /* Cabeçalhos alinhados ao conteúdo das colunas (evita título à esquerda e número à direita) */
+        .fu-estoque-table thead th:nth-child(2),
+        .fu-estoque-table thead th:nth-child(4),
+        .fu-estoque-table thead th:nth-child(5),
+        .fu-estoque-table thead th:nth-child(7) {
+            text-align: right;
+        }
+        .fu-estoque-table thead th:nth-child(6),
+        .fu-estoque-table thead th:nth-child(8) {
+            text-align: center;
         }
         .fu-estoque-table tr:last-child td {
             border-bottom: none;
+        }
+        .fu-estoque-table td.fu-estoque-num {
+            vertical-align: middle;
         }
         .fu-estoque-table .fu-estoque-num {
             font-variant-numeric: tabular-nums;
@@ -2664,6 +2679,9 @@
             font-size: 13px;
             background: var(--surface);
             color: var(--text);
+            text-align: right;
+            margin-left: auto;
+            display: block;
         }
         .fu-estoque-foot {
             margin-top: 12px;
@@ -2726,6 +2744,9 @@
             font-size: 13px;
             background: var(--surface);
             color: var(--text);
+            text-align: right;
+            margin-left: auto;
+            display: block;
         }
         .estoque-cell-na {
             color: var(--text-light);
@@ -2733,6 +2754,12 @@
             text-align: center;
             display: inline-block;
             min-width: 1.25em;
+        }
+        .fu-estoque-table td.fu-estoque-num .estoque-cell-na {
+            text-align: right;
+            display: block;
+            width: fit-content;
+            margin-left: auto;
         }
         .estoque-desativados-panel {
             margin-top: 20px;
