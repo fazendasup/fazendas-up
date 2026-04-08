@@ -2416,7 +2416,7 @@
       {
         "id": "order_265",
         "id_cliente": "16",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "cliente": "Novotel",
         "produto": "Alface Crespa Roxa",
         "categoria": "Desfolhado",
@@ -4511,5 +4511,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:42:36.541Z"
+  "lastUpdate": "2026-04-08T17:42:44.374Z"
 }
