@@ -1400,8 +1400,8 @@
         "cliente": "Patio Adrianópolis",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "pendente"
       },
@@ -4571,5 +4571,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:31:41.032Z"
+  "lastUpdate": "2026-04-08T17:31:52.058Z"
 }
