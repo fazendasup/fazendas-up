@@ -4573,8 +4573,9 @@
       "Baby Rúcula": "kilo"
     },
     "estoqueRendimentoKilo": {
-      "Baby Manjericão": 8
+      "Baby Manjericão": 8,
+      "Baby Rúcula": 0.01
     }
   },
-  "lastUpdate": "2026-04-08T20:16:32.317Z"
+  "lastUpdate": "2026-04-08T20:16:36.684Z"
 }
