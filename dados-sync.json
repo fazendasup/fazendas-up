@@ -3336,6 +3336,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775666348293_1",
+        "id_cliente": "client_1775608903021",
+        "cliente": "Franco's",
+        "dia_semana": "quarta-feira",
+        "produto": "Micro Rucula",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775666348293_2",
+        "id_cliente": "client_1775608903021",
+        "cliente": "Franco's",
+        "dia_semana": "quarta-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4559,5 +4583,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T14:46:45.206Z"
+  "lastUpdate": "2026-04-08T16:39:08.304Z"
 }
