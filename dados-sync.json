@@ -4567,10 +4567,7 @@
       "Alface MIX": true,
       "Mix Folhas - Salada Leve": true
     },
-    "estoqueMix": {
-      "Alface Americana": true,
-      "Alface Crespa Roxa": true
-    },
+    "estoqueMix": {},
     "estoqueModoCompra": {
       "Baby Manjericão": "unidade",
       "Baby Rúcula": "kilo",
@@ -4590,5 +4587,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T20:32:33.116Z"
+  "lastUpdate": "2026-04-08T20:32:35.051Z"
 }
