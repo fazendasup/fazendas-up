@@ -1424,8 +1424,8 @@
         "cliente": "Patio Adrianópolis",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "",
+        "quantidade": 25,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -4571,5 +4571,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:31:52.058Z"
+  "lastUpdate": "2026-04-08T17:32:03.091Z"
 }
