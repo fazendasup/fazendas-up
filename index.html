@@ -5196,18 +5196,31 @@ function getProdutosHoje() {
   return getProdutosAgregadosDiaSelecionado();
 }
 
+/** Fator salvo pelo usuário, ou null se ainda não informado (não inventa valor padrão). */
 function getFatorEstoqueParaProduto(nomeProduto) {
   const m = appState.data.estoqueFatores && appState.data.estoqueFatores[nomeProduto];
+  if (m === undefined || m === null || m === '') return null;
   const n = typeof m === 'number' ? m : parseFloat(String(m).replace(',', '.'));
-  return Number.isFinite(n) && n > 0 ? n : 1;
+  if (!Number.isFinite(n) || n <= 0) return null;
+  return n;
 }
 
 async function aplicarFatorEstoque(nomeProduto, inputEl) {
-  let v = parseFloat(String(inputEl.value).replace(',', '.'));
-  if (!Number.isFinite(v) || v <= 0) v = 1;
-  inputEl.value = String(v);
+  const raw = String(inputEl.value).trim().replace(',', '.');
   if (!appState.data.estoqueFatores) appState.data.estoqueFatores = {};
-  appState.data.estoqueFatores[nomeProduto] = v;
+  if (raw === '' || raw === '0') {
+    delete appState.data.estoqueFatores[nomeProduto];
+    inputEl.value = '';
+  } else {
+    const v = parseFloat(raw);
+    if (!Number.isFinite(v) || v <= 0) {
+      delete appState.data.estoqueFatores[nomeProduto];
+      inputEl.value = '';
+    } else {
+      appState.data.estoqueFatores[nomeProduto] = v;
+      inputEl.value = String(v);
+    }
+  }
   await saveData();
   renderEstoqueVivo();
 }
@@ -5336,6 +5349,8 @@ function renderEstoqueVivo() {
           } else {
             comprarCell = '<span class="estoque-cell-na" title="Informe o rendimento (unidades vendidas por 1 kg)">—</span>';
           }
+        } else if (fator == null) {
+          comprarCell = '<span class="estoque-cell-na" title="Informe o fator (insumo por unidade vendida)">—</span>';
         } else {
           const un = Math.ceil(needEff * fator);
           sumUn += un;
@@ -5347,11 +5362,11 @@ function renderEstoqueVivo() {
         const fatorHtml =
           modo === 'kilo'
             ? '<span class="estoque-cell-na">—</span>'
-            : `<input type="number" min="0.01" step="0.01" class="estoque-fator-input" data-produto="${enc}" value="${fator}" aria-label="Fator (unidade de insumo por unidade vendida) para ${mixLabel}" />`;
+            : `<input type="number" min="0.01" step="0.01" class="estoque-fator-input" data-produto="${enc}" value="${fator != null ? fator : ''}" placeholder="ex. 1,1" aria-label="Fator (unidade de insumo por unidade vendida) para ${mixLabel}" title="Salvo até você alterar ou limpar o campo" />`;
         const rendHtml =
           modo === 'unidade'
             ? '<span class="estoque-cell-na">—</span>'
-            : `<input type="number" min="0.01" step="0.01" class="estoque-rendimento-input" data-produto="${enc}" value="${rend > 0 ? rend : ''}" placeholder="un./kg" aria-label="Rendimento do kg para ${mixLabel}" title="Quantas unidades vendidas você obtém com 1 kg de insumo" />`;
+            : `<input type="number" min="0.01" step="0.01" class="estoque-rendimento-input" data-produto="${enc}" value="${rend > 0 ? rend : ''}" placeholder="un./kg" aria-label="Rendimento do kg para ${mixLabel}" title="Unidades vendidas por 1 kg de insumo — salvo até você alterar ou limpar" />`;
         return `
           <tr>
             <td>${p.nome}</td>
@@ -5405,7 +5420,7 @@ function renderEstoqueVivo() {
         </div>
       </div>
       <p class="estoque-vivo-hint">
-        Em cada linha escolha <strong>Unidade</strong> ou <strong>Kilo</strong>. <strong>Unidade</strong>: preencha o <strong>fator</strong> (quantas unidades de insumo por cada unidade vendida); <strong>a comprar</strong> = arredonda para cima (necessidade × mix × fator). <strong>Kilo</strong>: preencha o <strong>rendimento do kg</strong> — quantas <strong>unidades vendidas</strong> você consegue com <strong>1 kg</strong> de insumo (ex.: 1 kg de agrião rende 20 buquês → 20); <strong>a comprar</strong> = kg = (necessidade × mix) ÷ rendimento, arredondado para cima em gramas. <strong>Mix</strong> (+34%) aplica sobre a necessidade do dia antes do fator ou do rendimento. <strong>Ocultar</strong> remove da lista até <strong>Reativar</strong>.
+        Em cada linha escolha <strong>Unidade</strong> ou <strong>Kilo</strong>. <strong>Fator</strong> e <strong>Rend. / kg</strong> ficam <strong>gravados</strong> no mesmo arquivo dos pedidos até você digitar outro valor ou <strong>apagar o campo</strong> (salva ao sair do campo). <strong>Unidade</strong>: fator = insumo por unidade vendida; <strong>a comprar</strong> = arredonda (necessidade × mix × fator). <strong>Kilo</strong>: rendimento = unidades vendidas por 1 kg; <strong>a comprar</strong> = (necessidade × mix) ÷ rendimento em kg (arredonda para cima até o grama). <strong>Mix</strong> (+34%) sobre a necessidade antes do fator ou rendimento. <strong>Ocultar</strong> até <strong>Reativar</strong>.
       </p>
       <div class="fu-estoque-wrap">
         <table class="fu-estoque-table">
