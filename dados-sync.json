@@ -3288,6 +3288,18 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775673970601_1",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4511,5 +4523,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T18:45:51.755Z"
+  "lastUpdate": "2026-04-08T18:46:10.606Z"
 }
