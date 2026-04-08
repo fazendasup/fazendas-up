@@ -1442,18 +1442,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_169",
-        "id_cliente": "46",
-        "dia_semana": "quinta-feira",
-        "cliente": "Patio Adrianópolis",
-        "produto": "Micro Rabanete",
-        "categoria": "Pote",
-        "quantidade": 5,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_170",
         "id_cliente": "47",
         "dia_semana": "quinta-feira",
@@ -4571,5 +4559,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:32:24.889Z"
+  "lastUpdate": "2026-04-08T17:32:31.072Z"
 }
