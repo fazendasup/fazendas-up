@@ -4565,7 +4565,11 @@
       "Baby Acelga": true,
       "Molho": true,
       "Micro Coentro": true
+    },
+    "estoqueMix": {},
+    "estoqueGramasPorUnidade": {
+      "Baby Manjericão": 0.1
     }
   },
-  "lastUpdate": "2026-04-08T20:02:12.037Z"
+  "lastUpdate": "2026-04-08T20:02:34.978Z"
 }
