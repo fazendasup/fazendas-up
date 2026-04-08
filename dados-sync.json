@@ -4569,7 +4569,7 @@
     },
     "estoqueMix": {},
     "estoqueModoCompra": {
-      "Baby Manjericão": "unidade",
+      "Baby Manjericão": "kilo",
       "Baby Rúcula": "kilo",
       "Agrião": "kilo"
     },
@@ -4587,5 +4587,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T20:33:48.145Z"
+  "lastUpdate": "2026-04-08T20:36:58.521Z"
 }
