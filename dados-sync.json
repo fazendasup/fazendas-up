@@ -1376,8 +1376,8 @@
         "cliente": "Patio Djalma",
         "produto": "Micro Repolho",
         "categoria": "Desfolhado",
-        "quantidade": 2,
-        "tipo_venda": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
       },
@@ -4571,5 +4571,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T17:30:37.882Z"
+  "lastUpdate": "2026-04-08T17:30:46.382Z"
 }
