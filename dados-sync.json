@@ -3288,6 +3288,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775608968625_0",
+        "id_cliente": "client_1775608903021",
+        "cliente": "Franco's",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775608968625_1",
+        "id_cliente": "client_1775608903021",
+        "cliente": "Franco's",
+        "dia_semana": "quarta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4511,5 +4535,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T00:41:45.748Z"
+  "lastUpdate": "2026-04-08T00:42:48.630Z"
 }
