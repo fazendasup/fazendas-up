@@ -44,7 +44,8 @@ let appData = {
     estoqueFatores: {},
     estoqueDesativados: {},
     estoqueMix: {},
-    estoqueGramasPorUnidade: {},
+    estoqueModoCompra: {},
+    estoqueRendimentoKilo: {},
   },
   lastUpdate: new Date().toISOString(),
 };
