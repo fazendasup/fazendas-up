@@ -4567,7 +4567,9 @@
       "Micro Coentro": true,
       "Alface MIX": true
     },
-    "estoqueMix": {},
+    "estoqueMix": {
+      "Alface Crespa Verde": true
+    },
     "estoqueModoCompra": {
       "Baby Manjericão": "kilo",
       "Baby Rúcula": "kilo",
@@ -4587,5 +4589,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T20:30:04.539Z"
+  "lastUpdate": "2026-04-08T20:30:09.205Z"
 }
