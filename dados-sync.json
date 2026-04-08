@@ -4570,12 +4570,12 @@
     "estoqueMix": {},
     "estoqueModoCompra": {
       "Baby Manjericão": "kilo",
-      "Baby Rúcula": "kilo"
+      "Baby Rúcula": "unidade"
     },
     "estoqueRendimentoKilo": {
       "Baby Manjericão": 8,
       "Baby Rúcula": 0.02
     }
   },
-  "lastUpdate": "2026-04-08T20:16:59.286Z"
+  "lastUpdate": "2026-04-08T20:17:03.044Z"
 }
