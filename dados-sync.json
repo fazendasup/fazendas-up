@@ -3209,7 +3209,7 @@
         "id": "order_1775657482077_1",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "quinta-feira",
         "produto": "Alface MIX",
         "categoria": "",
         "quantidade": 10,
@@ -4595,5 +4595,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T21:39:51.588Z"
+  "lastUpdate": "2026-04-08T21:40:00.699Z"
 }
