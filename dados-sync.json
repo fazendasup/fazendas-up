@@ -4569,7 +4569,8 @@
     },
     "estoqueMix": {
       "Alface Crespa Verde": true,
-      "Alface Americana": true
+      "Alface Americana": true,
+      "Alface Crespa Roxa": true
     },
     "estoqueModoCompra": {
       "Baby Manjericão": "unidade",
@@ -4590,5 +4591,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T20:32:56.433Z"
+  "lastUpdate": "2026-04-08T20:32:58.814Z"
 }
