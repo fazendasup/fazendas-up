@@ -4564,7 +4564,8 @@
       "Flores": true,
       "Baby Acelga": true,
       "Molho": true,
-      "Micro Coentro": true
+      "Micro Coentro": true,
+      "Alface MIX": true
     },
     "estoqueMix": {},
     "estoqueModoCompra": {
@@ -4574,5 +4575,5 @@
       "Baby Manjericão": 0.02
     }
   },
-  "lastUpdate": "2026-04-08T20:10:51.429Z"
+  "lastUpdate": "2026-04-08T20:13:15.601Z"
 }
