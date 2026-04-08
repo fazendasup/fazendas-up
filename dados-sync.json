@@ -4567,9 +4567,10 @@
       "Micro Coentro": true
     },
     "estoqueMix": {},
-    "estoqueGramasPorUnidade": {
-      "Baby Manjericão": 0.1
-    }
+    "estoqueModoCompra": {
+      "Baby Manjericão": "kilo"
+    },
+    "estoqueRendimentoKilo": {}
   },
-  "lastUpdate": "2026-04-08T20:02:34.978Z"
+  "lastUpdate": "2026-04-08T20:09:19.572Z"
 }
