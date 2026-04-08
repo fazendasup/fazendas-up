@@ -2806,6 +2806,68 @@
         .estoque-reativar-btn:hover {
             background: color-mix(in srgb, #059669 35%, var(--card-bg));
         }
+        .estoque-mix-folha-panel {
+            margin-bottom: 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: color-mix(in srgb, var(--muted-bg) 30%, var(--card-bg));
+            padding: 0 14px 12px;
+        }
+        .estoque-mix-folha-panel > summary {
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 10px 0 6px;
+            list-style: none;
+            color: var(--text);
+        }
+        .estoque-mix-folha-panel > summary::-webkit-details-marker {
+            display: none;
+        }
+        .estoque-mix-folha-panel > summary::before {
+            content: "▸ ";
+            color: var(--text-light);
+        }
+        .estoque-mix-folha-panel[open] > summary::before {
+            content: "▾ ";
+        }
+        .estoque-cfg-input,
+        .estoque-cfg-textarea {
+            width: 100%;
+            max-width: 420px;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            background: var(--surface);
+            color: var(--text);
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .estoque-cfg-textarea {
+            font-family: inherit;
+            resize: vertical;
+            min-height: 88px;
+        }
+        .estoque-cfg-save {
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+        }
+        .estoque-cfg-save:hover {
+            filter: brightness(1.05);
+        }
+        .estoque-mix-folha-resumo {
+            font-size: 12px;
+            color: var(--text-light);
+            margin: 0 0 10px;
+            line-height: 1.45;
+        }
 
         .form-error {
             margin-top: 8px;
@@ -3231,6 +3293,7 @@ let appState = {
     estoqueMix: {},
     estoqueModoCompra: {},
     estoqueRendimentoKilo: {},
+    estoqueMixFolhaLeve: null,
   },
   editingPedido: null,
   editingCliente: null,
@@ -3315,6 +3378,49 @@ function normalizeEstoqueFatores(raw) {
   return out;
 }
 
+/** Mix folha leve: total do dia no produto referência, partes iguais entre variedades listadas. */
+const ESTOQUE_MIX_FOLHA_PADRAO = {
+  referenciaProduto: 'Alface MIX',
+  variedades: ['Alface Crespa Verde', 'Alface Crespa Roxa', 'Alface Americana'],
+};
+
+function normalizeEstoqueMixFolhaLeve(raw) {
+  const refPad = ESTOQUE_MIX_FOLHA_PADRAO.referenciaProduto;
+  const varPad = [...ESTOQUE_MIX_FOLHA_PADRAO.variedades];
+  if (!raw || typeof raw !== 'object') {
+    return {
+      referenciaProduto: nomeChaveEstoque(refPad),
+      variedades: varPad.map(nomeChaveEstoque),
+    };
+  }
+  const refIn =
+    raw.referenciaProduto != null && String(raw.referenciaProduto).trim() !== ''
+      ? String(raw.referenciaProduto).trim()
+      : refPad;
+  let vars = varPad;
+  if (Array.isArray(raw.variedades) && raw.variedades.length > 0) {
+    vars = raw.variedades.map((x) => String(x).trim()).filter(Boolean);
+  }
+  const seen = new Set();
+  const variedades = [];
+  for (const x of vars) {
+    const kn = nomeChaveEstoque(x);
+    if (seen.has(kn)) continue;
+    seen.add(kn);
+    variedades.push(kn);
+  }
+  if (!variedades.length) {
+    for (const x of varPad) {
+      const kn = nomeChaveEstoque(x);
+      if (!seen.has(kn)) {
+        seen.add(kn);
+        variedades.push(kn);
+      }
+    }
+  }
+  return { referenciaProduto: nomeChaveEstoque(refIn), variedades };
+}
+
 /** Garante shape estável de appState.data (inclui fatores de compra por produto). */
 function normalizeDataShape(d) {
   const src = d || {};
@@ -3328,6 +3434,7 @@ function normalizeDataShape(d) {
     estoqueMix: normalizeEstoqueDesativados(src.estoqueMix),
     estoqueModoCompra: normalizeEstoqueModoCompra(src.estoqueModoCompra),
     estoqueRendimentoKilo: normalizeEstoqueRendimentoKilo(src.estoqueRendimentoKilo),
+    estoqueMixFolhaLeve: normalizeEstoqueMixFolhaLeve(src.estoqueMixFolhaLeve),
   };
 }
 
@@ -3381,6 +3488,7 @@ function normalizeServerBundle(raw) {
         estoqueMix: normalizeEstoqueDesativados(raw.data.estoqueMix),
         estoqueModoCompra: normalizeEstoqueModoCompra(raw.data.estoqueModoCompra),
         estoqueRendimentoKilo: normalizeEstoqueRendimentoKilo(raw.data.estoqueRendimentoKilo),
+        estoqueMixFolhaLeve: normalizeEstoqueMixFolhaLeve(raw.data.estoqueMixFolhaLeve),
       },
       lastUpdate: raw.lastUpdate || new Date().toISOString(),
     };
@@ -3397,6 +3505,7 @@ function normalizeServerBundle(raw) {
         estoqueMix: normalizeEstoqueDesativados(raw.estoqueMix),
         estoqueModoCompra: normalizeEstoqueModoCompra(raw.estoqueModoCompra),
         estoqueRendimentoKilo: normalizeEstoqueRendimentoKilo(raw.estoqueRendimentoKilo),
+        estoqueMixFolhaLeve: normalizeEstoqueMixFolhaLeve(raw.estoqueMixFolhaLeve),
       },
       lastUpdate: raw.lastUpdate || new Date().toISOString(),
     };
@@ -5262,8 +5371,77 @@ async function aplicarFatorEstoque(nomeProduto, inputEl) {
   renderEstoqueVivo();
 }
 
-/** Multiplicador quando o item entra em mix (sobre a necessidade em unidades, antes de fator ou rendimento). */
+/** Para linhas que não são do mix folha leve, Mix aplica +34% sobre os pedidos da própria linha. */
 const ESTOQUE_MIX_MULT = 1.34;
+
+function getEstoqueMixFolhaLeveCfg() {
+  return normalizeEstoqueMixFolhaLeve(appState.data.estoqueMixFolhaLeve);
+}
+
+function quantidadeReferenciaMixFolhaNoDia() {
+  const { referenciaProduto } = getEstoqueMixFolhaLeveCfg();
+  const refKey = nomeChaveEstoque(referenciaProduto);
+  const diaFiltro = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
+  let s = 0;
+  for (const p of appState.data.pedidos) {
+    if (p.dia_semana !== diaFiltro) continue;
+    if (nomeChaveEstoque(p.produto) === refKey) s += Number(p.quantidade) || 0;
+  }
+  return s;
+}
+
+function isVariedadeMixFolhaLeve(nomeProduto) {
+  const k = nomeChaveEstoque(nomeProduto);
+  return getEstoqueMixFolhaLeveCfg().variedades.includes(k);
+}
+
+function parteIgualMixFolhaLeve() {
+  const { variedades } = getEstoqueMixFolhaLeveCfg();
+  const n = variedades.length;
+  if (n <= 0) return 0;
+  return quantidadeReferenciaMixFolhaNoDia() / n;
+}
+
+function unidadesAjustadasMixEstoque(nomeProduto, unidadesPedido, mixMarcado) {
+  const up = Number(unidadesPedido) || 0;
+  if (isVariedadeMixFolhaLeve(nomeProduto) && mixMarcado) {
+    return up + parteIgualMixFolhaLeve();
+  }
+  if (!isVariedadeMixFolhaLeve(nomeProduto) && mixMarcado) {
+    return up * ESTOQUE_MIX_MULT;
+  }
+  return up;
+}
+
+function estoqueInjetarLinhasMixFolha(lista) {
+  if (quantidadeReferenciaMixFolhaNoDia() <= 0) return lista;
+  const { variedades } = getEstoqueMixFolhaLeveCfg();
+  const keys = new Set(lista.map((p) => nomeChaveEstoque(p.nome)));
+  const extra = [];
+  for (const v of variedades) {
+    const k = nomeChaveEstoque(v);
+    if (!keys.has(k)) {
+      extra.push({ nome: k, quantidade: 0 });
+      keys.add(k);
+    }
+  }
+  if (!extra.length) return lista;
+  return lista.concat(extra).sort((a, b) => b.quantidade - a.quantidade);
+}
+
+async function salvarConfigMixFolhaLeve() {
+  const refEl = document.getElementById('mixFolhaRefProd');
+  const taEl = document.getElementById('mixFolhaVars');
+  if (!refEl || !taEl) return;
+  const ref = refEl.value.trim();
+  const lines = taEl.value.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+  appState.data.estoqueMixFolhaLeve = normalizeEstoqueMixFolhaLeve({
+    referenciaProduto: ref || ESTOQUE_MIX_FOLHA_PADRAO.referenciaProduto,
+    variedades: lines.length ? lines : [...ESTOQUE_MIX_FOLHA_PADRAO.variedades],
+  });
+  await saveData();
+  renderEstoqueVivo();
+}
 
 function isEstoqueMixAtivo(nomeProduto) {
   const k = nomeChaveEstoque(nomeProduto);
@@ -5366,8 +5544,25 @@ function setupEstoqueDiaSelectListener() {
 function renderEstoqueVivo() {
   const content = document.getElementById('content');
   const desativados = appState.data.estoqueDesativados || {};
-  const prodsTodos = getProdutosAgregadosDiaSelecionado();
-  const prods = prodsTodos.filter((p) => !desativados[p.nome]);
+  const cfgRawMix =
+    appState.data.estoqueMixFolhaLeve && typeof appState.data.estoqueMixFolhaLeve === 'object' ? appState.data.estoqueMixFolhaLeve : {};
+  const cfgDisplayRefMix =
+    cfgRawMix.referenciaProduto != null && String(cfgRawMix.referenciaProduto).trim() !== ''
+      ? String(cfgRawMix.referenciaProduto).trim()
+      : ESTOQUE_MIX_FOLHA_PADRAO.referenciaProduto;
+  const cfgDisplayVarsMix =
+    Array.isArray(cfgRawMix.variedades) && cfgRawMix.variedades.length > 0
+      ? cfgRawMix.variedades.join('\n')
+      : ESTOQUE_MIX_FOLHA_PADRAO.variedades.join('\n');
+
+  let prodsTodos = getProdutosAgregadosDiaSelecionado();
+  prodsTodos = estoqueInjetarLinhasMixFolha(prodsTodos);
+  const prods = prodsTodos.filter((p) => !desativados[nomeChaveEstoque(p.nome)]);
+
+  const qRefMixFolha = quantidadeReferenciaMixFolhaNoDia();
+  const nMixVar = getEstoqueMixFolhaLeveCfg().variedades.length;
+  const parteNum = nMixVar > 0 ? qRefMixFolha / nMixVar : 0;
+  const parteStr = parteNum.toLocaleString('pt-BR', { maximumFractionDigits: 6 });
   const nomesDesativados = Object.keys(desativados).sort((a, b) => a.localeCompare(b, 'pt-BR'));
   const diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
   const opcoesHtml =
@@ -5387,17 +5582,22 @@ function renderEstoqueVivo() {
       .map((p) => {
         const modo = getEstoqueModoCompra(p.nome);
         const mix = isEstoqueMixAtivo(p.nome);
-        const mixMult = mix ? ESTOQUE_MIX_MULT : 1;
+        const inMixFolha = isVariedadeMixFolhaLeve(p.nome);
         const unidadesPedido = Number(p.quantidade) || 0;
-        const unidadesParaCompra = unidadesPedido * mixMult;
+        const unidadesParaCompra = unidadesAjustadasMixEstoque(p.nome, unidadesPedido, mix);
         const fator = getFatorEstoqueParaProduto(p.nome);
         const rend = getRendimentoKiloParaProduto(p.nome);
+        const mixCbTitle = inMixFolha
+          ? nMixVar > 0
+            ? `Mix folha leve: com Mix marcado, soma ${parteStr} un. (1/${nMixVar} de ${qRefMixFolha} un. do referência no dia) aos ${unidadesPedido} un. desta linha.`
+            : 'Mix folha leve: configure as variedades em Configurar referência.'
+          : `Fora do grupo folha: com Mix marcado, multiplica ${unidadesPedido} un. por ${ESTOQUE_MIX_MULT} (+34%).`;
         let comprarCell;
         if (modo === 'kilo') {
           if (rend > 0) {
             const kg = kgComprarPorRendimento(unidadesParaCompra, rend);
             sumKg += kg;
-            comprarCell = `<span class="fu-estoque-num" title="Necessidade ${unidadesPedido} un. (× mix ${mixMult}) ÷ ${rend} produtos/kg">${formatKgPt(kg)} kg</span>`;
+            comprarCell = `<span class="fu-estoque-num" title="Base ${unidadesParaCompra.toLocaleString('pt-BR', { maximumFractionDigits: 4 })} un. (ajuste mix) ÷ ${rend} prod/kg">${formatKgPt(kg)} kg</span>`;
           } else {
             comprarCell = '<span class="estoque-cell-na" title="Informe quantos produtos 1 kg rende (ex.: 8)">—</span>';
           }
@@ -5431,7 +5631,7 @@ function renderEstoqueVivo() {
             </td>
             <td class="fu-estoque-num">${fatorHtml}</td>
             <td class="fu-estoque-num">${rendHtml}</td>
-            <td class="fu-estoque-mix" title="Em mix: multiplica a necessidade do dia por ${ESTOQUE_MIX_MULT} (+34%) antes dos demais cálculos">
+            <td class="fu-estoque-mix" title="${escapeHtmlEstoque(mixCbTitle)}">
               <input type="checkbox" class="estoque-mix-cb" data-produto="${enc}" ${mix ? 'checked' : ''} aria-label="Mix para ${mixEsc}" />
             </td>
             <td class="fu-estoque-num">${comprarCell}</td>
@@ -5447,7 +5647,7 @@ function renderEstoqueVivo() {
     ? nomesDesativados
         .map((nome) => {
           const enc = encodeURIComponent(nome);
-          const noDia = prodsTodos.some((p) => p.nome === nome);
+          const noDia = prodsTodos.some((p) => nomeChaveEstoque(p.nome) === nomeChaveEstoque(nome));
           return `<li>
             <span>${escapeHtmlEstoque(nome)}</span>
             ${noDia ? '<span class="estoque-tag-dia" title="Ainda aparece nos pedidos deste dia">Neste dia</span>' : ''}
@@ -5471,12 +5671,25 @@ function renderEstoqueVivo() {
           </select>
         </div>
       </div>
+      <p class="estoque-mix-folha-resumo">
+        <strong>Mix folha leve (este dia):</strong> total <strong>${qRefMixFolha}</strong> un. somadas do produto referência «${escapeHtmlEstoque(cfgDisplayRefMix)}»
+        ${nMixVar > 0 ? `→ <strong>${parteStr}</strong> un. para cada uma das <strong>${nMixVar}</strong> variedades (partes iguais), quando o Mix estiver marcado na linha.` : ''}
+      </p>
+      <details class="estoque-mix-folha-panel">
+        <summary>Configurar referência e variedades do mix folha leve</summary>
+        <p class="estoque-desativados-hint">Use o <strong>mesmo nome</strong> que aparece nos pedidos. O total do dia desse produto é dividido em partes iguais entre as variedades listadas (crespa verde, roxa, americana, etc.) quando Mix estiver marcado nelas.</p>
+        <label for="mixFolhaRefProd" style="display:block;font-size:12px;font-weight:600;margin-bottom:4px;">Produto referência</label>
+        <input id="mixFolhaRefProd" type="text" class="estoque-cfg-input" value="${escapeHtmlEstoque(cfgDisplayRefMix)}" autocomplete="off" />
+        <label for="mixFolhaVars" style="display:block;font-size:12px;font-weight:600;margin-bottom:4px;">Variedades (uma por linha)</label>
+        <textarea id="mixFolhaVars" class="estoque-cfg-textarea" autocomplete="off"></textarea>
+        <button type="button" class="estoque-cfg-save" onclick="salvarConfigMixFolhaLeve()">Salvar configuração</button>
+      </details>
       <p class="estoque-vivo-hint">
-        Em cada linha escolha <strong>Unidade</strong> ou <strong>Kilo</strong>. <strong>Fator</strong> e <strong>Rend. (prod/kg)</strong> ficam gravados até você alterar ou apagar. <strong>Modo Kilo</strong>: em <strong>Rend.</strong> coloque quantos <strong>produtos</strong> saem de <strong>1 kg</strong> (ex.: <strong>8</strong> = 1 kg rende 8 produtos). <strong>Kg a comprar</strong> = (necessidade do dia × mix, se marcar) ÷ esse número, em <strong>kg</strong> na coluna A comprar (ex.: 24 un. ÷ 8 = <strong>3 kg</strong>). <strong>Modo Unidade</strong>: <strong>a comprar</strong> = arredonda (necessidade × mix × fator) em unidades de insumo. <strong>Ocultar</strong> até <strong>Reativar</strong>.
+        Nas variedades do <strong>mix folha leve</strong> (lista configurável), com <strong>Mix</strong> marcado: <strong>unidades para compra</strong> = pedidos da linha + (total do dia do produto referência ÷ N variedades). Nas <strong>demais linhas</strong>, Mix = multiplica só os pedidos da linha por <strong>${ESTOQUE_MIX_MULT}</strong> (+34%). Depois aplicam-se <strong>Fator</strong> ou <strong>Rend. (prod/kg)</strong> conforme o modo. <strong>Ocultar</strong> até <strong>Reativar</strong>.
       </p>
       <div class="fu-estoque-wrap">
         <table class="fu-estoque-table">
-          <thead><tr><th>Produto / variedade</th><th>Necessidade (un.)</th><th>Compra</th><th title="Só em modo Unidade">Fator</th><th title="Só em modo Kilo: 1 kg rende N produtos">Rend. (prod/kg)</th><th class="fu-estoque-mix" title="Mix +34% sobre a necessidade">Mix</th><th title="Un. ou kg conforme o modo">A comprar</th><th class="fu-estoque-acoes">Lista</th></tr></thead>
+          <thead><tr><th>Produto / variedade</th><th>Necessidade (un.)</th><th>Compra</th><th title="Só em modo Unidade">Fator</th><th title="Só em modo Kilo: 1 kg rende N produtos">Rend. (prod/kg)</th><th class="fu-estoque-mix" title="Folha leve: parte igual do mix; demais: +34%">Mix</th><th title="Un. ou kg conforme o modo">A comprar</th><th class="fu-estoque-acoes">Lista</th></tr></thead>
           <tbody>${rowsHtml}</tbody>
         </table>
       </div>
@@ -5490,6 +5703,8 @@ function renderEstoqueVivo() {
   `;
 
   setupEstoqueDiaSelectListener();
+  const taMix = document.getElementById('mixFolhaVars');
+  if (taMix) taMix.value = cfgDisplayVarsMix;
   content.querySelectorAll('.estoque-fator-input').forEach((inp) => {
     inp.addEventListener('change', async () => {
       await aplicarFatorEstoque(estoqueNomeDoDataset(inp), inp);

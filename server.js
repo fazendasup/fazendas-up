@@ -46,6 +46,7 @@ let appData = {
     estoqueMix: {},
     estoqueModoCompra: {},
     estoqueRendimentoKilo: {},
+    estoqueMixFolhaLeve: null,
   },
   lastUpdate: new Date().toISOString(),
 };
