@@ -2696,6 +2696,36 @@
             border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
             background: color-mix(in srgb, var(--danger) 12%, var(--card-bg));
         }
+        .fu-estoque-table .fu-estoque-mix {
+            text-align: center;
+            width: 1%;
+            vertical-align: middle;
+        }
+        .estoque-mix-cb {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+        .fu-estoque-table .estoque-gpu-input {
+            width: 64px;
+            padding: 4px 6px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 12px;
+            background: var(--surface);
+            color: var(--text);
+        }
+        .fu-estoque-peso-cell {
+            font-size: 12px;
+            line-height: 1.35;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .estoque-kg-sub {
+            color: var(--text-light);
+            font-size: 11px;
+        }
         .estoque-desativados-panel {
             margin-top: 20px;
             border: 1px solid var(--border);
@@ -3190,6 +3220,8 @@ let appState = {
     produtos: [],
     estoqueFatores: {},
     estoqueDesativados: {},
+    estoqueMix: {},
+    estoqueGramasPorUnidade: {},
   },
   editingPedido: null,
   editingCliente: null,
@@ -3201,6 +3233,18 @@ function normalizeEstoqueDesativados(raw) {
   const out = {};
   for (const k of Object.keys(raw)) {
     if (k && raw[k]) out[k] = true;
+  }
+  return out;
+}
+
+function normalizeEstoqueGramasPorUnidade(raw) {
+  if (raw == null || typeof raw !== 'object' || Array.isArray(raw)) return {};
+  const out = {};
+  for (const k of Object.keys(raw)) {
+    if (!k) continue;
+    const v = raw[k];
+    const n = typeof v === 'number' ? v : parseFloat(String(v).replace(',', '.'));
+    if (Number.isFinite(n) && n > 0) out[k] = n;
   }
   return out;
 }
@@ -3218,6 +3262,8 @@ function normalizeDataShape(d) {
         ? { ...src.estoqueFatores }
         : {},
     estoqueDesativados: normalizeEstoqueDesativados(src.estoqueDesativados),
+    estoqueMix: normalizeEstoqueDesativados(src.estoqueMix),
+    estoqueGramasPorUnidade: normalizeEstoqueGramasPorUnidade(src.estoqueGramasPorUnidade),
   };
 }
 
@@ -3271,6 +3317,8 @@ function normalizeServerBundle(raw) {
             ? raw.data.estoqueFatores
             : {},
         estoqueDesativados: normalizeEstoqueDesativados(raw.data.estoqueDesativados),
+        estoqueMix: normalizeEstoqueDesativados(raw.data.estoqueMix),
+        estoqueGramasPorUnidade: normalizeEstoqueGramasPorUnidade(raw.data.estoqueGramasPorUnidade),
       },
       lastUpdate: raw.lastUpdate || new Date().toISOString(),
     };
@@ -3287,6 +3335,8 @@ function normalizeServerBundle(raw) {
             ? raw.estoqueFatores
             : {},
         estoqueDesativados: normalizeEstoqueDesativados(raw.estoqueDesativados),
+        estoqueMix: normalizeEstoqueDesativados(raw.estoqueMix),
+        estoqueGramasPorUnidade: normalizeEstoqueGramasPorUnidade(raw.estoqueGramasPorUnidade),
       },
       lastUpdate: raw.lastUpdate || new Date().toISOString(),
     };
@@ -5137,6 +5187,53 @@ async function aplicarFatorEstoque(nomeProduto, inputEl) {
   renderEstoqueVivo();
 }
 
+/** Multiplicador quando o item entra em mix (sobre necessidade × fator, antes do arredondamento). */
+const ESTOQUE_MIX_MULT = 1.34;
+
+function isEstoqueMixAtivo(nomeProduto) {
+  return !!(appState.data.estoqueMix && appState.data.estoqueMix[nomeProduto]);
+}
+
+function getGramasPorUnidadeEstoque(nomeProduto) {
+  const m = appState.data.estoqueGramasPorUnidade && appState.data.estoqueGramasPorUnidade[nomeProduto];
+  const n = typeof m === 'number' ? m : parseFloat(String(m).replace(',', '.'));
+  return Number.isFinite(n) && n > 0 ? n : 0;
+}
+
+function formatKgFromGramas(g) {
+  const kg = g / 1000;
+  return kg.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 3 });
+}
+
+async function setEstoqueMix(nomeProduto, ativo) {
+  if (!nomeProduto) return;
+  if (!appState.data.estoqueMix) appState.data.estoqueMix = {};
+  if (ativo) appState.data.estoqueMix[nomeProduto] = true;
+  else delete appState.data.estoqueMix[nomeProduto];
+  await saveData();
+  renderEstoqueVivo();
+}
+
+async function aplicarGramasPorUnidadeEstoque(nomeProduto, inputEl) {
+  const raw = String(inputEl.value).trim().replace(',', '.');
+  if (!appState.data.estoqueGramasPorUnidade) appState.data.estoqueGramasPorUnidade = {};
+  if (raw === '' || raw === '0') {
+    delete appState.data.estoqueGramasPorUnidade[nomeProduto];
+    inputEl.value = '';
+  } else {
+    const v = parseFloat(raw);
+    if (!Number.isFinite(v) || v <= 0) {
+      delete appState.data.estoqueGramasPorUnidade[nomeProduto];
+      inputEl.value = '';
+    } else {
+      appState.data.estoqueGramasPorUnidade[nomeProduto] = v;
+      inputEl.value = String(v);
+    }
+  }
+  await saveData();
+  renderEstoqueVivo();
+}
+
 async function setEstoqueProdutoDesativado(nomeProduto, desativar) {
   if (!nomeProduto) return;
   if (!appState.data.estoqueDesativados) appState.data.estoqueDesativados = {};
@@ -5171,27 +5268,46 @@ function renderEstoqueVivo() {
 
   let sumNec = 0;
   let sumComp = 0;
+  let sumGramas = 0;
   let rowsHtml;
   if (!prodsTodos.length) {
-    rowsHtml = `<tr><td colspan="5" style="text-align:center;color:var(--text-light);padding:20px;">Nenhum pedido para este dia.</td></tr>`;
+    rowsHtml = `<tr><td colspan="8" style="text-align:center;color:var(--text-light);padding:20px;">Nenhum pedido para este dia.</td></tr>`;
   } else if (!prods.length) {
-    rowsHtml = `<tr><td colspan="5" style="text-align:center;color:var(--text-light);padding:20px;">Todos os itens deste dia estão <strong>desativados</strong>. Reative na lista abaixo para voltarem a aparecer.</td></tr>`;
+    rowsHtml = `<tr><td colspan="8" style="text-align:center;color:var(--text-light);padding:20px;">Todos os itens deste dia estão <strong>desativados</strong>. Reative na lista abaixo para voltarem a aparecer.</td></tr>`;
   } else {
     rowsHtml = prods
       .map((p) => {
+        const mix = isEstoqueMixAtivo(p.nome);
+        const mixMult = mix ? ESTOQUE_MIX_MULT : 1;
         const fator = getFatorEstoqueParaProduto(p.nome);
-        const comprar = Math.ceil(p.quantidade * fator);
+        const baseUn = p.quantidade * fator * mixMult;
+        const comprar = Math.ceil(baseUn);
+        const gPu = getGramasPorUnidadeEstoque(p.nome);
+        let pesoCell = '—';
+        if (gPu > 0) {
+          const totalG = Math.ceil(p.quantidade * fator * mixMult * gPu);
+          sumGramas += totalG;
+          pesoCell = `${totalG} g<br><span class="estoque-kg-sub">≈ ${formatKgFromGramas(totalG)} kg</span>`;
+        }
         sumNec += p.quantidade;
         sumComp += comprar;
         const enc = encodeURIComponent(p.nome);
+        const mixLabel = p.nome.replace(/"/g, '&quot;');
         return `
           <tr>
             <td>${p.nome}</td>
             <td class="fu-estoque-num">${p.quantidade}</td>
             <td class="fu-estoque-num">
-              <input type="number" min="0.01" step="0.01" class="estoque-fator-input" data-produto="${enc}" value="${fator}" aria-label="Fator para ${p.nome.replace(/"/g, '&quot;')}" />
+              <input type="number" min="0.01" step="0.01" class="estoque-fator-input" data-produto="${enc}" value="${fator}" aria-label="Fator para ${mixLabel}" />
+            </td>
+            <td class="fu-estoque-mix" title="Em mix: multiplica necessidade×fator por ${ESTOQUE_MIX_MULT} (+34%) antes de arredondar">
+              <input type="checkbox" class="estoque-mix-cb" data-produto="${enc}" ${mix ? 'checked' : ''} aria-label="Mix para ${mixLabel}" />
+            </td>
+            <td class="fu-estoque-num" title="Gramas de insumo por cada unidade vendida (ex.: agrião por buquê). Deixe vazio se compra por unidade.">
+              <input type="number" min="0.1" step="0.1" class="estoque-gpu-input" data-produto="${enc}" value="${gPu > 0 ? gPu : ''}" placeholder="—" aria-label="Gramas por unidade vendida (${mixLabel})" />
             </td>
             <td class="fu-estoque-num">${comprar}</td>
+            <td class="fu-estoque-num fu-estoque-peso-cell">${pesoCell}</td>
             <td class="fu-estoque-acoes">
               <button type="button" class="estoque-btn-desativar" data-produto="${enc}" title="Ocultar da lista de compras">Ocultar</button>
             </td>
@@ -5229,15 +5345,15 @@ function renderEstoqueVivo() {
         </div>
       </div>
       <p class="estoque-vivo-hint">
-        A <strong>necessidade</strong> soma as quantidades dos pedidos no dia selecionado. O <strong>fator</strong> ajusta quanto de insumo você precisa por unidade vendida (ex.: 1,1 ou 2). O fator fica <strong>salvo por produto</strong> até alterar. <strong>A comprar</strong> = arredondamento para cima de necessidade × fator. Use <strong>Ocultar</strong> para tirar um item da lista (e dos totais); ele continua salvo em <strong>Itens desativados</strong> até você <strong>Reativar</strong>.
+        <strong>Necessidade</strong> = soma das unidades vendidas no dia. <strong>Fator</strong> = insumo por unidade vendida. <strong>Mix</strong> (marcado) multiplica (necessidade × fator) por <strong>${ESTOQUE_MIX_MULT}</strong> (+34%) antes de arredondar → coluna <strong>Un.</strong> <strong>g/un</strong> = gramas de insumo por unidade vendida (útil quando compra <strong>por kg</strong>: a coluna <strong>Peso</strong> mostra total em g e kg; deixe vazio se você só compra por unidade e o número em <strong>Un.</strong> já basta). <strong>Ocultar</strong> remove da lista até <strong>Reativar</strong> em Itens desativados.
       </p>
       <div class="fu-estoque-wrap">
         <table class="fu-estoque-table">
-          <thead><tr><th>Produto / variedade</th><th>Necessidade (un.)</th><th>Fator</th><th>A comprar (un.)</th><th class="fu-estoque-acoes">Lista</th></tr></thead>
+          <thead><tr><th>Produto / variedade</th><th>Necessidade (un.)</th><th>Fator</th><th class="fu-estoque-mix" title="Mix +34%">Mix</th><th title="Gramas por unidade vendida">g/un</th><th>A comprar (un.)</th><th title="Peso total se g/un preenchido">Peso</th><th class="fu-estoque-acoes">Lista</th></tr></thead>
           <tbody>${rowsHtml}</tbody>
         </table>
       </div>
-      ${prods.length ? `<div class="fu-estoque-foot"><span>Total necessidade: ${sumNec}</span><span>Total a comprar: ${sumComp}</span></div>` : ''}
+      ${prods.length ? `<div class="fu-estoque-foot"><span>Total necessidade: ${sumNec}</span><span>Total a comprar (un.): ${sumComp}</span>${sumGramas > 0 ? `<span>Total peso: ${sumGramas} g (≈ ${formatKgFromGramas(sumGramas)} kg)</span>` : ''}</div>` : ''}
       <details class="estoque-desativados-panel" ${nomesDesativados.length ? 'open' : ''}>
         <summary>Itens desativados (${nomesDesativados.length})</summary>
         <p class="estoque-desativados-hint">Estes produtos não aparecem na tabela nem entram nos totais. A configuração é salva junto com os demais dados.</p>
@@ -5251,6 +5367,18 @@ function renderEstoqueVivo() {
     inp.addEventListener('change', async () => {
       const nome = decodeURIComponent(inp.dataset.produto || '');
       await aplicarFatorEstoque(nome, inp);
+    });
+  });
+  content.querySelectorAll('.estoque-mix-cb').forEach((cb) => {
+    cb.addEventListener('change', async () => {
+      const nome = decodeURIComponent(cb.dataset.produto || '');
+      await setEstoqueMix(nome, cb.checked);
+    });
+  });
+  content.querySelectorAll('.estoque-gpu-input').forEach((inp) => {
+    inp.addEventListener('change', async () => {
+      const nome = decodeURIComponent(inp.dataset.produto || '');
+      await aplicarGramasPorUnidadeEstoque(nome, inp);
     });
   });
   content.querySelectorAll('.estoque-btn-desativar').forEach((btn) => {

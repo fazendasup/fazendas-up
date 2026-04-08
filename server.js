@@ -43,6 +43,8 @@ let appData = {
     prioridades: {},
     estoqueFatores: {},
     estoqueDesativados: {},
+    estoqueMix: {},
+    estoqueGramasPorUnidade: {},
   },
   lastUpdate: new Date().toISOString(),
 };
