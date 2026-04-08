@@ -2666,18 +2666,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1774998323504_1",
-        "id_cliente": "client_1774998176523",
-        "cliente": "Marinara",
-        "dia_semana": "quarta-feira",
-        "produto": "Baby Rúcula",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1775083962921_0",
         "id_cliente": "client_1775083898066",
         "cliente": "Ana Galotta",
@@ -4643,5 +4631,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T14:14:04.681Z"
+  "lastUpdate": "2026-04-08T14:14:07.990Z"
 }
