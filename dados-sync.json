@@ -4551,7 +4551,10 @@
       "Alface Americana": 1.5,
       "Alface Crespa Roxa": 2,
       "Baby Manjericão": 1.5
+    },
+    "estoqueDesativados": {
+      "Mix Clássico - Salada Completa": true
     }
   },
-  "lastUpdate": "2026-04-08T19:46:50.689Z"
+  "lastUpdate": "2026-04-08T19:55:15.253Z"
 }
