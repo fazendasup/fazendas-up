@@ -4568,7 +4568,8 @@
       "Mix Folhas - Salada Leve": true,
       "Micro Beterraba": true,
       "Micro Repolho": true,
-      "Mix Crocante - Base para Salada": true
+      "Mix Crocante - Base para Salada": true,
+      "Micro Acelga": true
     },
     "estoqueMix": {
       "Alface Crespa Verde": true,
@@ -4594,5 +4595,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-08T21:02:17.675Z"
+  "lastUpdate": "2026-04-08T21:03:43.785Z"
 }
