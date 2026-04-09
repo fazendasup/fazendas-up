@@ -1772,7 +1772,7 @@
         "cliente": "Fitz",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 7,
+        "quantidade": 9,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -1784,7 +1784,7 @@
         "cliente": "Fitz",
         "produto": "Alface Crespa Roxa",
         "categoria": "Desfolhado",
-        "quantidade": 7,
+        "quantidade": 9,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -2408,7 +2408,7 @@
         "cliente": "Novotel",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 50,
+        "quantidade": 40,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -2625,66 +2625,6 @@
         "produto": "Agrião",
         "categoria": "",
         "quantidade": 10,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1775084538835_0",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Mostarda",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1775084538835_1",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Rabanete",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1775084538835_2",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Rucula",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1775084538835_3",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "quinta-feira",
-        "produto": "Mix Chefe- Seleção Especial",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1775084538835_4",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "quinta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 2,
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
