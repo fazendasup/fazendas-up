@@ -3068,7 +3068,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Flores",
         "categoria": "",
-        "quantidade": 4,
+        "quantidade": 6,
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
@@ -4583,5 +4583,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T15:11:09.147Z"
+  "lastUpdate": "2026-04-09T15:11:19.106Z"
 }
