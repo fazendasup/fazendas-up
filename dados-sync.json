@@ -2666,18 +2666,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775140278184_3",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "sábado",
-        "produto": "Hortelã",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775140278184_5",
         "id_cliente": "60",
         "cliente": "Frigorifico Amazonas P10",
@@ -4641,5 +4629,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T19:15:53.702Z"
+  "lastUpdate": "2026-04-09T19:15:55.928Z"
 }
