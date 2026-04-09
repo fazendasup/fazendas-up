@@ -2318,18 +2318,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_257",
-        "id_cliente": "8",
-        "dia_semana": "sexta-feira",
-        "cliente": "Subway Manauara",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 25,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_258",
         "id_cliente": "19",
         "dia_semana": "sexta-feira",
@@ -4703,5 +4691,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T22:06:42.492Z"
+  "lastUpdate": "2026-04-09T22:06:51.314Z"
 }
