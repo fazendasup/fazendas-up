@@ -1535,7 +1535,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_183",
@@ -1595,7 +1595,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_189",
@@ -2063,7 +2063,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_233",
@@ -2075,7 +2075,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 3 dias",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_234",
@@ -2087,7 +2087,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_235",
@@ -2099,7 +2099,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_239",
@@ -2159,7 +2159,7 @@
         "quantidade": 0,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_244",
@@ -2195,7 +2195,7 @@
         "quantidade": 0,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "boleto p/ 7 dias",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_247",
@@ -2219,7 +2219,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_249",
@@ -2231,7 +2231,7 @@
         "quantidade": 0,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_250",
@@ -2243,7 +2243,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_251",
@@ -2255,7 +2255,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_252",
@@ -2267,7 +2267,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 3 dias",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_253",
@@ -2327,7 +2327,7 @@
         "quantidade": 25,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_258",
@@ -3071,7 +3071,7 @@
         "quantidade": 6,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1775579532782_1",
@@ -3083,7 +3083,7 @@
         "quantidade": 2,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1775579532782_2",
@@ -3095,7 +3095,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1775589497865_1",
@@ -3107,7 +3107,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1775608968625_0",
@@ -3263,7 +3263,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1775684496279_1",
@@ -4438,20 +4438,6 @@
       {
         "nome": "Mix Folhas - Salada Leve",
         "precoBase": 6.68,
-        "categorias": [
-          "Desfolhado"
-        ]
-      },
-      {
-        "nome": "Mix Folhas - Salada Leve",
-        "precoBase": 6.68,
-        "categorias": [
-          "Desfolhado"
-        ]
-      },
-      {
-        "nome": "Mix Clássico - Salada Completa",
-        "precoBase": 7.13,
         "categorias": [
           "Desfolhado"
         ]
