@@ -2630,18 +2630,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775084538835_4",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "quinta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775135466603_1",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -4595,5 +4583,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T15:09:16.118Z"
+  "lastUpdate": "2026-04-09T15:09:18.666Z"
 }
