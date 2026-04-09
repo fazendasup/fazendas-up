@@ -2560,7 +2560,7 @@
       {
         "id": "order_290",
         "id_cliente": "60",
-        "dia_semana": "sábado",
+        "dia_semana": "sexta-feira",
         "cliente": "Frigorifico Amazonas P10",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
@@ -4665,5 +4665,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T18:18:54.761Z"
+  "lastUpdate": "2026-04-09T19:13:44.311Z"
 }
