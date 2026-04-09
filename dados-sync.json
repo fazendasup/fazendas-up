@@ -2408,7 +2408,7 @@
         "cliente": "Novotel",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 50,
+        "quantidade": 40,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4583,5 +4583,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T15:10:03.614Z"
+  "lastUpdate": "2026-04-09T15:10:12.543Z"
 }
