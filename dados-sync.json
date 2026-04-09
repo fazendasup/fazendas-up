@@ -2330,18 +2330,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_260",
-        "id_cliente": "19",
-        "dia_semana": "sexta-feira",
-        "cliente": "Jhon sushi",
-        "produto": "Flores",
-        "categoria": "Pote",
-        "quantidade": 4,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_261",
         "id_cliente": "57",
         "dia_semana": "sexta-feira",
@@ -4629,5 +4617,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T18:04:31.687Z"
+  "lastUpdate": "2026-04-09T18:04:34.803Z"
 }
