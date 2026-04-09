@@ -3408,6 +3408,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775771223267_0",
+        "id_cliente": "client_1775771188946",
+        "cliente": "Vista Rio",
+        "dia_semana": "sexta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4691,5 +4703,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T21:46:31.682Z"
+  "lastUpdate": "2026-04-09T21:47:03.273Z"
 }
