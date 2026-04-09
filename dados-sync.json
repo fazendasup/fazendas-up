@@ -4342,6 +4342,19 @@
         "horarioMaximo": "16:00",
         "cobraEntrega": true,
         "precos": []
+      },
+      {
+        "id": "client_1775771188946",
+        "nome": "Vista Rio",
+        "observacoes": "Retirada ",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -4665,5 +4678,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T19:27:37.695Z"
+  "lastUpdate": "2026-04-09T21:46:28.953Z"
 }
