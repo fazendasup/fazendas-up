@@ -3360,6 +3360,54 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775757497174_0",
+        "id_cliente": "22",
+        "cliente": "Pasta Morada 1",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775757497174_1",
+        "id_cliente": "22",
+        "cliente": "Pasta Morada 1",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775757497174_2",
+        "id_cliente": "22",
+        "cliente": "Pasta Morada 1",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775757497174_3",
+        "id_cliente": "22",
+        "cliente": "Pasta Morada 1",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4617,5 +4665,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T17:57:29.855Z"
+  "lastUpdate": "2026-04-09T17:58:17.176Z"
 }
