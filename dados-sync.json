@@ -2540,7 +2540,7 @@
         "cliente": "Rodrigues Vieiralves",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 15,
+        "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4703,5 +4703,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T22:06:34.692Z"
+  "lastUpdate": "2026-04-09T22:06:42.492Z"
 }
