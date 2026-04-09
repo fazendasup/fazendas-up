@@ -2630,18 +2630,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775084538835_2",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Rucula",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775084538835_3",
         "id_cliente": "client_1775084316617",
         "cliente": "Velho Monge",
@@ -4619,5 +4607,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T15:09:03.595Z"
+  "lastUpdate": "2026-04-09T15:09:07.387Z"
 }
