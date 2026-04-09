@@ -2327,7 +2327,7 @@
         "quantidade": 25,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_258",
@@ -4583,5 +4583,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-09T16:24:50.365Z"
+  "lastUpdate": "2026-04-09T17:36:23.174Z"
 }
