@@ -2690,18 +2690,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775140423638_1",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "sábado",
-        "produto": "Mix Crocante - Base para Salada",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775156728778_0",
         "id_cliente": "client_1775156367289",
         "cliente": "Amostra",
@@ -4939,5 +4927,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T18:45:41.267Z"
+  "lastUpdate": "2026-04-10T18:45:57.804Z"
 }
