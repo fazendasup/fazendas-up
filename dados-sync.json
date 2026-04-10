@@ -1646,18 +1646,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_196",
-        "id_cliente": "52",
-        "dia_semana": "sábado",
-        "cliente": "Frigorifica Amazona P.N",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_197",
         "id_cliente": "52",
         "dia_semana": "sábado",
@@ -2673,6 +2661,18 @@
         "produto": "Alface Americana",
         "categoria": "",
         "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775140423638_1",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4698,5 +4698,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T15:47:03.113Z"
+  "lastUpdate": "2026-04-10T15:47:07.042Z"
 }
