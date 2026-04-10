@@ -2654,18 +2654,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775140278184_4",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "sábado",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775140278184_5",
         "id_cliente": "60",
         "cliente": "Frigorifico Amazonas P10",
@@ -4722,5 +4710,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T15:46:58.274Z"
+  "lastUpdate": "2026-04-10T15:47:00.736Z"
 }
