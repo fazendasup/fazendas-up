@@ -2385,7 +2385,7 @@
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
         "quantidade": 10,
-        "tipo_venda": "",
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -4831,5 +4831,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T22:49:05.827Z"
+  "lastUpdate": "2026-04-10T22:49:37.408Z"
 }
