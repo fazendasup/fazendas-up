@@ -3480,6 +3480,90 @@
         "tipo_venda": "Plano",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775838223925_0",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Beterraba",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775838223925_1",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Rucula",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775838223925_2",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775838223925_3",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775838223925_4",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775838223925_5",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775838223925_6",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4807,5 +4891,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T16:02:39.324Z"
+  "lastUpdate": "2026-04-10T16:23:43.933Z"
 }
