@@ -2546,18 +2546,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1774974698341_1",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "sábado",
-        "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775135466603_1",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -4638,5 +4626,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T15:47:35.023Z"
+  "lastUpdate": "2026-04-10T15:47:37.331Z"
 }
