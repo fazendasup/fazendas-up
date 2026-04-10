@@ -3300,6 +3300,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775836280135_0",
+        "id_cliente": "client_1775836162637",
+        "cliente": "Giselle Plano",
+        "dia_semana": "sábado",
+        "produto": "Micro 3 variedades",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775836280135_1",
+        "id_cliente": "client_1775836162637",
+        "cliente": "Giselle Plano",
+        "dia_semana": "sábado",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775836280135_2",
+        "id_cliente": "client_1775836162637",
+        "cliente": "Giselle Plano",
+        "dia_semana": "sábado",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4627,5 +4663,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T15:49:22.641Z"
+  "lastUpdate": "2026-04-10T15:51:20.138Z"
 }
