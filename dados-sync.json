@@ -4291,6 +4291,19 @@
             "preco": 6.9
           }
         ]
+      },
+      {
+        "id": "client_1775836162637",
+        "nome": "Giselle Plano",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:00",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -4614,5 +4627,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T15:48:24.236Z"
+  "lastUpdate": "2026-04-10T15:49:22.641Z"
 }
