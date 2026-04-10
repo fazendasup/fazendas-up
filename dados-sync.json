@@ -2380,7 +2380,7 @@
       {
         "id": "order_270",
         "id_cliente": "4",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "sábado",
         "cliente": "Rodrigues Ponta Negra",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
@@ -4831,5 +4831,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T22:49:48.318Z"
+  "lastUpdate": "2026-04-10T22:49:55.751Z"
 }
