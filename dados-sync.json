@@ -4405,6 +4405,19 @@
         "horarioMaximo": "10:00",
         "cobraEntrega": false,
         "precos": []
+      },
+      {
+        "id": "client_1775832845763",
+        "nome": "Coqueiro Verde",
+        "observacoes": "",
+        "prazoBoleto": "7 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "10:00",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -4728,5 +4741,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T14:54:04.551Z"
+  "lastUpdate": "2026-04-10T14:54:07.311Z"
 }
