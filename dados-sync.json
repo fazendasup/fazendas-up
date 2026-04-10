@@ -1910,18 +1910,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_225",
-        "id_cliente": "38",
-        "dia_semana": "sexta-feira",
-        "cliente": "Barollo",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 12,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_226",
         "id_cliente": "38",
         "dia_semana": "sexta-feira",
@@ -4843,5 +4831,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T19:03:24.464Z"
+  "lastUpdate": "2026-04-10T19:05:18.289Z"
 }
