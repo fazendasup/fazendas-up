@@ -1742,18 +1742,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_207",
-        "id_cliente": "52",
-        "dia_semana": "sábado",
-        "cliente": "Frigorifica Amazona P.N",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_208",
         "id_cliente": "14",
         "dia_semana": "sexta-feira",
@@ -4891,5 +4879,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-10T18:46:14.626Z"
+  "lastUpdate": "2026-04-10T18:46:17.039Z"
 }
