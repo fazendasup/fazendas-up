@@ -3408,6 +3408,78 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1775832603506_0",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Rucula",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775832603506_1",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "sexta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775832982760_0",
+        "id_cliente": "client_1775832844547",
+        "cliente": "Coqueiro Verde",
+        "dia_semana": "sábado",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 40,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775836280135_0",
+        "id_cliente": "client_1775836162637",
+        "cliente": "Giselle Plano",
+        "dia_semana": "sábado",
+        "produto": "Micro 3 variedades",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775836280135_1",
+        "id_cliente": "client_1775836162637",
+        "cliente": "Giselle Plano",
+        "dia_semana": "sábado",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1775836280135_2",
+        "id_cliente": "client_1775836162637",
+        "cliente": "Giselle Plano",
+        "dia_semana": "sábado",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Plano",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4366,6 +4438,50 @@
         "prazoBoletoAcumulo": "",
         "periodoEntrega": "",
         "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "client_1775832844547",
+        "nome": "Coqueiro Verde",
+        "observacoes": "",
+        "prazoBoleto": "7 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "10:00",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "client_1775832845763",
+        "nome": "Coqueiro Verde",
+        "observacoes": "",
+        "prazoBoleto": "7 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "10:00",
+        "cobraEntrega": false,
+        "precos": [
+          {
+            "produto": "Alface Crespa Verde",
+            "preco": 6.9
+          }
+        ]
+      },
+      {
+        "id": "client_1775836162637",
+        "nome": "Giselle Plano",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:00",
         "cobraEntrega": false,
         "precos": []
       }
