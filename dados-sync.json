@@ -2504,8 +2504,8 @@
         "cliente": "Rodrigues Jacira Reis",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -2529,7 +2529,7 @@
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
         "quantidade": 20,
-        "tipo_venda": "",
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -2540,8 +2540,8 @@
         "cliente": "Rodrigues Vieiralves",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -4341,6 +4341,32 @@
         "periodoEntrega": "Manhã",
         "horarioMaximo": "16:00",
         "cobraEntrega": true,
+        "precos": []
+      },
+      {
+        "id": "client_1775771188946",
+        "nome": "Vista Rio",
+        "observacoes": "Retirada ",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "client_1775771188975",
+        "nome": "Vista Rio",
+        "observacoes": "Retirada ",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
         "precos": []
       }
     ],
