@@ -3504,6 +3504,54 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776100891637_0",
+        "id_cliente": "31",
+        "cliente": "Roseiral",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776100891637_1",
+        "id_cliente": "31",
+        "cliente": "Roseiral",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Rucula",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776100891637_2",
+        "id_cliente": "31",
+        "cliente": "Roseiral",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776100891637_3",
+        "id_cliente": "31",
+        "cliente": "Roseiral",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4831,5 +4879,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T13:05:58.239Z"
+  "lastUpdate": "2026-04-13T17:21:31.667Z"
 }
