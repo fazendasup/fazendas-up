@@ -854,18 +854,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_103",
-        "id_cliente": "31",
-        "dia_semana": "terça-feira",
-        "cliente": "Roseiral",
-        "produto": "Micro Mostarda",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_104",
         "id_cliente": "31",
         "dia_semana": "terça-feira",
@@ -5013,5 +5001,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T23:30:29.407Z"
+  "lastUpdate": "2026-04-13T23:30:33.301Z"
 }
