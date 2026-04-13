@@ -2774,18 +2774,6 @@
         "status": "cancelado"
       },
       {
-        "id": "order_1775485710769_3",
-        "id_cliente": "34",
-        "cliente": "Veneza Tarumã",
-        "dia_semana": "terça-feira",
-        "produto": "Mix Folhas - Salada Leve",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775485710769_4",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
@@ -5120,5 +5108,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T17:49:57.605Z"
+  "lastUpdate": "2026-04-13T17:50:12.586Z"
 }
