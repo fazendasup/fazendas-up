@@ -854,18 +854,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_101",
-        "id_cliente": "31",
-        "dia_semana": "terça-feira",
-        "cliente": "Roseiral",
-        "produto": "Micro Rabanete",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_102",
         "id_cliente": "31",
         "dia_semana": "terça-feira",
@@ -5037,5 +5025,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T23:30:03.241Z"
+  "lastUpdate": "2026-04-13T23:30:21.152Z"
 }
