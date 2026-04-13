@@ -392,7 +392,7 @@
         "cliente": "Fitz",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 12,
+        "quantidade": 13,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Cobrar somente 9 crespas",
         "status": "pendente"
@@ -5085,5 +5085,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T23:29:02.382Z"
+  "lastUpdate": "2026-04-13T23:29:24.015Z"
 }
