@@ -3552,6 +3552,54 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776101242692_0",
+        "id_cliente": "client_1775608904239",
+        "cliente": "Franco's",
+        "dia_semana": "segunda-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 8,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101242692_1",
+        "id_cliente": "client_1775608904239",
+        "cliente": "Franco's",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101242692_2",
+        "id_cliente": "client_1775608904239",
+        "cliente": "Franco's",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Rucula",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101242692_3",
+        "id_cliente": "client_1775608904239",
+        "cliente": "Franco's",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4879,5 +4927,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T17:21:31.667Z"
+  "lastUpdate": "2026-04-13T17:27:22.694Z"
 }
