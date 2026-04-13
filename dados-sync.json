@@ -3648,6 +3648,78 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776123619901_0",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776123619901_1",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776123619901_2",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776123619901_3",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "segunda-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 8,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776123619901_4",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "segunda-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776123619901_5",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "segunda-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4989,5 +5061,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T23:31:00.316Z"
+  "lastUpdate": "2026-04-13T23:40:19.906Z"
 }
