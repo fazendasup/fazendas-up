@@ -494,18 +494,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_56",
-        "id_cliente": "19",
-        "dia_semana": "terça-feira",
-        "cliente": "Jhon sushi",
-        "produto": "Micro Repolho",
-        "categoria": "Pote",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_57",
         "id_cliente": "19",
         "dia_semana": "terça-feira",
@@ -5073,5 +5061,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T23:29:46.987Z"
+  "lastUpdate": "2026-04-13T23:29:52.474Z"
 }
