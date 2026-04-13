@@ -854,18 +854,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_102",
-        "id_cliente": "31",
-        "dia_semana": "terça-feira",
-        "cliente": "Roseiral",
-        "produto": "Micro Repolho",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_103",
         "id_cliente": "31",
         "dia_semana": "terça-feira",
@@ -5025,5 +5013,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T23:30:21.152Z"
+  "lastUpdate": "2026-04-13T23:30:27.173Z"
 }
