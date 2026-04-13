@@ -3600,6 +3600,78 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776101331325_0",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "terça-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101331325_1",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "terça-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101331325_2",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "terça-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101331325_3",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "terça-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101331325_4",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "terça-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101331325_5",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "terça-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4927,5 +4999,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T17:27:22.694Z"
+  "lastUpdate": "2026-04-13T17:28:51.330Z"
 }
