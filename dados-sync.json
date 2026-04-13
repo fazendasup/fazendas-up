@@ -854,30 +854,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_104",
-        "id_cliente": "31",
-        "dia_semana": "terça-feira",
-        "cliente": "Roseiral",
-        "produto": "Micro Nabo",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
-        "id": "order_105",
-        "id_cliente": "31",
-        "dia_semana": "terça-feira",
-        "cliente": "Roseiral",
-        "produto": "Flores",
-        "categoria": "Desfolhado",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_109",
         "id_cliente": "34",
         "dia_semana": "quarta-feira",
@@ -5001,5 +4977,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T23:30:33.301Z"
+  "lastUpdate": "2026-04-13T23:30:37.086Z"
 }
