@@ -470,18 +470,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_51",
-        "id_cliente": "17",
-        "dia_semana": "terça-feira",
-        "cliente": "Una Vitta",
-        "produto": "Alface Frisee",
-        "categoria": "Pote",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_52",
         "id_cliente": "18",
         "dia_semana": "terça-feira",
@@ -5085,5 +5073,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T23:29:24.015Z"
+  "lastUpdate": "2026-04-13T23:29:39.455Z"
 }
