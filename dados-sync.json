@@ -2774,18 +2774,6 @@
         "status": "cancelado"
       },
       {
-        "id": "order_1775481568044_0",
-        "id_cliente": "59",
-        "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "terça-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIAS \n5 CRESPAS \n5 MIX \n1 AMERICANA ",
-        "status": "pronto"
-      },
-      {
         "id": "order_1775485710769_3",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
@@ -5132,5 +5120,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T17:49:32.386Z"
+  "lastUpdate": "2026-04-13T17:49:34.965Z"
 }
