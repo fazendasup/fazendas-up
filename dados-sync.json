@@ -2774,18 +2774,6 @@
         "status": "cancelado"
       },
       {
-        "id": "order_1775485710769_4",
-        "id_cliente": "34",
-        "cliente": "Veneza Tarumã",
-        "dia_semana": "terça-feira",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775488461218_0",
         "id_cliente": "22",
         "cliente": "Pasta Morada 1",
@@ -5096,5 +5084,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T17:50:16.027Z"
+  "lastUpdate": "2026-04-13T17:50:19.237Z"
 }
