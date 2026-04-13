@@ -494,18 +494,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_57",
-        "id_cliente": "19",
-        "dia_semana": "terça-feira",
-        "cliente": "Jhon sushi",
-        "produto": "Micro Nabo",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Boleto para 3 dias",
-        "status": "pendente"
-      },
-      {
         "id": "order_58",
         "id_cliente": "19",
         "dia_semana": "terça-feira",
@@ -5061,5 +5049,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T23:29:55.634Z"
+  "lastUpdate": "2026-04-13T23:29:58.957Z"
 }
