@@ -494,18 +494,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_58",
-        "id_cliente": "19",
-        "dia_semana": "terça-feira",
-        "cliente": "Jhon sushi",
-        "produto": "Flores",
-        "categoria": "Desfolhado",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_59",
         "id_cliente": "20",
         "dia_semana": "terça-feira",
@@ -5049,5 +5037,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T23:29:58.957Z"
+  "lastUpdate": "2026-04-13T23:30:03.241Z"
 }
