@@ -3672,6 +3672,126 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776101915216_0",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "terça-feira",
+        "produto": "Micro 3 variedades",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101915216_1",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "terça-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101915216_2",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "terça-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101915216_3",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "terça-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101915216_4",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "terça-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101915216_5",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "terça-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101915216_6",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "terça-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101915216_7",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101915216_8",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "terça-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776101915216_9",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "terça-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4999,5 +5119,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T17:28:51.330Z"
+  "lastUpdate": "2026-04-13T17:38:35.221Z"
 }
