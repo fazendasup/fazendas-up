@@ -2798,18 +2798,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1775481568044_2",
-        "id_cliente": "59",
-        "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "terça-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIAS \n5 CRESPAS \n5 MIX \n1 AMERICANA ",
-        "status": "pronto"
-      },
-      {
         "id": "order_1775485710769_3",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
@@ -5156,5 +5144,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T17:46:20.145Z"
+  "lastUpdate": "2026-04-13T17:49:30.060Z"
 }
