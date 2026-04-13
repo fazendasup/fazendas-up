@@ -4796,6 +4796,19 @@
         "horarioMaximo": "16:00",
         "cobraEntrega": false,
         "precos": []
+      },
+      {
+        "id": "client_1776102161954",
+        "nome": "Rio Negro Eventos",
+        "observacoes": "",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "11:00",
+        "cobraEntrega": true,
+        "precos": []
       }
     ],
     "produtos": [
@@ -5119,5 +5132,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T17:38:35.221Z"
+  "lastUpdate": "2026-04-13T17:42:41.958Z"
 }
