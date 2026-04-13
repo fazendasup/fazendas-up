@@ -976,7 +976,7 @@
       {
         "id": "order_110",
         "id_cliente": "34",
-        "dia_semana": "terça-feira",
+        "dia_semana": "quarta-feira",
         "cliente": "Veneza Tarumã",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
@@ -5084,5 +5084,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-13T17:50:19.237Z"
+  "lastUpdate": "2026-04-13T17:50:26.237Z"
 }
