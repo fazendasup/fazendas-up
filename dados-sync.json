@@ -2618,18 +2618,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1775501111700_0",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "quarta-feira",
-        "produto": "Mix Folhas - Salada Leve",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1775579532782_0",
         "id_cliente": "19",
         "cliente": "Jhon sushi",
@@ -4930,5 +4918,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T18:34:47.799Z"
+  "lastUpdate": "2026-04-14T18:34:55.796Z"
 }
