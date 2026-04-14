@@ -2390,18 +2390,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1775156728778_6",
-        "id_cliente": "client_1775156367289",
-        "cliente": "Amostra",
-        "dia_semana": "quinta-feira",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1775156728778_7",
         "id_cliente": "client_1775156367289",
         "cliente": "Amostra",
@@ -4835,5 +4823,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T21:24:48.298Z"
+  "lastUpdate": "2026-04-14T21:24:50.305Z"
 }
