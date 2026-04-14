@@ -1208,7 +1208,7 @@
         "cliente": "Patio Djalma",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 20,
+        "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4835,5 +4835,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T22:33:01.318Z"
+  "lastUpdate": "2026-04-14T22:34:28.054Z"
 }
