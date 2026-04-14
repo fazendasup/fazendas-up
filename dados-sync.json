@@ -2774,18 +2774,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1775684496279_4",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "quarta-feira",
-        "produto": "Micro Repolho",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775757449847_0",
         "id_cliente": "22",
         "cliente": "Pasta Morada 1",
@@ -4882,5 +4870,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T18:35:10.277Z"
+  "lastUpdate": "2026-04-14T18:35:14.725Z"
 }
