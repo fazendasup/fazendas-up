@@ -2678,18 +2678,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1775608968625_1",
-        "id_cliente": "client_1775608903021",
-        "cliente": "Franco's",
-        "dia_semana": "quarta-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1775657482077_0",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -4966,5 +4954,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T18:34:35.841Z"
+  "lastUpdate": "2026-04-14T18:34:39.782Z"
 }
