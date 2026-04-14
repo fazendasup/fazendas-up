@@ -2750,18 +2750,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1775666348293_1",
-        "id_cliente": "client_1775608903021",
-        "cliente": "Franco's",
-        "dia_semana": "quarta-feira",
-        "produto": "Micro Rucula",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1775666348293_2",
         "id_cliente": "client_1775608903021",
         "cliente": "Franco's",
@@ -4954,5 +4942,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T18:34:39.782Z"
+  "lastUpdate": "2026-04-14T18:34:44.082Z"
 }
