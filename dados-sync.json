@@ -1376,7 +1376,7 @@
         "cliente": "Patio Aleixo",
         "produto": "Micro Nabo",
         "categoria": "",
-        "quantidade": 2,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4835,5 +4835,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T23:10:34.515Z"
+  "lastUpdate": "2026-04-14T23:10:48.000Z"
 }
