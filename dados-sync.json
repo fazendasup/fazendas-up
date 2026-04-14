@@ -3290,18 +3290,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776101242692_2",
-        "id_cliente": "client_1775608904239",
-        "cliente": "Franco's",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Rucula",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776101242692_3",
         "id_cliente": "client_1775608904239",
         "cliente": "Franco's",
@@ -5026,5 +5014,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T18:32:19.157Z"
+  "lastUpdate": "2026-04-14T18:32:39.289Z"
 }
