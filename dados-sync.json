@@ -2332,11 +2332,11 @@
       {
         "id": "order_276",
         "id_cliente": "5",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "quarta-feira",
         "cliente": "Rodrigues Vieiralves",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 20,
+        "quantidade": 40,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4870,5 +4870,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T18:37:08.905Z"
+  "lastUpdate": "2026-04-14T18:37:20.277Z"
 }
