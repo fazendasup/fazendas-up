@@ -2390,18 +2390,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1775156728778_3",
-        "id_cliente": "client_1775156367289",
-        "cliente": "Amostra",
-        "dia_semana": "quinta-feira",
-        "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1775156728778_4",
         "id_cliente": "client_1775156367289",
         "cliente": "Amostra",
@@ -4871,5 +4859,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T21:24:37.539Z"
+  "lastUpdate": "2026-04-14T21:24:41.641Z"
 }
