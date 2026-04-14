@@ -3002,18 +3002,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775832603506_0",
-        "id_cliente": "client_1774998176523",
-        "cliente": "Marinara",
-        "dia_semana": "sexta-feira",
-        "produto": "Micro Rucula",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775832603506_1",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
@@ -4978,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T15:49:01.918Z"
+  "lastUpdate": "2026-04-14T15:49:05.796Z"
 }
