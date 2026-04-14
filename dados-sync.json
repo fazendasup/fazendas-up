@@ -3272,7 +3272,7 @@
         "dia_semana": "segunda-feira",
         "produto": "Baby Manjericão",
         "categoria": "",
-        "quantidade": 8,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5002,5 +5002,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T18:33:15.538Z"
+  "lastUpdate": "2026-04-14T18:33:21.710Z"
 }
