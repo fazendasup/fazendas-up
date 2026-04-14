@@ -1514,18 +1514,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_191",
-        "id_cliente": "5",
-        "dia_semana": "quinta-feira",
-        "cliente": "Rodrigues Vieiralves",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_192",
         "id_cliente": "8",
         "dia_semana": "quinta-feira",
@@ -4918,5 +4906,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T19:51:42.080Z"
+  "lastUpdate": "2026-04-14T19:51:48.296Z"
 }
