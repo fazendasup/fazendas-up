@@ -3290,18 +3290,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776101242692_3",
-        "id_cliente": "client_1775608904239",
-        "cliente": "Franco's",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Mostarda",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776101331325_0",
         "id_cliente": "59",
         "cliente": "Frigorifico A. Adrianópolis",
@@ -5014,5 +5002,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T18:32:39.289Z"
+  "lastUpdate": "2026-04-14T18:32:45.198Z"
 }
