@@ -3612,6 +3612,66 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776183367192_0",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "quarta-feira",
+        "produto": "Micro 3 variedades",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776183367192_1",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776183367192_2",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776183367192_3",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776183367192_4",
+        "id_cliente": "client_1775156367289",
+        "cliente": "Amostra",
+        "dia_semana": "quarta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4954,5 +5014,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T15:49:14.437Z"
+  "lastUpdate": "2026-04-14T16:16:07.199Z"
 }
