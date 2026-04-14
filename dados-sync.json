@@ -2678,18 +2678,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1775608968625_0",
-        "id_cliente": "client_1775608903021",
-        "cliente": "Franco's",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1775608968625_1",
         "id_cliente": "client_1775608903021",
         "cliente": "Franco's",
@@ -4978,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T18:34:11.096Z"
+  "lastUpdate": "2026-04-14T18:34:35.841Z"
 }
