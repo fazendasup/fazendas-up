@@ -2344,11 +2344,11 @@
       {
         "id": "order_277",
         "id_cliente": "5",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "quarta-feira",
         "cliente": "Rodrigues Vieiralves",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 20,
+        "quantidade": 40,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4870,5 +4870,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T18:37:20.277Z"
+  "lastUpdate": "2026-04-14T18:37:30.713Z"
 }
