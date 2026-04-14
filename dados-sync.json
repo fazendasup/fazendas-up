@@ -2366,18 +2366,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_290",
-        "id_cliente": "60",
-        "dia_semana": "sexta-feira",
-        "cliente": "Frigorifico Amazonas P10",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1774617182831_1",
         "id_cliente": "41",
         "cliente": "Cupulla",
@@ -5038,5 +5026,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T15:47:42.818Z"
+  "lastUpdate": "2026-04-14T15:48:39.701Z"
 }
