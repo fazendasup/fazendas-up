@@ -1322,18 +1322,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_168",
-        "id_cliente": "46",
-        "dia_semana": "quinta-feira",
-        "cliente": "Patio Adrianópolis",
-        "produto": "Micro Repolho",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_170",
         "id_cliente": "47",
         "dia_semana": "quinta-feira",
@@ -4847,5 +4835,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T22:54:08.190Z"
+  "lastUpdate": "2026-04-14T22:54:25.865Z"
 }
