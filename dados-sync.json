@@ -1842,9 +1842,9 @@
         "id_cliente": "54",
         "dia_semana": "sexta-feira",
         "cliente": "Mizura",
-        "produto": "Alface Frisee",
+        "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 1,
+        "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5038,5 +5038,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T15:47:19.476Z"
+  "lastUpdate": "2026-04-14T15:47:42.818Z"
 }
