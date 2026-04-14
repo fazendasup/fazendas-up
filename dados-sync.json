@@ -1850,18 +1850,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_230",
-        "id_cliente": "54",
-        "dia_semana": "sexta-feira",
-        "cliente": "Mizura",
-        "produto": "Alface Mimosa Roxa",
-        "categoria": "Desfolhado",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_231",
         "id_cliente": "54",
         "dia_semana": "sexta-feira",
@@ -5050,5 +5038,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T15:47:02.757Z"
+  "lastUpdate": "2026-04-14T15:47:19.476Z"
 }
