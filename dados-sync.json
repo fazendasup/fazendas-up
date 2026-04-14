@@ -3492,6 +3492,18 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776207178014_1",
+        "id_cliente": "45",
+        "cliente": "Patio Djalma",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4835,5 +4847,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T22:52:24.859Z"
+  "lastUpdate": "2026-04-14T22:52:58.019Z"
 }
