@@ -2390,18 +2390,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1775156728778_9",
-        "id_cliente": "client_1775156367289",
-        "cliente": "Amostra",
-        "dia_semana": "quinta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1775226356582_1",
         "id_cliente": "38",
         "cliente": "Barollo",
@@ -4799,5 +4787,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T21:24:59.538Z"
+  "lastUpdate": "2026-04-14T21:25:01.937Z"
 }
