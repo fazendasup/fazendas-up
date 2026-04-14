@@ -1503,13 +1503,13 @@
       },
       {
         "id": "order_190",
-        "id_cliente": "5",
+        "id_cliente": "3",
         "dia_semana": "quinta-feira",
-        "cliente": "Rodrigues Vieiralves",
+        "cliente": "Rodrigues Jacira Reis",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 0,
-        "tipo_venda": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -3552,6 +3552,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776196302075_1",
+        "id_cliente": "3",
+        "cliente": "Rodrigues Jacira Reis",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776196302075_2",
+        "id_cliente": "3",
+        "cliente": "Rodrigues Jacira Reis",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4894,5 +4918,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T19:50:46.043Z"
+  "lastUpdate": "2026-04-14T19:51:42.080Z"
 }
