@@ -4861,7 +4861,7 @@
       "Alface Crespa Roxa": 2,
       "Baby Manjericão": 1.7,
       "Alface Frisee": 2,
-      "Agrião": 1
+      "Agrião": 1.5
     },
     "estoqueDesativados": {
       "Mix Clássico - Salada Completa": true,
@@ -4907,5 +4907,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T20:00:20.074Z"
+  "lastUpdate": "2026-04-14T20:00:29.028Z"
 }
