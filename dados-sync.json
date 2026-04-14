@@ -1304,8 +1304,8 @@
         "cliente": "Patio Adrianópolis",
         "produto": "Baby Manjericão",
         "categoria": "Desfolhado",
-        "quantidade": 5,
-        "tipo_venda": "",
+        "quantidade": 8,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       },
@@ -4847,5 +4847,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-14T22:53:36.745Z"
+  "lastUpdate": "2026-04-14T22:53:56.993Z"
 }
