@@ -2564,9 +2564,9 @@
         "dia_semana": "quarta-feira",
         "produto": "Baby Manjericão",
         "categoria": "",
-        "quantidade": 8,
+        "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
+        "observacoes": "Basilicão",
         "status": "pendente"
       },
       {
@@ -4823,5 +4823,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-15T15:53:26.393Z"
+  "lastUpdate": "2026-04-15T15:54:14.759Z"
 }
