@@ -3480,6 +3480,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776268513445_1",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "quarta-feira",
+        "produto": "Baby Rúcula",
+        "categoria": "Desfolhado",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4823,5 +4835,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-15T15:54:38.719Z"
+  "lastUpdate": "2026-04-15T15:55:13.447Z"
 }
