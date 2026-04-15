@@ -1460,7 +1460,7 @@
         "cliente": "Mirante do Negro",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 15,
+        "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4823,5 +4823,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-15T17:08:50.966Z"
+  "lastUpdate": "2026-04-15T17:09:01.113Z"
 }
