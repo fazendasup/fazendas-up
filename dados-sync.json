@@ -2563,7 +2563,7 @@
         "cliente": "Barollo",
         "dia_semana": "quarta-feira",
         "produto": "Baby Manjericão",
-        "categoria": "",
+        "categoria": "Desfolhado",
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Basilicão",
@@ -4835,5 +4835,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-15T15:55:13.447Z"
+  "lastUpdate": "2026-04-15T15:55:28.117Z"
 }
