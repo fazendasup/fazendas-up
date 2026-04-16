@@ -2198,18 +2198,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_270",
-        "id_cliente": "4",
-        "dia_semana": "sábado",
-        "cliente": "Rodrigues Ponta Negra",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_271",
         "id_cliente": "4",
         "dia_semana": "sábado",
@@ -5030,5 +5018,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T20:40:18.574Z"
+  "lastUpdate": "2026-04-16T20:40:21.504Z"
 }
