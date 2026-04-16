@@ -3706,7 +3706,7 @@
         "categoria": "",
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
+        "observacoes": "Retirada ",
         "status": "pendente"
       }
     ],
@@ -5090,5 +5090,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T16:00:23.299Z"
+  "lastUpdate": "2026-04-16T16:00:43.770Z"
 }
