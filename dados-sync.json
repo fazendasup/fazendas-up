@@ -3624,6 +3624,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Retirada ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776374139250_0",
+        "id_cliente": "19",
+        "cliente": "Jhon sushi",
+        "dia_semana": "sexta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5006,5 +5018,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T21:14:16.483Z"
+  "lastUpdate": "2026-04-16T21:15:39.262Z"
 }
