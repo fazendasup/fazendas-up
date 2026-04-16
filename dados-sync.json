@@ -3492,6 +3492,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776298079693_0",
+        "id_cliente": "client_1776297445016",
+        "cliente": "Hellen Maria Benigno",
+        "dia_semana": "quinta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776298079693_1",
+        "id_cliente": "client_1776297445016",
+        "cliente": "Hellen Maria Benigno",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Mix tudo",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4509,6 +4533,45 @@
         "horarioMaximo": "11:00",
         "cobraEntrega": true,
         "precos": []
+      },
+      {
+        "id": "client_1776297445016",
+        "nome": "Hellen Maria Benigno",
+        "observacoes": "",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Tarde",
+        "horarioMaximo": "17:00",
+        "cobraEntrega": true,
+        "precos": []
+      },
+      {
+        "id": "client_1776297567863",
+        "nome": "Hellen Maria Benigno",
+        "observacoes": "",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Tarde",
+        "horarioMaximo": "17:00",
+        "cobraEntrega": true,
+        "precos": []
+      },
+      {
+        "id": "client_1776297586024",
+        "nome": "Hellen Maria Benigno",
+        "observacoes": "",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Tarde",
+        "horarioMaximo": "17:00",
+        "cobraEntrega": true,
+        "precos": []
       }
     ],
     "produtos": [
@@ -4835,5 +4898,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-15T17:09:27.407Z"
+  "lastUpdate": "2026-04-16T00:07:59.699Z"
 }
