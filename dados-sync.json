@@ -2198,18 +2198,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_271",
-        "id_cliente": "4",
-        "dia_semana": "sábado",
-        "cliente": "Rodrigues Ponta Negra",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_275",
         "id_cliente": "5",
         "dia_semana": "quarta-feira",
@@ -5018,5 +5006,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T20:40:23.572Z"
+  "lastUpdate": "2026-04-16T20:40:26.027Z"
 }
