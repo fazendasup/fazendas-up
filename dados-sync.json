@@ -3311,7 +3311,7 @@
         "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Pacote com 150g - Manjericão folha fina",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776196246037_1",
@@ -5090,5 +5090,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T16:00:43.770Z"
+  "lastUpdate": "2026-04-16T18:34:35.894Z"
 }
