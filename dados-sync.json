@@ -3588,6 +3588,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Retirada ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776375925589_0",
+        "id_cliente": "14",
+        "cliente": "Fitz",
+        "dia_semana": "sexta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776375925589_1",
+        "id_cliente": "14",
+        "cliente": "Fitz",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro 3 variedades",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4970,5 +4994,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T21:44:11.998Z"
+  "lastUpdate": "2026-04-16T21:45:25.596Z"
 }
