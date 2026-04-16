@@ -2234,18 +2234,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_272",
-        "id_cliente": "3",
-        "dia_semana": "sexta-feira",
-        "cliente": "Rodrigues Jacira Reis",
-        "produto": "Alface Americana",
-        "categoria": "Desfolhado",
-        "quantidade": 20,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_273",
         "id_cliente": "3",
         "dia_semana": "sexta-feira",
@@ -5090,5 +5078,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T20:15:02.383Z"
+  "lastUpdate": "2026-04-16T20:39:24.461Z"
 }
