@@ -1564,7 +1564,7 @@
       {
         "id": "order_208",
         "id_cliente": "14",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "sábado",
         "cliente": "Fitz",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
@@ -5077,5 +5077,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T15:49:11.165Z"
+  "lastUpdate": "2026-04-16T15:49:17.203Z"
 }
