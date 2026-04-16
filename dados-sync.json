@@ -1578,7 +1578,7 @@
         "id_cliente": "14",
         "dia_semana": "sexta-feira",
         "cliente": "Fitz",
-        "produto": "Alface Crespa Roxa",
+        "produto": "Alface Americana",
         "categoria": "Desfolhado",
         "quantidade": 9,
         "tipo_venda": "Recorrente Semanal",
@@ -5089,5 +5089,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T15:44:01.167Z"
+  "lastUpdate": "2026-04-16T15:48:47.458Z"
 }
