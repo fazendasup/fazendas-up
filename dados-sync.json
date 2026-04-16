@@ -2198,18 +2198,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_269",
-        "id_cliente": "4",
-        "dia_semana": "sábado",
-        "cliente": "Rodrigues Ponta Negra",
-        "produto": "Alface Americana",
-        "categoria": "Desfolhado",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_270",
         "id_cliente": "4",
         "dia_semana": "sábado",
@@ -5042,5 +5030,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T20:39:35.081Z"
+  "lastUpdate": "2026-04-16T20:40:16.027Z"
 }
