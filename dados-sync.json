@@ -2111,7 +2111,7 @@
         "quantidade": 2,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_259",
@@ -2123,7 +2123,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_260",
@@ -2135,7 +2135,7 @@
         "quantidade": 4,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_261",
@@ -5006,5 +5006,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T21:13:56.758Z"
+  "lastUpdate": "2026-04-16T21:14:00.849Z"
 }
