@@ -3624,6 +3624,90 @@
         "tipo_venda": "Avulso",
         "observacoes": "SAÍDA AS 8:30 DA MANHÃ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776353944113_0",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776353944113_1",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776353944114_2",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776353944114_3",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776353944114_4",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776353944114_5",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sexta-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776353944114_6",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sexta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5006,5 +5090,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T15:28:37.376Z"
+  "lastUpdate": "2026-04-16T15:39:04.120Z"
 }
