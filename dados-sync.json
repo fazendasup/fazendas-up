@@ -2234,18 +2234,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_274",
-        "id_cliente": "3",
-        "dia_semana": "sexta-feira",
-        "cliente": "Rodrigues Jacira Reis",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_275",
         "id_cliente": "5",
         "dia_semana": "quarta-feira",
@@ -5066,5 +5054,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T20:39:28.843Z"
+  "lastUpdate": "2026-04-16T20:39:31.125Z"
 }
