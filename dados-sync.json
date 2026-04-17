@@ -3567,8 +3567,8 @@
       },
       {
         "id": "order_1776353944114_6",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
         "dia_semana": "sexta-feira",
         "produto": "Baby Manjericão",
         "categoria": "",
@@ -5175,5 +5175,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-17T18:23:41.817Z"
+  "lastUpdate": "2026-04-17T18:23:55.943Z"
 }
