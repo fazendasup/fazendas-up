@@ -3395,7 +3395,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "SAÍDA AS 8:30 DA MANHÃ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776353317343_1",
@@ -3407,7 +3407,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "SAÍDA AS 8:30 DA MANHÃ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776353317343_2",
@@ -3419,7 +3419,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "SAÍDA AS 8:30 DA MANHÃ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776353317343_3",
@@ -3431,7 +3431,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "SAÍDA AS 8:30 DA MANHÃ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776353317343_4",
@@ -3443,7 +3443,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "SAÍDA AS 8:30 DA MANHÃ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776353317343_5",
@@ -3455,7 +3455,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "SAÍDA AS 8:30 DA MANHÃ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776353317343_6",
@@ -3467,7 +3467,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "SAÍDA AS 8:30 DA MANHÃ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776353317343_7",
@@ -3479,7 +3479,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "SAÍDA AS 8:30 DA MANHÃ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776353317343_8",
@@ -3491,7 +3491,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "SAÍDA AS 8:30 DA MANHÃ",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776353944113_0",
@@ -4995,5 +4995,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-16T22:14:49.532Z"
+  "lastUpdate": "2026-04-17T13:25:39.438Z"
 }
