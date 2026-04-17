@@ -5136,7 +5136,7 @@
       ]
     },
     "estoqueFatores": {
-      "Alface Crespa Verde": 2,
+      "Alface Crespa Verde": 1.5,
       "Alface Americana": 1.3,
       "Alface Crespa Roxa": 2,
       "Baby Manjericão": 1.7,
@@ -5187,5 +5187,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-17T18:26:32.159Z"
+  "lastUpdate": "2026-04-17T19:04:39.857Z"
 }
