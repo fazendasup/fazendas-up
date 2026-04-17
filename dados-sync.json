@@ -2156,7 +2156,7 @@
         "cliente": "BAREBURGUER",
         "produto": "Alface Crespa Verde",
         "categoria": "",
-        "quantidade": 25,
+        "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 3 dias",
         "status": "pendente"
@@ -3804,6 +3804,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776467673508_1",
+        "id_cliente": "13",
+        "cliente": "BAREBURGUER",
+        "dia_semana": "sábado",
+        "produto": "Baby Rúcula",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5187,5 +5199,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-17T19:04:39.857Z"
+  "lastUpdate": "2026-04-17T23:14:33.513Z"
 }
