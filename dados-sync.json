@@ -3612,6 +3612,66 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "entregue"
+      },
+      {
+        "id": "order_1776444823904_0",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776444823904_1",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776444823904_2",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Beterraba",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776444823904_3",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776444823904_4",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4995,5 +5055,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-17T16:51:56.158Z"
+  "lastUpdate": "2026-04-17T16:53:43.927Z"
 }
