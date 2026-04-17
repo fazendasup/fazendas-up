@@ -3548,7 +3548,7 @@
         "dia_semana": "sexta-feira",
         "produto": "Mix Crocante - Base para Salada",
         "categoria": "",
-        "quantidade": 10,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -5175,5 +5175,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-17T18:24:14.767Z"
+  "lastUpdate": "2026-04-17T18:24:22.241Z"
 }
