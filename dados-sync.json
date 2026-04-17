@@ -3672,6 +3672,30 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776444854270_0",
+        "id_cliente": "client_1775083898066",
+        "cliente": "Ana Galotta",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776444854270_1",
+        "id_cliente": "client_1775083898066",
+        "cliente": "Ana Galotta",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5055,5 +5079,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-17T16:53:43.927Z"
+  "lastUpdate": "2026-04-17T16:54:14.274Z"
 }
