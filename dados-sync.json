@@ -2450,18 +2450,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775757449847_2",
-        "id_cliente": "22",
-        "cliente": "Pasta Morada 1",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Rucula",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775757497174_0",
         "id_cliente": "22",
         "cliente": "Pasta Morada 1",
@@ -5283,5 +5271,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T15:00:44.136Z"
+  "lastUpdate": "2026-04-20T15:00:47.948Z"
 }
