@@ -254,18 +254,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_32",
-        "id_cliente": "11",
-        "dia_semana": "segunda-feira",
-        "cliente": "Renato",
-        "produto": "Alface Mimosa Roxa",
-        "categoria": "Buque",
-        "quantidade": 1,
-        "tipo_venda": "Plano",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_33",
         "id_cliente": "11",
         "dia_semana": "segunda-feira",
@@ -275,18 +263,6 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "pagamento mensal",
-        "status": "cancelado"
-      },
-      {
-        "id": "order_34",
-        "id_cliente": "11",
-        "dia_semana": "segunda-feira",
-        "cliente": "Renato",
-        "produto": "Baby Manjericão",
-        "categoria": "Desfolhado",
-        "quantidade": 1,
-        "tipo_venda": "Plano",
-        "observacoes": "Não emitir nota",
         "status": "cancelado"
       },
       {
@@ -5259,5 +5235,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T15:01:02.179Z"
+  "lastUpdate": "2026-04-20T15:01:10.239Z"
 }
