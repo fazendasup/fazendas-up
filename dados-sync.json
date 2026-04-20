@@ -1142,18 +1142,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_161",
-        "id_cliente": "45",
-        "dia_semana": "quinta-feira",
-        "cliente": "Patio Djalma",
-        "produto": "Micro Nabo",
-        "categoria": "Desfolhado",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_163",
         "id_cliente": "46",
         "dia_semana": "quinta-feira",
@@ -5406,5 +5394,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T21:40:17.520Z"
+  "lastUpdate": "2026-04-20T21:40:21.088Z"
 }
