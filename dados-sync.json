@@ -5412,7 +5412,8 @@
     "estoqueModoCompra": {
       "Baby Manjericão": "kilo",
       "Baby Rúcula": "kilo",
-      "Agrião": "kilo"
+      "Agrião": "kilo",
+      "Hortelã": "kilo"
     },
     "estoqueRendimentoKilo": {
       "Baby Manjericão": 8,
@@ -5428,5 +5429,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:32:01.006Z"
+  "lastUpdate": "2026-04-20T20:32:19.201Z"
 }
