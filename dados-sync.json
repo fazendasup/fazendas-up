@@ -2750,18 +2750,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776100891637_3",
-        "id_cliente": "31",
-        "cliente": "Roseiral",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Nabo",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776101242692_0",
         "id_cliente": "client_1775608904239",
         "cliente": "Franco's",
@@ -5355,5 +5343,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T14:31:00.019Z"
+  "lastUpdate": "2026-04-20T14:31:05.000Z"
 }
