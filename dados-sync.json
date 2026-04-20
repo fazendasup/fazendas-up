@@ -1238,18 +1238,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_176",
-        "id_cliente": "47",
-        "dia_semana": "quinta-feira",
-        "cliente": "Patio Aleixo",
-        "produto": "Micro Rabanete",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_182",
         "id_cliente": "36",
         "dia_semana": "quinta-feira",
@@ -5358,5 +5346,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T21:42:51.597Z"
+  "lastUpdate": "2026-04-20T21:42:56.992Z"
 }
