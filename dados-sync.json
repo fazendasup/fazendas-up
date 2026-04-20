@@ -3816,6 +3816,54 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "folha grande",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776716513056_0",
+        "id_cliente": "31",
+        "cliente": "Roseiral",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716513056_1",
+        "id_cliente": "31",
+        "cliente": "Roseiral",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716513056_2",
+        "id_cliente": "31",
+        "cliente": "Roseiral",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716513056_3",
+        "id_cliente": "31",
+        "cliente": "Roseiral",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Beterraba",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5199,5 +5247,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:07:44.645Z"
+  "lastUpdate": "2026-04-20T20:21:53.061Z"
 }
