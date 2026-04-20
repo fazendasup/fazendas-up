@@ -2750,18 +2750,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776100891637_0",
-        "id_cliente": "31",
-        "cliente": "Roseiral",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Mostarda",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776100891637_1",
         "id_cliente": "31",
         "cliente": "Roseiral",
@@ -5319,5 +5307,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T14:05:13.661Z"
+  "lastUpdate": "2026-04-20T14:05:39.185Z"
 }
