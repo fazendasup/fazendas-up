@@ -386,18 +386,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_48",
-        "id_cliente": "17",
-        "dia_semana": "terça-feira",
-        "cliente": "Una Vitta",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_49",
         "id_cliente": "17",
         "dia_semana": "terça-feira",
@@ -5235,5 +5223,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T15:04:35.445Z"
+  "lastUpdate": "2026-04-20T16:23:41.448Z"
 }
