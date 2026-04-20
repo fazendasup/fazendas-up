@@ -3960,6 +3960,114 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776716997275_0",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Hiroiaque",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 16,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716997275_1",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Hiroiaque",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 16,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716997275_2",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Hiroiaque",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 16,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716997275_3",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Hiroiaque",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 13,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716997275_4",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Hiroiaque",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 16,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716997275_5",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Hiroiaque",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 13,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716997275_6",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Hiroiaque",
+        "dia_semana": "quarta-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 16,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716997275_7",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Hiroiaque",
+        "dia_semana": "quarta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 18,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716997275_8",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Hiroiaque",
+        "dia_semana": "quarta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 9,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5356,5 +5464,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:27:55.068Z"
+  "lastUpdate": "2026-04-20T20:29:57.279Z"
 }
