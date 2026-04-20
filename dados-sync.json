@@ -1238,18 +1238,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_175",
-        "id_cliente": "47",
-        "dia_semana": "quinta-feira",
-        "cliente": "Patio Aleixo",
-        "produto": "Micro Nabo",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_176",
         "id_cliente": "47",
         "dia_semana": "quinta-feira",
@@ -5370,5 +5358,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T21:42:46.027Z"
+  "lastUpdate": "2026-04-20T21:42:51.597Z"
 }
