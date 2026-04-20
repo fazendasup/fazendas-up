@@ -2318,18 +2318,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775488461218_2",
-        "id_cliente": "22",
-        "cliente": "Pasta Morada 1",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Nabo",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775657482077_0",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -5307,5 +5295,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T14:32:07.765Z"
+  "lastUpdate": "2026-04-20T14:59:45.458Z"
 }
