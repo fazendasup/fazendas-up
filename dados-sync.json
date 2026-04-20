@@ -3876,6 +3876,90 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776716696225_0",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716696225_1",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716696225_2",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716696225_3",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 8,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716696225_4",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "quarta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716696225_5",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "quarta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776716696225_6",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "",
+        "quantidade": 8,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5259,5 +5343,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:22:57.597Z"
+  "lastUpdate": "2026-04-20T20:24:56.230Z"
 }
