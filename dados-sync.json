@@ -3936,6 +3936,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776723382597_0",
+        "id_cliente": "44",
+        "cliente": "Restaurante Girão's",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "entrega até as 11:00 ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776723382597_1",
+        "id_cliente": "44",
+        "cliente": "Restaurante Girão's",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "entrega até as 11:00 ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776723382597_2",
+        "id_cliente": "44",
+        "cliente": "Restaurante Girão's",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "entrega até as 11:00 ",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5334,5 +5370,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T21:43:01.854Z"
+  "lastUpdate": "2026-04-20T22:16:22.610Z"
 }
