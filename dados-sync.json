@@ -5016,6 +5016,19 @@
         "horarioMaximo": "17:00",
         "cobraEntrega": true,
         "precos": []
+      },
+      {
+        "id": "client_1776716875061",
+        "nome": "Hiroiaque",
+        "observacoes": "",
+        "prazoBoleto": "21 dias",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "15:30",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -5343,5 +5356,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:24:56.230Z"
+  "lastUpdate": "2026-04-20T20:27:55.068Z"
 }
