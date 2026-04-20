@@ -3074,18 +3074,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776207178014_1",
-        "id_cliente": "45",
-        "cliente": "Patio Djalma",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Repolho",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1776268513445_1",
         "id_cliente": "38",
         "cliente": "Barollo",
@@ -5394,5 +5382,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T21:40:21.088Z"
+  "lastUpdate": "2026-04-20T21:40:25.348Z"
 }
