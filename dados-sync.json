@@ -386,18 +386,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_49",
-        "id_cliente": "17",
-        "dia_semana": "terça-feira",
-        "cliente": "Una Vitta",
-        "produto": "Alface Crespa Roxa",
-        "categoria": "Pote",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Boleto para 3 dias",
-        "status": "entregue"
-      },
-      {
         "id": "order_50",
         "id_cliente": "17",
         "dia_semana": "terça-feira",
@@ -5235,5 +5223,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:02:48.600Z"
+  "lastUpdate": "2026-04-20T20:02:52.947Z"
 }
