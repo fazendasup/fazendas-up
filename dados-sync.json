@@ -3911,7 +3911,7 @@
         "quantidade": 20,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "cancelado"
       },
       {
         "id": "order_1776470682916_1",
@@ -3923,7 +3923,7 @@
         "quantidade": 2,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "cancelado"
       },
       {
         "id": "order_1776470682916_2",
@@ -3935,7 +3935,7 @@
         "quantidade": 2,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "cancelado"
       }
     ],
     "clientes": [
@@ -5319,5 +5319,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T13:45:51.946Z"
+  "lastUpdate": "2026-04-20T14:05:13.661Z"
 }
