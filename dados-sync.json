@@ -488,7 +488,7 @@
         "cliente": "La Vaca Negra",
         "produto": "Micro Mostarda",
         "categoria": "Pote",
-        "quantidade": 1,
+        "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5211,5 +5211,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:02:55.467Z"
+  "lastUpdate": "2026-04-20T20:05:20.767Z"
 }
