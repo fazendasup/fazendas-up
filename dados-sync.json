@@ -3972,6 +3972,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "entrega até as 11:00 ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776723941604_0",
+        "id_cliente": "34",
+        "cliente": "Veneza Tarumã",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776723941604_1",
+        "id_cliente": "34",
+        "cliente": "Veneza Tarumã",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776723941604_2",
+        "id_cliente": "34",
+        "cliente": "Veneza Tarumã",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5370,5 +5406,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T22:16:22.610Z"
+  "lastUpdate": "2026-04-20T22:25:41.611Z"
 }
