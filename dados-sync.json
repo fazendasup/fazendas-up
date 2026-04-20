@@ -3840,6 +3840,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776715348241_0",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "segunda-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "folha grande",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5223,5 +5235,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T19:02:38.229Z"
+  "lastUpdate": "2026-04-20T20:02:28.250Z"
 }
