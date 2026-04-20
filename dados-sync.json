@@ -263,7 +263,7 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "pendente"
+        "status": "cancelado"
       },
       {
         "id": "order_32",
@@ -275,7 +275,7 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "pendente"
+        "status": "cancelado"
       },
       {
         "id": "order_33",
@@ -287,7 +287,7 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "pagamento mensal",
-        "status": "pendente"
+        "status": "cancelado"
       },
       {
         "id": "order_34",
@@ -299,7 +299,7 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "Não emitir nota",
-        "status": "pendente"
+        "status": "cancelado"
       },
       {
         "id": "order_35",
@@ -5319,5 +5319,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T11:37:51.170Z"
+  "lastUpdate": "2026-04-20T13:45:41.396Z"
 }
