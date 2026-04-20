@@ -3854,18 +3854,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776470682916_1",
-        "id_cliente": "client_1774998176523",
-        "cliente": "Marinara",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Beterraba",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1776470682916_2",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
@@ -5331,5 +5319,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T14:31:36.477Z"
+  "lastUpdate": "2026-04-20T14:31:59.759Z"
 }
