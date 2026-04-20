@@ -3854,18 +3854,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776470682916_2",
-        "id_cliente": "client_1774998176523",
-        "cliente": "Marinara",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Repolho",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1776695042910_0",
         "id_cliente": "15",
         "cliente": "Banzeiro",
@@ -5319,5 +5307,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T14:32:03.561Z"
+  "lastUpdate": "2026-04-20T14:32:07.765Z"
 }
