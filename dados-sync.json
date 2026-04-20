@@ -1142,18 +1142,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_160",
-        "id_cliente": "45",
-        "dia_semana": "quinta-feira",
-        "cliente": "Patio Djalma",
-        "produto": "Micro Mostarda",
-        "categoria": "Desfolhado",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_161",
         "id_cliente": "45",
         "dia_semana": "quinta-feira",
@@ -5430,5 +5418,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:43:46.514Z"
+  "lastUpdate": "2026-04-20T21:40:12.766Z"
 }
