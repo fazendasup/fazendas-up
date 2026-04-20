@@ -5419,7 +5419,7 @@
       "Baby Manjericão": 8,
       "Baby Rúcula": 8,
       "Agrião": 10,
-      "Hortelã": 0.01
+      "Hortelã": 6
     },
     "estoqueMixFolhaLeve": {
       "referenciaProduto": "Alface MIX",
@@ -5430,5 +5430,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:32:27.651Z"
+  "lastUpdate": "2026-04-20T20:32:37.760Z"
 }
