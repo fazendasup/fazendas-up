@@ -2750,18 +2750,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776100891637_2",
-        "id_cliente": "31",
-        "cliente": "Roseiral",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Couve",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776100891637_3",
         "id_cliente": "31",
         "cliente": "Roseiral",
@@ -5367,5 +5355,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T14:30:35.708Z"
+  "lastUpdate": "2026-04-20T14:31:00.019Z"
 }
