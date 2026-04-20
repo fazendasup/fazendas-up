@@ -191,7 +191,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Quinzenal",
         "observacoes": "",
-        "status": "cancelado"
+        "status": "pendente"
       },
       {
         "id": "order_26",
@@ -203,7 +203,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Quinzenal",
         "observacoes": "Boleto para 3 dias",
-        "status": "cancelado"
+        "status": "pendente"
       },
       {
         "id": "order_27",
@@ -5319,5 +5319,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T13:45:41.396Z"
+  "lastUpdate": "2026-04-20T13:45:51.946Z"
 }
