@@ -3840,6 +3840,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776697475438_0",
+        "id_cliente": "50",
+        "cliente": "Mirante do Negro",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5223,5 +5235,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T15:01:41.153Z"
+  "lastUpdate": "2026-04-20T15:04:35.445Z"
 }
