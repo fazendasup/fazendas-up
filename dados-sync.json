@@ -2066,18 +2066,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1774974409852_1",
-        "id_cliente": "46",
-        "cliente": "Patio Adrianópolis",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Mostarda",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1775226356582_1",
         "id_cliente": "38",
         "cliente": "Barollo",
@@ -5382,5 +5370,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T21:40:25.348Z"
+  "lastUpdate": "2026-04-20T21:42:46.027Z"
 }
