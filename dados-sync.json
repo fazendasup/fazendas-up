@@ -5413,7 +5413,7 @@
       "Baby Manjericão": "unidade",
       "Baby Rúcula": "kilo",
       "Agrião": "kilo",
-      "Hortelã": "kilo"
+      "Hortelã": "unidade"
     },
     "estoqueRendimentoKilo": {
       "Baby Manjericão": 8,
@@ -5430,5 +5430,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:43:31.018Z"
+  "lastUpdate": "2026-04-20T20:43:46.514Z"
 }
