@@ -254,18 +254,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_33",
-        "id_cliente": "11",
-        "dia_semana": "segunda-feira",
-        "cliente": "Renato",
-        "produto": "Micro 3 variedades",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Plano",
-        "observacoes": "pagamento mensal",
-        "status": "cancelado"
-      },
-      {
         "id": "order_35",
         "id_cliente": "12",
         "dia_semana": "segunda-feira",
@@ -5235,5 +5223,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T15:01:10.239Z"
+  "lastUpdate": "2026-04-20T15:01:16.141Z"
 }
