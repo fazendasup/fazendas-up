@@ -676,7 +676,7 @@
       {
         "id": "order_90",
         "id_cliente": "29",
-        "dia_semana": "terça-feira",
+        "dia_semana": "quarta-feira",
         "cliente": "Quintal Bistrô",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
@@ -5211,5 +5211,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-20T20:05:20.767Z"
+  "lastUpdate": "2026-04-20T20:05:38.793Z"
 }
