@@ -3770,18 +3770,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776716997275_3",
-        "id_cliente": "client_1776716875061",
-        "cliente": "Hiroiaque",
-        "dia_semana": "quarta-feira",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "",
-        "quantidade": 13,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776716997275_4",
         "id_cliente": "client_1776716875061",
         "cliente": "Hiroiaque",
@@ -5526,5 +5514,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T20:57:35.091Z"
+  "lastUpdate": "2026-04-21T20:57:37.407Z"
 }
