@@ -3770,18 +3770,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776716997275_8",
-        "id_cliente": "client_1776716875061",
-        "cliente": "Hiroiaque",
-        "dia_semana": "quarta-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 9,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776723382597_0",
         "id_cliente": "44",
         "cliente": "Restaurante Girão's",
@@ -5466,5 +5454,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T20:57:46.870Z"
+  "lastUpdate": "2026-04-21T20:57:49.563Z"
 }
