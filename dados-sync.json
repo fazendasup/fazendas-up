@@ -335,7 +335,7 @@
         "quantidade": 9,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_43",
@@ -347,7 +347,7 @@
         "quantidade": 13,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Cobrar somente 9 crespas",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_45",
@@ -5370,5 +5370,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T14:46:48.702Z"
+  "lastUpdate": "2026-04-21T15:29:33.013Z"
 }
