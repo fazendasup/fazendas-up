@@ -3014,30 +3014,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1776298079693_0",
-        "id_cliente": "client_1776297445016",
-        "cliente": "Hellen Maria Benigno",
-        "dia_semana": "quinta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
-        "id": "order_1776298079693_1",
-        "id_cliente": "client_1776297445016",
-        "cliente": "Hellen Maria Benigno",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Mix tudo",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1776353317343_0",
         "id_cliente": "client_1775156367289",
         "cliente": "Amostra",
@@ -4991,19 +4967,6 @@
         "precos": []
       },
       {
-        "id": "client_1776297445016",
-        "nome": "Hellen Maria Benigno",
-        "observacoes": "",
-        "prazoBoleto": "3 dias ",
-        "acumulaPedidos": false,
-        "diasAcumulo": "",
-        "prazoBoletoAcumulo": "",
-        "periodoEntrega": "Tarde",
-        "horarioMaximo": "17:00",
-        "cobraEntrega": true,
-        "precos": []
-      },
-      {
         "id": "client_1776297567863",
         "nome": "Hellen Maria Benigno",
         "observacoes": "",
@@ -5396,5 +5359,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T20:09:51.107Z"
+  "lastUpdate": "2026-04-21T20:10:47.786Z"
 }
