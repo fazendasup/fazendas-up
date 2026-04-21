@@ -1076,7 +1076,7 @@
         "cliente": "Patio Djalma",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 20,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -5550,5 +5550,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T21:16:10.555Z"
+  "lastUpdate": "2026-04-21T21:16:20.013Z"
 }
