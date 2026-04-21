@@ -3770,18 +3770,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776716997275_0",
-        "id_cliente": "client_1776716875061",
-        "cliente": "Hiroiaque",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 16,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776716997275_1",
         "id_cliente": "client_1776716875061",
         "cliente": "Hiroiaque",
@@ -5562,5 +5550,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T20:54:49.749Z"
+  "lastUpdate": "2026-04-21T20:57:26.818Z"
 }
