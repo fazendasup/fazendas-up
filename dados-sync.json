@@ -4056,6 +4056,114 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776805250729_0",
+        "id_cliente": "client_1776802191102",
+        "cliente": "Yroyak Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Manjericão folha fina",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776805250729_1",
+        "id_cliente": "client_1776802191102",
+        "cliente": "Yroyak Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Manjericão folha fina",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776805250729_2",
+        "id_cliente": "client_1776802191102",
+        "cliente": "Yroyak Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Manjericão folha fina",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776805250729_3",
+        "id_cliente": "client_1776802191102",
+        "cliente": "Yroyak Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Manjericão folha fina",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776805250729_4",
+        "id_cliente": "client_1776802191102",
+        "cliente": "Yroyak Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Manjericão folha fina",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776805250729_5",
+        "id_cliente": "client_1776802191102",
+        "cliente": "Yroyak Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Manjericão folha fina",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776805250729_6",
+        "id_cliente": "client_1776802191102",
+        "cliente": "Yroyak Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Manjericão folha fina",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776805250729_7",
+        "id_cliente": "client_1776802191102",
+        "cliente": "Yroyak Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Manjericão folha fina",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776805250729_8",
+        "id_cliente": "client_1776802191102",
+        "cliente": "Yroyak Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Manjericão folha fina",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5454,5 +5562,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T20:59:07.184Z"
+  "lastUpdate": "2026-04-21T21:00:50.734Z"
 }
