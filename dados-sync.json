@@ -3842,18 +3842,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776804780779_0",
-        "id_cliente": "client_1776716875061",
-        "cliente": "Yroyak Ponta Negra",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Manjericão folha fina",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776804780779_1",
         "id_cliente": "client_1776716875061",
         "cliente": "Yroyak Ponta Negra",
@@ -5454,5 +5442,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T20:57:51.469Z"
+  "lastUpdate": "2026-04-21T20:57:53.727Z"
 }
