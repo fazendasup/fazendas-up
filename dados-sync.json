@@ -770,18 +770,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_109",
-        "id_cliente": "34",
-        "dia_semana": "quarta-feira",
-        "cliente": "Veneza Tarumã",
-        "produto": "Alface Americana",
-        "categoria": "Desfolhado",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_112",
         "id_cliente": "35",
         "dia_semana": "terça-feira",
@@ -5382,5 +5370,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T14:46:36.533Z"
+  "lastUpdate": "2026-04-21T14:46:39.262Z"
 }
