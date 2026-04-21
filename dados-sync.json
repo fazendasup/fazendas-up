@@ -323,7 +323,7 @@
         "quantidade": 34,
         "tipo_venda": "",
         "observacoes": "Boleto para 3 dias",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_42",
@@ -5406,5 +5406,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T13:04:23.398Z"
+  "lastUpdate": "2026-04-21T13:04:29.981Z"
 }
