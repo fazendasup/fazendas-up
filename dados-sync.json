@@ -1184,7 +1184,7 @@
         "cliente": "Patio Aleixo",
         "produto": "Alface MIX",
         "categoria": "",
-        "quantidade": 15,
+        "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "pronto"
@@ -5562,5 +5562,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T21:18:19.496Z"
+  "lastUpdate": "2026-04-21T21:18:26.751Z"
 }
