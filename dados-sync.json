@@ -1110,9 +1110,9 @@
         "id_cliente": "46",
         "dia_semana": "quinta-feira",
         "cliente": "Patio Adrianópolis",
-        "produto": "Alface Crespa Verde",
+        "produto": "Micro Mostarda",
         "categoria": "Desfolhado",
-        "quantidade": 15,
+        "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "pronto"
@@ -5550,5 +5550,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-21T21:17:02.980Z"
+  "lastUpdate": "2026-04-21T21:17:23.216Z"
 }
