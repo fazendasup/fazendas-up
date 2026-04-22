@@ -2120,7 +2120,7 @@
         "dia_semana": "quarta-feira",
         "produto": "Mix Clássico - Salada Completa",
         "categoria": "Desfolhado",
-        "quantidade": 4,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5503,5 +5503,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T20:02:37.813Z"
+  "lastUpdate": "2026-04-22T20:02:46.505Z"
 }
