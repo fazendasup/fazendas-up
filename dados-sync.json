@@ -4212,6 +4212,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776885546339_1",
+        "id_cliente": "16",
+        "cliente": "Novotel",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5611,5 +5623,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:18:36.566Z"
+  "lastUpdate": "2026-04-22T19:19:06.344Z"
 }
