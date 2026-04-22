@@ -3086,18 +3086,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1776353944114_6",
-        "id_cliente": "59",
-        "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "sexta-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1776355223294_0",
         "id_cliente": "client_1775771188946",
         "cliente": "Vista Rio",
@@ -5539,5 +5527,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:20:33.380Z"
+  "lastUpdate": "2026-04-22T19:20:45.310Z"
 }
