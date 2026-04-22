@@ -2954,18 +2954,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776205941773_0",
-        "id_cliente": "19",
-        "cliente": "Jhon sushi",
-        "dia_semana": "sexta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776268513445_1",
         "id_cliente": "38",
         "cliente": "Barollo",
@@ -5623,5 +5611,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:19:06.344Z"
+  "lastUpdate": "2026-04-22T19:19:13.264Z"
 }
