@@ -5539,7 +5539,8 @@
       "Baby Manjericão": 1,
       "Alface Frisee": 2,
       "Agrião": 1.5,
-      "Baby Rúcula": 2
+      "Baby Rúcula": 2,
+      "Hortelã": 1
     },
     "estoqueDesativados": {
       "Mix Clássico - Salada Completa": true,
@@ -5586,5 +5587,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T14:42:20.864Z"
+  "lastUpdate": "2026-04-22T14:48:56.964Z"
 }
