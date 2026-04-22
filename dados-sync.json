@@ -2751,12 +2751,12 @@
       },
       {
         "id": "order_1776123619901_4",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
         "dia_semana": "quarta-feira",
-        "produto": "Mix Folhas - Salada Leve",
+        "produto": "Hortelã",
         "categoria": "",
-        "quantidade": 5,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5574,5 +5574,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T14:40:40.876Z"
+  "lastUpdate": "2026-04-22T14:41:08.783Z"
 }
