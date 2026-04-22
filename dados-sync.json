@@ -3086,18 +3086,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1776353944114_5",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "sexta-feira",
-        "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1776353944114_6",
         "id_cliente": "59",
         "cliente": "Frigorifico A. Adrianópolis",
@@ -5551,5 +5539,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:20:02.858Z"
+  "lastUpdate": "2026-04-22T19:20:10.430Z"
 }
