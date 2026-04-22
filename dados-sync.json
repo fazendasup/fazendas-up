@@ -2954,18 +2954,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776268513445_1",
-        "id_cliente": "38",
-        "cliente": "Barollo",
-        "dia_semana": "quarta-feira",
-        "produto": "Baby Rúcula",
-        "categoria": "Desfolhado",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776272967403_1",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -5503,5 +5491,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T20:03:05.276Z"
+  "lastUpdate": "2026-04-22T20:03:19.123Z"
 }
