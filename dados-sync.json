@@ -3194,18 +3194,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776375925589_1",
-        "id_cliente": "14",
-        "cliente": "Fitz",
-        "dia_semana": "sexta-feira",
-        "produto": "Micro 3 variedades",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1776444823904_0",
         "id_cliente": "client_1775084316617",
         "cliente": "Velho Monge",
@@ -5623,5 +5611,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:18:32.015Z"
+  "lastUpdate": "2026-04-22T19:18:36.566Z"
 }
