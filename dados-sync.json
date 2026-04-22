@@ -4742,12 +4742,12 @@
         "id": "47",
         "nome": "Patio Aleixo",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "21 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:30",
         "cobraEntrega": false,
         "precos": []
       },
@@ -5503,5 +5503,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:31:18.876Z"
+  "lastUpdate": "2026-04-22T19:31:39.665Z"
 }
