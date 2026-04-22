@@ -4530,13 +4530,13 @@
         "id": "25",
         "nome": "Moquem",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "7 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -5587,5 +5587,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T14:48:56.964Z"
+  "lastUpdate": "2026-04-22T15:24:06.852Z"
 }
