@@ -2739,12 +2739,12 @@
       },
       {
         "id": "order_1776123619901_3",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
         "dia_semana": "quarta-feira",
         "produto": "Mix Clássico - Salada Completa",
         "categoria": "",
-        "quantidade": 8,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5574,5 +5574,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T14:39:42.358Z"
+  "lastUpdate": "2026-04-22T14:39:58.454Z"
 }
