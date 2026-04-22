@@ -3158,18 +3158,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776444854270_1",
-        "id_cliente": "client_1775083898066",
-        "cliente": "Ana Galotta",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776445422731_0",
         "id_cliente": "client_1775084316617",
         "cliente": "Velho Monge",
@@ -5515,5 +5503,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:21:05.970Z"
+  "lastUpdate": "2026-04-22T19:21:10.487Z"
 }
