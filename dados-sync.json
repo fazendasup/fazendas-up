@@ -4568,12 +4568,12 @@
         "id": "34",
         "nome": "Veneza Tarumã",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "21 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:00",
         "cobraEntrega": false,
         "precos": []
       },
@@ -5503,5 +5503,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:25:45.111Z"
+  "lastUpdate": "2026-04-22T19:30:36.857Z"
 }
