@@ -3086,18 +3086,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1776353944114_4",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "sexta-feira",
-        "produto": "Mix Crocante - Base para Salada",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1776353944114_5",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -5563,5 +5551,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:19:55.066Z"
+  "lastUpdate": "2026-04-22T19:19:58.359Z"
 }
