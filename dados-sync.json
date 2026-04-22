@@ -884,7 +884,7 @@
         "cliente": "Barollo",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 6,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "70G CRESPA ROXA + 25G CRESPA VERDE + 25G AMERICANA",
         "status": "pendente"
@@ -5503,5 +5503,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T20:02:16.909Z"
+  "lastUpdate": "2026-04-22T20:02:37.813Z"
 }
