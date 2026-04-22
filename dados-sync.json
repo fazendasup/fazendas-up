@@ -3683,7 +3683,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1776716696225_1",
@@ -3695,7 +3695,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1776716696225_2",
@@ -3707,7 +3707,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1776716696225_3",
@@ -3719,7 +3719,7 @@
         "quantidade": 8,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1776716696225_4",
@@ -3731,7 +3731,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1776716696225_5",
@@ -3743,7 +3743,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1776716696225_6",
@@ -3755,7 +3755,7 @@
         "quantidade": 8,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1776723382597_0",
@@ -3911,7 +3911,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776804889743_1",
@@ -3923,7 +3923,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776804889743_2",
@@ -3935,7 +3935,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776804889743_3",
@@ -3947,7 +3947,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776804889743_4",
@@ -3959,7 +3959,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776804889743_5",
@@ -3971,7 +3971,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776804889743_6",
@@ -3983,7 +3983,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776804889743_7",
@@ -3995,7 +3995,7 @@
         "quantidade": 6,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776804889743_8",
@@ -4007,7 +4007,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1776805129848_1",
@@ -5587,5 +5587,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T18:40:32.341Z"
+  "lastUpdate": "2026-04-22T18:40:48.571Z"
 }
