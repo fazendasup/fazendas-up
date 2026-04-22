@@ -4212,6 +4212,42 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776885442959_1",
+        "id_cliente": "34",
+        "cliente": "Veneza Tarumã",
+        "dia_semana": "quinta-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776885442959_2",
+        "id_cliente": "34",
+        "cliente": "Veneza Tarumã",
+        "dia_semana": "quinta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776885442959_3",
+        "id_cliente": "34",
+        "cliente": "Veneza Tarumã",
+        "dia_semana": "quinta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5611,5 +5647,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:16:27.627Z"
+  "lastUpdate": "2026-04-22T19:17:22.965Z"
 }
