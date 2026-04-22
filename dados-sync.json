@@ -1746,9 +1746,9 @@
         "id_cliente": "55",
         "dia_semana": "sexta-feira",
         "cliente": "Taychi",
-        "produto": "Alface Crespa Verde",
+        "produto": "Flores",
         "categoria": "Pote",
-        "quantidade": 0,
+        "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "boleto p/ 7 dias",
         "status": "pendente"
@@ -3285,6 +3285,18 @@
         "produto": "Flores",
         "categoria": "",
         "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776450392155_1",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sexta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5527,5 +5539,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:20:18.607Z"
+  "lastUpdate": "2026-04-22T19:20:33.380Z"
 }
