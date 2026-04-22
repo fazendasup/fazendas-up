@@ -2132,7 +2132,7 @@
         "dia_semana": "quarta-feira",
         "produto": "Baby Manjericão",
         "categoria": "Desfolhado",
-        "quantidade": 4,
+        "quantidade": 6,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Basilicão",
         "status": "pendente"
@@ -5503,5 +5503,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T20:02:46.505Z"
+  "lastUpdate": "2026-04-22T20:03:05.276Z"
 }
