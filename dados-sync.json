@@ -4387,13 +4387,13 @@
         "id": "15",
         "nome": "Banzeiro",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "7 dias ",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -5587,5 +5587,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T15:24:06.852Z"
+  "lastUpdate": "2026-04-22T15:24:27.287Z"
 }
