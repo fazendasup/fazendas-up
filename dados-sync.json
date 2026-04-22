@@ -4729,12 +4729,12 @@
         "id": "46",
         "nome": "Patio Adrianópolis",
         "observacoes": "",
-        "prazoBoleto": "",
+        "prazoBoleto": "21 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:30",
         "cobraEntrega": false,
         "precos": []
       },
@@ -5503,5 +5503,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-22T19:30:53.999Z"
+  "lastUpdate": "2026-04-22T19:31:18.876Z"
 }
