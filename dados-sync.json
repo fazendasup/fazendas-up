@@ -3242,18 +3242,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776450392155_1",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "sexta-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776467673508_1",
         "id_cliente": "13",
         "cliente": "BAREBURGUER",
@@ -5515,5 +5503,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-23T16:02:52.600Z"
+  "lastUpdate": "2026-04-23T18:11:50.307Z"
 }
