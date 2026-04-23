@@ -3972,6 +3972,66 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1776984715134_0",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 12,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n\n4 CRESPA VERDE\n2 AMERICANAS ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776984715134_1",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 12,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n\n4 CRESPA VERDE\n2 AMERICANAS ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776984715134_2",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n\n4 CRESPA VERDE\n2 AMERICANAS ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776984715134_3",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n\n4 CRESPA VERDE\n2 AMERICANAS ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1776984715134_4",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n\n4 CRESPA VERDE\n2 AMERICANAS ",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5371,5 +5431,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-23T22:48:21.698Z"
+  "lastUpdate": "2026-04-23T22:51:55.159Z"
 }
