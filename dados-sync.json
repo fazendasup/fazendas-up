@@ -2618,18 +2618,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776102259650_3",
-        "id_cliente": "client_1776102161954",
-        "cliente": "Rio Negro Eventos",
-        "dia_semana": "sexta-feira",
-        "produto": "Micro Mostarda",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1776102259650_4",
         "id_cliente": "client_1776102161954",
         "cliente": "Rio Negro Eventos",
@@ -5467,5 +5455,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-23T18:12:39.028Z"
+  "lastUpdate": "2026-04-23T18:12:42.325Z"
 }
