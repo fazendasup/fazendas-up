@@ -3110,18 +3110,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776469020749_4",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "sábado",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776469020749_5",
         "id_cliente": "60",
         "cliente": "Frigorifico Amazonas P10",
@@ -5407,5 +5395,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-24T14:19:47.225Z"
+  "lastUpdate": "2026-04-24T14:19:51.580Z"
 }
