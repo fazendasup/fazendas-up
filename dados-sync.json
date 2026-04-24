@@ -5018,6 +5018,19 @@
         "horarioMaximo": "16:00",
         "cobraEntrega": false,
         "precos": []
+      },
+      {
+        "id": "client_1777041048854",
+        "nome": "Denis Minev",
+        "observacoes": "Plano",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:00",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -5348,5 +5361,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-24T14:27:38.554Z"
+  "lastUpdate": "2026-04-24T14:30:48.859Z"
 }
