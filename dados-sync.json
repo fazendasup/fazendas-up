@@ -4008,6 +4008,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777054806970_1",
+        "id_cliente": "13",
+        "cliente": "BAREBURGUER",
+        "dia_semana": "sábado",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777054806970_2",
+        "id_cliente": "13",
+        "cliente": "BAREBURGUER",
+        "dia_semana": "sábado",
+        "produto": "Micro Beterraba",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5446,5 +5470,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-24T18:19:14.054Z"
+  "lastUpdate": "2026-04-24T18:20:06.976Z"
 }
