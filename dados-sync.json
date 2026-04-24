@@ -4044,6 +4044,54 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777041292763_0",
+        "id_cliente": "client_1777041048854",
+        "cliente": "Denis Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041292763_1",
+        "id_cliente": "client_1777041048854",
+        "cliente": "Denis Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro 3 variedades",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041292763_2",
+        "id_cliente": "client_1777041048854",
+        "cliente": "Denis Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041292763_3",
+        "id_cliente": "client_1777041048854",
+        "cliente": "Denis Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5482,5 +5530,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-24T14:33:51.031Z"
+  "lastUpdate": "2026-04-24T14:34:52.768Z"
 }
