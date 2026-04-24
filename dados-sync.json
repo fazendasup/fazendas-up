@@ -2402,18 +2402,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775838223955_5",
-        "id_cliente": "28",
-        "cliente": "Hotel Juma",
-        "dia_semana": "sexta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776101242692_0",
         "id_cliente": "client_1775608904239",
         "cliente": "Franco's",
@@ -5518,5 +5506,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-24T18:18:18.428Z"
+  "lastUpdate": "2026-04-24T18:18:23.105Z"
 }
