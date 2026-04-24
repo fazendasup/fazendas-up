@@ -3936,6 +3936,114 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777041231026_0",
+        "id_cliente": "client_1777040858549",
+        "cliente": "Ilana Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041231026_1",
+        "id_cliente": "client_1777040858549",
+        "cliente": "Ilana Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041231026_2",
+        "id_cliente": "client_1777040858549",
+        "cliente": "Ilana Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041231026_3",
+        "id_cliente": "client_1777040858549",
+        "cliente": "Ilana Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041231026_4",
+        "id_cliente": "client_1777040858549",
+        "cliente": "Ilana Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041231026_5",
+        "id_cliente": "client_1777040858549",
+        "cliente": "Ilana Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041231026_6",
+        "id_cliente": "client_1777040858549",
+        "cliente": "Ilana Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Rucula",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041231026_7",
+        "id_cliente": "client_1777040858549",
+        "cliente": "Ilana Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777041231026_8",
+        "id_cliente": "client_1777040858549",
+        "cliente": "Ilana Minev",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Beterraba",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5374,5 +5482,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-24T14:30:52.134Z"
+  "lastUpdate": "2026-04-24T14:33:51.031Z"
 }
