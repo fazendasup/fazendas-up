@@ -4044,6 +4044,54 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "MANJERICÃO FOLHA FINA ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777130881357_0",
+        "id_cliente": "client_1777130718100",
+        "cliente": "UINARA RESORT",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Coentro",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777130881357_1",
+        "id_cliente": "client_1777130718100",
+        "cliente": "UINARA RESORT",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777130881357_2",
+        "id_cliente": "client_1777130718100",
+        "cliente": "UINARA RESORT",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777130881357_3",
+        "id_cliente": "client_1777130718100",
+        "cliente": "UINARA RESORT",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5495,5 +5543,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-25T15:25:18.105Z"
+  "lastUpdate": "2026-04-25T15:28:01.364Z"
 }
