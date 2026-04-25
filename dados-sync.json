@@ -3209,7 +3209,7 @@
         "id": "order_1776716696225_6",
         "id_cliente": "17",
         "cliente": "Una Vitta",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "segunda-feira",
         "produto": "Alface Crespa Roxa",
         "categoria": "",
         "quantidade": 8,
@@ -5543,5 +5543,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-25T15:48:30.926Z"
+  "lastUpdate": "2026-04-25T15:48:38.809Z"
 }
