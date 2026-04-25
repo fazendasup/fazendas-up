@@ -3197,7 +3197,7 @@
         "id": "order_1776716696225_5",
         "id_cliente": "17",
         "cliente": "Una Vitta",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "segunda-feira",
         "produto": "Hortelã",
         "categoria": "",
         "quantidade": 1,
@@ -5543,5 +5543,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-25T15:48:24.458Z"
+  "lastUpdate": "2026-04-25T15:48:30.926Z"
 }
