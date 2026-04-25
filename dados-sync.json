@@ -2003,7 +2003,7 @@
         "quantidade": 25,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "cancelado"
+        "status": "pronto"
       },
       {
         "id": "order_1775488461218_0",
@@ -5543,5 +5543,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-25T15:28:01.364Z"
+  "lastUpdate": "2026-04-25T15:46:19.001Z"
 }
