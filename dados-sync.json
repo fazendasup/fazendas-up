@@ -3173,7 +3173,7 @@
         "id": "order_1776716696225_3",
         "id_cliente": "17",
         "cliente": "Una Vitta",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "segunda-feira",
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 8,
@@ -5543,5 +5543,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-25T15:47:41.318Z"
+  "lastUpdate": "2026-04-25T15:47:46.747Z"
 }
