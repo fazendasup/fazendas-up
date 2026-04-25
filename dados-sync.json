@@ -3161,7 +3161,7 @@
         "id": "order_1776716696225_2",
         "id_cliente": "17",
         "cliente": "Una Vitta",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "segunda-feira",
         "produto": "Mix Crocante - Base para Salada",
         "categoria": "",
         "quantidade": 2,
@@ -5543,5 +5543,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-25T15:47:35.742Z"
+  "lastUpdate": "2026-04-25T15:47:41.318Z"
 }
