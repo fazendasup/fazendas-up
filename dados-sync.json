@@ -4004,7 +4004,7 @@
         "dia_semana": "segunda-feira",
         "produto": "Baby Manjericão",
         "categoria": "",
-        "quantidade": 20,
+        "quantidade": 50,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "MANJERICÃO FOLHA FINA ",
         "status": "pendente"
@@ -5507,5 +5507,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-26T18:47:50.950Z"
+  "lastUpdate": "2026-04-26T18:49:24.652Z"
 }
