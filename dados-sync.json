@@ -182,18 +182,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_25",
-        "id_cliente": "9",
-        "dia_semana": "segunda-feira",
-        "cliente": "Meu Chef Café",
-        "produto": "Micro Rabanete",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Quinzenal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_26",
         "id_cliente": "9",
         "dia_semana": "segunda-feira",
@@ -5531,5 +5519,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-26T18:37:16.784Z"
+  "lastUpdate": "2026-04-26T18:40:28.267Z"
 }
