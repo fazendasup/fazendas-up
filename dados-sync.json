@@ -638,18 +638,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_90",
-        "id_cliente": "29",
-        "dia_semana": "quarta-feira",
-        "cliente": "Quintal Bistrô",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_91",
         "id_cliente": "29",
         "dia_semana": "quarta-feira",
@@ -5495,5 +5483,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T16:27:23.576Z"
+  "lastUpdate": "2026-04-27T16:43:23.867Z"
 }
