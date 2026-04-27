@@ -2306,18 +2306,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776101915216_4",
-        "id_cliente": "client_1775156367289",
-        "cliente": "Amostra",
-        "dia_semana": "terça-feira",
-        "produto": "Mix Crocante - Base para Salada",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776101915216_5",
         "id_cliente": "client_1775156367289",
         "cliente": "Amostra",
@@ -5387,5 +5375,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T17:22:02.508Z"
+  "lastUpdate": "2026-04-27T17:22:33.134Z"
 }
