@@ -3809,7 +3809,7 @@
         "id": "order_1777041231026_2",
         "id_cliente": "client_1777040858549",
         "cliente": "Ilana Minev",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "terça-feira",
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 2,
@@ -5495,5 +5495,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T16:26:15.173Z"
+  "lastUpdate": "2026-04-27T16:26:21.314Z"
 }
