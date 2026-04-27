@@ -3876,6 +3876,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777322673180_0",
+        "id_cliente": "3",
+        "cliente": "Rodrigues Jacira Reis",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777322673180_1",
+        "id_cliente": "3",
+        "cliente": "Rodrigues Jacira Reis",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5327,5 +5351,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T20:43:59.844Z"
+  "lastUpdate": "2026-04-27T20:44:33.184Z"
 }
