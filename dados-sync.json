@@ -2462,18 +2462,6 @@
         "status": "cancelado"
       },
       {
-        "id": "order_1776196302075_2",
-        "id_cliente": "3",
-        "cliente": "Rodrigues Jacira Reis",
-        "dia_semana": "quinta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1776203746928_0",
         "id_cliente": "client_1775156367289",
         "cliente": "Amostra",
@@ -5375,5 +5363,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:47:45.157Z"
+  "lastUpdate": "2026-04-27T22:47:50.256Z"
 }
