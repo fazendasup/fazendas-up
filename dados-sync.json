@@ -3900,6 +3900,54 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777329180033_0",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "terça-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777329180033_1",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "terça-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777329180033_2",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "terça-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777329180033_3",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "terça-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5351,5 +5399,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T20:44:33.184Z"
+  "lastUpdate": "2026-04-27T22:33:00.041Z"
 }
