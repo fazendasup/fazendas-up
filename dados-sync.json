@@ -320,7 +320,7 @@
         "cliente": "Novotel",
         "produto": "Alface Americana",
         "categoria": "Desfolhado",
-        "quantidade": 30,
+        "quantidade": 40,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5447,5 +5447,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:58:45.542Z"
+  "lastUpdate": "2026-04-27T22:59:26.608Z"
 }
