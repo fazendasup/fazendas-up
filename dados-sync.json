@@ -2966,18 +2966,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1776695100186_0",
-        "id_cliente": "25",
-        "cliente": "Moquem",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1776695410000_0",
         "id_cliente": "client_1776297567863",
         "cliente": "Hellen Maria Benigno",
@@ -4004,7 +3992,7 @@
         "dia_semana": "segunda-feira",
         "produto": "Baby Manjericão",
         "categoria": "",
-        "quantidade": 50,
+        "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "MANJERICÃO FOLHA FINA ",
         "status": "pendente"
@@ -5487,13 +5475,13 @@
       "Alface Crespa Roxa": true
     },
     "estoqueModoCompra": {
-      "Baby Manjericão": "kilo",
+      "Baby Manjericão": "unidade",
       "Baby Rúcula": "unidade",
       "Agrião": "unidade",
       "Hortelã": "unidade"
     },
     "estoqueRendimentoKilo": {
-      "Baby Manjericão": 10,
+      "Baby Manjericão": 8,
       "Baby Rúcula": 8,
       "Agrião": 10,
       "Hortelã": 8
@@ -5507,5 +5495,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-26T18:51:59.251Z"
+  "lastUpdate": "2026-04-27T13:45:39.373Z"
 }
