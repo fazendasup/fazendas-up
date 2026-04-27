@@ -664,7 +664,7 @@
       {
         "id": "order_93",
         "id_cliente": "29",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "terça-feira",
         "cliente": "Quintal Bistrô",
         "produto": "Micro Mostarda",
         "categoria": "Pote",
@@ -5483,5 +5483,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T16:44:13.892Z"
+  "lastUpdate": "2026-04-27T16:45:03.937Z"
 }
