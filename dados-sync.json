@@ -2306,18 +2306,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776101915216_9",
-        "id_cliente": "client_1775156367289",
-        "cliente": "Amostra",
-        "dia_semana": "terça-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776123060310_1",
         "id_cliente": "36",
         "cliente": "Burgers & Burgers",
@@ -5327,5 +5315,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T17:23:50.136Z"
+  "lastUpdate": "2026-04-27T17:23:57.240Z"
 }
