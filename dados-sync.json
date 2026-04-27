@@ -2306,18 +2306,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776101915216_3",
-        "id_cliente": "client_1775156367289",
-        "cliente": "Amostra",
-        "dia_semana": "terça-feira",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776101915216_4",
         "id_cliente": "client_1775156367289",
         "cliente": "Amostra",
@@ -5399,5 +5387,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T17:21:56.417Z"
+  "lastUpdate": "2026-04-27T17:21:59.940Z"
 }
