@@ -2306,18 +2306,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776101331325_2",
-        "id_cliente": "59",
-        "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "terça-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776101915216_0",
         "id_cliente": "client_1775156367289",
         "cliente": "Amostra",
@@ -5447,5 +5435,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T17:21:09.807Z"
+  "lastUpdate": "2026-04-27T17:21:14.183Z"
 }
