@@ -3960,6 +3960,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777330673716_1",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5411,5 +5423,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:57:19.541Z"
+  "lastUpdate": "2026-04-27T22:57:53.722Z"
 }
