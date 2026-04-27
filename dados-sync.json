@@ -2822,18 +2822,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776697475438_0",
-        "id_cliente": "50",
-        "cliente": "Mirante do Negro",
-        "dia_semana": "segunda-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776716513056_0",
         "id_cliente": "31",
         "cliente": "Roseiral",
@@ -5279,5 +5267,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T20:26:03.385Z"
+  "lastUpdate": "2026-04-27T20:26:15.155Z"
 }
