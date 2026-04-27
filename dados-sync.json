@@ -3869,7 +3869,7 @@
         "id": "order_1777041231026_7",
         "id_cliente": "client_1777040858549",
         "cliente": "Ilana Minev",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "terça-feira",
         "produto": "Micro Rabanete",
         "categoria": "",
         "quantidade": 1,
@@ -5495,5 +5495,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T16:27:03.856Z"
+  "lastUpdate": "2026-04-27T16:27:12.846Z"
 }
