@@ -1214,18 +1214,6 @@
         "status": "cancelado"
       },
       {
-        "id": "order_190",
-        "id_cliente": "3",
-        "dia_semana": "quinta-feira",
-        "cliente": "Rodrigues Jacira Reis",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_192",
         "id_cliente": "8",
         "dia_semana": "quinta-feira",
@@ -5399,5 +5387,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:33:00.041Z"
+  "lastUpdate": "2026-04-27T22:47:40.315Z"
 }
