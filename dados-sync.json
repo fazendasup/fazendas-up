@@ -1028,7 +1028,7 @@
         "cliente": "Patio Djalma",
         "produto": "Alface MIX",
         "categoria": "Desfolhado",
-        "quantidade": 10,
+        "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -3876,6 +3876,54 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777330342051_1",
+        "id_cliente": "45",
+        "cliente": "Patio Djalma",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 19,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777330342051_2",
+        "id_cliente": "45",
+        "cliente": "Patio Djalma",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777330342051_3",
+        "id_cliente": "45",
+        "cliente": "Patio Djalma",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777330342051_4",
+        "id_cliente": "45",
+        "cliente": "Patio Djalma",
+        "dia_semana": "quinta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5327,5 +5375,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:49:03.688Z"
+  "lastUpdate": "2026-04-27T22:52:22.055Z"
 }
