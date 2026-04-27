@@ -4008,6 +4008,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777310431306_1",
+        "id_cliente": "35",
+        "cliente": "Felicori",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Beterraba",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5459,5 +5471,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T17:18:22.855Z"
+  "lastUpdate": "2026-04-27T17:20:31.309Z"
 }
