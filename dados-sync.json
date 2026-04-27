@@ -2426,18 +2426,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776196246037_2",
-        "id_cliente": "4",
-        "cliente": "Rodrigues Ponta Negra",
-        "dia_semana": "quinta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1776203746928_0",
         "id_cliente": "client_1775156367289",
         "cliente": "Amostra",
@@ -5339,5 +5327,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:48:00.091Z"
+  "lastUpdate": "2026-04-27T22:48:03.156Z"
 }
