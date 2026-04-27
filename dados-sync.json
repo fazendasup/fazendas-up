@@ -1062,9 +1062,9 @@
         "id_cliente": "46",
         "dia_semana": "quinta-feira",
         "cliente": "Patio Adrianópolis",
-        "produto": "Micro Mostarda",
+        "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 2,
+        "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "pronto"
@@ -3924,6 +3924,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777330506864_1",
+        "id_cliente": "46",
+        "cliente": "Patio Adrianópolis",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "BOLETO PARA 21 DIAS",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777330506864_2",
+        "id_cliente": "46",
+        "cliente": "Patio Adrianópolis",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "BOLETO PARA 21 DIAS",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5375,5 +5399,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:52:22.055Z"
+  "lastUpdate": "2026-04-27T22:55:06.870Z"
 }
