@@ -3614,18 +3614,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776884324236_1",
-        "id_cliente": "14",
-        "cliente": "Fitz",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776885442959_1",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
@@ -5495,5 +5483,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T13:45:39.373Z"
+  "lastUpdate": "2026-04-27T13:59:34.969Z"
 }
