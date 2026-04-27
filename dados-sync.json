@@ -3948,6 +3948,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777330624017_1",
+        "id_cliente": "46",
+        "cliente": "Patio Adrianópolis",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "BOLETO PARA 21 DIAS",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777330624017_2",
+        "id_cliente": "46",
+        "cliente": "Patio Adrianópolis",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "BOLETO PARA 21 DIAS",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5399,5 +5423,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:56:16.032Z"
+  "lastUpdate": "2026-04-27T22:57:04.022Z"
 }
