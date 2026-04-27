@@ -1098,7 +1098,7 @@
         "id_cliente": "47",
         "dia_semana": "quinta-feira",
         "cliente": "Patio Aleixo",
-        "produto": "Micro Mostarda",
+        "produto": "Micro Rabanete",
         "categoria": "",
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
@@ -3972,6 +3972,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777330725538_1",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777330725538_2",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5423,5 +5447,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:58:06.741Z"
+  "lastUpdate": "2026-04-27T22:58:45.542Z"
 }
