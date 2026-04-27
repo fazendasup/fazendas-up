@@ -310,7 +310,7 @@
         "categoria": "Desfolhado",
         "quantidade": 25,
         "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Cobrar somente 9 crespas",
+        "observacoes": "",
         "status": "pendente"
       },
       {
@@ -5471,5 +5471,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T14:00:19.670Z"
+  "lastUpdate": "2026-04-27T14:00:33.608Z"
 }
