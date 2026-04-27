@@ -676,11 +676,11 @@
       {
         "id": "order_94",
         "id_cliente": "29",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "terça-feira",
         "cliente": "Quintal Bistrô",
         "produto": "Flores",
         "categoria": "Pote",
-        "quantidade": 1,
+        "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5483,5 +5483,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T16:43:23.867Z"
+  "lastUpdate": "2026-04-27T16:43:33.373Z"
 }
