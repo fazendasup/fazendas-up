@@ -1946,18 +1946,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1775481450554_0",
-        "id_cliente": "8",
-        "cliente": "Subway Manauara",
-        "dia_semana": "segunda-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 25,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775488461218_0",
         "id_cliente": "22",
         "cliente": "Pasta Morada 1",
@@ -5267,5 +5255,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T20:26:15.155Z"
+  "lastUpdate": "2026-04-27T20:28:15.951Z"
 }
