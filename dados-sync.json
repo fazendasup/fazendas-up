@@ -3821,7 +3821,7 @@
         "id": "order_1777041231026_3",
         "id_cliente": "client_1777040858549",
         "cliente": "Ilana Minev",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "terça-feira",
         "produto": "Hortelã",
         "categoria": "",
         "quantidade": 2,
@@ -5495,5 +5495,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T16:24:36.289Z"
+  "lastUpdate": "2026-04-27T16:24:48.978Z"
 }
