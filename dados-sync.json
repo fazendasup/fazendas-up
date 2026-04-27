@@ -1112,7 +1112,7 @@
         "cliente": "Patio Aleixo",
         "produto": "Baby Manjericão",
         "categoria": "",
-        "quantidade": 10,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -5423,5 +5423,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:57:53.722Z"
+  "lastUpdate": "2026-04-27T22:58:06.741Z"
 }
