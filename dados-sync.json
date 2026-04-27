@@ -2462,18 +2462,6 @@
         "status": "cancelado"
       },
       {
-        "id": "order_1776196302075_1",
-        "id_cliente": "3",
-        "cliente": "Rodrigues Jacira Reis",
-        "dia_semana": "quinta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1776196302075_2",
         "id_cliente": "3",
         "cliente": "Rodrigues Jacira Reis",
@@ -5387,5 +5375,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T22:47:40.315Z"
+  "lastUpdate": "2026-04-27T22:47:45.157Z"
 }
