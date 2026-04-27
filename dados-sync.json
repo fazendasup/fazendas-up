@@ -2306,18 +2306,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776101915216_6",
-        "id_cliente": "client_1775156367289",
-        "cliente": "Amostra",
-        "dia_semana": "terça-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776101915216_7",
         "id_cliente": "client_1775156367289",
         "cliente": "Amostra",
@@ -5363,5 +5351,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-27T17:22:46.103Z"
+  "lastUpdate": "2026-04-27T17:22:50.234Z"
 }
