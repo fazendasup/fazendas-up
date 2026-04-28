@@ -1970,18 +1970,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1775673999839_1",
-        "id_cliente": "38",
-        "cliente": "Barollo",
-        "dia_semana": "quarta-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "Desfolhado",
-        "quantidade": 6,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Basilicão",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775674150422_1",
         "id_cliente": "36",
         "cliente": "Burgers & Burgers",
@@ -5484,5 +5472,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:29:38.638Z"
+  "lastUpdate": "2026-04-28T17:29:41.550Z"
 }
