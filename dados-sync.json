@@ -2666,18 +2666,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1776695042910_0",
-        "id_cliente": "15",
-        "cliente": "Banzeiro",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1776695410000_0",
         "id_cliente": "client_1776297567863",
         "cliente": "Hellen Maria Benigno",
@@ -5544,5 +5532,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:29:12.416Z"
+  "lastUpdate": "2026-04-28T17:29:20.451Z"
 }
