@@ -5117,6 +5117,19 @@
         "horarioMaximo": "16:00",
         "cobraEntrega": true,
         "precos": []
+      },
+      {
+        "id": "client_1777389283017",
+        "nome": "Mercê",
+        "observacoes": "",
+        "prazoBoleto": "3 dias",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "17:00",
+        "cobraEntrega": true,
+        "precos": []
       }
     ],
     "produtos": [
@@ -5447,5 +5460,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T14:31:02.422Z"
+  "lastUpdate": "2026-04-28T15:14:43.020Z"
 }
