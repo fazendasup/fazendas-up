@@ -3797,7 +3797,7 @@
         "id": "order_1777390598904_0",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
-        "dia_semana": "segunda-feira",
+        "dia_semana": "terça-feira",
         "produto": "Baby Rúcula",
         "categoria": "",
         "quantidade": 10,
@@ -5340,5 +5340,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T18:00:05.655Z"
+  "lastUpdate": "2026-04-28T18:32:13.234Z"
 }
