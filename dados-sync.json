@@ -2594,18 +2594,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776804889743_4",
-        "id_cliente": "client_1776802151214",
-        "cliente": "Yroyak Adrianópolis",
-        "dia_semana": "quarta-feira",
-        "produto": "Mix Crocante - Base para Salada",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Manjericão folha fina",
-        "status": "pronto"
-      },
-      {
         "id": "order_1776804889743_5",
         "id_cliente": "client_1776802151214",
         "cliente": "Yroyak Adrianópolis",
@@ -5184,5 +5172,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T23:05:16.277Z"
+  "lastUpdate": "2026-04-28T23:05:27.101Z"
 }
