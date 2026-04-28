@@ -3998,18 +3998,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777389356937_2",
-        "id_cliente": "client_1777389283017",
-        "cliente": "Mercê",
-        "dia_semana": "terça-feira",
-        "produto": "Alface Crespa Roxa",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777389356966_0",
         "id_cliente": "client_1777389283017",
         "cliente": "Mercê",
@@ -5580,5 +5568,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:18:01.950Z"
+  "lastUpdate": "2026-04-28T17:18:13.890Z"
 }
