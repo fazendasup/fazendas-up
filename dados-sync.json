@@ -2594,18 +2594,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776805250729_8",
-        "id_cliente": "client_1776802191102",
-        "cliente": "Yroyak Vieiralves",
-        "dia_semana": "quarta-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Manjericão folha fina",
-        "status": "pronto"
-      },
-      {
         "id": "order_1776806263594_1",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
@@ -4992,5 +4980,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T23:08:25.934Z"
+  "lastUpdate": "2026-04-28T23:08:33.157Z"
 }
