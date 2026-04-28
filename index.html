@@ -3503,6 +3503,29 @@ function normalizeDataShape(d) {
   };
 }
 
+function buildOrderId(seed, idx) {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return `order_${crypto.randomUUID()}`;
+  }
+  const rand = Math.random().toString(36).slice(2, 10);
+  return `order_${seed}_${idx}_${rand}`;
+}
+
+function ensureUniquePedidoIdsInState() {
+  if (!appState || !appState.data || !Array.isArray(appState.data.pedidos)) return;
+  const seen = new Set();
+  const seed = Date.now();
+  appState.data.pedidos.forEach((pedido, idx) => {
+    if (!pedido || typeof pedido !== 'object') return;
+    let id = pedido.id ? String(pedido.id) : '';
+    if (!id || seen.has(id)) {
+      id = buildOrderId(seed, idx);
+      pedido.id = id;
+    }
+    seen.add(id);
+  });
+}
+
 const DIAS_SEMANA = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
 const DIAS_CURTOS = {
   'segunda-feira': 'Seg',
@@ -3519,6 +3542,7 @@ const CATEGORIAS = ['Buque', 'Desfolhado', 'Pote'];
 async function init() {
   console.log('[app] Iniciando...');
   await loadData();
+  ensureUniquePedidoIdsInState();
   console.log('[app] Dados carregados. appState:', JSON.stringify(appState, null, 2).substring(0, 200));
   setupEventListeners();
   setupStorageListener();
@@ -3578,11 +3602,38 @@ function normalizeServerBundle(raw) {
   return null;
 }
 
-function applyRemoteSyncBundle(bundle) {
+/** Ultimo lastUpdate visto no servidor (WS, arquivo, API). Salvamento otimista. */
+let lastKnownServerLastUpdate = null;
+
+function getLocalBestDataMs() {
+  const localTs = new Date(appState.lastUpdate || 0).getTime();
+  const clientWall = parseInt(localStorage.getItem(CLIENT_DATA_TS_KEY), 10) || 0;
+  const a = Number.isFinite(localTs) ? localTs : 0;
+  const b = Number.isFinite(clientWall) ? clientWall : 0;
+  return Math.max(a, b);
+}
+
+function applyRemoteSyncBundle(bundle, opts) {
+  const force = opts && opts.force;
+  if (!bundle || !bundle.data || !bundle.lastUpdate) return;
+  const remoteTs = new Date(bundle.lastUpdate).getTime();
+  if (!Number.isFinite(remoteTs)) return;
+  if (!force) {
+    const localBest = getLocalBestDataMs();
+    if (remoteTs < localBest) {
+      console.log('[sync] Ignorando bundle remoto mais antigo que o estado local.');
+      return;
+    }
+  }
+  lastKnownServerLastUpdate = bundle.lastUpdate;
+  if (!force && bundle.lastUpdate === appState.lastUpdate) {
+    return;
+  }
   const d = bundle.data;
   appState.data = normalizeDataShape(d);
+  ensureUniquePedidoIdsInState();
   appState.lastUpdate = bundle.lastUpdate;
-  lastSyncTime = new Date(bundle.lastUpdate).getTime();
+  lastSyncTime = remoteTs;
   localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
   localStorage.setItem(CLIENT_DATA_TS_KEY, String(lastSyncTime));
   if (appState.data.prioridades && Object.keys(appState.data.prioridades).length) {
@@ -3597,9 +3648,11 @@ function connectWebSocket() {
     clearTimeout(wsReconnectTimer);
     wsReconnectTimer = null;
   }
-  const scheme = location.protocol === 'https:' ? 'wss' : 'ws';
   const likelyExternalDevServer = location.port && location.port !== '3001';
   const syncHost = likelyExternalDevServer ? 'localhost:3001' : location.host;
+  const targetsLocal3001 = /^localhost:3001$|^127\.0\.0\.1:3001$/.test(syncHost);
+  const scheme =
+    targetsLocal3001 && location.protocol === 'https:' ? 'ws' : location.protocol === 'https:' ? 'wss' : 'ws';
   const url = `${scheme}://${syncHost}`;
   try {
     ws = new WebSocket(url);
@@ -3612,6 +3665,15 @@ function connectWebSocket() {
   ws.addEventListener('message', (ev) => {
     try {
       const msg = JSON.parse(ev.data);
+      if (msg.type === 'sync_conflict') {
+        const bundle = normalizeServerBundle(msg.data);
+        if (bundle) applyRemoteSyncBundle(bundle, { force: true });
+        showSyncNotification(
+          msg.message || 'Os dados no servidor mudaram (ex.: Telegram ou outra aba). A tela foi alinhada ao servidor.',
+          'warning'
+        );
+        return;
+      }
       if (msg.type !== 'init' && msg.type !== 'update') return;
       const bundle = normalizeServerBundle(msg.data);
       if (!bundle) return;
@@ -3650,7 +3712,19 @@ function pushDataToServer(bundle) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bundle),
-  }).catch((e) => console.warn('[sync] POST /api/data indisponível:', e.message));
+  })
+    .then(async (r) => {
+      if (r.status === 409) {
+        const j = await r.json().catch(() => ({}));
+        const b = normalizeServerBundle(j.data);
+        if (b) applyRemoteSyncBundle(b, { force: true });
+        showSyncNotification(
+          j.message || 'Conflito: o servidor já tinha uma versão mais nova. Dados alinhados ao servidor.',
+          'warning'
+        );
+      }
+    })
+    .catch((e) => console.warn('[sync] POST /api/data indisponível:', e.message));
 }
 
 function setupEventListeners() {
@@ -3796,6 +3870,7 @@ async function loadData() {
           appState.data = normalizeDataShape(parsed);
           appState.lastUpdate = new Date(clientTs).toISOString();
           lastSyncTime = clientTs;
+          if (fresh.bundle.lastUpdate) lastKnownServerLastUpdate = fresh.bundle.lastUpdate;
           if (fresh.sha) lastSyncSha = fresh.sha;
           localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
           localStorage.setItem('fazendas-up-version', DATA_VERSION);
@@ -3818,6 +3893,7 @@ async function loadData() {
     const d = fresh.bundle.data;
     appState.data = normalizeDataShape(d);
     if (fresh.bundle.lastUpdate) appState.lastUpdate = fresh.bundle.lastUpdate;
+    if (fresh.bundle.lastUpdate) lastKnownServerLastUpdate = fresh.bundle.lastUpdate;
     if (fresh.sha) lastSyncSha = fresh.sha;
     if (appState.lastUpdate) {
       lastSyncTime = new Date(appState.lastUpdate).getTime();
@@ -3889,6 +3965,7 @@ async function loadData() {
 let lastSyncHash = null;
 let isSaving = false;  // Flag para evitar sobrescrita durante salvamento
 let lastGitHubSync = null;  // Timestamp da última sincronização com GitHub
+let isSavingPedido = false; // Evita duplo clique e gravacoes concorrentes no modal de pedido
 
 function setupStorageListener() {
   // Detectar mudanças no localStorage de outras abas (mesma máquina)
@@ -3982,6 +4059,7 @@ async function loadSampleData() {
         const d = root.data;
         appState.data = normalizeDataShape(d);
         if (root.lastUpdate) appState.lastUpdate = root.lastUpdate;
+        if (root.lastUpdate) lastKnownServerLastUpdate = root.lastUpdate;
         localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(appState.data));
         if (root.lastUpdate) {
           localStorage.setItem(CLIENT_DATA_TS_KEY, String(new Date(root.lastUpdate).getTime()));
@@ -4006,7 +4084,10 @@ async function loadSampleData() {
 async function saveData() {
   try {
     isSaving = true;  // Bloquear sincronização automática
+    ensureUniquePedidoIdsInState();
     const now = new Date().toISOString();
+    const expectedForServer =
+      lastKnownServerLastUpdate != null ? lastKnownServerLastUpdate : appState.lastUpdate;
     const dataToSave = JSON.stringify(appState.data);
     localStorage.setItem(DATA_STORAGE_KEY, dataToSave);
     localStorage.setItem(CLIENT_DATA_TS_KEY, String(new Date(now).getTime()));
@@ -4015,7 +4096,7 @@ async function saveData() {
       console.error('Falha ao salvar dados no localStorage');
     }
 
-    const bundle = { data: appState.data, lastUpdate: now };
+    const bundle = { data: appState.data, lastUpdate: now, expectedLastUpdate: expectedForServer };
     appState.lastUpdate = now;
     lastSyncTime = new Date(now).getTime();
     pushDataToServer(bundle);
@@ -4929,6 +5010,15 @@ function notifyPedidoChange(tipo, cliente, produto) {
 // ─── Save Functions ────────────────────────────────────────────────────
 
 async function savePedido() {
+  if (isSavingPedido) return;
+  isSavingPedido = true;
+  const saveBtn = document.querySelector('#pedidoModal .btn-primary');
+  if (saveBtn) {
+    saveBtn.disabled = true;
+    saveBtn.dataset.originalText = saveBtn.textContent || 'Salvar';
+    saveBtn.textContent = 'Salvando...';
+  }
+  try {
   clearPedidoValidationError();
   const clienteId = document.getElementById('pedidoCliente').value;
   const cliente = appState.data.clientes.find(c => c.id === clienteId);
@@ -4960,6 +5050,7 @@ async function savePedido() {
     setPedidoValidationError('Selecione o tipo de venda antes de salvar.', ['pedidoTipoVenda']);
     return;
   }
+  const orderSeed = Date.now();
   
   if (appState.editingPedido) {
     // Edição: se só tem 1 produto, atualizar o pedido existente
@@ -4981,7 +5072,7 @@ async function savePedido() {
       // Criar pedidos adicionais para os demais produtos
       for (let i = 1; i < produtoLines.length; i++) {
         appState.data.pedidos.push({
-          id: `order_${Date.now()}_${i}`,
+          id: buildOrderId(orderSeed, i),
           id_cliente: clienteId,
           cliente: cliente.nome,
           dia_semana: diaSemana,
@@ -4999,7 +5090,7 @@ async function savePedido() {
     // Novo: criar um pedido para cada produto
     produtoLines.forEach((pl, i) => {
       appState.data.pedidos.push({
-        id: `order_${Date.now()}_${i}`,
+        id: buildOrderId(orderSeed, i),
         id_cliente: clienteId,
         cliente: cliente.nome,
         dia_semana: diaSemana,
@@ -5023,6 +5114,13 @@ async function savePedido() {
   addProdutoLine();
   closeModal('pedidoModal');
   renderAgenda();
+  } finally {
+    isSavingPedido = false;
+    if (saveBtn) {
+      saveBtn.disabled = false;
+      saveBtn.textContent = saveBtn.dataset.originalText || 'Salvar';
+    }
+  }
 }
 
 async function saveCliente() {
@@ -6140,12 +6238,19 @@ async function syncWithGitHub() {
     if (!remoteData || !remoteData.data || !remoteData.lastUpdate) return;
     if (remoteData.lastUpdate === appState.lastUpdate) {
       if (shaOrNull) lastSyncSha = shaOrNull;
+      lastKnownServerLastUpdate = remoteData.lastUpdate;
       return;
     }
     const remoteTime = new Date(remoteData.lastUpdate).getTime();
     if (!Number.isFinite(remoteTime)) return;
+    const localBest = getLocalBestDataMs();
+    if (remoteTime < localBest) {
+      return;
+    }
+    lastKnownServerLastUpdate = remoteData.lastUpdate;
     console.log('[sync] Aplicando dados remotos —', remoteData.lastUpdate);
     appState.data = normalizeDataShape(remoteData.data);
+    ensureUniquePedidoIdsInState();
     appState.lastUpdate = remoteData.lastUpdate;
     lastSyncTime = remoteTime;
     if (shaOrNull) lastSyncSha = shaOrNull;
