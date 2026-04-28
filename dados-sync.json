@@ -1970,18 +1970,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1775673970601_1",
-        "id_cliente": "38",
-        "cliente": "Barollo",
-        "dia_semana": "quarta-feira",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "Desfolhado",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775673999839_1",
         "id_cliente": "38",
         "cliente": "Barollo",
@@ -5496,5 +5484,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:29:35.890Z"
+  "lastUpdate": "2026-04-28T17:29:38.638Z"
 }
