@@ -2342,18 +2342,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776203746928_1",
-        "id_cliente": "client_1775156367289",
-        "cliente": "Amostra",
-        "dia_semana": "quarta-feira",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776272967403_1",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -5400,5 +5388,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:30:31.725Z"
+  "lastUpdate": "2026-04-28T17:30:35.084Z"
 }
