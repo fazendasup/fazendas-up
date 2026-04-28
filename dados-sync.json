@@ -2594,18 +2594,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776805250729_5",
-        "id_cliente": "client_1776802191102",
-        "cliente": "Yroyak Vieiralves",
-        "dia_semana": "quarta-feira",
-        "produto": "Mix Folhas - Salada Leve",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Manjericão folha fina",
-        "status": "pronto"
-      },
-      {
         "id": "order_1776805250729_6",
         "id_cliente": "client_1776802191102",
         "cliente": "Yroyak Vieiralves",
@@ -5028,5 +5016,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T23:07:54.540Z"
+  "lastUpdate": "2026-04-28T23:08:04.455Z"
 }
