@@ -854,18 +854,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_134",
-        "id_cliente": "39",
-        "dia_semana": "quarta-feira",
-        "cliente": "Traverso",
-        "produto": "Micro Nabo",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_142",
         "id_cliente": "42",
         "dia_semana": "quarta-feira",
@@ -5460,5 +5448,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:29:52.669Z"
+  "lastUpdate": "2026-04-28T17:29:57.087Z"
 }
