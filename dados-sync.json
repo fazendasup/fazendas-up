@@ -806,18 +806,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_126",
-        "id_cliente": "38",
-        "dia_semana": "quarta-feira",
-        "cliente": "Barollo",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_127",
         "id_cliente": "38",
         "dia_semana": "quarta-feira",
@@ -5532,5 +5520,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:29:20.451Z"
+  "lastUpdate": "2026-04-28T17:29:27.155Z"
 }
