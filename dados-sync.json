@@ -2594,18 +2594,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776805129848_1",
-        "id_cliente": "client_1776716875061",
-        "cliente": "Yroyak Ponta Negra",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Manjericão folha fina",
-        "status": "pronto"
-      },
-      {
         "id": "order_1776805129848_2",
         "id_cliente": "client_1776716875061",
         "cliente": "Yroyak Ponta Negra",
@@ -5124,5 +5112,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T23:06:44.185Z"
+  "lastUpdate": "2026-04-28T23:06:52.112Z"
 }
