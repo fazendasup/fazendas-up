@@ -2585,7 +2585,7 @@
         "id": "order_1776716696225_6",
         "id_cliente": "17",
         "cliente": "Una Vitta",
-        "dia_semana": "segunda-feira",
+        "dia_semana": "terça-feira",
         "produto": "Alface Crespa Roxa",
         "categoria": "",
         "quantidade": 8,
@@ -3861,6 +3861,18 @@
         "produto": "Alface MIX",
         "categoria": "",
         "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777399205649_1",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Rúcula",
+        "categoria": "",
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5328,5 +5340,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:59:36.980Z"
+  "lastUpdate": "2026-04-28T18:00:05.655Z"
 }
