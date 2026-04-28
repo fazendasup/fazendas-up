@@ -2891,7 +2891,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776805250729_1",
@@ -2903,7 +2903,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776805250729_2",
@@ -2915,7 +2915,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776805250729_3",
@@ -2927,7 +2927,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776805250729_4",
@@ -2939,7 +2939,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776805250729_5",
@@ -2951,7 +2951,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776805250729_6",
@@ -2963,7 +2963,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776805250729_7",
@@ -2975,7 +2975,7 @@
         "quantidade": 6,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776805250729_8",
@@ -2987,7 +2987,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Manjericão folha fina",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776806263594_1",
@@ -5364,5 +5364,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T20:30:24.140Z"
+  "lastUpdate": "2026-04-28T21:43:05.842Z"
 }
