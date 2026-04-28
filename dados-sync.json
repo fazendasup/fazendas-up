@@ -2594,18 +2594,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776804889743_7",
-        "id_cliente": "client_1776802151214",
-        "cliente": "Yroyak Adrianópolis",
-        "dia_semana": "quarta-feira",
-        "produto": "Hortelã",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Manjericão folha fina",
-        "status": "pronto"
-      },
-      {
         "id": "order_1776804889743_8",
         "id_cliente": "client_1776802151214",
         "cliente": "Yroyak Adrianópolis",
@@ -5148,5 +5136,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T23:06:09.591Z"
+  "lastUpdate": "2026-04-28T23:06:26.968Z"
 }
