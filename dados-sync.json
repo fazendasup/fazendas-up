@@ -3852,6 +3852,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com 3 alfaces + rúcula ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777397523094_0",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777397523094_1",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777397523094_2",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5316,5 +5352,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:31:02.494Z"
+  "lastUpdate": "2026-04-28T17:32:03.099Z"
 }
