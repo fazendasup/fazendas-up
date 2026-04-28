@@ -2561,7 +2561,7 @@
         "id": "order_1776716696225_1",
         "id_cliente": "17",
         "cliente": "Una Vitta",
-        "dia_semana": "terça-feira",
+        "dia_semana": "quarta-feira",
         "produto": "Mix Folhas - Salada Leve",
         "categoria": "",
         "quantidade": 4,
@@ -5352,5 +5352,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T19:56:20.094Z"
+  "lastUpdate": "2026-04-28T19:56:27.519Z"
 }
