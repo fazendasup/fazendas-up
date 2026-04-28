@@ -3998,18 +3998,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777389356937_1",
-        "id_cliente": "client_1777389283017",
-        "cliente": "Mercê",
-        "dia_semana": "terça-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 8,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777389356937_2",
         "id_cliente": "client_1777389283017",
         "cliente": "Mercê",
@@ -5592,5 +5580,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:17:30.751Z"
+  "lastUpdate": "2026-04-28T17:18:01.950Z"
 }
