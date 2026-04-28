@@ -3888,6 +3888,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777406987194_0",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "mix de alfaces+ rúcula = 90g \n",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5352,5 +5364,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T20:05:24.215Z"
+  "lastUpdate": "2026-04-28T20:09:47.199Z"
 }
