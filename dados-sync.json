@@ -3254,18 +3254,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776884324236_0",
-        "id_cliente": "14",
-        "cliente": "Fitz",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776885442959_1",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
@@ -5556,5 +5544,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:18:20.343Z"
+  "lastUpdate": "2026-04-28T17:29:12.416Z"
 }
