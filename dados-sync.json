@@ -2186,18 +2186,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1776123619901_2",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776123619901_3",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -5364,5 +5352,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T23:03:32.310Z"
+  "lastUpdate": "2026-04-28T23:03:36.818Z"
 }
