@@ -2594,18 +2594,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776804889743_3",
-        "id_cliente": "client_1776802151214",
-        "cliente": "Yroyak Adrianópolis",
-        "dia_semana": "quarta-feira",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Manjericão folha fina",
-        "status": "pronto"
-      },
-      {
         "id": "order_1776804889743_4",
         "id_cliente": "client_1776802151214",
         "cliente": "Yroyak Adrianópolis",
@@ -5196,5 +5184,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T23:05:07.989Z"
+  "lastUpdate": "2026-04-28T23:05:16.277Z"
 }
