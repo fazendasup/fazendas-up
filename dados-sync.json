@@ -2186,18 +2186,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1776123619901_4",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "quarta-feira",
-        "produto": "Hortelã",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776123619901_5",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -5340,5 +5328,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T23:03:48.557Z"
+  "lastUpdate": "2026-04-28T23:03:53.195Z"
 }
