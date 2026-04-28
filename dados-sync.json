@@ -3821,7 +3821,7 @@
         "id": "order_1777390598905_2",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
-        "dia_semana": "segunda-feira",
+        "dia_semana": "terça-feira",
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 5,
@@ -5340,5 +5340,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T18:32:13.234Z"
+  "lastUpdate": "2026-04-28T18:32:19.598Z"
 }
