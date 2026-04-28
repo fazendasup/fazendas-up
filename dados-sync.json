@@ -2294,18 +2294,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776183367192_3",
-        "id_cliente": "client_1775156367289",
-        "cliente": "Amostra",
-        "dia_semana": "quarta-feira",
-        "produto": "Mix Crocante - Base para Salada",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776191539131_0",
         "id_cliente": "client_1774918251748",
         "cliente": "Ghiotto Pizzaria",
@@ -5364,5 +5352,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:30:42.394Z"
+  "lastUpdate": "2026-04-28T17:30:44.965Z"
 }
