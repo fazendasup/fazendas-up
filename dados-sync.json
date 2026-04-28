@@ -806,18 +806,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_127",
-        "id_cliente": "38",
-        "dia_semana": "quarta-feira",
-        "cliente": "Barollo",
-        "produto": "Alface Americana",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_128",
         "id_cliente": "38",
         "dia_semana": "quarta-feira",
@@ -5520,5 +5508,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-28T17:29:27.155Z"
+  "lastUpdate": "2026-04-28T17:29:30.850Z"
 }
