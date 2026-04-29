@@ -1580,7 +1580,7 @@
         "cliente": "Farrapo",
         "produto": "Flores",
         "categoria": "Pote",
-        "quantidade": 4,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4860,5 +4860,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:49:01.165Z"
+  "lastUpdate": "2026-04-29T20:49:22.596Z"
 }
