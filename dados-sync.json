@@ -1274,18 +1274,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_218",
-        "id_cliente": "41",
-        "dia_semana": "sexta-feira",
-        "cliente": "Cupulla",
-        "produto": "Flores",
-        "categoria": "Desfolhado",
-        "quantidade": 1,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_219",
         "id_cliente": "41",
         "dia_semana": "sexta-feira",
@@ -4860,5 +4848,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:49:43.641Z"
+  "lastUpdate": "2026-04-29T20:49:51.893Z"
 }
