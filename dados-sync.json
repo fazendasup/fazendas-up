@@ -2174,18 +2174,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776444823904_1",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "sexta-feira",
-        "produto": "Micro Rabanete",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776444823904_2",
         "id_cliente": "client_1775084316617",
         "cliente": "Velho Monge",
@@ -4920,5 +4908,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:11:38.987Z"
+  "lastUpdate": "2026-04-29T20:12:05.956Z"
 }
