@@ -1274,18 +1274,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_216",
-        "id_cliente": "41",
-        "dia_semana": "sexta-feira",
-        "cliente": "Cupulla",
-        "produto": "Alface MIX",
-        "categoria": "Desfolhado",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_217",
         "id_cliente": "41",
         "dia_semana": "sexta-feira",
@@ -4992,5 +4980,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:09:58.751Z"
+  "lastUpdate": "2026-04-29T20:10:03.695Z"
 }
