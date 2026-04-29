@@ -2837,7 +2837,7 @@
         "id": "order_1777041292763_2",
         "id_cliente": "client_1777041048854",
         "cliente": "Denis Minev",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "terça-feira",
         "produto": "Hortelã",
         "categoria": "",
         "quantidade": 1,
@@ -4908,5 +4908,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:47:00.097Z"
+  "lastUpdate": "2026-04-29T20:47:08.764Z"
 }
