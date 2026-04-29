@@ -2654,18 +2654,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776972974049_2",
-        "id_cliente": "59",
-        "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776984715134_0",
         "id_cliente": "60",
         "cliente": "Frigorifico Amazonas P10",
@@ -4944,5 +4932,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:11:12.984Z"
+  "lastUpdate": "2026-04-29T20:11:22.037Z"
 }
