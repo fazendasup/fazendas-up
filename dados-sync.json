@@ -3528,6 +3528,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "manjericão folha fina",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777488010299_0",
+        "id_cliente": "client_1774918251748",
+        "cliente": "Ghiotto Pizzaria",
+        "dia_semana": "quinta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 17,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "manjericão folha fina",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4992,5 +5004,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T18:39:55.720Z"
+  "lastUpdate": "2026-04-29T18:40:53.685Z"
 }
