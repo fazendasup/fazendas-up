@@ -2174,18 +2174,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776444823904_3",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "sexta-feira",
-        "produto": "Micro Repolho",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776444823904_4",
         "id_cliente": "client_1775084316617",
         "cliente": "Velho Monge",
@@ -4896,5 +4884,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:48:43.011Z"
+  "lastUpdate": "2026-04-29T20:48:48.045Z"
 }
