@@ -1730,18 +1730,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1774617182831_1",
-        "id_cliente": "41",
-        "cliente": "Cupulla",
-        "dia_semana": "sexta-feira",
-        "produto": "Micro Rabanete",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1774617182831_2",
         "id_cliente": "41",
         "cliente": "Cupulla",
@@ -4836,5 +4824,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:49:57.848Z"
+  "lastUpdate": "2026-04-29T20:50:07.223Z"
 }
