@@ -2825,7 +2825,7 @@
         "id": "order_1777041292763_1",
         "id_cliente": "client_1777041048854",
         "cliente": "Denis Minev",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "terça-feira",
         "produto": "Micro 3 variedades",
         "categoria": "",
         "quantidade": 2,
@@ -4908,5 +4908,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:46:49.225Z"
+  "lastUpdate": "2026-04-29T20:47:00.097Z"
 }
