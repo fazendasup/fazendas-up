@@ -1202,18 +1202,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_208",
-        "id_cliente": "14",
-        "dia_semana": "sábado",
-        "cliente": "Fitz",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 17,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_210",
         "id_cliente": "53",
         "dia_semana": "segunda-feira",
@@ -4812,5 +4800,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T21:08:45.227Z"
+  "lastUpdate": "2026-04-29T21:14:13.495Z"
 }
