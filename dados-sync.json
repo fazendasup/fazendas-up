@@ -2654,18 +2654,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776984776731_1",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 12,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777041231026_0",
         "id_cliente": "client_1777040858549",
         "cliente": "Ilana Minev",
@@ -4872,5 +4860,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:48:56.550Z"
+  "lastUpdate": "2026-04-29T20:49:01.165Z"
 }
