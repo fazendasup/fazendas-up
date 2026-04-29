@@ -3491,7 +3491,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de alfaces+ rúcula = 90g \n",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1777412740427_0",
@@ -4980,5 +4980,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T15:46:40.435Z"
+  "lastUpdate": "2026-04-29T15:46:45.999Z"
 }
