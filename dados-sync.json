@@ -1292,7 +1292,7 @@
         "cliente": "La Vaca Negra",
         "produto": "Flores",
         "categoria": "Desfolhado",
-        "quantidade": 5,
+        "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4812,5 +4812,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:50:40.564Z"
+  "lastUpdate": "2026-04-29T20:50:48.539Z"
 }
