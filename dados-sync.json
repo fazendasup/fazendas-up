@@ -3038,18 +3038,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777330342051_4",
-        "id_cliente": "45",
-        "cliente": "Patio Djalma",
-        "dia_semana": "quinta-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777330506864_1",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
@@ -4884,5 +4872,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T23:38:39.585Z"
+  "lastUpdate": "2026-04-29T23:40:37.942Z"
 }
