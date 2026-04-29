@@ -2150,18 +2150,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1776191539131_0",
-        "id_cliente": "client_1774918251748",
-        "cliente": "Ghiotto Pizzaria",
-        "dia_semana": "sexta-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Pacote com 150g - Manjericão folha fina",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776272967403_1",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -4932,5 +4920,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:11:22.037Z"
+  "lastUpdate": "2026-04-29T20:11:38.987Z"
 }
