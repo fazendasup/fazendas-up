@@ -2813,7 +2813,7 @@
         "id": "order_1777041292763_0",
         "id_cliente": "client_1777041048854",
         "cliente": "Denis Minev",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "terça-feira",
         "produto": "Alface MIX",
         "categoria": "",
         "quantidade": 2,
@@ -4908,5 +4908,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:46:29.427Z"
+  "lastUpdate": "2026-04-29T20:46:46.152Z"
 }
