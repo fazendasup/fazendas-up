@@ -2114,18 +2114,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776355223294_0",
-        "id_cliente": "client_1775771188946",
-        "cliente": "Vista Rio",
-        "dia_semana": "sexta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Retirada ",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776445422731_0",
         "id_cliente": "client_1775084316617",
         "cliente": "Velho Monge",
@@ -4812,5 +4800,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:50:48.539Z"
+  "lastUpdate": "2026-04-29T21:07:24.056Z"
 }
