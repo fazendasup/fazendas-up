@@ -1604,7 +1604,7 @@
         "cliente": "Farrapo",
         "produto": "Micro 3 variedades",
         "categoria": "Pote",
-        "quantidade": 3,
+        "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4860,5 +4860,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T20:49:22.596Z"
+  "lastUpdate": "2026-04-29T20:49:43.641Z"
 }
