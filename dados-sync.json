@@ -1672,7 +1672,7 @@
       {
         "id": "order_263",
         "id_cliente": "16",
-        "dia_semana": "sábado",
+        "dia_semana": "sexta-feira",
         "cliente": "Novotel",
         "produto": "Alface Americana",
         "categoria": "Desfolhado",
@@ -4896,5 +4896,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-29T22:26:44.646Z"
+  "lastUpdate": "2026-04-29T22:27:46.877Z"
 }
