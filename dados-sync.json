@@ -2070,9 +2070,9 @@
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
         "dia_semana": "quinta-feira",
-        "produto": "Mix Crocante - Base para Salada",
+        "produto": "Mix Folhas - Salada Leve",
         "categoria": "",
-        "quantidade": 10,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4872,5 +4872,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-30T15:03:06.689Z"
+  "lastUpdate": "2026-04-30T15:03:30.764Z"
 }
