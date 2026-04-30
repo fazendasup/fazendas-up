@@ -3564,6 +3564,54 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777590090576_0",
+        "id_cliente": "5",
+        "cliente": "Rodrigues Vieiralves",
+        "dia_semana": "sábado",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777590090576_1",
+        "id_cliente": "5",
+        "cliente": "Rodrigues Vieiralves",
+        "dia_semana": "sábado",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777590090576_2",
+        "id_cliente": "5",
+        "cliente": "Rodrigues Vieiralves",
+        "dia_semana": "sábado",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777590090576_3",
+        "id_cliente": "5",
+        "cliente": "Rodrigues Vieiralves",
+        "dia_semana": "sábado",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5028,5 +5076,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-30T23:01:30.536Z"
+  "lastUpdate": "2026-04-30T23:01:34.724Z"
 }
