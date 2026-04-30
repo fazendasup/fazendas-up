@@ -3323,7 +3323,7 @@
         "quantidade": 10,
         "tipo_venda": "Avulso",
         "observacoes": "10 FOLHA FINA\n4 FOLHAA GRANDE",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1777571894441_1",
@@ -3335,7 +3335,7 @@
         "quantidade": 4,
         "tipo_venda": "Avulso",
         "observacoes": "10 FOLHA FINA\n4 FOLHAA GRANDE",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1777588346665_0",
@@ -4812,5 +4812,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-30T22:45:28.451Z"
+  "lastUpdate": "2026-04-30T22:45:33.555Z"
 }
