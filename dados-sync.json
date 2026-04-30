@@ -1814,18 +1814,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775657482077_4",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "quinta-feira",
-        "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775657482138_2",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -4884,5 +4872,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-30T15:02:44.769Z"
+  "lastUpdate": "2026-04-30T15:02:51.461Z"
 }
