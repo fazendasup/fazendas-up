@@ -3396,6 +3396,7 @@ let appState = {
   editingPedido: null,
   editingCliente: null,
   agendaDiaFiltro: null,
+  agendaClientesFiltro: [],
 };
 
 /** Chave estável por variedade: trim + Unicode NFC (evita duplicar mapas no estoque). */
@@ -4463,16 +4464,26 @@ function renderAgenda() {
   renderAgendaFiltrosModal();
 }
 
+/** IDs de clientes que têm pelo menos um pedido no dia da semana informado. */
+function getClienteIdsComPedidosNoDia(diaSemana) {
+  if (!diaSemana) return [];
+  const ids = new Set();
+  for (const p of appState.data.pedidos || []) {
+    if (p && p.dia_semana === diaSemana && p.id_cliente != null) {
+      ids.add(String(p.id_cliente));
+    }
+  }
+  return Array.from(ids);
+}
+
 function filterAgendaByDay(dia) {
   appState.agendaDiaFiltro = dia || null;
-  // Limpar filtro de clientes quando mudar de dia
   if (dia) {
+    appState.agendaClientesFiltro = getClienteIdsComPedidosNoDia(dia);
+  } else {
     appState.agendaClientesFiltro = [];
-    // Desmarcar todos os checkboxes
-    document.querySelectorAll('#agendaFiltrosContent input[type="checkbox"]').forEach(cb => {
-      cb.checked = false;
-    });
   }
+  renderAgendaFiltrosModal();
   renderAgendaList();
 }
 
@@ -4491,8 +4502,14 @@ function renderAgendaFiltrosModal() {
   const container = document.getElementById('agendaFiltrosContent');
   if (!container) return;
   
-  const clientesUnicos = appState.clientesUnicos || [];
-  const diasSemana = DIAS_SEMANA; // Usar os dias corretos do sistema
+  const todosClientes = appState.clientesUnicos || [];
+  const diasSemana = DIAS_SEMANA;
+  const diaSel = appState.agendaDiaFiltro || '';
+  const idsNoDia = diaSel ? new Set(getClienteIdsComPedidosNoDia(diaSel)) : null;
+  const clientesLista =
+    idsNoDia != null
+      ? todosClientes.filter((c) => idsNoDia.has(String(c.id)))
+      : todosClientes;
   
   container.innerHTML = `
     <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -4500,19 +4517,40 @@ function renderAgendaFiltrosModal() {
         <label style="display: block; margin-bottom: 6px; font-weight: 500; font-size: 13px;">Dia:</label>
         <select id="agendaDiaSelect" onchange="filterAgendaByDay(this.value)" style="width: 100%; padding: 6px 8px; border: 2px solid var(--border); border-radius: 6px; font-size: 13px;">
           <option value="">Todos os dias</option>
-          ${diasSemana.map(dia => `<option value="${dia}">${dia.charAt(0).toUpperCase() + dia.slice(1)}</option>`).join('')}
+          ${diasSemana.map((dia) => {
+            const sel = diaSel === dia ? ' selected' : '';
+            return `<option value="${dia}"${sel}>${dia.charAt(0).toUpperCase() + dia.slice(1)}</option>`;
+          }).join('')}
         </select>
       </div>
       
       <div>
         <label style="display: block; margin-bottom: 6px; font-weight: 500; font-size: 13px;">Clientes:</label>
+        <p style="margin: 0 0 6px 0; font-size: 11px; color: var(--text-light); line-height: 1.35;">
+          ${
+            diaSel
+              ? 'Com um dia selecionado, aparecem só clientes com pedido nesse dia (todos marcados). Desmarque para ocultar.'
+              : 'Escolha um dia para filtrar a lista e pré-selecionar automaticamente os clientes daquele dia.'
+          }
+        </p>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; max-height: 200px; overflow-y: auto; padding: 8px; border: 2px solid var(--border); border-radius: 6px; background: var(--surface);">
-          ${clientesUnicos.map(cliente => `
+          ${
+            clientesLista.length === 0
+              ? `<div style="grid-column: 1 / -1; font-size: 12px; color: var(--text-light); padding: 6px;">Nenhum cliente com pedido neste dia.</div>`
+              : clientesLista
+                  .map((cliente) => {
+                    const idStr = String(cliente.id);
+                    const f = appState.agendaClientesFiltro || [];
+                    const marcado = f.length > 0 && f.some((x) => String(x) === idStr);
+                    const chk = marcado ? ' checked' : '';
+                    return `
             <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 12px;">
-              <input type="checkbox" value="${cliente.id}" onchange="filterAgendaByClientes()" style="cursor: pointer;">
+              <input type="checkbox" value="${idStr}" onchange="filterAgendaByClientes()" style="cursor: pointer;"${chk}>
               <span>${cliente.nome}</span>
-            </label>
-          `).join('')}
+            </label>`;
+                  })
+                  .join('')
+          }
         </div>
       </div>
       
