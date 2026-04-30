@@ -995,7 +995,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_165",
@@ -1007,7 +1007,7 @@
         "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_166",
@@ -1019,7 +1019,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_170",
@@ -2411,7 +2411,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1776885442959_1",
@@ -3011,7 +3011,7 @@
         "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1777330506864_2",
@@ -3023,7 +3023,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1777330624017_1",
@@ -3035,7 +3035,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1777330624017_2",
@@ -3047,7 +3047,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1777330673716_1",
@@ -4884,5 +4884,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-30T21:12:08.683Z"
+  "lastUpdate": "2026-04-30T21:12:54.180Z"
 }
