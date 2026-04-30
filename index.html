@@ -1020,6 +1020,32 @@
             margin-bottom: 12px;
         }
 
+        .dashboard-pedido-obs {
+            background: rgba(52, 152, 219, 0.09);
+            border-left: 3px solid #3498db;
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 8px 0 10px;
+            color: var(--text);
+        }
+
+        .dashboard-pedido-obs__label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-light);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .dashboard-pedido-obs__text {
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
         .custom-prices {
             background: rgba(46, 204, 113, 0.1);
             border-left: 3px solid var(--primary);
@@ -2314,6 +2340,12 @@
             border: 1px solid rgba(245, 158, 11, 0.35);
         }
 
+        :root[data-theme="dark"] .dashboard-pedido-obs {
+            background: rgba(56, 189, 248, 0.1);
+            border-left-color: #38bdf8;
+            color: var(--text);
+        }
+
         :root[data-theme="dark"] .custom-prices {
             background: rgba(16, 185, 129, 0.1);
             border-left-color: var(--primary);
@@ -2563,7 +2595,8 @@
         }
 
         .custom-prices,
-        .client-obs {
+        .client-obs,
+        .dashboard-pedido-obs {
             margin-top: 6px;
             margin-bottom: 0;
         }
@@ -3394,6 +3427,17 @@ function escapeHtmlEstoque(s) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+/** Escape para texto/HTML embutido em templates (dashboard, agenda). */
+function escapeHtml(s) {
+  if (s == null || s === '') return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 function normalizeEstoqueDesativados(raw) {
@@ -4276,6 +4320,9 @@ function renderDashboard() {
             const totalQtd = grupo.pedidos.reduce((s, p) => s + p.quantidade, 0);
             const statusCliente = grupo.pedidos[0]?.status || 'pendente';
             const statusCard = ['pendente', 'pronto', 'entregue', 'cancelado'].includes(statusCliente) ? statusCliente : 'pendente';
+            const obsPedidoUnicas = [...new Set(
+              grupo.pedidos.map((p) => String(p.observacoes != null ? p.observacoes : '').trim()).filter(Boolean)
+            )];
             return `
               <div class="client-delivery-card client-delivery-card--${statusCard}">
                 <div class="client-header">
@@ -4290,6 +4337,12 @@ function renderDashboard() {
                     <option value="cancelado" ${statusCliente === 'cancelado' ? 'selected' : ''}>Cancelado</option>
                   </select>
                 </div>
+                ${obsPedidoUnicas.length ? `
+                <div class="dashboard-pedido-obs" role="note">
+                  <span class="dashboard-pedido-obs__label">Observações do pedido</span>
+                  ${obsPedidoUnicas.map((o) => `<div class="dashboard-pedido-obs__text">${escapeHtml(o)}</div>`).join('')}
+                </div>
+                ` : ''}
                 
                 <div class="client-produtos">
                   <span class="client-produtos-kicker">Itens (${grupo.pedidos.length})</span>
@@ -4682,7 +4735,7 @@ function renderAgendaList() {
               </div>
               <div class="agenda-hud-table">
                 ${grupo.pedidos.map(p => {
-                  const obsEsc = p.observacoes ? String(p.observacoes).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;') : '';
+                  const obsEsc = p.observacoes ? escapeHtml(p.observacoes) : '';
                   return `
                   <div class="agenda-hud-line">
                     <span class="agenda-hud-line-dot" aria-hidden="true"></span>
@@ -4691,7 +4744,7 @@ function renderAgendaList() {
                         <span class="agenda-hud-prod">${p.produto}</span>
                         ${p.categoria ? `<span class="agenda-hud-tag">${p.categoria}</span>` : ''}
                       </div>
-                      ${p.observacoes ? `<span class="agenda-hud-note" title="${obsEsc}">${p.observacoes}</span>` : ''}
+                      ${p.observacoes ? `<span class="agenda-hud-note" title="${obsEsc}">${obsEsc}</span>` : ''}
                     </div>
                     <div class="agenda-hud-qty-stack" title="Quantidade">
                       <span class="agenda-hud-qty-eyebrow">Qtd</span>
