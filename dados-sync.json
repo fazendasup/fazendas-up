@@ -1784,7 +1784,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Alface Crespa Verde",
         "categoria": "",
-        "quantidade": 10,
+        "quantidade": 8,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -1807,18 +1807,6 @@
         "cliente": "Frigorifica Amazona P.N",
         "dia_semana": "quinta-feira",
         "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1775657482077_3",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "quinta-feira",
-        "produto": "Baby Manjericão",
         "categoria": "",
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
@@ -4896,5 +4884,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-30T14:59:37.746Z"
+  "lastUpdate": "2026-04-30T15:02:44.769Z"
 }
