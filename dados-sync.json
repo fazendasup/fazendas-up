@@ -2486,30 +2486,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1776984715134_1",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "sábado",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 12,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIA \n\n4 CRESPA VERDE\n2 AMERICANAS ",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1776984715134_2",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "sábado",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIA \n\n4 CRESPA VERDE\n2 AMERICANAS ",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776984715134_3",
         "id_cliente": "60",
         "cliente": "Frigorifico Amazonas P10",
@@ -4860,5 +4836,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-30T22:36:25.528Z"
+  "lastUpdate": "2026-04-30T22:37:45.382Z"
 }
