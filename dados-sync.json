@@ -3396,6 +3396,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777571894441_0",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "quinta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Avulso",
+        "observacoes": "10 FOLHA FINA\n4 FOLHAA GRANDE",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777571894441_1",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "quinta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Avulso",
+        "observacoes": "10 FOLHA FINA\n4 FOLHAA GRANDE",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4860,5 +4884,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-30T17:38:42.815Z"
+  "lastUpdate": "2026-04-30T17:58:14.470Z"
 }
