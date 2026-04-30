@@ -3179,7 +3179,7 @@
         "quantidade": 17,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "manjericão folha fina",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1777496902399_0",
@@ -4812,5 +4812,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-04-30T22:39:36.678Z"
+  "lastUpdate": "2026-04-30T22:45:28.451Z"
 }
