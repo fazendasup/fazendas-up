@@ -2285,7 +2285,7 @@
         "id": "order_1776716696225_0",
         "id_cliente": "17",
         "cliente": "Una Vitta",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "terça-feira",
         "produto": "Alface MIX",
         "categoria": "",
         "quantidade": 4,
@@ -3670,6 +3670,18 @@
         "categoria": "",
         "quantidade": 10,
         "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777647962004_1",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       }
@@ -5136,5 +5148,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-01T15:05:26.101Z"
+  "lastUpdate": "2026-05-01T15:06:02.009Z"
 }
