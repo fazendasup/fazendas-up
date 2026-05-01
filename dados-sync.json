@@ -2381,7 +2381,7 @@
         "id": "order_1776723941604_1",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "sábado",
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 15,
@@ -5160,5 +5160,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-01T18:13:05.504Z"
+  "lastUpdate": "2026-05-01T18:13:46.572Z"
 }
