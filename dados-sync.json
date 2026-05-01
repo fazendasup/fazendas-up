@@ -3113,7 +3113,7 @@
         "id": "order_1777399205649_1",
         "id_cliente": "17",
         "cliente": "Una Vitta",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "terça-feira",
         "produto": "Baby Rúcula",
         "categoria": "",
         "quantidade": 5,
@@ -5136,5 +5136,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-01T14:43:41.678Z"
+  "lastUpdate": "2026-05-01T15:04:12.652Z"
 }
