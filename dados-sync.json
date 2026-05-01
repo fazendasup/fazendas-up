@@ -2417,7 +2417,7 @@
         "id": "order_1776885442959_1",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "sábado",
         "produto": "Agrião",
         "categoria": "",
         "quantidade": 5,
@@ -5160,5 +5160,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-01T18:14:25.174Z"
+  "lastUpdate": "2026-05-01T18:14:34.530Z"
 }
