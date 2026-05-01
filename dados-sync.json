@@ -2393,7 +2393,7 @@
         "id": "order_1776723941604_2",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "sábado",
         "produto": "Alface MIX",
         "categoria": "",
         "quantidade": 15,
@@ -5160,5 +5160,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-01T18:13:46.572Z"
+  "lastUpdate": "2026-05-01T18:14:07.947Z"
 }
