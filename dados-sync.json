@@ -3518,18 +3518,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777590090576_0",
-        "id_cliente": "5",
-        "cliente": "Rodrigues Vieiralves",
-        "dia_semana": "sábado",
-        "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777590090576_1",
         "id_cliente": "5",
         "cliente": "Rodrigues Vieiralves",
@@ -5160,5 +5148,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-02T12:50:32.410Z"
+  "lastUpdate": "2026-05-02T12:50:35.307Z"
 }
