@@ -2762,18 +2762,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1777322569441_2",
-        "id_cliente": "4",
-        "cliente": "Rodrigues Ponta Negra",
-        "dia_semana": "terça-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1777322673180_0",
         "id_cliente": "3",
         "cliente": "Rodrigues Jacira Reis",
@@ -5076,5 +5064,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-02T17:10:11.315Z"
+  "lastUpdate": "2026-05-02T17:10:15.714Z"
 }
