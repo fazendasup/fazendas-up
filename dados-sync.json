@@ -2774,18 +2774,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1777322639840_1",
-        "id_cliente": "5",
-        "cliente": "Rodrigues Vieiralves",
-        "dia_semana": "terça-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 17,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1777322639840_2",
         "id_cliente": "5",
         "cliente": "Rodrigues Vieiralves",
@@ -5100,5 +5088,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-02T17:10:02.987Z"
+  "lastUpdate": "2026-05-02T17:10:07.722Z"
 }
