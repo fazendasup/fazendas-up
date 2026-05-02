@@ -5030,7 +5030,8 @@
       "Baby Manjericão": 8,
       "Baby Rúcula": 8,
       "Agrião": 10,
-      "Hortelã": 8
+      "Hortelã": 8,
+      "Alface Crespa Verde": 6.5
     },
     "estoqueMixFolhaLeve": {
       "referenciaProduto": "Alface MIX",
@@ -5041,5 +5042,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-02T17:10:57.971Z"
+  "lastUpdate": "2026-05-02T17:11:05.690Z"
 }
