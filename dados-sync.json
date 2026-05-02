@@ -3518,18 +3518,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777590090530_2",
-        "id_cliente": "5",
-        "cliente": "Rodrigues Vieiralves",
-        "dia_semana": "sábado",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777590090530_3",
         "id_cliente": "5",
         "cliente": "Rodrigues Vieiralves",
@@ -5184,5 +5172,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-02T12:50:18.623Z"
+  "lastUpdate": "2026-05-02T12:50:24.018Z"
 }
