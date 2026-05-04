@@ -3540,18 +3540,6 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
         "status": "pendente"
-      },
-      {
-        "id": "order_1777920243956_1",
-        "id_cliente": "client_1774998176523",
-        "cliente": "Marinara",
-        "dia_semana": "terça-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 8,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
-        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5018,5 +5006,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-04T18:44:07.214Z"
+  "lastUpdate": "2026-05-04T18:44:14.224Z"
 }
