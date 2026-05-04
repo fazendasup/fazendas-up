@@ -4674,6 +4674,19 @@
         "horarioMaximo": "17:00",
         "cobraEntrega": true,
         "precos": []
+      },
+      {
+        "id": "client_1777920413285",
+        "nome": "Cafézinho",
+        "observacoes": "",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "19:00",
+        "cobraEntrega": true,
+        "precos": []
       }
     ],
     "produtos": [
@@ -5006,5 +5019,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-04T18:46:07.395Z"
+  "lastUpdate": "2026-05-04T18:46:53.290Z"
 }
