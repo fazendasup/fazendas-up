@@ -2642,18 +2642,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777130626456_0",
-        "id_cliente": "client_1774918251748",
-        "cliente": "Ghiotto Pizzaria",
-        "dia_semana": "segunda-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "MANJERICÃO FOLHA FINA ",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777130881357_0",
         "id_cliente": "client_1777130718100",
         "cliente": "UINARA RESORT",
@@ -5042,5 +5030,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-02T19:43:45.922Z"
+  "lastUpdate": "2026-05-04T11:55:40.881Z"
 }
