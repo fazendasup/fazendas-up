@@ -3540,6 +3540,90 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1777920586933_0",
+        "id_cliente": "client_1777920413285",
+        "cliente": "Cafézinho",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777920586933_1",
+        "id_cliente": "client_1777920413285",
+        "cliente": "Cafézinho",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777920586933_2",
+        "id_cliente": "client_1777920413285",
+        "cliente": "Cafézinho",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777920586933_3",
+        "id_cliente": "client_1777920413285",
+        "cliente": "Cafézinho",
+        "dia_semana": "segunda-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777920586933_4",
+        "id_cliente": "client_1777920413285",
+        "cliente": "Cafézinho",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Beterraba",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777920586933_5",
+        "id_cliente": "client_1777920413285",
+        "cliente": "Cafézinho",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1777920586933_6",
+        "id_cliente": "client_1777920413285",
+        "cliente": "Cafézinho",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5032,5 +5116,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-04T18:46:56.046Z"
+  "lastUpdate": "2026-05-04T18:49:46.940Z"
 }
