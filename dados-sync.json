@@ -3464,7 +3464,7 @@
         "dia_semana": "segunda-feira",
         "produto": "Alface MIX",
         "categoria": "",
-        "quantidade": 10,
+        "quantidade": 20,
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
@@ -5006,5 +5006,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-04T13:48:53.196Z"
+  "lastUpdate": "2026-05-04T13:49:05.280Z"
 }
