@@ -2678,18 +2678,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1777299638597_0",
-        "id_cliente": "client_1775832844547",
-        "cliente": "Coqueiro Verde",
-        "dia_semana": "segunda-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777306102387_0",
         "id_cliente": "25",
         "cliente": "Moquem",
@@ -5006,5 +4994,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-04T18:44:14.224Z"
+  "lastUpdate": "2026-05-04T18:45:24.751Z"
 }
