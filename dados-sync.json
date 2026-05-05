@@ -515,7 +515,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 7 dias",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_78",
@@ -5116,5 +5116,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-05T14:48:51.737Z"
+  "lastUpdate": "2026-05-05T17:38:28.664Z"
 }
