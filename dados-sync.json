@@ -2198,18 +2198,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1776695410000_2",
-        "id_cliente": "client_1776297567863",
-        "cliente": "Hellen Maria Benigno",
-        "dia_semana": "quarta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Manjericão folha fina",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776716513056_0",
         "id_cliente": "31",
         "cliente": "Roseiral",
@@ -5080,5 +5068,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-05T20:54:45.566Z"
+  "lastUpdate": "2026-05-05T20:54:50.299Z"
 }
