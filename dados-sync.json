@@ -3524,7 +3524,7 @@
         "dia_semana": "terça-feira",
         "produto": "Baby Manjericão",
         "categoria": "",
-        "quantidade": 8,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
         "status": "pendente"
@@ -5116,5 +5116,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-05T14:15:43.152Z"
+  "lastUpdate": "2026-05-05T14:29:25.972Z"
 }
