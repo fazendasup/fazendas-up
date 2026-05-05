@@ -3624,6 +3624,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "desconto de 4% no boleto ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778017840621_0",
+        "id_cliente": "client_1775832844547",
+        "cliente": "Coqueiro Verde",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5116,5 +5128,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-05T21:22:00.655Z"
+  "lastUpdate": "2026-05-05T21:50:40.629Z"
 }
