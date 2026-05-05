@@ -3540,6 +3540,18 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778015038004_1",
+        "id_cliente": "3",
+        "cliente": "Rodrigues Jacira Reis",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5032,5 +5044,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-05T21:03:34.250Z"
+  "lastUpdate": "2026-05-05T21:03:58.011Z"
 }
