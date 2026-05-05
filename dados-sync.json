@@ -1058,18 +1058,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_182",
-        "id_cliente": "36",
-        "dia_semana": "quinta-feira",
-        "cliente": "Burgers & Burgers",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_183",
         "id_cliente": "10",
         "dia_semana": "quinta-feira",
@@ -5044,5 +5032,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-05T20:55:01.466Z"
+  "lastUpdate": "2026-05-05T20:55:14.706Z"
 }
