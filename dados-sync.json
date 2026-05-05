@@ -3528,6 +3528,18 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778014708432_0",
+        "id_cliente": "29",
+        "cliente": "Quintal Bistrô",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5020,5 +5032,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-05T20:57:35.279Z"
+  "lastUpdate": "2026-05-05T20:58:28.437Z"
 }
