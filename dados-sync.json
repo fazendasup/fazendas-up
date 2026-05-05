@@ -3552,6 +3552,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778015186504_0",
+        "id_cliente": "4",
+        "cliente": "Rodrigues Ponta Negra",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Desconto de 4% no boleto ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778015186504_1",
+        "id_cliente": "4",
+        "cliente": "Rodrigues Ponta Negra",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 14,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Desconto de 4% no boleto ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778015186504_2",
+        "id_cliente": "4",
+        "cliente": "Rodrigues Ponta Negra",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Desconto de 4% no boleto ",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5044,5 +5080,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-05T21:03:58.011Z"
+  "lastUpdate": "2026-05-05T21:06:26.509Z"
 }
