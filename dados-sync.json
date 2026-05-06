@@ -998,18 +998,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_166",
-        "id_cliente": "46",
-        "dia_semana": "quinta-feira",
-        "cliente": "Patio Adrianópolis",
-        "produto": "Baby Manjericão",
-        "categoria": "Desfolhado",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_170",
         "id_cliente": "47",
         "dia_semana": "quinta-feira",
@@ -5344,5 +5332,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-06T21:52:09.048Z"
+  "lastUpdate": "2026-05-06T21:52:20.440Z"
 }
