@@ -3852,42 +3852,6 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
-      },
-      {
-        "id": "order_1778099565757_0",
-        "id_cliente": "14",
-        "cliente": "Fitz",
-        "dia_semana": "quarta-feira",
-        "produto": "Mix Chefe- Seleção Especial",
-        "categoria": "",
-        "quantidade": 50,
-        "tipo_venda": "Plano",
-        "observacoes": "Mix com Rúcula+agrião+frisée",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1778099565757_1",
-        "id_cliente": "14",
-        "cliente": "Fitz",
-        "dia_semana": "quarta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Plano",
-        "observacoes": "Mix com Rúcula+agrião+frisée",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1778099565757_2",
-        "id_cliente": "14",
-        "cliente": "Fitz",
-        "dia_semana": "quarta-feira",
-        "produto": "Micro 3 variedades",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Plano",
-        "observacoes": "Mix com Rúcula+agrião+frisée",
-        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5380,5 +5344,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-06T20:32:45.765Z"
+  "lastUpdate": "2026-05-06T20:32:53.297Z"
 }
