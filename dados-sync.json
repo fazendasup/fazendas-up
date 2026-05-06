@@ -3588,6 +3588,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778075570904_1",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 12,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778075570905_2",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778075570905_3",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "quarta-feira",
+        "produto": "Baby Rúcula",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5080,5 +5116,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-06T13:40:23.916Z"
+  "lastUpdate": "2026-05-06T13:52:50.910Z"
 }
