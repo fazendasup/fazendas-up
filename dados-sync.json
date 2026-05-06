@@ -1022,6 +1022,18 @@
         "status": "entregue"
       },
       {
+        "id": "order_173",
+        "id_cliente": "47",
+        "dia_semana": "quinta-feira",
+        "cliente": "Patio Aleixo",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "entregue"
+      },
+      {
         "id": "order_174",
         "id_cliente": "47",
         "dia_semana": "quinta-feira",
@@ -2685,18 +2697,6 @@
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
-        "id": "order_1777330725538_1",
-        "id_cliente": "47",
-        "cliente": "Patio Aleixo",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Repolho",
-        "categoria": "",
-        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -5308,5 +5308,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-06T21:53:49.152Z"
+  "lastUpdate": "2026-05-06T21:53:56.970Z"
 }
