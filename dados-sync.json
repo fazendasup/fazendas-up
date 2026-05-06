@@ -3503,7 +3503,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Desconto de 4% no boleto ",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1778015186504_1",
@@ -3515,7 +3515,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Desconto de 4% no boleto ",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1778015186504_2",
@@ -3527,7 +3527,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Desconto de 4% no boleto ",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1778015334442_0",
@@ -5344,5 +5344,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-06T20:19:29.702Z"
+  "lastUpdate": "2026-05-06T20:22:37.530Z"
 }
