@@ -962,18 +962,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_157",
-        "id_cliente": "45",
-        "dia_semana": "quinta-feira",
-        "cliente": "Patio Djalma",
-        "produto": "Baby Manjericão",
-        "categoria": "Desfolhado",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_163",
         "id_cliente": "46",
         "dia_semana": "quinta-feira",
@@ -5284,5 +5272,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-07T13:59:58.021Z"
+  "lastUpdate": "2026-05-07T14:08:48.480Z"
 }
