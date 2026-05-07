@@ -3672,6 +3672,78 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778176036748_0",
+        "id_cliente": "35",
+        "cliente": "Felicori",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778176036748_1",
+        "id_cliente": "35",
+        "cliente": "Felicori",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Beterraba",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778176036748_2",
+        "id_cliente": "35",
+        "cliente": "Felicori",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778176036748_3",
+        "id_cliente": "35",
+        "cliente": "Felicori",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778176036748_4",
+        "id_cliente": "35",
+        "cliente": "Felicori",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Coentro",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778176036748_5",
+        "id_cliente": "35",
+        "cliente": "Felicori",
+        "dia_semana": "quinta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5164,5 +5236,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-07T17:06:30.715Z"
+  "lastUpdate": "2026-05-07T17:47:16.752Z"
 }
