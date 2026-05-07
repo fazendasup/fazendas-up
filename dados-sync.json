@@ -3674,18 +3674,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778098761535_2",
-        "id_cliente": "client_1776716875061",
-        "cliente": "Yroyak Ponta Negra",
-        "dia_semana": "quinta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778098761535_3",
         "id_cliente": "client_1776716875061",
         "cliente": "Yroyak Ponta Negra",
@@ -5224,5 +5212,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-07T14:11:36.007Z"
+  "lastUpdate": "2026-05-07T14:11:49.661Z"
 }
