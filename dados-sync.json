@@ -1079,7 +1079,7 @@
         "quantidade": 25,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_199",
@@ -5164,5 +5164,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-07T15:57:25.486Z"
+  "lastUpdate": "2026-05-07T16:17:55.044Z"
 }
