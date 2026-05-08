@@ -1406,18 +1406,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_245",
-        "id_cliente": "35",
-        "dia_semana": "sexta-feira",
-        "cliente": "Felicori",
-        "produto": "Micro Beterraba",
-        "categoria": "Pote",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_246",
         "id_cliente": "55",
         "dia_semana": "sexta-feira",
@@ -5188,5 +5176,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T15:29:06.327Z"
+  "lastUpdate": "2026-05-08T15:29:14.260Z"
 }
