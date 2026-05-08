@@ -3456,6 +3456,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778271222816_1",
+        "id_cliente": "3",
+        "cliente": "Rodrigues Jacira Reis",
+        "dia_semana": "sábado",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4948,5 +4960,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T20:13:29.403Z"
+  "lastUpdate": "2026-05-08T20:13:42.820Z"
 }
