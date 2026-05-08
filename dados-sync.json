@@ -1295,7 +1295,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_229",
@@ -1307,7 +1307,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_231",
@@ -1319,7 +1319,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 7 dias",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_232",
@@ -5032,5 +5032,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T21:09:24.739Z"
+  "lastUpdate": "2026-05-08T21:09:37.825Z"
 }
