@@ -3098,18 +3098,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777920586933_5",
-        "id_cliente": "client_1777920413285",
-        "cliente": "Cafézinho",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Rabanete",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777920586933_6",
         "id_cliente": "client_1777920413285",
         "cliente": "Cafézinho",
@@ -5032,5 +5020,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T19:09:31.029Z"
+  "lastUpdate": "2026-05-08T19:09:35.529Z"
 }
