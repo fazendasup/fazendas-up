@@ -1559,7 +1559,7 @@
         "quantidade": 30,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_264",
@@ -1571,7 +1571,7 @@
         "quantidade": 40,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_268",
@@ -2267,7 +2267,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1776959073371_0",
@@ -2816,7 +2816,7 @@
         "dia_semana": "sábado",
         "produto": "Alface Americana",
         "categoria": "",
-        "quantidade": 20,
+        "quantidade": 25,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4948,5 +4948,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T19:52:24.162Z"
+  "lastUpdate": "2026-05-08T20:04:21.813Z"
 }
