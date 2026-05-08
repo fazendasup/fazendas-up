@@ -2942,18 +2942,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777590200631_2",
-        "id_cliente": "client_1776802191102",
-        "cliente": "Yroyak Vieiralves",
-        "dia_semana": "sábado",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1777590200631_3",
         "id_cliente": "client_1776802191102",
         "cliente": "Yroyak Vieiralves",
@@ -4984,5 +4972,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T19:11:12.722Z"
+  "lastUpdate": "2026-05-08T19:11:16.880Z"
 }
