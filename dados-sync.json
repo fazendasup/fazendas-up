@@ -2942,18 +2942,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777590200631_0",
-        "id_cliente": "client_1776802191102",
-        "cliente": "Yroyak Vieiralves",
-        "dia_semana": "sábado",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1777590200631_1",
         "id_cliente": "client_1776802191102",
         "cliente": "Yroyak Vieiralves",
@@ -5008,5 +4996,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T19:09:48.917Z"
+  "lastUpdate": "2026-05-08T19:10:43.356Z"
 }
