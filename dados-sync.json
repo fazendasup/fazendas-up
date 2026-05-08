@@ -1394,18 +1394,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_242",
-        "id_cliente": "35",
-        "dia_semana": "sexta-feira",
-        "cliente": "Felicori",
-        "produto": "Micro Acelga",
-        "categoria": "Pote",
-        "quantidade": 0,
-        "tipo_venda": "Avulso",
-        "observacoes": "Boleto para 3 dias",
-        "status": "pendente"
-      },
-      {
         "id": "order_243",
         "id_cliente": "42",
         "dia_semana": "sexta-feira",
@@ -5212,5 +5200,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T15:28:37.073Z"
+  "lastUpdate": "2026-05-08T15:28:50.291Z"
 }
