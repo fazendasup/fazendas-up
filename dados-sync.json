@@ -3468,6 +3468,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778271445591_0",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "sábado",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "mix de 90g com Alfaces+ rúcula ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778271445591_1",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "sábado",
+        "produto": "Baby Rúcula",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "mix de 90g com Alfaces+ rúcula ",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4960,5 +4984,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T20:13:42.820Z"
+  "lastUpdate": "2026-05-08T20:17:25.597Z"
 }
