@@ -3468,6 +3468,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com Alfaces+ rúcula ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778273978316_0",
+        "id_cliente": "25",
+        "cliente": "Moquem",
+        "dia_semana": "sábado",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4960,5 +4972,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T20:58:37.063Z"
+  "lastUpdate": "2026-05-08T20:59:38.321Z"
 }
