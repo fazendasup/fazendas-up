@@ -3480,6 +3480,66 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778274164569_0",
+        "id_cliente": "61",
+        "cliente": "Nihan",
+        "dia_semana": "sábado",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778274164569_1",
+        "id_cliente": "61",
+        "cliente": "Nihan",
+        "dia_semana": "sábado",
+        "produto": "Micro Rucula",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778274164569_2",
+        "id_cliente": "61",
+        "cliente": "Nihan",
+        "dia_semana": "sábado",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778274164569_3",
+        "id_cliente": "61",
+        "cliente": "Nihan",
+        "dia_semana": "sábado",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778274164569_4",
+        "id_cliente": "61",
+        "cliente": "Nihan",
+        "dia_semana": "sábado",
+        "produto": "Micro Beterraba",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4972,5 +5032,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T20:59:38.321Z"
+  "lastUpdate": "2026-05-08T21:02:44.574Z"
 }
