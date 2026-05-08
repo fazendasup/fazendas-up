@@ -1598,18 +1598,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775226356582_1",
-        "id_cliente": "38",
-        "cliente": "Barollo",
-        "dia_semana": "sexta-feira",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775226356582_2",
         "id_cliente": "38",
         "cliente": "Barollo",
@@ -4972,5 +4960,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T20:33:38.876Z"
+  "lastUpdate": "2026-05-08T20:33:43.010Z"
 }
