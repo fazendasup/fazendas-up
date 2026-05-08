@@ -1268,7 +1268,7 @@
         "cliente": "Barollo",
         "produto": "Alface Crespa Verde",
         "categoria": "",
-        "quantidade": 6,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4972,5 +4972,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T20:33:17.198Z"
+  "lastUpdate": "2026-05-08T20:33:28.699Z"
 }
