@@ -4147,7 +4147,7 @@
       {
         "id": "34",
         "nome": "Veneza Tarumã",
-        "observacoes": "",
+        "observacoes": "DESCONTO DE 3% DIRETO NO BOLETO",
         "prazoBoleto": "21 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
@@ -5176,5 +5176,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T17:46:41.381Z"
+  "lastUpdate": "2026-05-08T17:52:01.221Z"
 }
