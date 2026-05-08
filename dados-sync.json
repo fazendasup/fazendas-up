@@ -2054,18 +2054,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1776467673508_1",
-        "id_cliente": "13",
-        "cliente": "BAREBURGUER",
-        "dia_semana": "sexta-feira",
-        "produto": "Baby Rúcula",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Boleto para 3 dias",
-        "status": "pendente"
-      },
-      {
         "id": "order_1776716513056_0",
         "id_cliente": "31",
         "cliente": "Roseiral",
@@ -5176,5 +5164,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T18:56:03.753Z"
+  "lastUpdate": "2026-05-08T18:57:14.482Z"
 }
