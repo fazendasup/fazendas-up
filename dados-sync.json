@@ -1622,18 +1622,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775226356582_3",
-        "id_cliente": "38",
-        "cliente": "Barollo",
-        "dia_semana": "sexta-feira",
-        "produto": "Baby Rúcula",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775488461218_0",
         "id_cliente": "22",
         "cliente": "Pasta Morada 1",
@@ -1835,7 +1823,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1775838223925_1",
@@ -1847,7 +1835,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1775838223925_2",
@@ -1859,7 +1847,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1775838223925_3",
@@ -1871,7 +1859,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1775838223925_4",
@@ -1883,7 +1871,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1775838223925_5",
@@ -1895,7 +1883,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1775838223925_6",
@@ -1907,7 +1895,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776101242692_0",
@@ -4984,5 +4972,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T20:33:06.315Z"
+  "lastUpdate": "2026-05-08T20:33:12.101Z"
 }
