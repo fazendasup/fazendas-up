@@ -1418,18 +1418,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_247",
-        "id_cliente": "35",
-        "dia_semana": "sexta-feira",
-        "cliente": "Felicori",
-        "produto": "Flores",
-        "categoria": "Pote",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_248",
         "id_cliente": "42",
         "dia_semana": "sexta-feira",
@@ -5176,5 +5164,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T15:30:32.689Z"
+  "lastUpdate": "2026-05-08T15:33:22.272Z"
 }
