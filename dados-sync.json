@@ -3026,18 +3026,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777589905962_6",
-        "id_cliente": "client_1776802151214",
-        "cliente": "Yroyak Adrianópolis",
-        "dia_semana": "sábado",
-        "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777590200631_0",
         "id_cliente": "client_1776802191102",
         "cliente": "Yroyak Vieiralves",
@@ -5176,5 +5164,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T19:01:26.178Z"
+  "lastUpdate": "2026-05-08T19:01:31.719Z"
 }
