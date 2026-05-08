@@ -3446,18 +3446,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778266725042_1",
-        "id_cliente": "client_1776802191102",
-        "cliente": "Yroyak Vieiralves",
-        "dia_semana": "sábado",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778267166662_0",
         "id_cliente": "8",
         "cliente": "Subway Manauara",
@@ -4960,5 +4948,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T19:12:04.115Z"
+  "lastUpdate": "2026-05-08T19:12:23.635Z"
 }
