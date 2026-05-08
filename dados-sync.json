@@ -3008,7 +3008,7 @@
         "dia_semana": "sábado",
         "produto": "Alface MIX",
         "categoria": "",
-        "quantidade": 1,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4948,5 +4948,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T19:15:31.334Z"
+  "lastUpdate": "2026-05-08T19:15:40.930Z"
 }
