@@ -1406,18 +1406,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_244",
-        "id_cliente": "35",
-        "dia_semana": "sexta-feira",
-        "cliente": "Felicori",
-        "produto": "Micro Coentro",
-        "categoria": "Pote",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_245",
         "id_cliente": "35",
         "dia_semana": "sexta-feira",
@@ -5200,5 +5188,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T15:28:56.397Z"
+  "lastUpdate": "2026-05-08T15:29:06.327Z"
 }
