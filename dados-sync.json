@@ -2870,18 +2870,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1777589416857_6",
-        "id_cliente": "client_1776716875061",
-        "cliente": "Yroyak Ponta Negra",
-        "dia_semana": "sábado",
-        "produto": "Mix Crocante - Base para Salada",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777589905962_0",
         "id_cliente": "client_1776802151214",
         "cliente": "Yroyak Adrianópolis",
@@ -5092,5 +5080,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T19:03:58.143Z"
+  "lastUpdate": "2026-05-08T19:04:01.919Z"
 }
