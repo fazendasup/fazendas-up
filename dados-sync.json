@@ -3098,18 +3098,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777920586933_1",
-        "id_cliente": "client_1777920413285",
-        "cliente": "Cafézinho",
-        "dia_semana": "segunda-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777920586933_2",
         "id_cliente": "client_1777920413285",
         "cliente": "Cafézinho",
@@ -5080,5 +5068,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T19:07:35.576Z"
+  "lastUpdate": "2026-05-08T19:07:40.360Z"
 }
