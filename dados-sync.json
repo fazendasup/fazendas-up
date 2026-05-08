@@ -3098,18 +3098,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1777920586933_3",
-        "id_cliente": "client_1777920413285",
-        "cliente": "Cafézinho",
-        "dia_semana": "segunda-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777920586933_4",
         "id_cliente": "client_1777920413285",
         "cliente": "Cafézinho",
@@ -5056,5 +5044,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-08T19:08:30.842Z"
+  "lastUpdate": "2026-05-08T19:09:22.675Z"
 }
