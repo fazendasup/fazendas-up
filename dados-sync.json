@@ -3506,18 +3506,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1778515531210_1",
-        "id_cliente": "14",
-        "cliente": "Fitz",
-        "dia_semana": "terça-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 25,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778515531210_2",
         "id_cliente": "14",
         "cliente": "Fitz",
@@ -5116,5 +5104,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-11T20:12:42.914Z"
+  "lastUpdate": "2026-05-11T20:40:54.270Z"
 }
