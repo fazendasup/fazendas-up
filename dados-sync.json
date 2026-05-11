@@ -308,7 +308,7 @@
         "cliente": "Fitz",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 25,
+        "quantidade": 17,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -3528,6 +3528,42 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pronto"
+      },
+      {
+        "id": "order_1778515531210_1",
+        "id_cliente": "14",
+        "cliente": "Fitz",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 25,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778515531210_2",
+        "id_cliente": "14",
+        "cliente": "Fitz",
+        "dia_semana": "terça-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778515531210_3",
+        "id_cliente": "14",
+        "cliente": "Fitz",
+        "dia_semana": "terça-feira",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "",
+        "quantidade": 17,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5020,5 +5056,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-11T13:10:43.290Z"
+  "lastUpdate": "2026-05-11T16:05:31.234Z"
 }
