@@ -3612,6 +3612,78 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778532346258_0",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778532346258_1",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Beterraba",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778532346258_2",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778532346258_3",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778532346258_4",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778532346258_5",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5104,5 +5176,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-11T20:40:54.270Z"
+  "lastUpdate": "2026-05-11T20:45:46.264Z"
 }
