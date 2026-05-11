@@ -2982,9 +2982,9 @@
         "id_cliente": "14",
         "cliente": "Fitz",
         "dia_semana": "quarta-feira",
-        "produto": "Hortelã",
+        "produto": "Mix Chefe- Seleção Especial",
         "categoria": "",
-        "quantidade": 9,
+        "quantidade": 25,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -3561,6 +3561,30 @@
         "produto": "Alface Crespa Roxa",
         "categoria": "",
         "quantidade": 17,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778522217367_1",
+        "id_cliente": "14",
+        "cliente": "Fitz",
+        "dia_semana": "quarta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778522217367_2",
+        "id_cliente": "14",
+        "cliente": "Fitz",
+        "dia_semana": "quarta-feira",
+        "produto": "Micro 3 variedades",
+        "categoria": "",
+        "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5056,5 +5080,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-11T16:56:54.728Z"
+  "lastUpdate": "2026-05-11T17:56:57.393Z"
 }
