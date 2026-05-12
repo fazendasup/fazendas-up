@@ -3422,18 +3422,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1778273978316_0",
-        "id_cliente": "25",
-        "cliente": "Moquem",
-        "dia_semana": "sábado",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1778274164569_0",
         "id_cliente": "61",
         "cliente": "Nihan",
@@ -5176,5 +5164,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-12T16:58:21.550Z"
+  "lastUpdate": "2026-05-12T16:58:27.088Z"
 }
