@@ -740,7 +740,7 @@
         "cliente": "Felicori",
         "produto": "Micro Coentro",
         "categoria": "Pote",
-        "quantidade": 3,
+        "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -5188,5 +5188,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-12T17:08:25.196Z"
+  "lastUpdate": "2026-05-12T17:08:31.469Z"
 }
