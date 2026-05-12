@@ -2090,18 +2090,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1776723382597_2",
-        "id_cliente": "44",
-        "cliente": "Restaurante Girão's",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "entrega até as 11:00 ",
-        "status": "entregue"
-      },
-      {
         "id": "order_1776723941604_0",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
@@ -5152,5 +5140,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-12T20:34:49.970Z"
+  "lastUpdate": "2026-05-12T20:34:53.398Z"
 }
