@@ -3684,6 +3684,18 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778604777260_0",
+        "id_cliente": "25",
+        "cliente": "Moquem",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 7,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5176,5 +5188,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-12T16:51:39.218Z"
+  "lastUpdate": "2026-05-12T16:52:57.265Z"
 }
