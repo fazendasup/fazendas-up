@@ -746,18 +746,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_115",
-        "id_cliente": "35",
-        "dia_semana": "terça-feira",
-        "cliente": "Felicori",
-        "produto": "Flores",
-        "categoria": "Desfolhado",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_123",
         "id_cliente": "37",
         "dia_semana": "quarta-feira",
@@ -5188,5 +5176,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-12T17:08:37.309Z"
+  "lastUpdate": "2026-05-12T17:09:01.797Z"
 }
