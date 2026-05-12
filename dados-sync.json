@@ -5041,6 +5041,13 @@
         "categorias": [
           "Desfolhado"
         ]
+      },
+      {
+        "nome": "Manjericão Fino 150g",
+        "precoBase": 6.97,
+        "categorias": [
+          "Desfolhado"
+        ]
       }
     ],
     "prioridades": {
@@ -5164,5 +5171,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-12T20:37:13.352Z"
+  "lastUpdate": "2026-05-12T20:38:31.952Z"
 }
