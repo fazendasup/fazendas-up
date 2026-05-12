@@ -5133,7 +5133,8 @@
       "Alface Frisee": 2,
       "Agrião": 1.5,
       "Baby Rúcula": 2,
-      "Hortelã": 2.52
+      "Hortelã": 2.52,
+      "Baby Manjericão": 2.5
     },
     "estoqueDesativados": {
       "Mix Clássico - Salada Completa": true,
@@ -5182,5 +5183,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-12T21:05:26.096Z"
+  "lastUpdate": "2026-05-12T21:05:33.894Z"
 }
