@@ -2432,7 +2432,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Micro Nabo",
         "categoria": "",
-        "quantidade": 3,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -5135,5 +5135,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-13T18:59:24.133Z"
+  "lastUpdate": "2026-05-13T18:59:37.185Z"
 }
