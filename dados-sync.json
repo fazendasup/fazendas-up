@@ -2930,18 +2930,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778015186504_1",
-        "id_cliente": "4",
-        "cliente": "Rodrigues Ponta Negra",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 14,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Desconto de 4% no boleto ",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778017840621_0",
         "id_cliente": "client_1775832844547",
         "cliente": "Coqueiro Verde",
@@ -5099,5 +5087,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-13T13:27:47.166Z"
+  "lastUpdate": "2026-05-13T13:27:54.774Z"
 }
