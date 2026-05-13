@@ -2906,18 +2906,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778014708432_0",
-        "id_cliente": "29",
-        "cliente": "Quintal Bistrô",
-        "dia_semana": "quinta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1778017840621_0",
         "id_cliente": "client_1775832844547",
         "cliente": "Coqueiro Verde",
@@ -5315,5 +5303,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-13T19:22:06.210Z"
+  "lastUpdate": "2026-05-13T19:30:13.902Z"
 }
