@@ -875,7 +875,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_146",
@@ -887,7 +887,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_147",
@@ -899,7 +899,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_148",
@@ -911,7 +911,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_149",
@@ -923,7 +923,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_153",
@@ -2999,7 +2999,7 @@
         "quantidade": 25,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "desconto de 4% no boleto ",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1778015334442_1",
@@ -3011,7 +3011,7 @@
         "quantidade": 23,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "desconto de 4% no boleto ",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1778015334442_2",
@@ -3023,7 +3023,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "desconto de 4% no boleto ",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1778017840621_0",
@@ -5183,5 +5183,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-13T12:36:17.337Z"
+  "lastUpdate": "2026-05-13T12:36:26.573Z"
 }
