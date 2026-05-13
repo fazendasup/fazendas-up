@@ -2492,7 +2492,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Micro Nabo",
         "categoria": "",
-        "quantidade": 3,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -3755,6 +3755,66 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778700126202_1",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778700126202_2",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778700126202_3",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778700126202_4",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778700126202_5",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
         "status": "pendente"
       }
     ],
@@ -5255,5 +5315,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-13T19:11:27.948Z"
+  "lastUpdate": "2026-05-13T19:22:06.210Z"
 }
