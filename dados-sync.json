@@ -2990,18 +2990,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778015334442_0",
-        "id_cliente": "5",
-        "cliente": "Rodrigues Vieiralves",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 25,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "desconto de 4% no boleto ",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778015334442_1",
         "id_cliente": "5",
         "cliente": "Rodrigues Vieiralves",
@@ -5183,5 +5171,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-13T13:11:54.391Z"
+  "lastUpdate": "2026-05-13T13:26:49.482Z"
 }
