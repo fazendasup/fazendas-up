@@ -932,7 +932,7 @@
         "cliente": "Patio Djalma",
         "produto": "Alface Americana",
         "categoria": "Desfolhado",
-        "quantidade": 15,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -5135,5 +5135,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-13T17:27:52.863Z"
+  "lastUpdate": "2026-05-13T18:58:07.771Z"
 }
