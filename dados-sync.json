@@ -2990,18 +2990,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778015334442_2",
-        "id_cliente": "5",
-        "cliente": "Rodrigues Vieiralves",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "desconto de 4% no boleto ",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778017840621_0",
         "id_cliente": "client_1775832844547",
         "cliente": "Coqueiro Verde",
@@ -5159,5 +5147,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-13T13:27:00.568Z"
+  "lastUpdate": "2026-05-13T13:27:03.602Z"
 }
