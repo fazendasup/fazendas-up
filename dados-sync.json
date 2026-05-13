@@ -3740,7 +3740,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Mix Clássico - Salada Completa",
         "categoria": "",
-        "quantidade": 14,
+        "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "pendente"
@@ -5255,5 +5255,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-13T19:08:52.024Z"
+  "lastUpdate": "2026-05-13T19:09:03.502Z"
 }
