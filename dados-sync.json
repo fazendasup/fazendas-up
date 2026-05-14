@@ -3744,6 +3744,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778764615788_1",
+        "id_cliente": "50",
+        "cliente": "Mirante do Negro",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Coentro",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778764615788_2",
+        "id_cliente": "50",
+        "cliente": "Mirante do Negro",
+        "dia_semana": "quinta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5243,5 +5267,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T13:13:07.217Z"
+  "lastUpdate": "2026-05-14T13:16:55.793Z"
 }
