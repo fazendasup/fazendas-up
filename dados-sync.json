@@ -1625,7 +1625,7 @@
         "id": "order_1775674150422_1",
         "id_cliente": "36",
         "cliente": "Burgers & Burgers",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Alface Americana",
         "categoria": "",
         "quantidade": 30,
@@ -5553,5 +5553,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T21:59:03.145Z"
+  "lastUpdate": "2026-05-14T22:00:06.714Z"
 }
