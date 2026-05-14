@@ -3768,6 +3768,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778765277305_1",
+        "id_cliente": "10",
+        "cliente": "Padoca",
+        "dia_semana": "quinta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5267,5 +5279,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T13:27:40.411Z"
+  "lastUpdate": "2026-05-14T13:27:57.309Z"
 }
