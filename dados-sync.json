@@ -224,7 +224,7 @@
         "cliente": "Padoca",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
-        "quantidade": 4,
+        "quantidade": 6,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5279,5 +5279,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T13:27:57.309Z"
+  "lastUpdate": "2026-05-14T13:28:18.635Z"
 }
