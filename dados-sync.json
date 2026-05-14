@@ -5197,6 +5197,13 @@
         "categorias": [
           "Desfolhado"
         ]
+      },
+      {
+        "nome": "Manjericão F.Fina 60g",
+        "precoBase": 3.2,
+        "categorias": [
+          "Desfolhado"
+        ]
       }
     ],
     "prioridades": {
@@ -5320,5 +5327,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T17:25:13.163Z"
+  "lastUpdate": "2026-05-14T17:27:19.642Z"
 }
