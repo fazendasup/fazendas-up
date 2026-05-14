@@ -212,7 +212,7 @@
         "cliente": "Padoca",
         "produto": "Baby Manjericão",
         "categoria": "Desfolhado",
-        "quantidade": 6,
+        "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5279,5 +5279,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T13:28:25.655Z"
+  "lastUpdate": "2026-05-14T13:28:39.784Z"
 }
