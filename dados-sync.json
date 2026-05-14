@@ -3804,6 +3804,90 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778794981913_0",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Yroyak Ponta Negra",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 7,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778794981913_1",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Yroyak Ponta Negra",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Crocante - Base para Salada 500g",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778794981913_2",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Yroyak Ponta Negra",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 7,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778794981913_3",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Yroyak Ponta Negra",
+        "dia_semana": "sexta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778794981913_4",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Yroyak Ponta Negra",
+        "dia_semana": "sexta-feira",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778794981913_5",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Yroyak Ponta Negra",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 7,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778794981913_6",
+        "id_cliente": "client_1776716875061",
+        "cliente": "Yroyak Ponta Negra",
+        "dia_semana": "sexta-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5311,5 +5395,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T21:07:10.279Z"
+  "lastUpdate": "2026-05-14T21:43:01.920Z"
 }
