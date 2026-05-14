@@ -4684,7 +4684,12 @@
         "periodoEntrega": "Manhã",
         "horarioMaximo": "18:00",
         "cobraEntrega": false,
-        "precos": []
+        "precos": [
+          {
+            "produto": "Mix Folhas - Salada Leve",
+            "preco": 6.23
+          }
+        ]
       },
       {
         "id": "client_1775083898066",
@@ -5315,5 +5320,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T17:03:24.669Z"
+  "lastUpdate": "2026-05-14T17:25:13.163Z"
 }
