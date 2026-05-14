@@ -1028,7 +1028,7 @@
         "cliente": "Padoca",
         "produto": "Micro Nabo",
         "categoria": "Pote",
-        "quantidade": 3,
+        "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5267,5 +5267,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T13:27:14.506Z"
+  "lastUpdate": "2026-05-14T13:27:27.686Z"
 }
