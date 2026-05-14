@@ -4674,8 +4674,16 @@
         "cobraEntrega": false,
         "precos": [
           {
-            "produto": "Mix Folhas - Salada Leve",
+            "produto": "Mix Folhas + Rúcula 90g",
             "preco": 6.23
+          },
+          {
+            "produto": "Manjericão F.Fina 60g",
+            "preco": 3.2
+          },
+          {
+            "produto": "Baby Rúcula",
+            "preco": 4.5
           }
         ]
       },
@@ -4716,6 +4724,19 @@
         "periodoEntrega": "",
         "horarioMaximo": "",
         "cobraEntrega": false,
+        "precos": []
+      },
+      {
+        "id": "client_1775608903021",
+        "nome": "Franco's",
+        "observacoes": "",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "16:00",
+        "cobraEntrega": true,
         "precos": []
       },
       {
@@ -5290,5 +5311,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T17:33:55.712Z"
+  "lastUpdate": "2026-05-14T17:37:10.650Z"
 }
