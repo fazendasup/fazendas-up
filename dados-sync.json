@@ -3888,6 +3888,138 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_0",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_1",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_2",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_3",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_4",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_5",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_6",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 8,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_7",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_8",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 8,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_9",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 8,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778795943140_10",
+        "id_cliente": "client_1778795166683",
+        "cliente": "Bemol",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5421,5 +5553,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T21:46:10.085Z"
+  "lastUpdate": "2026-05-14T21:59:03.145Z"
 }
