@@ -4758,19 +4758,6 @@
         "precos": []
       },
       {
-        "id": "client_1775771188975",
-        "nome": "Vista Rio",
-        "observacoes": "Retirada ",
-        "prazoBoleto": "3 dias ",
-        "acumulaPedidos": false,
-        "diasAcumulo": "",
-        "prazoBoletoAcumulo": "",
-        "periodoEntrega": "",
-        "horarioMaximo": "",
-        "cobraEntrega": false,
-        "precos": []
-      },
-      {
         "id": "client_1775832845763",
         "nome": "Coqueiro Verde",
         "observacoes": "",
@@ -5316,5 +5303,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-14T17:33:43.873Z"
+  "lastUpdate": "2026-05-14T17:33:49.839Z"
 }
