@@ -4032,18 +4032,6 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
-      },
-      {
-        "id": "order_1778850353631_3",
-        "id_cliente": "34",
-        "cliente": "Veneza Tarumã",
-        "dia_semana": "sábado",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5577,5 +5565,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-15T14:55:56.159Z"
+  "lastUpdate": "2026-05-15T14:56:00.571Z"
 }
