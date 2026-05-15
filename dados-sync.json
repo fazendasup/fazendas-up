@@ -1523,7 +1523,7 @@
         "quantidade": 5,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_262",
@@ -1535,7 +1535,7 @@
         "quantidade": 5,
         "tipo_venda": "",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_263",
@@ -5613,5 +5613,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-15T13:56:20.033Z"
+  "lastUpdate": "2026-05-15T13:56:33.682Z"
 }
