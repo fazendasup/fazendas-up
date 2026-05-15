@@ -3996,6 +3996,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1778857384677_0",
+        "id_cliente": "19",
+        "cliente": "Jhon sushi",
+        "dia_semana": "sexta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778857384677_1",
+        "id_cliente": "19",
+        "cliente": "Jhon sushi",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778857384677_2",
+        "id_cliente": "19",
+        "cliente": "Jhon sushi",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5529,5 +5565,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-15T14:59:31.367Z"
+  "lastUpdate": "2026-05-15T15:03:04.682Z"
 }
