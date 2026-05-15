@@ -3062,18 +3062,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778266357170_1",
-        "id_cliente": "18",
-        "cliente": "Mori Izakaya",
-        "dia_semana": "sexta-feira",
-        "produto": "Micro Nabo",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778267166662_0",
         "id_cliente": "8",
         "cliente": "Subway Manauara",
@@ -5541,5 +5529,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-15T14:59:26.976Z"
+  "lastUpdate": "2026-05-15T14:59:31.367Z"
 }
