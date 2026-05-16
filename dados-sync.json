@@ -3110,18 +3110,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1778274164569_3",
-        "id_cliente": "61",
-        "cliente": "Nihan",
-        "dia_semana": "sábado",
-        "produto": "Micro Couve",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1778274164569_4",
         "id_cliente": "61",
         "cliente": "Nihan",
@@ -5565,5 +5553,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-16T01:03:02.384Z"
+  "lastUpdate": "2026-05-16T01:03:53.848Z"
 }
