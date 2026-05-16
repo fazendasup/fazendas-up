@@ -3710,18 +3710,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778795943140_4",
-        "id_cliente": "client_1778795166683",
-        "cliente": "Bemol",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778795943140_5",
         "id_cliente": "client_1778795166683",
         "cliente": "Bemol",
@@ -5469,5 +5457,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-16T01:24:00.832Z"
+  "lastUpdate": "2026-05-16T01:28:54.310Z"
 }
