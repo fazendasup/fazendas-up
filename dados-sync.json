@@ -2666,18 +2666,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1777589905962_1",
-        "id_cliente": "client_1776802151214",
-        "cliente": "Yroyak Adrianópolis",
-        "dia_semana": "sábado",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1777589905962_2",
         "id_cliente": "client_1776802151214",
         "cliente": "Yroyak Adrianópolis",
@@ -5505,5 +5493,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-16T01:21:41.801Z"
+  "lastUpdate": "2026-05-16T01:21:45.761Z"
 }
