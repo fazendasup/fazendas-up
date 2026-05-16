@@ -2975,7 +2975,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com Alfaces+ rúcula ",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1778271445591_1",
@@ -2987,7 +2987,7 @@
         "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com Alfaces+ rúcula ",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1778515531210_2",
@@ -5469,5 +5469,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-16T14:05:44.773Z"
+  "lastUpdate": "2026-05-16T14:05:51.492Z"
 }
