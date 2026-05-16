@@ -3110,18 +3110,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1778274164569_1",
-        "id_cliente": "61",
-        "cliente": "Nihan",
-        "dia_semana": "sábado",
-        "produto": "Micro Rucula",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1778274164569_2",
         "id_cliente": "61",
         "cliente": "Nihan",
@@ -5589,5 +5577,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-16T01:02:54.463Z"
+  "lastUpdate": "2026-05-16T01:02:57.204Z"
 }
