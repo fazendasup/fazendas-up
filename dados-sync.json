@@ -2666,18 +2666,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1777589905962_4",
-        "id_cliente": "client_1776802151214",
-        "cliente": "Yroyak Adrianópolis",
-        "dia_semana": "sábado",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1777589905962_5",
         "id_cliente": "client_1776802151214",
         "cliente": "Yroyak Adrianópolis",
@@ -5469,5 +5457,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-16T01:23:01.327Z"
+  "lastUpdate": "2026-05-16T01:23:04.373Z"
 }
