@@ -3936,6 +3936,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
+      },
+      {
+        "id": "order_1779110083464_1",
+        "id_cliente": "10",
+        "cliente": "Padoca",
+        "dia_semana": "segunda-feira",
+        "produto": "Mix Chefe- Seleção Especial",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Pagamento mensal",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5469,5 +5481,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-18T13:13:49.587Z"
+  "lastUpdate": "2026-05-18T13:14:43.469Z"
 }
