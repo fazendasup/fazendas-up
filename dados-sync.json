@@ -188,7 +188,7 @@
         "cliente": "Padoca",
         "produto": "Micro Rabanete",
         "categoria": "Pote",
-        "quantidade": 3,
+        "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5469,5 +5469,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-18T12:18:45.592Z"
+  "lastUpdate": "2026-05-18T13:13:30.793Z"
 }
