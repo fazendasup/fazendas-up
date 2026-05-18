@@ -4020,6 +4020,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779110488908_1",
+        "id_cliente": "35",
+        "cliente": "Felicori",
+        "dia_semana": "terça-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5553,5 +5565,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-18T13:20:46.146Z"
+  "lastUpdate": "2026-05-18T13:21:28.912Z"
 }
