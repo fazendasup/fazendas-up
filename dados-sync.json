@@ -5408,7 +5408,8 @@
       "Agrião": 2,
       "Baby Rúcula": 2,
       "Hortelã": 2.52,
-      "Baby Manjericão": 2.5
+      "Baby Manjericão": 2.5,
+      "Manjericão Fino 150g": 4
     },
     "estoqueDesativados": {
       "Mix Clássico - Salada Completa": true,
@@ -5457,5 +5458,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T00:05:31.209Z"
+  "lastUpdate": "2026-05-19T00:05:35.792Z"
 }
