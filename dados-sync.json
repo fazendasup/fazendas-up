@@ -1955,7 +1955,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1776716696225_3",
@@ -1967,7 +1967,7 @@
         "quantidade": 8,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1776716696225_6",
@@ -1979,7 +1979,7 @@
         "quantidade": 8,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1776723941604_0",
@@ -2459,7 +2459,7 @@
         "quantidade": 8,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1777487995706_0",
@@ -2579,7 +2579,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1777920243907_1",
@@ -5458,5 +5458,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T12:50:48.246Z"
+  "lastUpdate": "2026-05-19T13:52:57.346Z"
 }
