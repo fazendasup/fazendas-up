@@ -3086,18 +3086,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1778604699207_0",
-        "id_cliente": "32",
-        "cliente": "Cliente",
-        "dia_semana": "quarta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1778605127774_0",
         "id_cliente": "15",
         "cliente": "Banzeiro",
@@ -5469,5 +5457,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T00:02:32.544Z"
+  "lastUpdate": "2026-05-19T00:03:19.722Z"
 }
