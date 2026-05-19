@@ -3063,12 +3063,12 @@
       },
       {
         "id": "order_1778605127774_0",
-        "id_cliente": "15",
-        "cliente": "Banzeiro",
+        "id_cliente": "25",
+        "cliente": "Moquem",
         "dia_semana": "quarta-feira",
         "produto": "Alface MIX",
         "categoria": "",
-        "quantidade": 7,
+        "quantidade": 10,
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "entregue"
@@ -5458,5 +5458,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T19:10:43.241Z"
+  "lastUpdate": "2026-05-19T21:03:09.573Z"
 }
