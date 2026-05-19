@@ -3912,6 +3912,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779149070401_1",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "quarta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5396,7 +5408,8 @@
       "Agrião": 2,
       "Baby Rúcula": 2,
       "Hortelã": 2.52,
-      "Baby Manjericão": 2.5
+      "Baby Manjericão": 2.5,
+      "Manjericão Fino 150g": 0.01
     },
     "estoqueDesativados": {
       "Mix Clássico - Salada Completa": true,
@@ -5445,5 +5458,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T00:04:37.227Z"
+  "lastUpdate": "2026-05-19T00:05:06.537Z"
 }
