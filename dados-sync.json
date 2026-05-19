@@ -3900,6 +3900,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779149070321_1",
+        "id_cliente": "client_1775084316617",
+        "cliente": "Velho Monge",
+        "dia_semana": "quarta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5433,5 +5445,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T00:03:44.756Z"
+  "lastUpdate": "2026-05-19T00:04:30.326Z"
 }
