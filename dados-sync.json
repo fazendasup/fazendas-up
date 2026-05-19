@@ -2930,18 +2930,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1778526360387_0",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "terça-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1778526360387_1",
         "id_cliente": "client_1775084316617",
         "cliente": "Velho Monge",
@@ -5446,5 +5434,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T21:03:26.440Z"
+  "lastUpdate": "2026-05-19T21:06:38.902Z"
 }
