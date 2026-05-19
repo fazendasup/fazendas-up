@@ -3924,6 +3924,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779148952538_0",
+        "id_cliente": "15",
+        "cliente": "Banzeiro",
+        "dia_semana": "terça-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 7,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5457,5 +5469,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T00:01:28.938Z"
+  "lastUpdate": "2026-05-19T00:02:32.544Z"
 }
