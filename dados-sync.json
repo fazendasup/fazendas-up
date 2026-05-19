@@ -2282,18 +2282,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1777130881357_1",
-        "id_cliente": "client_1777130718100",
-        "cliente": "UINARA RESORT",
-        "dia_semana": "terça-feira",
-        "produto": "Micro Couve",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1777310431306_1",
         "id_cliente": "35",
         "cliente": "Felicori",
@@ -5517,5 +5505,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T00:00:35.880Z"
+  "lastUpdate": "2026-05-19T00:00:38.354Z"
 }
