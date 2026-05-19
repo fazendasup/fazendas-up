@@ -2418,7 +2418,7 @@
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
         "dia_semana": "terça-feira",
-        "produto": "Mix Folhas - Salada Leve",
+        "produto": "Mix Folhas + Rúcula 90g",
         "categoria": "",
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
@@ -5493,5 +5493,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T00:00:40.817Z"
+  "lastUpdate": "2026-05-19T00:01:01.583Z"
 }
