@@ -3146,18 +3146,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1778698867325_5",
-        "id_cliente": "45",
-        "cliente": "Patio Djalma",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Couve",
-        "categoria": "",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1778699293331_1",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
@@ -5386,5 +5374,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T17:42:51.398Z"
+  "lastUpdate": "2026-05-20T17:44:26.611Z"
 }
