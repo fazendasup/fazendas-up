@@ -2660,7 +2660,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Hortelã",
         "categoria": "",
-        "quantidade": 6,
+        "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5254,5 +5254,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T17:54:24.140Z"
+  "lastUpdate": "2026-05-20T17:54:31.653Z"
 }
