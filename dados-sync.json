@@ -3864,18 +3864,6 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
-      },
-      {
-        "id": "order_1779298735598_1",
-        "id_cliente": "38",
-        "cliente": "Barollo",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Frisee",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5410,5 +5398,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T17:39:21.243Z"
+  "lastUpdate": "2026-05-20T17:39:26.530Z"
 }
