@@ -3756,6 +3756,54 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 CRESPAS ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779319653561_0",
+        "id_cliente": "2",
+        "cliente": "Grand Amazon",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779319653561_1",
+        "id_cliente": "2",
+        "cliente": "Grand Amazon",
+        "dia_semana": "sexta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779319653561_2",
+        "id_cliente": "2",
+        "cliente": "Grand Amazon",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779319653561_3",
+        "id_cliente": "2",
+        "cliente": "Grand Amazon",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5290,5 +5338,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T23:23:59.755Z"
+  "lastUpdate": "2026-05-20T23:27:33.567Z"
 }
