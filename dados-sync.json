@@ -2924,7 +2924,7 @@
         "dia_semana": "quarta-feira",
         "produto": "Mix Folhas - Salada Leve",
         "categoria": "",
-        "quantidade": 5,
+        "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5302,5 +5302,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T23:21:59.457Z"
+  "lastUpdate": "2026-05-20T23:22:15.352Z"
 }
