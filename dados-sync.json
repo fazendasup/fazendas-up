@@ -2870,18 +2870,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1778618233345_1",
-        "id_cliente": "59",
-        "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "quarta-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778618233345_2",
         "id_cliente": "59",
         "cliente": "Frigorifico A. Adrianópolis",
@@ -5326,5 +5314,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T23:21:18.340Z"
+  "lastUpdate": "2026-05-20T23:21:22.030Z"
 }
