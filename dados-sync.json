@@ -2282,18 +2282,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1777330342051_3",
-        "id_cliente": "45",
-        "cliente": "Patio Djalma",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Repolho",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1777330506864_1",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
@@ -5374,5 +5362,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T17:44:26.611Z"
+  "lastUpdate": "2026-05-20T17:44:46.500Z"
 }
