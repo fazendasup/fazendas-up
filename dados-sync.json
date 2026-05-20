@@ -3011,7 +3011,7 @@
         "quantidade": 10,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1778618233345_1",
@@ -3047,7 +3047,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1778679074368_0",
@@ -5386,5 +5386,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T12:51:08.261Z"
+  "lastUpdate": "2026-05-20T12:51:12.630Z"
 }
