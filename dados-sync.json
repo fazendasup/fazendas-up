@@ -3720,6 +3720,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779318687692_0",
+        "id_cliente": "5",
+        "cliente": "Rodrigues Vieiralves",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779318687692_1",
+        "id_cliente": "5",
+        "cliente": "Rodrigues Vieiralves",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 14,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779318687692_2",
+        "id_cliente": "5",
+        "cliente": "Rodrigues Vieiralves",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 21,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5254,5 +5290,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T22:42:15.292Z"
+  "lastUpdate": "2026-05-20T23:11:27.698Z"
 }
