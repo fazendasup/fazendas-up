@@ -3852,6 +3852,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
+      },
+      {
+        "id": "order_1779298661120_1",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Frisee",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779298735598_1",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Frisee",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779298735637_1",
+        "id_cliente": "38",
+        "cliente": "Barollo",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Frisee",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5386,5 +5422,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T15:25:38.202Z"
+  "lastUpdate": "2026-05-20T17:38:55.641Z"
 }
