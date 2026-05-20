@@ -3756,6 +3756,42 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779318852255_0",
+        "id_cliente": "4",
+        "cliente": "Rodrigues Ponta Negra",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 14,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n9 MIX \n8 CRESPA \n12 AMERICANA ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779318852255_1",
+        "id_cliente": "4",
+        "cliente": "Rodrigues Ponta Negra",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n9 MIX \n8 CRESPA \n12 AMERICANA ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779318852255_2",
+        "id_cliente": "4",
+        "cliente": "Rodrigues Ponta Negra",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 22,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n9 MIX \n8 CRESPA \n12 AMERICANA ",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5290,5 +5326,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T23:11:27.698Z"
+  "lastUpdate": "2026-05-20T23:14:12.260Z"
 }
