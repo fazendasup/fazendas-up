@@ -2630,18 +2630,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778094698142_3",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "quinta-feira",
-        "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778098761504_0",
         "id_cliente": "client_1776716875061",
         "cliente": "Yroyak Ponta Negra",
@@ -5278,5 +5266,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T17:50:25.729Z"
+  "lastUpdate": "2026-05-20T17:50:41.410Z"
 }
