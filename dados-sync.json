@@ -3128,7 +3128,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Mix Crocante - Base para Salada",
         "categoria": "",
-        "quantidade": 15,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -3141,6 +3141,18 @@
         "produto": "Agrião",
         "categoria": "",
         "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pronto"
+      },
+      {
+        "id": "order_1778698867325_5",
+        "id_cliente": "45",
+        "cliente": "Patio Djalma",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -5374,5 +5386,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T17:42:39.862Z"
+  "lastUpdate": "2026-05-20T17:42:51.398Z"
 }
