@@ -2642,6 +2642,30 @@
         "status": "pendente"
       },
       {
+        "id": "order_1778094698142_2",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1778094698142_3",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "quinta-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
         "id": "order_1778098761504_0",
         "id_cliente": "client_1776716875061",
         "cliente": "Yroyak Ponta Negra",
@@ -3189,18 +3213,6 @@
         "produto": "Micro Coentro",
         "categoria": "",
         "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1778764615788_2",
-        "id_cliente": "50",
-        "cliente": "Mirante do Negro",
-        "dia_semana": "quinta-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5290,5 +5302,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T17:49:04.896Z"
+  "lastUpdate": "2026-05-20T17:49:07.440Z"
 }
