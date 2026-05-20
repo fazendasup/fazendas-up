@@ -2630,18 +2630,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778094698142_1",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "quinta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778094698142_2",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
@@ -5302,5 +5290,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T17:49:59.739Z"
+  "lastUpdate": "2026-05-20T17:50:14.899Z"
 }
