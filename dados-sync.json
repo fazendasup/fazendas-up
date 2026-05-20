@@ -5368,7 +5368,7 @@
       "Baby Rúcula": "unidade",
       "Agrião": "unidade",
       "Hortelã": "unidade",
-      "Alface Crespa Verde": "kilo"
+      "Alface Crespa Verde": "unidade"
     },
     "estoqueRendimentoKilo": {
       "Baby Manjericão": 9,
@@ -5386,5 +5386,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-19T21:08:29.409Z"
+  "lastUpdate": "2026-05-20T12:48:08.415Z"
 }
