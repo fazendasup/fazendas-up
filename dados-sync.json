@@ -2888,9 +2888,9 @@
         "dia_semana": "quarta-feira",
         "produto": "Alface MIX",
         "categoria": "",
-        "quantidade": 10,
+        "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
+        "observacoes": "AVARIA \n 6 CRESPA \n6 MIX",
         "status": "pendente"
       },
       {
@@ -5302,5 +5302,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-20T23:21:33.163Z"
+  "lastUpdate": "2026-05-20T23:21:43.207Z"
 }
