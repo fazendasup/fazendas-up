@@ -2708,7 +2708,7 @@
         "dia_semana": "sexta-feira",
         "produto": "Alface Crespa Verde",
         "categoria": "",
-        "quantidade": 5,
+        "quantidade": 17,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -5494,5 +5494,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-21T16:24:34.775Z"
+  "lastUpdate": "2026-05-21T16:24:53.899Z"
 }
