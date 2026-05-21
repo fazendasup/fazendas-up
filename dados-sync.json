@@ -3050,18 +3050,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778700126202_3",
-        "id_cliente": "47",
-        "cliente": "Patio Aleixo",
-        "dia_semana": "quinta-feira",
-        "produto": "Hortelã",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778700126202_4",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
@@ -5494,5 +5482,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-21T16:24:56.855Z"
+  "lastUpdate": "2026-05-21T17:41:11.371Z"
 }
