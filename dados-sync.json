@@ -3194,18 +3194,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778795943140_0",
-        "id_cliente": "client_1778795166683",
-        "cliente": "Bemol",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 6,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778795943140_1",
         "id_cliente": "client_1778795166683",
         "cliente": "Bemol",
@@ -5542,5 +5530,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-21T20:10:58.331Z"
+  "lastUpdate": "2026-05-21T20:14:23.348Z"
 }
