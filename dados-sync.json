@@ -3122,18 +3122,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778794981913_6",
-        "id_cliente": "client_1776716875061",
-        "cliente": "Yroyak Ponta Negra",
-        "dia_semana": "sexta-feira",
-        "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778795943140_2",
         "id_cliente": "client_1778795166683",
         "cliente": "Bemol",
@@ -5458,5 +5446,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-21T22:02:27.650Z"
+  "lastUpdate": "2026-05-21T22:02:34.025Z"
 }
