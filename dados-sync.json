@@ -4460,8 +4460,8 @@
       {
         "id": "35",
         "nome": "Felicori",
-        "observacoes": "",
-        "prazoBoleto": "7 dias",
+        "observacoes": "10",
+        "prazoBoleto": "10 dias",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
@@ -5518,5 +5518,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-21T21:57:34.542Z"
+  "lastUpdate": "2026-05-21T21:59:22.446Z"
 }
