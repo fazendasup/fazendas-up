@@ -3122,18 +3122,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1778795943140_10",
-        "id_cliente": "client_1778795166683",
-        "cliente": "Bemol",
-        "dia_semana": "sexta-feira",
-        "produto": "Mix Crocante - Base para Salada",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778850353594_0",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
@@ -5362,5 +5350,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-21T22:04:34.512Z"
+  "lastUpdate": "2026-05-21T22:04:39.617Z"
 }
