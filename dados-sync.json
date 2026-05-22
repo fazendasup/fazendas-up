@@ -1742,18 +1742,6 @@
         "status": "cancelado"
       },
       {
-        "id": "order_1775838223925_2",
-        "id_cliente": "28",
-        "cliente": "Hotel Juma",
-        "dia_semana": "sexta-feira",
-        "produto": "Micro Mostarda",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1776101242692_0",
         "id_cliente": "client_1775608904239",
         "cliente": "Franco's",
@@ -5014,5 +5002,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T15:32:26.680Z"
+  "lastUpdate": "2026-05-22T15:32:31.542Z"
 }
