@@ -1865,10 +1865,10 @@
         "id": "order_1776723941604_0",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "sábado",
         "produto": "Alface Americana",
         "categoria": "",
-        "quantidade": 10,
+        "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4954,5 +4954,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T18:56:41.800Z"
+  "lastUpdate": "2026-05-22T18:58:02.796Z"
 }
