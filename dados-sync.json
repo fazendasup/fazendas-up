@@ -959,7 +959,7 @@
         "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_165",
@@ -971,7 +971,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_170",
@@ -1907,7 +1907,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1776885442959_1",
@@ -2171,7 +2171,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1777330624017_2",
@@ -2183,7 +2183,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1777330673716_1",
@@ -2591,7 +2591,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n 6 CRESPA \n6 MIX",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1778679074368_1",
@@ -2603,7 +2603,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n 6 CRESPA \n6 MIX",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1778679074368_2",
@@ -2615,7 +2615,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n 6 CRESPA \n6 MIX",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1778679074368_3",
@@ -2627,7 +2627,7 @@
         "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1778679074368_4",
@@ -2639,7 +2639,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1778698867325_1",
@@ -2687,7 +2687,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1778699293331_2",
@@ -2699,7 +2699,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1778699293331_4",
@@ -2711,7 +2711,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1778699293331_5",
@@ -2723,7 +2723,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1778700126202_1",
@@ -4942,5 +4942,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T21:14:46.296Z"
+  "lastUpdate": "2026-05-22T21:15:21.428Z"
 }
