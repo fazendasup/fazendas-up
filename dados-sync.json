@@ -3275,7 +3275,7 @@
         "quantidade": 4,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1779319653561_1",
@@ -3287,7 +3287,7 @@
         "quantidade": 4,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1779319653561_2",
@@ -3299,7 +3299,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1779319653561_3",
@@ -3311,7 +3311,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1779319694678_0",
@@ -5062,5 +5062,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T15:30:55.250Z"
+  "lastUpdate": "2026-05-22T15:31:04.017Z"
 }
