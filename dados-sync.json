@@ -3350,18 +3350,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779393474403_0",
-        "id_cliente": "client_1774998176523",
-        "cliente": "Marinara",
-        "dia_semana": "sexta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779393474403_1",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
@@ -4954,5 +4942,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T18:58:24.542Z"
+  "lastUpdate": "2026-05-22T19:19:16.921Z"
 }
