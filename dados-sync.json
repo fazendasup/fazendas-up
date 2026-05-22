@@ -1250,18 +1250,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_226",
-        "id_cliente": "38",
-        "dia_semana": "sexta-feira",
-        "cliente": "Barollo",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_228",
         "id_cliente": "54",
         "dia_semana": "sexta-feira",
@@ -4966,5 +4954,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T15:33:18.786Z"
+  "lastUpdate": "2026-05-22T15:33:23.235Z"
 }
