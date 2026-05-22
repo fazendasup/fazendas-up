@@ -2591,7 +2591,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n 6 CRESPA \n6 MIX",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1778679074368_1",
@@ -2603,7 +2603,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n 6 CRESPA \n6 MIX",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1778679074368_2",
@@ -2615,7 +2615,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n 6 CRESPA \n6 MIX",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1778679074368_3",
@@ -2627,7 +2627,7 @@
         "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1778679074368_4",
@@ -2639,7 +2639,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1778698867325_1",
@@ -4942,5 +4942,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T21:14:41.529Z"
+  "lastUpdate": "2026-05-22T21:14:46.296Z"
 }
