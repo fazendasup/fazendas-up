@@ -2513,7 +2513,7 @@
         "id": "order_1778261855456_1",
         "id_cliente": "14",
         "cliente": "Fitz",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "sábado",
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 17,
@@ -4954,5 +4954,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T18:55:46.055Z"
+  "lastUpdate": "2026-05-22T18:55:55.035Z"
 }
