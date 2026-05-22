@@ -3083,7 +3083,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n9 MIX \n8 CRESPA \n12 AMERICANA ",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1779318852255_1",
@@ -3095,7 +3095,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n9 MIX \n8 CRESPA \n12 AMERICANA ",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1779318852255_2",
@@ -3107,7 +3107,7 @@
         "quantidade": 22,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n9 MIX \n8 CRESPA \n12 AMERICANA ",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1779318938305_0",
@@ -4942,5 +4942,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T20:59:28.866Z"
+  "lastUpdate": "2026-05-22T21:00:37.063Z"
 }
