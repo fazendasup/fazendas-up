@@ -1928,7 +1928,7 @@
         "dia_semana": "sexta-feira",
         "produto": "Mix Clássico - Salada Completa",
         "categoria": "",
-        "quantidade": 10,
+        "quantidade": 20,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4954,5 +4954,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T18:58:02.796Z"
+  "lastUpdate": "2026-05-22T18:58:24.542Z"
 }
