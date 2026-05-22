@@ -1562,18 +1562,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775226356582_2",
-        "id_cliente": "38",
-        "cliente": "Barollo",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1775488461218_0",
         "id_cliente": "22",
         "cliente": "Pasta Morada 1",
@@ -4954,5 +4942,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T15:33:23.235Z"
+  "lastUpdate": "2026-05-22T15:33:27.722Z"
 }
