@@ -2902,7 +2902,7 @@
         "categoria": "",
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
+        "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
         "status": "pronto"
       },
       {
@@ -3419,6 +3419,30 @@
         "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779492136245_1",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "sábado",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779492136245_2",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "sábado",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 7,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
         "status": "pendente"
       }
     ],
@@ -4954,5 +4978,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T23:21:16.101Z"
+  "lastUpdate": "2026-05-22T23:22:16.249Z"
 }
