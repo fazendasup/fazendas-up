@@ -3170,18 +3170,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1778857384677_0",
-        "id_cliente": "19",
-        "cliente": "Jhon sushi",
-        "dia_semana": "sexta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778894640826_1",
         "id_cliente": "3",
         "cliente": "Rodrigues Jacira Reis",
@@ -5290,5 +5278,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T13:42:15.817Z"
+  "lastUpdate": "2026-05-22T13:42:19.853Z"
 }
