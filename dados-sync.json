@@ -3533,7 +3533,7 @@
         "id": "order_1779318938305_1",
         "id_cliente": "3",
         "cliente": "Rodrigues Jacira Reis",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 14,
@@ -5350,5 +5350,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T13:36:33.160Z"
+  "lastUpdate": "2026-05-22T13:36:40.391Z"
 }
