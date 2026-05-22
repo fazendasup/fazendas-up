@@ -1262,18 +1262,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_227",
-        "id_cliente": "38",
-        "dia_semana": "sexta-feira",
-        "cliente": "Barollo",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 12,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "70G CRESPA ROXA + 25G AMERICANA + 25G CRESPA ",
-        "status": "pendente"
-      },
-      {
         "id": "order_228",
         "id_cliente": "54",
         "dia_semana": "sexta-feira",
@@ -4978,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-22T15:33:05.840Z"
+  "lastUpdate": "2026-05-22T15:33:18.786Z"
 }
