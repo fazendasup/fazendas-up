@@ -3420,6 +3420,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779547042409_0",
+        "id_cliente": "25",
+        "cliente": "Moquem",
+        "dia_semana": "sábado",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4954,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-23T14:33:24.581Z"
+  "lastUpdate": "2026-05-23T14:37:22.415Z"
 }
