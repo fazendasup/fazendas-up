@@ -3432,18 +3432,6 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
         "status": "pendente"
-      },
-      {
-        "id": "order_1779492136245_2",
-        "id_cliente": "59",
-        "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "sábado",
-        "produto": "Hortelã",
-        "categoria": "",
-        "quantidade": 7,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
-        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4978,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-23T13:37:55.165Z"
+  "lastUpdate": "2026-05-23T13:38:08.860Z"
 }
