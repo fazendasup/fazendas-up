@@ -2867,7 +2867,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1778936707296_1",
@@ -2879,7 +2879,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1778936707296_2",
@@ -2891,7 +2891,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1779110083464_1",
@@ -3419,7 +3419,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1779547042409_0",
@@ -4966,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-23T16:21:23.079Z"
+  "lastUpdate": "2026-05-23T16:21:42.297Z"
 }
