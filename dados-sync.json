@@ -3035,7 +3035,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1779318687692_1",
@@ -3047,7 +3047,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1779318687692_2",
@@ -3059,7 +3059,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1779318852255_0",
@@ -4966,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-23T15:28:44.242Z"
+  "lastUpdate": "2026-05-23T15:33:15.017Z"
 }
