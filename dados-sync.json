@@ -1679,7 +1679,7 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "pronto"
+        "status": "cancelado"
       },
       {
         "id": "order_1776101242692_0",
@@ -4966,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-23T16:57:10.073Z"
+  "lastUpdate": "2026-05-23T16:57:31.255Z"
 }
