@@ -3492,6 +3492,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779735109567_0",
+        "id_cliente": "client_1779735084940",
+        "cliente": "Amazônico Peixaria Regional",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5054,5 +5066,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T18:51:24.944Z"
+  "lastUpdate": "2026-05-25T18:51:49.571Z"
 }
