@@ -3290,18 +3290,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779372843835_0",
-        "id_cliente": "11",
-        "cliente": "Renato",
-        "dia_semana": "segunda-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "ENTREGA PELA MANHÃ",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779372843835_1",
         "id_cliente": "11",
         "cliente": "Renato",
@@ -4966,5 +4954,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-23T20:21:47.163Z"
+  "lastUpdate": "2026-05-25T11:13:45.605Z"
 }
