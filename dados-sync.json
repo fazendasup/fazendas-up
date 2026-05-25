@@ -2966,18 +2966,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779148952538_0",
-        "id_cliente": "15",
-        "cliente": "Banzeiro",
-        "dia_semana": "terça-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 7,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1779149070401_1",
         "id_cliente": "client_1775084316617",
         "cliente": "Velho Monge",
@@ -5040,5 +5028,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T14:59:10.673Z"
+  "lastUpdate": "2026-05-25T15:04:02.557Z"
 }
