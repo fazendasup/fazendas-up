@@ -5017,7 +5017,7 @@
       "Alface Americana": true
     },
     "estoqueModoCompra": {
-      "Baby Manjericão": "unidade",
+      "Baby Manjericão": "kilo",
       "Baby Rúcula": "unidade",
       "Agrião": "unidade",
       "Hortelã": "unidade",
@@ -5040,5 +5040,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T14:38:50.599Z"
+  "lastUpdate": "2026-05-25T14:48:02.960Z"
 }
