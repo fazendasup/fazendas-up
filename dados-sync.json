@@ -2306,18 +2306,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1777920243907_1",
-        "id_cliente": "client_1774998176523",
-        "cliente": "Marinara",
-        "dia_semana": "terça-feira",
-        "produto": "Baby Manjericão",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777920352448_0",
         "id_cliente": "8",
         "cliente": "Subway Manauara",
@@ -5052,5 +5040,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T18:41:18.311Z"
+  "lastUpdate": "2026-05-25T18:41:23.434Z"
 }
