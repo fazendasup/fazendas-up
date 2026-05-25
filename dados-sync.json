@@ -2969,7 +2969,7 @@
         "id": "order_1779318687692_0",
         "id_cliente": "5",
         "cliente": "Rodrigues Vieiralves",
-        "dia_semana": "sábado",
+        "dia_semana": "terça-feira",
         "produto": "Alface MIX",
         "categoria": "",
         "quantidade": 10,
@@ -5066,5 +5066,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T18:52:17.621Z"
+  "lastUpdate": "2026-05-25T19:37:19.391Z"
 }
