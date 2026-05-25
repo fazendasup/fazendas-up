@@ -1826,18 +1826,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1776716696225_6",
-        "id_cliente": "17",
-        "cliente": "Una Vitta",
-        "dia_semana": "terça-feira",
-        "produto": "Alface Crespa Roxa",
-        "categoria": "",
-        "quantidade": 8,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1776723941604_0",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
@@ -5042,5 +5030,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T19:39:26.093Z"
+  "lastUpdate": "2026-05-25T19:39:27.947Z"
 }
