@@ -4695,7 +4695,7 @@
         "id": "client_1779735084940",
         "nome": "Amazônico Peixaria Regional",
         "observacoes": "",
-        "prazoBoleto": "3 dias ",
+        "prazoBoleto": "7 dias ",
         "acumulaPedidos": false,
         "diasAcumulo": "",
         "prazoBoletoAcumulo": "",
@@ -5066,5 +5066,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T18:51:49.571Z"
+  "lastUpdate": "2026-05-25T18:52:17.621Z"
 }
