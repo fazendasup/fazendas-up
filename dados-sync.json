@@ -292,7 +292,7 @@
       {
         "id": "order_41",
         "id_cliente": "13",
-        "dia_semana": "segunda-feira",
+        "dia_semana": "terça-feira",
         "cliente": "BAREBURGUER",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
@@ -3444,6 +3444,18 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779738055457_1",
+        "id_cliente": "13",
+        "cliente": "BAREBURGUER",
+        "dia_semana": "terça-feira",
+        "produto": "Mix Chefe- Seleção Especial",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "Boleto para 3 dias",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5006,5 +5018,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T19:39:31.510Z"
+  "lastUpdate": "2026-05-25T19:40:55.462Z"
 }
