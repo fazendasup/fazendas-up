@@ -3290,6 +3290,18 @@
         "status": "pendente"
       },
       {
+        "id": "order_1779372843835_2",
+        "id_cliente": "11",
+        "cliente": "Renato",
+        "dia_semana": "segunda-feira",
+        "produto": "Mix Chefe- Seleção Especial",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "ENTREGA PELA MANHÃ",
+        "status": "pendente"
+      },
+      {
         "id": "order_1779380674768_1",
         "id_cliente": "14",
         "cliente": "Fitz",
@@ -4569,6 +4581,19 @@
         "horarioMaximo": "16:00",
         "cobraEntrega": false,
         "precos": []
+      },
+      {
+        "id": "client_1779707785257",
+        "nome": "Bruma Restaurante",
+        "observacoes": "",
+        "prazoBoleto": "3 Dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "",
+        "cobraEntrega": true,
+        "precos": []
       }
     ],
     "produtos": [
@@ -4930,5 +4955,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T11:13:56.324Z"
+  "lastUpdate": "2026-05-25T11:16:25.263Z"
 }
