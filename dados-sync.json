@@ -3504,6 +3504,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779724779194_1",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "terça-feira",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5052,5 +5064,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T15:57:34.019Z"
+  "lastUpdate": "2026-05-25T15:59:39.207Z"
 }
