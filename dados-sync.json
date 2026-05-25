@@ -4678,6 +4678,19 @@
         "horarioMaximo": "",
         "cobraEntrega": true,
         "precos": []
+      },
+      {
+        "id": "client_1779735084940",
+        "nome": "Amazônico Peixaria Regional",
+        "observacoes": "",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -5041,5 +5054,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T18:45:58.591Z"
+  "lastUpdate": "2026-05-25T18:51:24.944Z"
 }
