@@ -2150,18 +2150,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1777389365140_0",
-        "id_cliente": "client_1777389283017",
-        "cliente": "Mercê",
-        "dia_semana": "terça-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1777390598904_0",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
@@ -4994,5 +4982,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T21:51:09.904Z"
+  "lastUpdate": "2026-05-25T21:51:13.852Z"
 }
