@@ -2240,7 +2240,7 @@
         "dia_semana": "terça-feira",
         "produto": "Mix Folhas + Rúcula 90g",
         "categoria": "",
-        "quantidade": 10,
+        "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
         "status": "pendente"
@@ -5052,5 +5052,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T16:09:29.601Z"
+  "lastUpdate": "2026-05-25T18:41:18.311Z"
 }
