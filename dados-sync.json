@@ -1158,7 +1158,7 @@
         "id_cliente": "53",
         "dia_semana": "segunda-feira",
         "cliente": "Anntipastti",
-        "produto": "Baby Manjericão",
+        "produto": "Manjericão F.Fina 60g",
         "categoria": "",
         "quantidade": 12,
         "tipo_venda": "Recorrente Semanal",
@@ -5039,5 +5039,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T11:20:28.574Z"
+  "lastUpdate": "2026-05-25T11:23:44.960Z"
 }
