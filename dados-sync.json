@@ -1757,10 +1757,10 @@
         "id": "order_1776445422731_4",
         "id_cliente": "client_1775084316617",
         "cliente": "Velho Monge",
-        "dia_semana": "quarta-feira",
+        "dia_semana": "quinta-feira",
         "produto": "Micro Mostarda",
         "categoria": "",
-        "quantidade": 1,
+        "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -5076,5 +5076,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T16:08:50.250Z"
+  "lastUpdate": "2026-05-25T16:09:01.246Z"
 }
