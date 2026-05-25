@@ -2966,18 +2966,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779149070401_1",
-        "id_cliente": "client_1775084316617",
-        "cliente": "Velho Monge",
-        "dia_semana": "quarta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1779284170900_0",
         "id_cliente": "client_1775832845763",
         "cliente": "Coqueiro Verde",
@@ -5088,5 +5076,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T16:08:27.944Z"
+  "lastUpdate": "2026-05-25T16:08:33.549Z"
 }
