@@ -3516,6 +3516,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779724850353_1",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "terça-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779724850353_2",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "terça-feira",
+        "produto": "Mix Chefe- Seleção Especial",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5064,5 +5088,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T15:59:39.207Z"
+  "lastUpdate": "2026-05-25T16:00:50.357Z"
 }
