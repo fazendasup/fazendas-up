@@ -2552,7 +2552,7 @@
         "dia_semana": "terça-feira",
         "produto": "Alface Crespa Roxa",
         "categoria": "",
-        "quantidade": 9,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -3478,6 +3478,18 @@
         "categoria": "",
         "quantidade": 2,
         "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779721487576_1",
+        "id_cliente": "14",
+        "cliente": "Fitz",
+        "dia_semana": "terça-feira",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 8,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       }
@@ -5028,5 +5040,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T15:04:14.269Z"
+  "lastUpdate": "2026-05-25T15:04:47.581Z"
 }
