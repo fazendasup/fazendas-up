@@ -3408,6 +3408,90 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "entregue"
+      },
+      {
+        "id": "order_1779708028569_0",
+        "id_cliente": "client_1779707785257",
+        "cliente": "Bruma Restaurante",
+        "dia_semana": "segunda-feira",
+        "produto": "Micro 3 variedades",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779708028569_1",
+        "id_cliente": "client_1779707785257",
+        "cliente": "Bruma Restaurante",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779708028569_2",
+        "id_cliente": "client_1779707785257",
+        "cliente": "Bruma Restaurante",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779708028569_3",
+        "id_cliente": "client_1779707785257",
+        "cliente": "Bruma Restaurante",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779708028569_4",
+        "id_cliente": "client_1779707785257",
+        "cliente": "Bruma Restaurante",
+        "dia_semana": "segunda-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779708028569_5",
+        "id_cliente": "client_1779707785257",
+        "cliente": "Bruma Restaurante",
+        "dia_semana": "segunda-feira",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779708028569_6",
+        "id_cliente": "client_1779707785257",
+        "cliente": "Bruma Restaurante",
+        "dia_semana": "segunda-feira",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4955,5 +5039,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-25T11:16:25.263Z"
+  "lastUpdate": "2026-05-25T11:20:28.574Z"
 }
