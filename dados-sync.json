@@ -3390,7 +3390,7 @@
         "id_cliente": "35",
         "cliente": "Felicori",
         "dia_semana": "terça-feira",
-        "produto": "Micro Repolho",
+        "produto": "Micro Rabanete",
         "categoria": "",
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
@@ -4978,5 +4978,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T17:22:59.800Z"
+  "lastUpdate": "2026-05-26T17:23:21.021Z"
 }
