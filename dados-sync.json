@@ -2390,18 +2390,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_1778605153114_0",
-        "id_cliente": "25",
-        "cliente": "Moquem",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1778618372771_0",
         "id_cliente": "client_1774918251748",
         "cliente": "Ghiotto Pizzaria",
@@ -4990,5 +4978,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T22:11:04.746Z"
+  "lastUpdate": "2026-05-26T22:32:51.708Z"
 }
