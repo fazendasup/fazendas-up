@@ -359,7 +359,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_53",
@@ -371,7 +371,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Entrega de manhã",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_59",
@@ -3350,35 +3350,11 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779724779194_1",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "terça-feira",
-        "produto": "Manjericão F.Fina 60g",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779724850353_1",
         "id_cliente": "52",
         "cliente": "Frigorifica Amazona P.N",
         "dia_semana": "terça-feira",
         "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
-        "id": "order_1779724850353_2",
-        "id_cliente": "52",
-        "cliente": "Frigorifica Amazona P.N",
-        "dia_semana": "terça-feira",
-        "produto": "Mix Chefe- Seleção Especial",
         "categoria": "",
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
@@ -4970,5 +4946,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T13:47:06.433Z"
+  "lastUpdate": "2026-05-26T13:47:09.183Z"
 }
