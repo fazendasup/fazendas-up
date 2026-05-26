@@ -4938,7 +4938,8 @@
       "Micro Acelga": true
     },
     "estoqueMix": {
-      "Alface Americana": true
+      "Alface Americana": true,
+      "Alface Crespa Verde": true
     },
     "estoqueModoCompra": {
       "Baby Manjericão": "kilo",
@@ -4965,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T23:44:19.940Z"
+  "lastUpdate": "2026-05-26T23:44:22.769Z"
 }
