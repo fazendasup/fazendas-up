@@ -4938,7 +4938,6 @@
       "Micro Acelga": true
     },
     "estoqueMix": {
-      "Alface Crespa Verde": true,
       "Alface Americana": true
     },
     "estoqueModoCompra": {
@@ -4966,5 +4965,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T23:24:12.340Z"
+  "lastUpdate": "2026-05-26T23:25:35.505Z"
 }
