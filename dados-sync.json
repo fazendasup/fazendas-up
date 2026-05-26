@@ -4937,7 +4937,9 @@
       "Mix Crocante - Base para Salada": true,
       "Micro Acelga": true
     },
-    "estoqueMix": {},
+    "estoqueMix": {
+      "Alface Americana": true
+    },
     "estoqueModoCompra": {
       "Baby Manjericão": "kilo",
       "Baby Rúcula": "kilo",
@@ -4963,5 +4965,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T23:44:11.294Z"
+  "lastUpdate": "2026-05-26T23:44:19.940Z"
 }
