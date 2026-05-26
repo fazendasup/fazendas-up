@@ -566,18 +566,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_83",
-        "id_cliente": "28",
-        "dia_semana": "terça-feira",
-        "cliente": "Hotel Juma",
-        "produto": "Micro Rucula",
-        "categoria": "Pote",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "boleto para 7 dias",
-        "status": "pendente"
-      },
-      {
         "id": "order_84",
         "id_cliente": "28",
         "dia_semana": "terça-feira",
@@ -4990,5 +4978,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T15:02:23.026Z"
+  "lastUpdate": "2026-05-26T15:02:33.899Z"
 }
