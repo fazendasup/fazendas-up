@@ -3348,6 +3348,42 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779834973034_0",
+        "id_cliente": "5",
+        "cliente": "Rodrigues Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779834973034_1",
+        "id_cliente": "5",
+        "cliente": "Rodrigues Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 7,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779834973035_2",
+        "id_cliente": "5",
+        "cliente": "Rodrigues Vieiralves",
+        "dia_semana": "quarta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4930,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T22:35:14.646Z"
+  "lastUpdate": "2026-05-26T22:36:13.040Z"
 }
