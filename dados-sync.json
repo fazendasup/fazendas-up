@@ -4821,6 +4821,13 @@
         "categorias": [
           "Desfolhado"
         ]
+      },
+      {
+        "nome": "Crespa Verde + Roxa+ Rúcula",
+        "precoBase": 6.23,
+        "categorias": [
+          "Desfolhado"
+        ]
       }
     ],
     "prioridades": {
@@ -4947,5 +4954,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T14:23:32.605Z"
+  "lastUpdate": "2026-05-26T14:53:20.726Z"
 }
