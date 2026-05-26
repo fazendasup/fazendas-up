@@ -366,7 +366,7 @@
         "id_cliente": "18",
         "dia_semana": "terça-feira",
         "cliente": "Mori Izakaya",
-        "produto": "Micro Coentro",
+        "produto": "Micro Nabo",
         "categoria": "Pote",
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
@@ -4982,5 +4982,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T13:10:12.498Z"
+  "lastUpdate": "2026-05-26T13:13:33.726Z"
 }
