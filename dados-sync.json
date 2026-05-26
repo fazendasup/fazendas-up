@@ -2036,7 +2036,7 @@
         "dia_semana": "terça-feira",
         "produto": "Micro Beterraba",
         "categoria": "",
-        "quantidade": 4,
+        "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -3381,6 +3381,18 @@
         "produto": "Crespa Verde + Roxa+ Rúcula",
         "categoria": "",
         "quantidade": 25,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779816179795_1",
+        "id_cliente": "35",
+        "cliente": "Felicori",
+        "dia_semana": "terça-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4966,5 +4978,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T17:22:16.777Z"
+  "lastUpdate": "2026-05-26T17:22:59.800Z"
 }
