@@ -536,7 +536,7 @@
         "cliente": "Hotel Juma",
         "produto": "Micro Couve",
         "categoria": "Pote",
-        "quantidade": 2,
+        "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4966,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T15:05:11.465Z"
+  "lastUpdate": "2026-05-26T15:05:26.289Z"
 }
