@@ -602,18 +602,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_89",
-        "id_cliente": "28",
-        "dia_semana": "terça-feira",
-        "cliente": "Hotel Juma",
-        "produto": "Baby Acelga",
-        "categoria": "Buque",
-        "quantidade": 3,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_91",
         "id_cliente": "29",
         "dia_semana": "terça-feira",
@@ -4978,5 +4966,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T15:02:33.899Z"
+  "lastUpdate": "2026-05-26T15:04:03.433Z"
 }
