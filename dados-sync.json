@@ -2198,18 +2198,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1778075570904_1",
-        "id_cliente": "38",
-        "cliente": "Barollo",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 12,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1778075570905_3",
         "id_cliente": "38",
         "cliente": "Barollo",
@@ -4966,5 +4954,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T22:32:56.696Z"
+  "lastUpdate": "2026-05-26T22:32:59.711Z"
 }
