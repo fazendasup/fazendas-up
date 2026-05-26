@@ -2966,18 +2966,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779319694711_2",
-        "id_cliente": "44",
-        "cliente": "Restaurante Girão's",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779372843787_0",
         "id_cliente": "11",
         "cliente": "Renato",
@@ -4918,5 +4906,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T22:33:22.676Z"
+  "lastUpdate": "2026-05-26T22:33:27.919Z"
 }
