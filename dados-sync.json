@@ -2123,7 +2123,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com 3 alfaces + rúcula ",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1777390598905_1",
@@ -2135,7 +2135,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1777390598905_2",
@@ -2147,7 +2147,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com 3 alfaces + rúcula ",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1777561177716_2",
@@ -4990,5 +4990,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T18:45:50.912Z"
+  "lastUpdate": "2026-05-26T18:45:59.226Z"
 }
