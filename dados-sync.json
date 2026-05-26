@@ -518,18 +518,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_78",
-        "id_cliente": "28",
-        "dia_semana": "terça-feira",
-        "cliente": "Hotel Juma",
-        "produto": "Micro Coentro",
-        "categoria": "Pote",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_79",
         "id_cliente": "28",
         "dia_semana": "terça-feira",
@@ -5002,5 +4990,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-26T14:56:40.602Z"
+  "lastUpdate": "2026-05-26T15:02:23.026Z"
 }
