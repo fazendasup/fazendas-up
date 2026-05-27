@@ -3418,7 +3418,7 @@
         "categoria": "",
         "quantidade": 30,
         "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
+        "observacoes": "CORTADO",
         "status": "pendente"
       },
       {
@@ -5039,5 +5039,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T21:45:30.806Z"
+  "lastUpdate": "2026-05-27T21:45:59.138Z"
 }
