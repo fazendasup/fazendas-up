@@ -5089,7 +5089,7 @@
     "estoqueModoCompra": {
       "Baby Manjericão": "unidade",
       "Baby Rúcula": "kilo",
-      "Agrião": "kilo",
+      "Agrião": "unidade",
       "Hortelã": "unidade",
       "Alface Crespa Verde": "unidade",
       "Manjericão F.Fina 60g": "kilo"
@@ -5111,5 +5111,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T19:30:59.858Z"
+  "lastUpdate": "2026-05-27T19:35:33.075Z"
 }
