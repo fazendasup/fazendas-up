@@ -2630,18 +2630,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779284170900_0",
-        "id_cliente": "client_1775832845763",
-        "cliente": "Coqueiro Verde",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1779298661120_1",
         "id_cliente": "38",
         "cliente": "Barollo",
@@ -5075,5 +5063,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T18:37:34.022Z"
+  "lastUpdate": "2026-05-27T18:45:33.186Z"
 }
