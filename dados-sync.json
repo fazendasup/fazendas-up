@@ -2306,18 +2306,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1778679074368_0",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "quinta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 14,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIA \n 6 CRESPA \n6 MIX",
-        "status": "entregue"
-      },
-      {
         "id": "order_1778679074368_1",
         "id_cliente": "60",
         "cliente": "Frigorifico Amazonas P10",
@@ -5111,5 +5099,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T19:35:33.075Z"
+  "lastUpdate": "2026-05-27T21:43:00.498Z"
 }
