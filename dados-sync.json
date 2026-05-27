@@ -2442,9 +2442,9 @@
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
         "dia_semana": "quinta-feira",
-        "produto": "Mix Crocante - Base para Salada",
+        "produto": "Hortelã",
         "categoria": "",
-        "quantidade": 15,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -4919,5 +4919,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T13:08:45.993Z"
+  "lastUpdate": "2026-05-27T13:09:02.655Z"
 }
