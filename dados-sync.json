@@ -2054,18 +2054,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1777330342051_2",
-        "id_cliente": "45",
-        "cliente": "Patio Djalma",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Nabo",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1777330506864_1",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
@@ -4967,5 +4955,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T12:52:04.286Z"
+  "lastUpdate": "2026-05-27T12:52:16.192Z"
 }
