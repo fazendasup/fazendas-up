@@ -3336,6 +3336,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779887360024_1",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4919,5 +4931,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T13:09:02.655Z"
+  "lastUpdate": "2026-05-27T13:09:20.029Z"
 }
