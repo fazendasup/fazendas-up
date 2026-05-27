@@ -5083,7 +5083,6 @@
     "estoqueMix": {
       "Alface Americana": true,
       "Alface Crespa Verde": true,
-      "Alface Crespa Roxa": true,
       "Crespa Verde + Roxa+ Rúcula": true
     },
     "estoqueModoCompra": {
@@ -5111,5 +5110,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T19:28:29.098Z"
+  "lastUpdate": "2026-05-27T19:30:33.067Z"
 }
