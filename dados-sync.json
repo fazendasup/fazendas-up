@@ -2054,18 +2054,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1777330725538_2",
-        "id_cliente": "47",
-        "cliente": "Patio Aleixo",
-        "dia_semana": "quinta-feira",
-        "produto": "Micro Nabo",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1777390598904_0",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
@@ -4931,5 +4919,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T13:08:27.551Z"
+  "lastUpdate": "2026-05-27T13:08:31.828Z"
 }
