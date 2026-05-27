@@ -2420,7 +2420,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Agrião",
         "categoria": "",
-        "quantidade": 5,
+        "quantidade": 6,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "entregue"
@@ -3345,6 +3345,30 @@
         "produto": "Alface Americana",
         "categoria": "",
         "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "BOLETO PARA 21 DIAS",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779886943906_1",
+        "id_cliente": "46",
+        "cliente": "Patio Adrianópolis",
+        "dia_semana": "quinta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "BOLETO PARA 21 DIAS",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779886943906_2",
+        "id_cliente": "46",
+        "cliente": "Patio Adrianópolis",
+        "dia_semana": "quinta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "pendente"
@@ -4931,5 +4955,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T13:00:50.693Z"
+  "lastUpdate": "2026-05-27T13:02:23.910Z"
 }
