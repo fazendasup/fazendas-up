@@ -3317,7 +3317,7 @@
         "id": "order_1779886943906_1",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "quarta-feira",
         "produto": "Hortelã",
         "categoria": "",
         "quantidade": 5,
@@ -4931,5 +4931,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T13:39:36.537Z"
+  "lastUpdate": "2026-05-27T13:39:43.059Z"
 }
