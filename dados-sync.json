@@ -3380,7 +3380,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Manjericão F.Fina 60g",
         "categoria": "",
-        "quantidade": 3,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -4967,5 +4967,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T12:54:43.294Z"
+  "lastUpdate": "2026-05-27T12:54:49.568Z"
 }
