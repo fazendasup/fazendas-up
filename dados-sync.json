@@ -3492,6 +3492,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779909764403_0",
+        "id_cliente": "client_1779908636392",
+        "cliente": "Spoleto Plaza",
+        "dia_semana": "sexta-feira",
+        "produto": "Crespa Verde + Roxa+ Rúcula",
+        "categoria": "",
+        "quantidade": 30,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5098,5 +5110,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T19:20:07.684Z"
+  "lastUpdate": "2026-05-27T19:22:44.406Z"
 }
