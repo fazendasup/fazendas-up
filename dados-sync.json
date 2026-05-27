@@ -4943,7 +4943,7 @@
       "Alface Crespa Roxa": true
     },
     "estoqueModoCompra": {
-      "Baby Manjericão": "kilo",
+      "Baby Manjericão": "unidade",
       "Baby Rúcula": "kilo",
       "Agrião": "unidade",
       "Hortelã": "unidade",
@@ -4967,5 +4967,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T00:37:19.355Z"
+  "lastUpdate": "2026-05-27T00:37:22.479Z"
 }
