@@ -3173,7 +3173,7 @@
         "id": "order_1779807372481_0",
         "id_cliente": "client_1779805412601",
         "cliente": "Spoleto",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Crespa Verde + Roxa+ Rúcula",
         "categoria": "",
         "quantidade": 25,
@@ -4931,5 +4931,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T14:34:54.032Z"
+  "lastUpdate": "2026-05-27T14:58:39.322Z"
 }
