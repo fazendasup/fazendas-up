@@ -3384,6 +3384,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "BOLETO PARA 21 DIAS",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779886773229_1",
+        "id_cliente": "46",
+        "cliente": "Patio Adrianópolis",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "BOLETO PARA 21 DIAS",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4967,5 +4979,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T12:59:33.198Z"
+  "lastUpdate": "2026-05-27T12:59:36.798Z"
 }
