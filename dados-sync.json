@@ -3360,6 +3360,30 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779886464428_1",
+        "id_cliente": "45",
+        "cliente": "Patio Djalma",
+        "dia_semana": "quinta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1779886464428_2",
+        "id_cliente": "45",
+        "cliente": "Patio Djalma",
+        "dia_semana": "quinta-feira",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -4943,5 +4967,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-27T12:53:27.464Z"
+  "lastUpdate": "2026-05-27T12:54:24.432Z"
 }
