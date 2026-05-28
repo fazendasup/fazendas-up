@@ -2591,7 +2591,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 CRESPAS ",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779318938305_1",
@@ -2603,7 +2603,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 CRESPAS ",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779318938305_2",
@@ -2615,7 +2615,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 CRESPAS ",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779319653561_0",
@@ -4979,5 +4979,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-28T12:53:41.309Z"
+  "lastUpdate": "2026-05-28T12:53:45.758Z"
 }
