@@ -2741,10 +2741,10 @@
         "id": "order_1779380674768_1",
         "id_cliente": "14",
         "cliente": "Fitz",
-        "dia_semana": "sábado",
+        "dia_semana": "sexta-feira",
         "produto": "Hortelã",
         "categoria": "",
-        "quantidade": 5,
+        "quantidade": 8,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -5015,5 +5015,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-28T18:23:52.145Z"
+  "lastUpdate": "2026-05-28T18:24:06.238Z"
 }
