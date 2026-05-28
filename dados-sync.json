@@ -4210,7 +4210,7 @@
       {
         "id": "59",
         "nome": "Frigorifico A. Adrianópolis",
-        "observacoes": "Avaria \n5 crespas \n5 mixes \n1 americana ",
+        "observacoes": "Avaria \n2 Hortelãs",
         "prazoBoleto": "14",
         "acumulaPedidos": false,
         "diasAcumulo": "",
@@ -5027,5 +5027,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-28T18:32:08.317Z"
+  "lastUpdate": "2026-05-28T18:35:16.830Z"
 }
