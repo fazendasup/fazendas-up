@@ -3251,7 +3251,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Avaria - 2 hortelã",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1779903657281_1",
@@ -3263,7 +3263,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Avaria - 2 hortelã",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1779903657281_2",
@@ -3275,7 +3275,7 @@
         "quantidade": 15,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Avaria - 2 hortelã",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1779903657281_3",
@@ -3287,7 +3287,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Avaria - 2 hortelã",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1779903657281_4",
@@ -3299,7 +3299,7 @@
         "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Avaria - 2 hortelã",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_1779908200934_1",
@@ -5015,5 +5015,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-28T20:40:59.088Z"
+  "lastUpdate": "2026-05-28T20:41:06.918Z"
 }
