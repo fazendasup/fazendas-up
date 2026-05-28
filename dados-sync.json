@@ -3075,8 +3075,8 @@
       },
       {
         "id": "order_1779834973034_0",
-        "id_cliente": "5",
-        "cliente": "Rodrigues Vieiralves",
+        "id_cliente": "3",
+        "cliente": "Rodrigues Jacira Reis",
         "dia_semana": "quarta-feira",
         "produto": "Alface Americana",
         "categoria": "",
@@ -4979,5 +4979,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-28T14:03:54.337Z"
+  "lastUpdate": "2026-05-28T14:07:42.520Z"
 }
