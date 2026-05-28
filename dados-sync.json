@@ -2801,7 +2801,7 @@
         "id": "order_1779476114665_1",
         "id_cliente": "14",
         "cliente": "Fitz",
-        "dia_semana": "sábado",
+        "dia_semana": "sexta-feira",
         "produto": "Manjericão F.Fina 60g",
         "categoria": "",
         "quantidade": 8,
@@ -5015,5 +5015,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-28T18:24:21.525Z"
+  "lastUpdate": "2026-05-28T18:24:31.791Z"
 }
