@@ -2105,10 +2105,10 @@
         "id": "order_1777588346665_0",
         "id_cliente": "14",
         "cliente": "Fitz",
-        "dia_semana": "sábado",
+        "dia_semana": "sexta-feira",
         "produto": "Alface Crespa Roxa",
         "categoria": "",
-        "quantidade": 13,
+        "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -5015,5 +5015,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-28T18:22:52.329Z"
+  "lastUpdate": "2026-05-28T18:23:31.757Z"
 }
