@@ -3371,7 +3371,7 @@
         "quantidade": 30,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       }
     ],
     "clientes": [
@@ -4979,5 +4979,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-28T12:53:51.134Z"
+  "lastUpdate": "2026-05-28T12:55:11.809Z"
 }
