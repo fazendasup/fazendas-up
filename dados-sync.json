@@ -3420,6 +3420,90 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1780052543486_0",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780052543486_1",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780052543486_2",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780052543486_3",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780052543486_4",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Agrião",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780052543486_5",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780052543486_6",
+        "id_cliente": "60",
+        "cliente": "Frigorifico Amazonas P10",
+        "dia_semana": "sábado",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5027,5 +5111,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T10:49:17.431Z"
+  "lastUpdate": "2026-05-29T11:02:23.491Z"
 }
