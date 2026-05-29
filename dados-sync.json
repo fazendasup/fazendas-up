@@ -2546,18 +2546,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779318852255_1",
-        "id_cliente": "4",
-        "cliente": "Rodrigues Ponta Negra",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIA \n9 MIX \n8 CRESPA \n12 AMERICANA ",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779318852255_2",
         "id_cliente": "4",
         "cliente": "Rodrigues Ponta Negra",
@@ -5003,5 +4991,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T10:42:08.132Z"
+  "lastUpdate": "2026-05-29T10:42:21.332Z"
 }
