@@ -2678,18 +2678,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779393474403_2",
-        "id_cliente": "client_1774998176523",
-        "cliente": "Marinara",
-        "dia_semana": "sexta-feira",
-        "produto": "Mix Folhas + Rúcula 90g",
-        "categoria": "",
-        "quantidade": 8,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779393474403_3",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
@@ -5196,5 +5184,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T11:32:00.528Z"
+  "lastUpdate": "2026-05-29T11:32:14.395Z"
 }
