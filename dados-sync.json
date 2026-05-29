@@ -3026,18 +3026,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779834973035_2",
-        "id_cliente": "5",
-        "cliente": "Rodrigues Vieiralves",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1779886464428_1",
         "id_cliente": "45",
         "cliente": "Patio Djalma",
@@ -4955,5 +4943,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T10:37:46.230Z"
+  "lastUpdate": "2026-05-29T10:38:00.425Z"
 }
