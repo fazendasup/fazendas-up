@@ -3358,7 +3358,7 @@
         "categoria": "",
         "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIA \n9 MIX \n8 CRESPA \n12 AMERICANA ",
+        "observacoes": "",
         "status": "pendente"
       },
       {
@@ -4979,5 +4979,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T10:42:40.622Z"
+  "lastUpdate": "2026-05-29T10:42:48.728Z"
 }
