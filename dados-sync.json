@@ -1319,7 +1319,7 @@
         "quantidade": 0,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_246",
@@ -1343,7 +1343,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_249",
@@ -1367,7 +1367,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_251",
@@ -2336,7 +2336,7 @@
         "dia_semana": "sábado",
         "produto": "Alface Crespa Verde",
         "categoria": "",
-        "quantidade": 5,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -5126,5 +5126,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T22:02:25.797Z"
+  "lastUpdate": "2026-05-29T22:02:29.066Z"
 }
