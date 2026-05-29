@@ -2606,18 +2606,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779319653561_1",
-        "id_cliente": "2",
-        "cliente": "Grand Amazon",
-        "dia_semana": "sexta-feira",
-        "produto": "Flores",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779319653561_2",
         "id_cliente": "2",
         "cliente": "Grand Amazon",
@@ -5003,5 +4991,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T01:09:55.598Z"
+  "lastUpdate": "2026-05-29T01:10:00.754Z"
 }
