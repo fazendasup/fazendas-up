@@ -2896,11 +2896,11 @@
       {
         "id": "order_1779807372481_0",
         "id_cliente": "client_1779805412601",
-        "cliente": "Spoleto",
+        "cliente": "Spoleto Manauara",
         "dia_semana": "sexta-feira",
         "produto": "Crespa Verde + Roxa+ Rúcula",
         "categoria": "",
-        "quantidade": 25,
+        "quantidade": 30,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5184,5 +5184,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T13:05:53.556Z"
+  "lastUpdate": "2026-05-29T13:49:42.290Z"
 }
