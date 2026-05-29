@@ -4729,6 +4729,19 @@
         "horarioMaximo": "10:00",
         "cobraEntrega": false,
         "precos": []
+      },
+      {
+        "id": "client_1780091626701",
+        "nome": "Spoleto Amazonas Shopping",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "10:00",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -5101,5 +5114,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T21:52:53.221Z"
+  "lastUpdate": "2026-05-29T21:53:46.707Z"
 }
