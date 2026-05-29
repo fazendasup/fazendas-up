@@ -2366,18 +2366,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1778850353594_3",
-        "id_cliente": "34",
-        "cliente": "Veneza Tarumã",
-        "dia_semana": "sábado",
-        "produto": "Mix Clássico - Salada Completa",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1778936707296_0",
         "id_cliente": "59",
         "cliente": "Frigorifico A. Adrianópolis",
@@ -5148,5 +5136,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T21:44:37.896Z"
+  "lastUpdate": "2026-05-29T21:44:56.895Z"
 }
