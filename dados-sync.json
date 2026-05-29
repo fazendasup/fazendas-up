@@ -2741,7 +2741,7 @@
         "id": "order_1779492017056_0",
         "id_cliente": "28",
         "cliente": "Hotel Juma",
-        "dia_semana": "sábado",
+        "dia_semana": "sexta-feira",
         "produto": "Alface MIX",
         "categoria": "",
         "quantidade": 7,
@@ -3514,6 +3514,54 @@
         "categoria": "",
         "quantidade": 35,
         "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780054056677_1",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Rabanete",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780054056677_2",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780054056677_3",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Mostarda",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780054056677_4",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
       }
@@ -5136,5 +5184,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T11:25:56.707Z"
+  "lastUpdate": "2026-05-29T11:27:36.684Z"
 }
