@@ -2606,18 +2606,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779319653561_3",
-        "id_cliente": "2",
-        "cliente": "Grand Amazon",
-        "dia_semana": "sexta-feira",
-        "produto": "Micro Rabanete",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779319694678_0",
         "id_cliente": "44",
         "cliente": "Restaurante Girão's",
@@ -4979,5 +4967,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T01:10:05.899Z"
+  "lastUpdate": "2026-05-29T01:10:10.982Z"
 }
