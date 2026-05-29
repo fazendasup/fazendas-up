@@ -2324,7 +2324,7 @@
         "dia_semana": "sábado",
         "produto": "Alface MIX",
         "categoria": "",
-        "quantidade": 5,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -2628,6 +2628,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1779492136245_1",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "sábado",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
+        "status": "entregue"
       },
       {
         "id": "order_1779708028569_0",
@@ -5114,5 +5126,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T22:02:40.386Z"
+  "lastUpdate": "2026-05-29T22:02:55.841Z"
 }
