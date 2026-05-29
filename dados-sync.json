@@ -1622,18 +1622,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1775836280135_2",
-        "id_cliente": "client_1775836162637",
-        "cliente": "Giselle Plano",
-        "dia_semana": "sábado",
-        "produto": "Agrião",
-        "categoria": "",
-        "quantidade": 1,
-        "tipo_venda": "Plano",
-        "observacoes": "",
-        "status": "cancelado"
-      },
-      {
         "id": "order_1776101242692_0",
         "id_cliente": "client_1775608904239",
         "cliente": "Franco's",
@@ -5172,5 +5160,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T21:42:08.821Z"
+  "lastUpdate": "2026-05-29T21:44:10.500Z"
 }
