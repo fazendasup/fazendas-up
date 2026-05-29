@@ -2702,18 +2702,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779547042409_0",
-        "id_cliente": "25",
-        "cliente": "Moquem",
-        "dia_semana": "sábado",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1779708028569_0",
         "id_cliente": "client_1779707785257",
         "cliente": "Bruma Restaurante",
@@ -5160,5 +5148,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T21:44:10.500Z"
+  "lastUpdate": "2026-05-29T21:44:37.896Z"
 }
