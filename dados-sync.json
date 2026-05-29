@@ -1805,7 +1805,7 @@
         "id": "order_1776885442959_3",
         "id_cliente": "34",
         "cliente": "Veneza Tarumã",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "sábado",
         "produto": "Mix Clássico - Salada Completa",
         "categoria": "",
         "quantidade": 20,
@@ -5208,5 +5208,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T11:30:23.223Z"
+  "lastUpdate": "2026-05-29T11:30:31.781Z"
 }
