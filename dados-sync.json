@@ -2606,18 +2606,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1779319653561_0",
-        "id_cliente": "2",
-        "cliente": "Grand Amazon",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779319653561_1",
         "id_cliente": "2",
         "cliente": "Grand Amazon",
@@ -5015,5 +5003,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T00:46:51.036Z"
+  "lastUpdate": "2026-05-29T01:09:55.598Z"
 }
