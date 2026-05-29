@@ -3564,6 +3564,30 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1780054141968_1",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780054141968_2",
+        "id_cliente": "28",
+        "cliente": "Hotel Juma",
+        "dia_semana": "sexta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5184,5 +5208,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T11:28:37.917Z"
+  "lastUpdate": "2026-05-29T11:29:01.974Z"
 }
