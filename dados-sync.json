@@ -1499,7 +1499,7 @@
         "quantidade": 35,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 3 dias",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_278",
@@ -5172,5 +5172,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T21:26:47.595Z"
+  "lastUpdate": "2026-05-29T21:37:20.911Z"
 }
