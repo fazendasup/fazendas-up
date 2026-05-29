@@ -4739,6 +4739,19 @@
             "preco": 4.09
           }
         ]
+      },
+      {
+        "id": "client_1780053668747",
+        "nome": "Spoleto Ponta Negra",
+        "observacoes": "",
+        "prazoBoleto": "",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "",
+        "horarioMaximo": "",
+        "cobraEntrega": false,
+        "precos": []
       }
     ],
     "produtos": [
@@ -5111,5 +5124,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T11:07:32.685Z"
+  "lastUpdate": "2026-05-29T11:21:08.755Z"
 }
