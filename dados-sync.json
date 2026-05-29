@@ -2354,18 +2354,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1778850353594_2",
-        "id_cliente": "34",
-        "cliente": "Veneza Tarumã",
-        "dia_semana": "sábado",
-        "produto": "Alface MIX",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1778936707296_0",
         "id_cliente": "59",
         "cliente": "Frigorifico A. Adrianópolis",
@@ -5136,5 +5124,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T21:44:56.895Z"
+  "lastUpdate": "2026-05-29T21:45:02.694Z"
 }
