@@ -2348,7 +2348,7 @@
         "dia_semana": "sábado",
         "produto": "Alface Americana",
         "categoria": "",
-        "quantidade": 5,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
         "status": "entregue"
@@ -5126,5 +5126,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-29T22:03:03.913Z"
+  "lastUpdate": "2026-05-29T22:03:12.472Z"
 }
