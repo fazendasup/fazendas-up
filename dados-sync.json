@@ -2318,18 +2318,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1778936707296_2",
-        "id_cliente": "59",
-        "cliente": "Frigorifico A. Adrianópolis",
-        "dia_semana": "sábado",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIA \n2 MIX \n1 CRESPA \n2 HORTELÃ",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779110083464_1",
         "id_cliente": "10",
         "cliente": "Padoca",
@@ -5126,5 +5114,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-30T15:27:09.101Z"
+  "lastUpdate": "2026-05-30T15:27:12.466Z"
 }
