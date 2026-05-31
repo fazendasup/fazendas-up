@@ -3440,7 +3440,7 @@
         "dia_semana": "segunda-feira",
         "produto": "Crespa Verde + Roxa+ Rúcula",
         "categoria": "",
-        "quantidade": 25,
+        "quantidade": 40,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5114,5 +5114,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-05-31T15:57:37.814Z"
+  "lastUpdate": "2026-05-31T16:20:29.966Z"
 }
