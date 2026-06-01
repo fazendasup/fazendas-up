@@ -2570,18 +2570,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779708028569_3",
-        "id_cliente": "client_1779707785257",
-        "cliente": "Bruma Restaurante",
-        "dia_semana": "segunda-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779721487576_1",
         "id_cliente": "14",
         "cliente": "Fitz",
@@ -5175,5 +5163,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-01T19:13:42.670Z"
+  "lastUpdate": "2026-06-01T19:13:47.947Z"
 }
