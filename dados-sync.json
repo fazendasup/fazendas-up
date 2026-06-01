@@ -11,7 +11,7 @@
         "quantidade": 2,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1",
@@ -23,7 +23,7 @@
         "quantidade": 2,
         "tipo_venda": "Plano",
         "observacoes": "Entrega de manhã",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_2",
@@ -35,7 +35,7 @@
         "quantidade": 2,
         "tipo_venda": "Plano",
         "observacoes": "pagamento mensal",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_3",
@@ -47,7 +47,7 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_4",
@@ -239,7 +239,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_36",
@@ -251,7 +251,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_37",
@@ -263,7 +263,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 3 dias",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_38",
@@ -275,7 +275,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_39",
@@ -287,7 +287,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_41",
@@ -2603,7 +2603,7 @@
         "quantidade": 1,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779708028569_1",
@@ -2615,7 +2615,7 @@
         "quantidade": 2,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779708028569_2",
@@ -2627,7 +2627,7 @@
         "quantidade": 2,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779708028569_3",
@@ -2639,7 +2639,7 @@
         "quantidade": 2,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779708028569_4",
@@ -2651,7 +2651,7 @@
         "quantidade": 4,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779708028569_5",
@@ -2663,7 +2663,7 @@
         "quantidade": 2,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779708028569_6",
@@ -2675,7 +2675,7 @@
         "quantidade": 2,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779721487576_1",
@@ -5126,5 +5126,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-01T12:19:02.490Z"
+  "lastUpdate": "2026-06-01T12:19:23.460Z"
 }
