@@ -2570,18 +2570,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779708028569_1",
-        "id_cliente": "client_1779707785257",
-        "cliente": "Bruma Restaurante",
-        "dia_semana": "segunda-feira",
-        "produto": "Alface Crespa Roxa",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1779708028569_3",
         "id_cliente": "client_1779707785257",
         "cliente": "Bruma Restaurante",
@@ -5187,5 +5175,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-01T19:13:33.118Z"
+  "lastUpdate": "2026-06-01T19:13:37.738Z"
 }
