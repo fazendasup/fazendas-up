@@ -3492,6 +3492,18 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "entregue"
+      },
+      {
+        "id": "order_1780329499035_0",
+        "id_cliente": "client_1780091626701",
+        "cliente": "Spoleto Amazonas Shopping",
+        "dia_semana": "terça-feira",
+        "produto": "Crespa Verde + Roxa+ Rúcula",
+        "categoria": "",
+        "quantidade": 20,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5138,5 +5150,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-01T14:15:12.863Z"
+  "lastUpdate": "2026-06-01T15:58:19.043Z"
 }
