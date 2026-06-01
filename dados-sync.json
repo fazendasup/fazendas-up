@@ -2018,6 +2018,18 @@
         "status": "entregue"
       },
       {
+        "id": "order_1777390598905_1",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "terça-feira",
+        "produto": "Mix Folhas + Rúcula 90g",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
+        "status": "entregue"
+      },
+      {
         "id": "order_1777390598905_2",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
@@ -3539,6 +3551,42 @@
         "quantidade": 20,
         "tipo_venda": "Avulso",
         "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780341012311_1",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Rúcula",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780341012311_2",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "terça-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780341012311_3",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "terça-feira",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
         "status": "pendente"
       }
     ],
@@ -5199,5 +5247,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-01T19:08:53.417Z"
+  "lastUpdate": "2026-06-01T19:10:12.334Z"
 }
