@@ -290,18 +290,6 @@
         "status": "pronto"
       },
       {
-        "id": "order_41",
-        "id_cliente": "13",
-        "dia_semana": "terça-feira",
-        "cliente": "BAREBURGUER",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 35,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "Boleto para 3 dias",
-        "status": "pronto"
-      },
-      {
         "id": "order_43",
         "id_cliente": "14",
         "dia_semana": "terça-feira",
@@ -5151,5 +5139,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-01T19:14:12.313Z"
+  "lastUpdate": "2026-06-01T19:14:16.311Z"
 }
