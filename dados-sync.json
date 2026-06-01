@@ -3480,6 +3480,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "mix de 90g com 3 alfaces + rúcula = 6,23",
         "status": "pendente"
+      },
+      {
+        "id": "order_1780350862580_0",
+        "id_cliente": "client_1779805412601",
+        "cliente": "Spoleto Manauara",
+        "dia_semana": "terça-feira",
+        "produto": "Crespa Verde + Roxa+ Rúcula",
+        "categoria": "",
+        "quantidade": 30,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5139,5 +5151,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-01T20:45:12.219Z"
+  "lastUpdate": "2026-06-01T21:54:22.605Z"
 }
