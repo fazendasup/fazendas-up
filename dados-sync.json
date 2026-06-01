@@ -4803,6 +4803,19 @@
         "horarioMaximo": "10:00",
         "cobraEntrega": false,
         "precos": []
+      },
+      {
+        "id": "client_1780355899949",
+        "nome": "Roseiral",
+        "observacoes": "",
+        "prazoBoleto": "3 dias ",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Tarde",
+        "horarioMaximo": "17:00",
+        "cobraEntrega": true,
+        "precos": []
       }
     ],
     "produtos": [
@@ -5175,5 +5188,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-01T22:41:53.318Z"
+  "lastUpdate": "2026-06-01T23:18:19.955Z"
 }
