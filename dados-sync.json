@@ -3492,6 +3492,66 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1780336128158_0",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780336128158_1",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780336128158_2",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "segunda-feira",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780336128158_3",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780336128158_4",
+        "id_cliente": "17",
+        "cliente": "Una Vitta",
+        "dia_semana": "segunda-feira",
+        "produto": "Alface Frisee",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5138,5 +5198,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-01T17:47:16.728Z"
+  "lastUpdate": "2026-06-01T17:48:48.163Z"
 }
