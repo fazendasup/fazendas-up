@@ -2018,18 +2018,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1777390598904_0",
-        "id_cliente": "client_1774998176523",
-        "cliente": "Marinara",
-        "dia_semana": "terça-feira",
-        "produto": "Baby Rúcula",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "mix de 90g com 3 alfaces + rúcula ",
-        "status": "entregue"
-      },
-      {
         "id": "order_1777390598905_1",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
@@ -5223,5 +5211,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-01T18:51:00.797Z"
+  "lastUpdate": "2026-06-01T19:08:46.162Z"
 }
