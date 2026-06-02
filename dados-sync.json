@@ -690,9 +690,9 @@
         "id_cliente": "35",
         "dia_semana": "terça-feira",
         "cliente": "Felicori",
-        "produto": "Micro Repolho",
+        "produto": "Micro Coentro",
         "categoria": "Pote",
-        "quantidade": 2,
+        "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -5200,5 +5200,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T15:47:09.890Z"
+  "lastUpdate": "2026-06-02T15:47:27.055Z"
 }
