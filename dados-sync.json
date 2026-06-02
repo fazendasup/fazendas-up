@@ -2594,18 +2594,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779816223516_1",
-        "id_cliente": "35",
-        "cliente": "Felicori",
-        "dia_semana": "terça-feira",
-        "produto": "Micro Couve",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1779834914642_0",
         "id_cliente": "3",
         "cliente": "Rodrigues Jacira Reis",
@@ -5188,5 +5176,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T15:47:58.225Z"
+  "lastUpdate": "2026-06-02T15:48:05.010Z"
 }
