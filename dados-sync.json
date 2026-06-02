@@ -2354,18 +2354,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779318687692_2",
-        "id_cliente": "5",
-        "cliente": "Rodrigues Vieiralves",
-        "dia_semana": "terça-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 14,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
-        "status": "entregue"
-      },
-      {
         "id": "order_1779318852255_2",
         "id_cliente": "4",
         "cliente": "Rodrigues Ponta Negra",
@@ -5212,5 +5200,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T15:46:08.926Z"
+  "lastUpdate": "2026-06-02T15:46:12.854Z"
 }
