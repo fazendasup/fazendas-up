@@ -1700,7 +1700,7 @@
         "dia_semana": "terça-feira",
         "produto": "Micro Repolho",
         "categoria": "",
-        "quantidade": 1,
+        "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -5200,5 +5200,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T15:46:12.854Z"
+  "lastUpdate": "2026-06-02T15:46:53.857Z"
 }
