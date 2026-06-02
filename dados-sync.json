@@ -3435,8 +3435,8 @@
       },
       {
         "id": "order_1780356026041_0",
-        "id_cliente": "client_1780355899949",
-        "cliente": "Roseiral",
+        "id_cliente": "client_1780415350524",
+        "cliente": "Mira Flores",
         "dia_semana": "terça-feira",
         "produto": "Flores",
         "categoria": "",
@@ -5165,5 +5165,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T15:49:10.530Z"
+  "lastUpdate": "2026-06-02T15:49:25.930Z"
 }
