@@ -2591,7 +2591,7 @@
         "quantidade": 3,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_1779807257120_0",
@@ -5236,5 +5236,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T13:15:09.712Z"
+  "lastUpdate": "2026-06-02T13:15:13.062Z"
 }
