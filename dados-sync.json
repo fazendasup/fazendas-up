@@ -3471,8 +3471,8 @@
       },
       {
         "id": "order_1780356026041_3",
-        "id_cliente": "client_1780355899949",
-        "cliente": "Roseiral",
+        "id_cliente": "client_1780415350524",
+        "cliente": "Mira Flores",
         "dia_semana": "terça-feira",
         "produto": "Micro Mostarda",
         "categoria": "",
@@ -5165,5 +5165,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T15:49:45.451Z"
+  "lastUpdate": "2026-06-02T15:49:54.076Z"
 }
