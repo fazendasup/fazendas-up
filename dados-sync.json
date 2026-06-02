@@ -4780,6 +4780,19 @@
         "horarioMaximo": "17:00",
         "cobraEntrega": true,
         "precos": []
+      },
+      {
+        "id": "client_1780415350524",
+        "nome": "Mira Flores",
+        "observacoes": "",
+        "prazoBoleto": "3 dias",
+        "acumulaPedidos": false,
+        "diasAcumulo": "",
+        "prazoBoletoAcumulo": "",
+        "periodoEntrega": "Manhã",
+        "horarioMaximo": "17:00",
+        "cobraEntrega": true,
+        "precos": []
       }
     ],
     "produtos": [
@@ -5152,5 +5165,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T15:48:33.015Z"
+  "lastUpdate": "2026-06-02T15:49:10.530Z"
 }
