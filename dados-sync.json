@@ -2354,18 +2354,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779318687692_1",
-        "id_cliente": "5",
-        "cliente": "Rodrigues Vieiralves",
-        "dia_semana": "terça-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 14,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
-        "status": "entregue"
-      },
-      {
         "id": "order_1779318687692_2",
         "id_cliente": "5",
         "cliente": "Rodrigues Vieiralves",
@@ -5224,5 +5212,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T15:46:04.638Z"
+  "lastUpdate": "2026-06-02T15:46:08.926Z"
 }
