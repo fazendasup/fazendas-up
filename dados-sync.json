@@ -1724,7 +1724,7 @@
         "dia_semana": "terça-feira",
         "produto": "Micro Beterraba",
         "categoria": "",
-        "quantidade": 1,
+        "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pronto"
@@ -5200,5 +5200,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T15:47:05.304Z"
+  "lastUpdate": "2026-06-02T15:47:09.890Z"
 }
