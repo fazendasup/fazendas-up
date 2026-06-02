@@ -2594,18 +2594,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779816179795_1",
-        "id_cliente": "35",
-        "cliente": "Felicori",
-        "dia_semana": "terça-feira",
-        "produto": "Micro Rabanete",
-        "categoria": "",
-        "quantidade": 2,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pronto"
-      },
-      {
         "id": "order_1779816223516_1",
         "id_cliente": "35",
         "cliente": "Felicori",
@@ -5200,5 +5188,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T15:47:36.271Z"
+  "lastUpdate": "2026-06-02T15:47:40.876Z"
 }
