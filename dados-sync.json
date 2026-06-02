@@ -371,7 +371,7 @@
         "quantidade": 5,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 3 dias",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_60",
@@ -383,7 +383,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_61",
@@ -5225,5 +5225,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T22:48:21.862Z"
+  "lastUpdate": "2026-06-02T22:48:29.541Z"
 }
