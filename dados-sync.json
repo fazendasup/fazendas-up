@@ -491,7 +491,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "pronto"
       },
       {
         "id": "order_77",
@@ -1691,7 +1691,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776716513056_1",
@@ -1703,7 +1703,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776716513056_2",
@@ -1715,7 +1715,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776716513056_3",
@@ -1727,7 +1727,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "pendente"
       },
       {
         "id": "order_1776723941604_0",
@@ -2363,7 +2363,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1779318687692_1",
@@ -2375,7 +2375,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1779318687692_2",
@@ -2387,7 +2387,7 @@
         "quantidade": 14,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "AVARIA \n7 AMERICANAS\n5 MIX",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1779318852255_2",
@@ -5236,5 +5236,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T13:56:54.744Z"
+  "lastUpdate": "2026-06-02T13:58:15.523Z"
 }
