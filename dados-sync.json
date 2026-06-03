@@ -2582,18 +2582,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779834914642_0",
-        "id_cliente": "3",
-        "cliente": "Rodrigues Jacira Reis",
-        "dia_semana": "quarta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1779834914642_1",
         "id_cliente": "3",
         "cliente": "Rodrigues Jacira Reis",
@@ -5225,5 +5213,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-02T22:53:06.444Z"
+  "lastUpdate": "2026-06-03T13:44:08.819Z"
 }
