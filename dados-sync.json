@@ -1934,18 +1934,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1777330506864_1",
-        "id_cliente": "46",
-        "cliente": "Patio Adrianópolis",
-        "dia_semana": "sexta-feira",
-        "produto": "Mix Folhas - Salada Leve",
-        "categoria": "",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777330673716_1",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
@@ -5310,5 +5298,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T20:13:21.965Z"
+  "lastUpdate": "2026-06-03T20:13:25.565Z"
 }
