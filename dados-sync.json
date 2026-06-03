@@ -3353,7 +3353,7 @@
         "id": "order_1780497174209_3",
         "id_cliente": "45",
         "cliente": "Patio Djalma",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Hortelã",
         "categoria": "",
         "quantidade": 5,
@@ -5478,5 +5478,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T18:44:07.858Z"
+  "lastUpdate": "2026-06-03T18:44:17.244Z"
 }
