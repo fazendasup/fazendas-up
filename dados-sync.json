@@ -1997,7 +1997,7 @@
         "id": "order_1777330673716_1",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 15,
@@ -5466,5 +5466,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:52:02.794Z"
+  "lastUpdate": "2026-06-03T19:52:19.598Z"
 }
