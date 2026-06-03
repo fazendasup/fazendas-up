@@ -3533,7 +3533,7 @@
         "id": "order_1780499828775_0",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Alface MIX",
         "categoria": "",
         "quantidade": 10,
@@ -5454,5 +5454,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:53:02.071Z"
+  "lastUpdate": "2026-06-03T19:53:27.127Z"
 }
