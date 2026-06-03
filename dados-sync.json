@@ -1958,18 +1958,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1777330342051_1",
-        "id_cliente": "45",
-        "cliente": "Patio Djalma",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface Crespa Verde",
-        "categoria": "",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1777330506864_1",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
@@ -5430,5 +5418,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T20:07:46.907Z"
+  "lastUpdate": "2026-06-03T20:08:00.112Z"
 }
