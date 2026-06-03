@@ -3636,6 +3636,126 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1780499828775_0",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780499828775_1",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780499828775_2",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780499828775_3",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780499828775_4",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Mix Folhas - Salada Leve",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780499828775_5",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Mix Crocante - Base para Salada",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780499828775_6",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780499828775_7",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780499828775_8",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 4,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780499828775_9",
+        "id_cliente": "47",
+        "cliente": "Patio Aleixo",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Nabo",
+        "categoria": "",
+        "quantidade": 3,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5321,5 +5441,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T15:11:37.603Z"
+  "lastUpdate": "2026-06-03T15:17:08.779Z"
 }
