@@ -791,7 +791,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_143",
@@ -803,7 +803,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_144",
@@ -815,7 +815,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "entregue"
+        "status": "pendente"
       },
       {
         "id": "order_145",
@@ -5213,5 +5213,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T14:03:49.134Z"
+  "lastUpdate": "2026-06-03T14:03:56.467Z"
 }
