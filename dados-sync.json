@@ -890,18 +890,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_165",
-        "id_cliente": "46",
-        "dia_semana": "sexta-feira",
-        "cliente": "Patio Adrianópolis",
-        "produto": "Alface Crespa Verde",
-        "categoria": "Desfolhado",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "BOLETO PARA 21 DIAS",
-        "status": "pendente"
-      },
-      {
         "id": "order_170",
         "id_cliente": "47",
         "dia_semana": "sexta-feira",
@@ -5358,5 +5346,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T20:11:11.163Z"
+  "lastUpdate": "2026-06-03T20:11:17.980Z"
 }
