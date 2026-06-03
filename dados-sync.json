@@ -3641,7 +3641,7 @@
         "id": "order_1780499828775_9",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Micro Nabo",
         "categoria": "",
         "quantidade": 3,
@@ -5454,5 +5454,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:57:03.859Z"
+  "lastUpdate": "2026-06-03T19:57:11.387Z"
 }
