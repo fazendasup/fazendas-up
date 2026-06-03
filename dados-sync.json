@@ -3629,7 +3629,7 @@
         "id": "order_1780499828775_8",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Micro Couve",
         "categoria": "",
         "quantidade": 4,
@@ -5454,5 +5454,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:56:51.574Z"
+  "lastUpdate": "2026-06-03T19:57:03.859Z"
 }
