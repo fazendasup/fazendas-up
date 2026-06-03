@@ -2201,7 +2201,7 @@
         "id": "order_1778699293331_4",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Mix Clássico - Salada Completa",
         "categoria": "",
         "quantidade": 15,
@@ -5466,5 +5466,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:46:08.289Z"
+  "lastUpdate": "2026-06-03T19:48:13.393Z"
 }
