@@ -3326,18 +3326,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1780499497599_0",
-        "id_cliente": "46",
-        "cliente": "Patio Adrianópolis",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1780499497599_1",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
@@ -5370,5 +5358,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T20:10:28.974Z"
+  "lastUpdate": "2026-06-03T20:11:11.163Z"
 }
