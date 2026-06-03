@@ -3386,18 +3386,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1780499828775_4",
-        "id_cliente": "47",
-        "cliente": "Patio Aleixo",
-        "dia_semana": "sexta-feira",
-        "produto": "Mix Folhas - Salada Leve",
-        "categoria": "",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1780499828775_5",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
@@ -5250,5 +5238,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T20:33:15.805Z"
+  "lastUpdate": "2026-06-03T20:33:41.465Z"
 }
