@@ -2597,7 +2597,7 @@
         "id": "order_1779887360024_1",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Manjericão F.Fina 60g",
         "categoria": "",
         "quantidade": 5,
@@ -5454,5 +5454,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:52:44.616Z"
+  "lastUpdate": "2026-06-03T19:53:02.071Z"
 }
