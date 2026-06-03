@@ -892,7 +892,7 @@
       {
         "id": "order_156",
         "id_cliente": "45",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "cliente": "Patio Djalma",
         "produto": "Mix Folhas - Salada Leve",
         "categoria": "Desfolhado",
@@ -5478,5 +5478,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T18:35:10.278Z"
+  "lastUpdate": "2026-06-03T18:38:54.060Z"
 }
