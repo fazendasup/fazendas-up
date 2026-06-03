@@ -878,18 +878,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_153",
-        "id_cliente": "45",
-        "dia_semana": "sexta-feira",
-        "cliente": "Patio Djalma",
-        "produto": "Alface Americana",
-        "categoria": "Desfolhado",
-        "quantidade": 10,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_163",
         "id_cliente": "46",
         "dia_semana": "sexta-feira",
@@ -5406,5 +5394,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T20:08:22.470Z"
+  "lastUpdate": "2026-06-03T20:09:46.231Z"
 }
