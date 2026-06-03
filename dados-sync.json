@@ -2738,18 +2738,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1779908770336_0",
-        "id_cliente": "client_1779908636392",
-        "cliente": "Spoleto Plaza",
-        "dia_semana": "quinta-feira",
-        "produto": "Crespa Verde + Roxa+ Rúcula",
-        "categoria": "",
-        "quantidade": 30,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "CORTADO",
-        "status": "entregue"
-      },
-      {
         "id": "order_1779977740610_0",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
@@ -5466,5 +5454,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T18:24:34.896Z"
+  "lastUpdate": "2026-06-03T18:24:45.656Z"
 }
