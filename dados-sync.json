@@ -3473,7 +3473,7 @@
         "id": "order_1780499497599_4",
         "id_cliente": "46",
         "cliente": "Patio Adrianópolis",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Mix Folhas - Salada Leve",
         "categoria": "",
         "quantidade": 10,
@@ -5466,5 +5466,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:49:18.090Z"
+  "lastUpdate": "2026-06-03T19:49:25.077Z"
 }
