@@ -5453,7 +5453,7 @@
       "Crespa Verde + Roxa+ Rúcula": true
     },
     "estoqueModoCompra": {
-      "Baby Manjericão": "unidade",
+      "Baby Manjericão": "kilo",
       "Baby Rúcula": "kilo",
       "Agrião": "unidade",
       "Hortelã": "unidade",
@@ -5478,5 +5478,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:25:29.364Z"
+  "lastUpdate": "2026-06-03T19:26:41.169Z"
 }
