@@ -1997,7 +1997,7 @@
         "id": "order_1778176036748_0",
         "id_cliente": "35",
         "cliente": "Felicori",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "quinta-feira",
         "produto": "Micro Mostarda",
         "categoria": "",
         "quantidade": 3,
@@ -5226,5 +5226,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T20:36:13.086Z"
+  "lastUpdate": "2026-06-03T21:14:22.775Z"
 }
