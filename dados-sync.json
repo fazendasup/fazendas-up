@@ -2225,7 +2225,7 @@
         "id": "order_1778700126202_5",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Hortelã",
         "categoria": "",
         "quantidade": 5,
@@ -5454,5 +5454,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:52:34.258Z"
+  "lastUpdate": "2026-06-03T19:52:44.616Z"
 }
