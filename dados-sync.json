@@ -3374,18 +3374,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1780499828775_2",
-        "id_cliente": "47",
-        "cliente": "Patio Aleixo",
-        "dia_semana": "sexta-feira",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 15,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1780499828775_3",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
@@ -5262,5 +5250,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T20:32:44.449Z"
+  "lastUpdate": "2026-06-03T20:33:15.805Z"
 }
