@@ -916,7 +916,7 @@
       {
         "id": "order_165",
         "id_cliente": "46",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "cliente": "Patio Adrianópolis",
         "produto": "Alface Crespa Verde",
         "categoria": "Desfolhado",
@@ -5478,5 +5478,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:35:53.511Z"
+  "lastUpdate": "2026-06-03T19:36:02.806Z"
 }
