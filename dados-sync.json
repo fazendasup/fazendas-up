@@ -2990,18 +2990,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1780052543486_1",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "sábado",
-        "produto": "Alface Americana",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1780053956699_0",
         "id_cliente": "client_1780053668747",
         "cliente": "Spoleto Ponta Negra",
@@ -5153,5 +5141,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T14:20:34.246Z"
+  "lastUpdate": "2026-06-03T14:20:37.999Z"
 }
