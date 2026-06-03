@@ -2579,7 +2579,7 @@
         "quantidade": 7,
         "tipo_venda": "Avulso",
         "observacoes": "",
-        "status": "entregue"
+        "status": "cancelado"
       },
       {
         "id": "order_1779886464428_1",
@@ -5213,5 +5213,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T14:03:56.467Z"
+  "lastUpdate": "2026-06-03T14:04:08.682Z"
 }
