@@ -3569,7 +3569,7 @@
         "id": "order_1780499828775_3",
         "id_cliente": "47",
         "cliente": "Patio Aleixo",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Mix Clássico - Salada Completa",
         "categoria": "",
         "quantidade": 15,
@@ -5454,5 +5454,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T19:54:17.442Z"
+  "lastUpdate": "2026-06-03T19:55:38.896Z"
 }
