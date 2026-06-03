@@ -3329,7 +3329,7 @@
         "id": "order_1780497174209_1",
         "id_cliente": "45",
         "cliente": "Patio Djalma",
-        "dia_semana": "quinta-feira",
+        "dia_semana": "sexta-feira",
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 10,
@@ -5478,5 +5478,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T18:43:38.975Z"
+  "lastUpdate": "2026-06-03T18:43:55.878Z"
 }
