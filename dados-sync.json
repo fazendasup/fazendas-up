@@ -3038,18 +3038,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1780052543486_6",
-        "id_cliente": "60",
-        "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "sábado",
-        "produto": "Hortelã",
-        "categoria": "",
-        "quantidade": 5,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1780053956699_0",
         "id_cliente": "client_1780053668747",
         "cliente": "Spoleto Ponta Negra",
@@ -5201,5 +5189,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T14:19:09.675Z"
+  "lastUpdate": "2026-06-03T14:20:15.012Z"
 }
