@@ -2636,7 +2636,7 @@
         "dia_semana": "sexta-feira",
         "produto": "Alface Americana",
         "categoria": "",
-        "quantidade": 13,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -5226,5 +5226,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-04T15:03:43.493Z"
+  "lastUpdate": "2026-06-04T15:03:59.347Z"
 }
