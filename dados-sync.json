@@ -5233,7 +5233,8 @@
       "Baby Manjericão": 2.5,
       "Manjericão Fino 150g": 4,
       "Manjericão F.Fina 60g": 2,
-      "Crespa Verde + Roxa+ Rúcula": 0.4
+      "Crespa Verde + Roxa+ Rúcula": 0.4,
+      "Hortelã": 0.01
     },
     "estoqueDesativados": {
       "Mix Clássico - Salada Completa": true,
@@ -5285,5 +5286,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-04T15:27:46.579Z"
+  "lastUpdate": "2026-06-04T15:27:51.206Z"
 }
