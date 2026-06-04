@@ -2218,7 +2218,7 @@
         "categoria": "",
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
+        "observacoes": "AVARIA",
         "status": "entregue"
       },
       {
@@ -5226,5 +5226,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-04T15:05:29.410Z"
+  "lastUpdate": "2026-06-04T15:06:24.006Z"
 }
