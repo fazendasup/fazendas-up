@@ -3540,6 +3540,66 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "entregue"
+      },
+      {
+        "id": "order_1780585925825_0",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Avulso",
+        "observacoes": "AVARIA 2 HORTELÃ ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780585925825_1",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Avulso",
+        "observacoes": "AVARIA 2 HORTELÃ ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780585925825_2",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "sexta-feira",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 15,
+        "tipo_venda": "Avulso",
+        "observacoes": "AVARIA 2 HORTELÃ ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780585925825_3",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "sexta-feira",
+        "produto": "Hortelã",
+        "categoria": "",
+        "quantidade": 8,
+        "tipo_venda": "Avulso",
+        "observacoes": "AVARIA 2 HORTELÃ ",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780585925825_4",
+        "id_cliente": "59",
+        "cliente": "Frigorifico A. Adrianópolis",
+        "dia_semana": "sexta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Avulso",
+        "observacoes": "AVARIA 2 HORTELÃ ",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5226,5 +5286,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-04T15:07:42.765Z"
+  "lastUpdate": "2026-06-04T15:12:05.832Z"
 }
