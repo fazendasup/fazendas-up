@@ -3572,9 +3572,9 @@
         "dia_semana": "sexta-feira",
         "produto": "Alface MIX",
         "categoria": "",
-        "quantidade": 15,
+        "quantidade": 16,
         "tipo_venda": "Avulso",
-        "observacoes": "AVARIA 2 HORTELÃ ",
+        "observacoes": "AVARIA \n2 HORTELÃ \n1 MIX",
         "status": "pendente"
       },
       {
@@ -5286,5 +5286,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-04T15:12:05.832Z"
+  "lastUpdate": "2026-06-04T15:13:24.535Z"
 }
