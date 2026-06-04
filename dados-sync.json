@@ -3636,6 +3636,18 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1780600568986_0",
+        "id_cliente": "client_1780091524132",
+        "cliente": "Spoleto Via Norte",
+        "dia_semana": "sábado",
+        "produto": "Crespa Verde + Roxa+ Rúcula",
+        "categoria": "",
+        "quantidade": 25,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5320,5 +5332,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-04T19:15:26.193Z"
+  "lastUpdate": "2026-06-04T19:16:08.991Z"
 }
