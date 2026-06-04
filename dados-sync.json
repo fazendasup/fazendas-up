@@ -2564,7 +2564,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Baby Rúcula",
         "categoria": "",
-        "quantidade": 15,
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5296,5 +5296,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-04T21:03:23.321Z"
+  "lastUpdate": "2026-06-04T21:04:19.204Z"
 }
