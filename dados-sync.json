@@ -5206,7 +5206,7 @@
       "Agrião": "unidade",
       "Hortelã": "unidade",
       "Alface Crespa Verde": "unidade",
-      "Manjericão F.Fina 60g": "kilo",
+      "Manjericão F.Fina 60g": "unidade",
       "Crespa Verde + Roxa+ Rúcula": "kilo"
     },
     "estoqueRendimentoKilo": {
@@ -5226,5 +5226,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-03T21:15:41.759Z"
+  "lastUpdate": "2026-06-04T11:48:43.939Z"
 }
