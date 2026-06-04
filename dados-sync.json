@@ -2672,7 +2672,7 @@
         "dia_semana": "sexta-feira",
         "produto": "Alface MIX",
         "categoria": "",
-        "quantidade": 5,
+        "quantidade": 9,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "\n",
         "status": "entregue"
@@ -5226,5 +5226,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-04T15:03:59.347Z"
+  "lastUpdate": "2026-06-04T15:05:29.410Z"
 }
