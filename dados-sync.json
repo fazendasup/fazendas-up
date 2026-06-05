@@ -3434,18 +3434,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1780511117861_0",
-        "id_cliente": "client_1780053668747",
-        "cliente": "Spoleto Ponta Negra",
-        "dia_semana": "segunda-feira",
-        "produto": "Crespa Verde + Roxa+ Rúcula",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1780511156671_0",
         "id_cliente": "client_1780053668747",
         "cliente": "Spoleto Ponta Negra",
@@ -5380,5 +5368,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-05T22:00:25.304Z"
+  "lastUpdate": "2026-06-05T22:08:17.299Z"
 }
