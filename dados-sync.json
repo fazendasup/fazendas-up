@@ -3641,7 +3641,7 @@
         "id": "order_1780695823578_4",
         "id_cliente": "60",
         "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "segunda-feira",
+        "dia_semana": "sábado",
         "produto": "Mix Folhas - Salada Leve",
         "categoria": "",
         "quantidade": 5,
@@ -5380,5 +5380,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-05T21:47:24.092Z"
+  "lastUpdate": "2026-06-05T21:47:30.538Z"
 }
