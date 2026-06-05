@@ -3684,6 +3684,42 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1780702842321_0",
+        "id_cliente": "client_1779707785257",
+        "cliente": "Bruma Restaurante",
+        "dia_semana": "sábado",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780702842321_1",
+        "id_cliente": "client_1779707785257",
+        "cliente": "Bruma Restaurante",
+        "dia_semana": "sábado",
+        "produto": "Micro Repolho",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780702842321_2",
+        "id_cliente": "client_1779707785257",
+        "cliente": "Bruma Restaurante",
+        "dia_semana": "sábado",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5368,5 +5404,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-05T22:24:03.408Z"
+  "lastUpdate": "2026-06-05T23:40:42.327Z"
 }
