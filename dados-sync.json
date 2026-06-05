@@ -3648,6 +3648,54 @@
         "tipo_venda": "Avulso",
         "observacoes": "+ AVARIA\n3 CRESPA \n2 MIX\n1 CLÁSSICO ",
         "status": "pendente"
+      },
+      {
+        "id": "order_1780695931465_0",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sábado",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780695931465_1",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sábado",
+        "produto": "Alface Crespa Verde",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780695931465_2",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sábado",
+        "produto": "Alface MIX",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1780695931465_3",
+        "id_cliente": "52",
+        "cliente": "Frigorifica Amazona P.N",
+        "dia_semana": "sábado",
+        "produto": "Mix Clássico - Salada Completa",
+        "categoria": "",
+        "quantidade": 10,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5332,5 +5380,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-05T21:43:43.584Z"
+  "lastUpdate": "2026-06-05T21:45:31.470Z"
 }
