@@ -3593,7 +3593,7 @@
         "id": "order_1780695823578_0",
         "id_cliente": "60",
         "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "segunda-feira",
+        "dia_semana": "sábado",
         "produto": "Alface Crespa Verde",
         "categoria": "",
         "quantidade": 8,
@@ -5380,5 +5380,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-05T21:45:31.470Z"
+  "lastUpdate": "2026-06-05T21:47:01.845Z"
 }
