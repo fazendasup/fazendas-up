@@ -1394,18 +1394,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_261",
-        "id_cliente": "57",
-        "dia_semana": "sexta-feira",
-        "cliente": "Ancho",
-        "produto": "Alface Crespa Roxa",
-        "categoria": "Desfolhado",
-        "quantidade": 5,
-        "tipo_venda": "",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_262",
         "id_cliente": "57",
         "dia_semana": "sexta-feira",
@@ -5308,5 +5296,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-04T23:05:00.127Z"
+  "lastUpdate": "2026-06-05T12:47:58.377Z"
 }
