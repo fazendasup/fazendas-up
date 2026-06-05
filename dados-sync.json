@@ -3605,7 +3605,7 @@
         "id": "order_1780695823578_1",
         "id_cliente": "60",
         "cliente": "Frigorifico Amazonas P10",
-        "dia_semana": "segunda-feira",
+        "dia_semana": "sábado",
         "produto": "Alface Americana",
         "categoria": "",
         "quantidade": 10,
@@ -5380,5 +5380,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-05T21:47:01.845Z"
+  "lastUpdate": "2026-06-05T21:47:08.051Z"
 }
