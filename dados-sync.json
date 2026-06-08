@@ -3710,18 +3710,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1780702941572_1",
-        "id_cliente": "37",
-        "cliente": "Porteira",
-        "dia_semana": "segunda-feira",
-        "produto": "Micro Nabo",
-        "categoria": "",
-        "quantidade": 4,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1780702941573_2",
         "id_cliente": "37",
         "cliente": "Porteira",
@@ -5416,5 +5404,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-08T18:06:55.172Z"
+  "lastUpdate": "2026-06-08T18:06:59.558Z"
 }
