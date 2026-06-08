@@ -2763,12 +2763,12 @@
       },
       {
         "id": "order_1780244458588_0",
-        "id_cliente": "client_1780053668747",
-        "cliente": "Spoleto Ponta Negra",
+        "id_cliente": "client_1780336229886",
+        "cliente": "Spoleto Sumauma Park Shopping",
         "dia_semana": "segunda-feira",
         "produto": "Crespa Verde + Roxa+ Rúcula",
         "categoria": "",
-        "quantidade": 25,
+        "quantidade": 20,
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "entregue"
@@ -5440,5 +5440,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-08T12:08:25.191Z"
+  "lastUpdate": "2026-06-08T12:08:57.564Z"
 }
