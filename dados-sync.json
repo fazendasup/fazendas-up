@@ -2774,18 +2774,6 @@
         "status": "pendente"
       },
       {
-        "id": "order_1780336303104_0",
-        "id_cliente": "client_1780336229886",
-        "cliente": "Spoleto Sumauma Park Shopping",
-        "dia_semana": "terça-feira",
-        "produto": "Crespa Verde + Roxa+ Rúcula",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Avulso",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1780341012311_1",
         "id_cliente": "client_1774998176523",
         "cliente": "Marinara",
@@ -5320,5 +5308,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-08T19:59:06.856Z"
+  "lastUpdate": "2026-06-08T19:59:24.650Z"
 }
