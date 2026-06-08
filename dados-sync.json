@@ -676,7 +676,7 @@
       {
         "id": "order_112",
         "id_cliente": "35",
-        "dia_semana": "terça-feira",
+        "dia_semana": "segunda-feira",
         "cliente": "Felicori",
         "produto": "Micro Mostarda",
         "categoria": "Pote",
@@ -5428,5 +5428,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-08T14:29:47.112Z"
+  "lastUpdate": "2026-06-08T15:59:33.973Z"
 }
