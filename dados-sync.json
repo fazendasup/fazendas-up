@@ -191,7 +191,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_28",
@@ -203,7 +203,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Pagamento mensal",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_29",
@@ -215,7 +215,7 @@
         "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_30",
@@ -227,7 +227,7 @@
         "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_35",
@@ -1559,7 +1559,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1776101242692_1",
@@ -1571,7 +1571,7 @@
         "quantidade": 3,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1776445422731_0",
@@ -1955,7 +1955,7 @@
         "quantidade": 25,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1778074823890_0",
@@ -2099,7 +2099,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Pagamento mensal",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1779110083464_1",
@@ -2111,7 +2111,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Pagamento mensal",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_1779298661120_1",
@@ -2363,7 +2363,7 @@
         "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1779894057373_1",
@@ -2375,7 +2375,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1779894057373_2",
@@ -2387,7 +2387,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1779894057373_3",
@@ -2399,7 +2399,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1779896140616_0",
@@ -5332,5 +5332,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-08T23:50:20.650Z"
+  "lastUpdate": "2026-06-08T23:51:02.309Z"
 }
