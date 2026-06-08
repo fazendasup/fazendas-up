@@ -2714,18 +2714,6 @@
         "status": "cancelado"
       },
       {
-        "id": "order_1780329499035_0",
-        "id_cliente": "client_1780091626701",
-        "cliente": "Spoleto Amazonas Shopping",
-        "dia_semana": "terça-feira",
-        "produto": "Crespa Verde + Roxa+ Rúcula",
-        "categoria": "",
-        "quantidade": 20,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_1780336128158_0",
         "id_cliente": "17",
         "cliente": "Una Vitta",
@@ -5332,5 +5320,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-08T19:57:51.748Z"
+  "lastUpdate": "2026-06-08T19:59:06.856Z"
 }
