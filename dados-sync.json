@@ -2369,7 +2369,7 @@
         "id": "order_1779721559636_1",
         "id_cliente": "35",
         "cliente": "Felicori",
-        "dia_semana": "terça-feira",
+        "dia_semana": "segunda-feira",
         "produto": "Flores",
         "categoria": "",
         "quantidade": 2,
@@ -5428,5 +5428,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-08T17:08:56.050Z"
+  "lastUpdate": "2026-06-08T17:16:04.407Z"
 }
