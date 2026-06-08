@@ -2048,7 +2048,7 @@
         "dia_semana": "terça-feira",
         "produto": "Alface Crespa Roxa",
         "categoria": "",
-        "quantidade": 5,
+        "quantidade": 7,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -5380,5 +5380,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-08T19:56:47.040Z"
+  "lastUpdate": "2026-06-08T19:56:53.179Z"
 }
