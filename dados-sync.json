@@ -1901,7 +1901,7 @@
         "id": "order_1777310431306_1",
         "id_cliente": "35",
         "cliente": "Felicori",
-        "dia_semana": "terça-feira",
+        "dia_semana": "segunda-feira",
         "produto": "Micro Beterraba",
         "categoria": "",
         "quantidade": 3,
@@ -5428,5 +5428,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-08T15:59:56.787Z"
+  "lastUpdate": "2026-06-08T16:00:03.523Z"
 }
