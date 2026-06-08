@@ -11,7 +11,7 @@
         "quantidade": 2,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1",
@@ -23,7 +23,7 @@
         "quantidade": 2,
         "tipo_venda": "Plano",
         "observacoes": "Entrega de manhã",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_2",
@@ -35,7 +35,7 @@
         "quantidade": 2,
         "tipo_venda": "Plano",
         "observacoes": "pagamento mensal",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_3",
@@ -47,7 +47,7 @@
         "quantidade": 1,
         "tipo_venda": "Plano",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_4",
@@ -59,7 +59,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_5",
@@ -71,7 +71,7 @@
         "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_6",
@@ -83,7 +83,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_7",
@@ -95,7 +95,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 7 dias",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_8",
@@ -107,7 +107,7 @@
         "quantidade": 1,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pendente"
+        "status": "entregue"
       },
       {
         "id": "order_18",
@@ -5392,5 +5392,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-08T18:07:17.272Z"
+  "lastUpdate": "2026-06-08T18:48:38.727Z"
 }
