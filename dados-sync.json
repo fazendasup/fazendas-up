@@ -1571,7 +1571,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1776716513056_1",
@@ -1583,7 +1583,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1776716513056_2",
@@ -1595,7 +1595,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1776716513056_3",
@@ -1607,7 +1607,7 @@
         "quantidade": 2,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
-        "status": "pronto"
+        "status": "entregue"
       },
       {
         "id": "order_1776723941604_0",
@@ -5453,5 +5453,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-09T22:16:01.363Z"
+  "lastUpdate": "2026-06-09T22:16:07.428Z"
 }
