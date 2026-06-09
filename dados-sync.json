@@ -2042,18 +2042,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_1778515531210_3",
-        "id_cliente": "14",
-        "cliente": "Fitz",
-        "dia_semana": "terça-feira",
-        "produto": "Alface Crespa Roxa",
-        "categoria": "",
-        "quantidade": 7,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "pendente"
-      },
-      {
         "id": "order_1778618372771_0",
         "id_cliente": "client_1774918251748",
         "cliente": "Ghiotto Pizzaria",
@@ -3669,6 +3657,54 @@
         "produto": "Manjericão F.Fina 60g",
         "categoria": "",
         "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1781031366986_0",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "sexta-feira",
+        "produto": "Baby Manjericão",
+        "categoria": "",
+        "quantidade": 1,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1781031366986_1",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "sexta-feira",
+        "produto": "Manjericão F.Fina 60g",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1781031366986_2",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "sexta-feira",
+        "produto": "Mix Folhas + Rúcula 90g",
+        "categoria": "",
+        "quantidade": 5,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1781031366986_3",
+        "id_cliente": "client_1774998176523",
+        "cliente": "Marinara",
+        "dia_semana": "sexta-feira",
+        "produto": "Baby Rúcula",
+        "categoria": "",
+        "quantidade": 10,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
@@ -5356,5 +5392,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-09T18:52:00.727Z"
+  "lastUpdate": "2026-06-09T19:09:43.908Z"
 }
