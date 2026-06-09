@@ -1424,7 +1424,7 @@
         "cliente": "BAREBURGUER",
         "produto": "Alface Crespa Verde",
         "categoria": "",
-        "quantidade": 35,
+        "quantidade": 50,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "Boleto para 3 dias",
         "status": "entregue"
@@ -5441,5 +5441,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-09T19:45:22.898Z"
+  "lastUpdate": "2026-06-09T19:45:50.677Z"
 }
