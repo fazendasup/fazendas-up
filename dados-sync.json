@@ -3708,6 +3708,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1781033836947_0",
+        "id_cliente": "client_1781033786020",
+        "cliente": "Rio e Mar",
+        "dia_semana": "quarta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 12,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5405,5 +5417,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-09T19:36:26.027Z"
+  "lastUpdate": "2026-06-09T19:37:16.952Z"
 }
