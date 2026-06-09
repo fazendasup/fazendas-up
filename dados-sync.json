@@ -1228,7 +1228,7 @@
       {
         "id": "order_235",
         "id_cliente": "30",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "quinta-feira",
         "cliente": "O maquinista",
         "produto": "Micro Rabanete",
         "categoria": "Pote",
@@ -3720,6 +3720,30 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1781034322894_1",
+        "id_cliente": "30",
+        "cliente": "O maquinista",
+        "dia_semana": "quinta-feira",
+        "produto": "Micro Couve",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1781034322894_2",
+        "id_cliente": "30",
+        "cliente": "O maquinista",
+        "dia_semana": "quinta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Recorrente Semanal",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5417,5 +5441,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-09T19:44:29.065Z"
+  "lastUpdate": "2026-06-09T19:45:22.898Z"
 }
