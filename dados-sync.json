@@ -3636,6 +3636,42 @@
         "tipo_venda": "Avulso",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1781017364123_0",
+        "id_cliente": "client_1777389283017",
+        "cliente": "Mercê",
+        "dia_semana": "terça-feira",
+        "produto": "Alface Americana",
+        "categoria": "",
+        "quantidade": 6,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1781017364123_1",
+        "id_cliente": "client_1777389283017",
+        "cliente": "Mercê",
+        "dia_semana": "terça-feira",
+        "produto": "Alface Crespa Roxa",
+        "categoria": "",
+        "quantidade": 8,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
+      },
+      {
+        "id": "order_1781017364123_2",
+        "id_cliente": "client_1777389283017",
+        "cliente": "Mercê",
+        "dia_semana": "terça-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 7,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5320,5 +5356,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-09T14:52:22.123Z"
+  "lastUpdate": "2026-06-09T15:02:44.131Z"
 }
