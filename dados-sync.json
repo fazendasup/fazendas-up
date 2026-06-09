@@ -1192,7 +1192,7 @@
       {
         "id": "order_232",
         "id_cliente": "30",
-        "dia_semana": "sexta-feira",
+        "dia_semana": "quinta-feira",
         "cliente": "O maquinista",
         "produto": "Micro Couve",
         "categoria": "Pote",
@@ -5417,5 +5417,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-09T19:37:16.952Z"
+  "lastUpdate": "2026-06-09T19:44:13.092Z"
 }
