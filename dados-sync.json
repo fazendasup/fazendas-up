@@ -974,18 +974,6 @@
         "status": "entregue"
       },
       {
-        "id": "order_202",
-        "id_cliente": "12",
-        "dia_semana": "quinta-feira",
-        "cliente": "Casa de Tereza",
-        "produto": "Micro Coentro",
-        "categoria": "Pote",
-        "quantidade": 1,
-        "tipo_venda": "Recorrente Semanal",
-        "observacoes": "",
-        "status": "entregue"
-      },
-      {
         "id": "order_203",
         "id_cliente": "12",
         "dia_semana": "quinta-feira",
@@ -5405,5 +5393,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-09T19:47:09.754Z"
+  "lastUpdate": "2026-06-09T19:47:14.283Z"
 }
