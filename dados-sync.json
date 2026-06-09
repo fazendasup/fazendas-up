@@ -2000,7 +2000,7 @@
         "dia_semana": "quinta-feira",
         "produto": "Micro Coentro",
         "categoria": "",
-        "quantidade": 3,
+        "quantidade": 4,
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "entregue"
@@ -5441,5 +5441,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-09T19:46:15.353Z"
+  "lastUpdate": "2026-06-09T19:46:20.688Z"
 }
