@@ -3696,6 +3696,18 @@
         "tipo_venda": "Recorrente Semanal",
         "observacoes": "",
         "status": "pendente"
+      },
+      {
+        "id": "order_1781037076099_0",
+        "id_cliente": "27",
+        "cliente": "Café de Casa",
+        "dia_semana": "sexta-feira",
+        "produto": "Flores",
+        "categoria": "",
+        "quantidade": 2,
+        "tipo_venda": "Avulso",
+        "observacoes": "",
+        "status": "pendente"
       }
     ],
     "clientes": [
@@ -5393,5 +5405,5 @@
       ]
     }
   },
-  "lastUpdate": "2026-06-09T19:49:06.835Z"
+  "lastUpdate": "2026-06-09T20:31:16.104Z"
 }
