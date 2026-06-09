@@ -12,10 +12,54 @@ const execFileAsync = promisify(execFile);
 const IS_TELEGRAM_HARNESS = process.argv.includes('--telegram-test');
 
 const app = express();
+const APP_PAUSED = true;
+const MAINTENANCE_HTML = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Fazendas Up indisponivel</title>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; font-family: Arial, sans-serif; background: #0f172a; color: #e2e8f0; }
+    main { max-width: 420px; padding: 28px; margin: 16px; border: 1px solid rgba(148, 163, 184, .35); border-radius: 18px; background: rgba(15, 23, 42, .9); text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+    h1 { margin: 0 0 10px; color: #34d399; font-size: 28px; }
+    p { margin: 0; line-height: 1.55; color: #cbd5e1; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Fazendas Up</h1>
+    <p>Sistema temporariamente indisponivel. O acesso foi pausado pela administracao.</p>
+  </main>
+</body>
+</html>`;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use((req, res, next) => {
+  if (!APP_PAUSED) return next();
+
+  if (req.path.startsWith('/api/') || req.path === '/dados-sync.json') {
+    return res
+      .status(503)
+      .set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+      .json({ error: 'service_unavailable', message: 'Fazendas Up temporariamente indisponivel.' });
+  }
+
+  if (req.method === 'GET' || req.method === 'HEAD') {
+    return res
+      .status(503)
+      .set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+      .type('html')
+      .send(MAINTENANCE_HTML);
+  }
+
+  return res.status(503).json({ error: 'service_unavailable' });
+});
 // Evita servir HTML/JSON antigos: sem ETag/Last-Modified o navegador não faz 304 com cópia velha.
 app.use(express.static(__dirname, {
   etag: false,
@@ -3231,6 +3275,10 @@ if (!IS_TELEGRAM_HARNESS) {
 
 // WebSocket
 wss.on('connection', (ws) => {
+  if (APP_PAUSED) {
+    ws.close(1013, 'Fazendas Up temporariamente indisponivel');
+    return;
+  }
   console.log('Cliente conectado');
   
   // Enviar dados atuais

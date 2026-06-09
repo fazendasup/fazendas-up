@@ -8,6 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>Fazendas Up · Central de comando</title>
     <script>
+      window.FAZENDAS_UP_PAUSED = true;
       window.addEventListener('pageshow', function (ev) {
         if (ev.persisted) window.location.reload();
       });
@@ -3145,6 +3146,7 @@ try {
 
 // Solicitar token do GitHub na primeira vez
 function setupGitHubToken() {
+  if (window.FAZENDAS_UP_PAUSED) return;
   if (!localStorage.getItem('githubTokenConfigured')) {
     const token = prompt('Cole seu token do GitHub para sincronização automática:\n\n(Você pode gerar em: https://github.com/settings/tokens)');
     if (token && token.trim()) {
@@ -3166,10 +3168,11 @@ window.addEventListener('load', () => {
     <div id="loginModal" class="modal" style="display: flex;">
         <div class="modal-content login-card-fu" style="max-width: 400px; margin: auto;">
             <h2 class="login-brand-title">Fazendas Up</h2>
-            <p style="text-align: center; color: var(--text-light); margin-bottom: 20px; font-size: 14px;">Selecione seu nível de acesso:</p>
-            <div class="login-actions-fu">
-                <button type="button" class="login-btn-fu login-btn-fu--amber" onclick="setUserRole('operacional')"><span class="login-btn-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>Operacional</button>
-                <button type="button" class="login-btn-fu login-btn-fu--primary" onclick="showAdminPassword()"><span class="login-btn-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></span>Administrativo</button>
+            <p style="text-align: center; color: var(--text); margin: 8px 0 10px; font-size: 16px; font-weight: 700;">Sistema temporariamente indisponível</p>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 0; font-size: 14px; line-height: 1.5;">O acesso ao Fazendas Up foi pausado. Nenhum perfil está autorizado a entrar enquanto esta pausa estiver ativa.</p>
+            <div class="login-actions-fu" style="display: none;">
+                <button type="button" class="login-btn-fu login-btn-fu--amber" disabled><span class="login-btn-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>Operacional</button>
+                <button type="button" class="login-btn-fu login-btn-fu--primary" disabled><span class="login-btn-ic" aria-hidden="true"><svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></span>Administrativo</button>
             </div>
             <div id="adminPasswordDiv" style="display: none; margin-top: 20px;">
                 <input type="password" id="adminPassword" placeholder="Digite a senha" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; box-sizing: border-box;">
@@ -3827,6 +3830,10 @@ const DATA_STORAGE_KEY = 'fazendas-up-data'; // Continuar salvando dados
 const CLIENT_DATA_TS_KEY = 'fazendas-up-client-data-ts';
 
 function setUserRole(role) {
+  if (window.FAZENDAS_UP_PAUSED) {
+    alert('O acesso ao Fazendas Up está temporariamente pausado.');
+    return;
+  }
   userRole = role;
   // Não salvar no localStorage - pedir login toda vez que abrir
   document.getElementById('loginModal').style.display = 'none';
@@ -3836,6 +3843,10 @@ function setUserRole(role) {
 }
 
 function showAdminPassword() {
+  if (window.FAZENDAS_UP_PAUSED) {
+    alert('O acesso ao Fazendas Up está temporariamente pausado.');
+    return;
+  }
   document.getElementById('adminPasswordDiv').style.display = 'block';
   const input = document.getElementById('adminPassword');
   input.focus();
@@ -3848,6 +3859,10 @@ function showAdminPassword() {
 }
 
 function verifyAdminPassword() {
+  if (window.FAZENDAS_UP_PAUSED) {
+    alert('O acesso ao Fazendas Up está temporariamente pausado.');
+    return;
+  }
   const password = document.getElementById('adminPassword').value;
   if (password === 'Fup2026') {
     setUserRole('administrativo');
@@ -3892,6 +3907,12 @@ function logout() {
 
 // Verificar login ao carregar
 window.addEventListener('load', () => {
+  if (window.FAZENDAS_UP_PAUSED) {
+    userRole = null;
+    document.getElementById('loginModal').style.display = 'flex';
+    document.getElementById('appContainer').style.display = 'none';
+    return;
+  }
   if (!userRole) {
     document.getElementById('loginModal').style.display = 'flex';
     document.getElementById('appContainer').style.display = 'none';
@@ -4407,11 +4428,18 @@ function renderDashboard() {
 
 function renderAgenda() {
   const content = document.getElementById('content');
-  
-  const clientesUnicos = [...new Set(appState.data.pedidos.map(p => p.id_cliente))].map(id => {
-    const pedido = appState.data.pedidos.find(p => p.id_cliente === id);
-    return { id, nome: pedido.cliente };
-  }).sort((a, b) => a.nome.localeCompare(b.nome));
+  /** Um id por cliente (string) — evita Set com 5 e "5" e find que falha após salvar pedido. */
+  const clientesPorIdStr = new Map();
+  for (const p of appState.data.pedidos || []) {
+    if (!p || p.id_cliente == null) continue;
+    const key = String(p.id_cliente);
+    if (!clientesPorIdStr.has(key)) {
+      clientesPorIdStr.set(key, { id: p.id_cliente, nome: p.cliente != null ? String(p.cliente) : '' });
+    }
+  }
+  const clientesUnicos = Array.from(clientesPorIdStr.values()).sort((a, b) =>
+    String(a.nome).localeCompare(String(b.nome), 'pt')
+  );
   
   appState.clientesUnicos = clientesUnicos;
   
@@ -4720,17 +4748,19 @@ function renderAgendaList() {
     
     // Aplicar filtro de clientes
     if (appState.agendaClientesFiltro && appState.agendaClientesFiltro.length > 0) {
-      pedidosDia = pedidosDia.filter(p => appState.agendaClientesFiltro.includes(p.id_cliente));
+      const permitidos = new Set((appState.agendaClientesFiltro || []).map((x) => String(x)));
+      pedidosDia = pedidosDia.filter((p) => permitidos.has(String(p.id_cliente)));
     }
     
     // Aplicar filtro de pesquisa
     if (appState.agendaPesquisa) {
       const termo = appState.agendaPesquisa;
-      pedidosDia = pedidosDia.filter(p => 
-        p.cliente.toLowerCase().includes(termo) || 
-        p.produto.toLowerCase().includes(termo) || 
-        (p.observacoes && p.observacoes.toLowerCase().includes(termo))
-      );
+      pedidosDia = pedidosDia.filter((p) => {
+        const cli = p.cliente != null ? String(p.cliente).toLowerCase() : '';
+        const prd = p.produto != null ? String(p.produto).toLowerCase() : '';
+        const obs = p.observacoes != null ? String(p.observacoes).toLowerCase() : '';
+        return cli.includes(termo) || prd.includes(termo) || obs.includes(termo);
+      });
     }
     
     groupedByDay[dia] = pedidosDia;
@@ -4739,13 +4769,14 @@ function renderAgendaList() {
   agendaList.innerHTML = diasParaMostrar.map(dia => {
     const pedidosDia = groupedByDay[dia];
     
-    // Agrupar por cliente
+    // Agrupar por cliente (chave string — evita 5 vs "5" em duas secções)
     const porCliente = {};
-    pedidosDia.forEach(p => {
-      if (!porCliente[p.id_cliente]) {
-        porCliente[p.id_cliente] = { cliente: p.cliente, pedidos: [] };
+    pedidosDia.forEach((p) => {
+      const k = String(p.id_cliente);
+      if (!porCliente[k]) {
+        porCliente[k] = { cliente: p.cliente, pedidos: [] };
       }
-      porCliente[p.id_cliente].pedidos.push(p);
+      porCliente[k].pedidos.push(p);
     });
     
     return `
@@ -5112,7 +5143,7 @@ async function savePedido() {
   try {
   clearPedidoValidationError();
   const clienteId = document.getElementById('pedidoCliente').value;
-  const cliente = appState.data.clientes.find(c => c.id === clienteId);
+  const cliente = appState.data.clientes.find((c) => String(c.id) === String(clienteId));
   
   if (!cliente) {
     setPedidoValidationError('Selecione um cliente para salvar o pedido.', ['pedidoCliente']);
@@ -5151,7 +5182,7 @@ async function savePedido() {
       // Atualizar o primeiro produto no pedido existente
       appState.data.pedidos[idx] = {
         ...appState.data.pedidos[idx],
-        id_cliente: clienteId,
+        id_cliente: cliente.id,
         cliente: cliente.nome,
         dia_semana: diaSemana,
         produto: produtoLines[0].produto,
@@ -5164,7 +5195,7 @@ async function savePedido() {
       for (let i = 1; i < produtoLines.length; i++) {
         appState.data.pedidos.push({
           id: buildOrderId(orderSeed, i),
-          id_cliente: clienteId,
+          id_cliente: cliente.id,
           cliente: cliente.nome,
           dia_semana: diaSemana,
           produto: produtoLines[i].produto,
@@ -5182,7 +5213,7 @@ async function savePedido() {
     produtoLines.forEach((pl, i) => {
       appState.data.pedidos.push({
         id: buildOrderId(orderSeed, i),
-        id_cliente: clienteId,
+        id_cliente: cliente.id,
         cliente: cliente.nome,
         dia_semana: diaSemana,
         produto: pl.produto,
@@ -5204,7 +5235,24 @@ async function savePedido() {
   document.getElementById('produtosContainer').innerHTML = '';
   addProdutoLine();
   closeModal('pedidoModal');
-  renderAgenda();
+  try {
+    if (appState.currentTab === 'agenda') {
+      renderAgenda();
+    } else {
+      renderCurrentTab();
+    }
+  } catch (err) {
+    console.error('[pedido] Falha ao atualizar a tela após salvar:', err);
+    alert(
+      'Pedido gravado, mas houve erro ao atualizar a lista na tela. Recarregue a página (F5) se a agenda não aparecer.\n\n' +
+        (err && err.message ? err.message : String(err))
+    );
+    try {
+      renderCurrentTab();
+    } catch (e2) {
+      console.error(e2);
+    }
+  }
   } finally {
     isSavingPedido = false;
     if (saveBtn) {
@@ -5323,8 +5371,8 @@ async function deleteCliente(id) {
     return;
   }
   if (!confirm('Tem certeza que deseja deletar este cliente?')) return;
-  appState.data.clientes = appState.data.clientes.filter(c => c.id !== id);
-  appState.data.pedidos = appState.data.pedidos.filter(p => p.id_cliente !== id);
+  appState.data.clientes = appState.data.clientes.filter((c) => String(c.id) !== String(id));
+  appState.data.pedidos = appState.data.pedidos.filter((p) => String(p.id_cliente) !== String(id));
   await saveData();
   renderClientes();
 }
@@ -5426,8 +5474,9 @@ function editProduto(nome) {
 
 async function updateClientStatus(clientId, status) {
   const diaKey = diaVisualizacao === 'hoje' ? getCurrentDay() : diaVisualizacao.toLowerCase();
-  appState.data.pedidos.forEach(p => {
-    if (p.id_cliente === clientId && p.dia_semana === diaKey) {
+  const cid = String(clientId);
+  appState.data.pedidos.forEach((p) => {
+    if (String(p.id_cliente) === cid && p.dia_semana === diaKey) {
       p.status = status;
     }
   });
