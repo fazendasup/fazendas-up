@@ -33,6 +33,7 @@ app.use(express.static(__dirname, {
 
 // Arquivo de dados
 const DATA_FILE = path.join(__dirname, 'dados-sync.json');
+const { mountEleicoesApi } = require('./analise-eleitoral-2026/lib/api');
 const TELEGRAM_API_BASE = 'https://api.telegram.org';
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
 const TELEGRAM_ALLOWED_CHAT_IDS = new Set(
@@ -1112,6 +1113,9 @@ wss.on('connection', (ws) => {
     console.log('Cliente desconectado');
   });
 });
+
+// Apuração presidencial 2026 (proxy TSE + projeção ponderada 2018/2022)
+mountEleicoesApi(app);
 
 // API REST para compatibilidade
 app.get('/api/data', (req, res) => {

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>Apuração TSE 2026 — Flávio × Lula</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #efe8dc; --ink: #161616; --muted: #5a5348; --card: #fffaf1;
+      --line: #d4c8b4; --flavio: #184e8c; --lula: #b3261e; --ok: #1f6b3a;
+      --warn: #9a6700; --track: #e4d8c6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.35), transparent 220px),
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(22,22,22,.03) 28px),
+        var(--bg);
+      min-height: 100vh;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 1rem .85rem 3rem; }
+    header { display: flex; flex-wrap: wrap; gap: .85rem; justify-content: space-between; align-items: flex-end; margin-bottom: 1rem; }
+    h1 { font-family: "Source Serif 4", Georgia, serif; font-size: clamp(1.4rem, 4.5vw, 2.2rem); margin: 0 0 .2rem; letter-spacing: -.02em; line-height: 1.1; }
+    .sub { color: var(--muted); font-size: .9rem; max-width: 52ch; margin: 0; }
+    .status { font-family: "IBM Plex Mono", monospace; font-size: .72rem; background: var(--card); border: 1px solid var(--line); padding: .6rem .75rem; min-width: 200px; }
+    .status .dot { display: inline-block; width: .5rem; height: .5rem; border-radius: 50%; background: var(--ok); margin-right: .3rem; }
+    .status.stale .dot, .status.warn .dot { background: var(--warn); }
+    .status.error .dot { background: var(--lula); }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .65rem; margin-bottom: .85rem; }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    .kpi { background: var(--card); border: 1px solid var(--line); padding: .8rem .85rem; }
+    .kpi .label { font-size: .65rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; }
+    .kpi .value { font-family: "Source Serif 4", Georgia, serif; font-size: clamp(1.35rem, 4vw, 1.8rem); font-weight: 700; margin-top: .1rem; line-height: 1.1; }
+    .kpi .hint { font-size: .75rem; color: var(--muted); margin-top: .15rem; }
+    .flavio { color: var(--flavio); } .lula { color: var(--lula); }
+    .panel { background: var(--card); border: 1px solid var(--line); padding: .85rem; margin-bottom: .75rem; }
+    .panel h2 { font-family: "Source Serif 4", Georgia, serif; font-size: 1.05rem; margin: 0 0 .65rem; border-bottom: 1px solid var(--line); padding-bottom: .35rem; }
+    .note { font-size: .8rem; color: var(--muted); border-left: 3px solid var(--warn); padding: .3rem 0 .3rem .65rem; margin: 0 0 .75rem; }
+    .regs { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .5rem; }
+    .reg { border: 1px solid var(--line); padding: .55rem .65rem; background: #fffdf8; }
+    .reg strong { display: block; font-size: .88rem; }
+    .reg .meta { font-family: "IBM Plex Mono", monospace; font-size: .68rem; color: var(--muted); margin: .15rem 0; }
+    .dual { display: grid; grid-template-columns: 1fr 1fr; gap: .2rem; font-size: .78rem; font-weight: 600; }
+    .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: .74rem; font-variant-numeric: tabular-nums; }
+    th, td { padding: .38rem .35rem; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+    th { font-size: .62rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 600; }
+    td.num, th.num { text-align: right; }
+    .bar { height: 8px; background: var(--track); min-width: 60px; }
+    .bar > i { display: block; height: 100%; background: linear-gradient(90deg, #a67c00, #d4a017); }
+    .pill { display: inline-block; font-size: .65rem; font-weight: 600; padding: .08rem .3rem; border: 1px solid currentColor; }
+    .pill.f { color: var(--flavio); } .pill.l { color: var(--lula); }
+    .controls { display: flex; flex-wrap: wrap; gap: .45rem; align-items: center; margin-bottom: .65rem; }
+    button, select { font: inherit; border: 1px solid var(--ink); background: var(--card); padding: .45rem .7rem; cursor: pointer; min-height: 40px; }
+    button.primary { background: var(--ink); color: #fff; }
+    .countdown, #cacheInfo { font-family: "IBM Plex Mono", monospace; font-size: .75rem; color: var(--muted); }
+    footer { margin-top: 1rem; font-size: .72rem; color: var(--muted); }
+    .errbox { background: #fff8e7; border: 1px solid #e0c27a; color: #6a4b00; padding: .7rem .85rem; margin-bottom: .85rem; display: none; font-size: .85rem; }
+    .errbox.bad { background: #fdecea; border-color: #f5c2c0; color: #7a1c16; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Apuração TSE ao vivo — Flávio × Lula</h1>
+        <p class="sub">Captura automática com peso histórico Direita × Esquerda (2018/2022) e projeção do que falta por estado.</p>
+      </div>
+      <div class="status" id="statusBox">
+        <div><span class="dot"></span><span id="statusText">conectando…</span></div>
+        <div id="statusMeta">—</div>
+        <div class="countdown" id="countdown">próxima atualização em 500ms</div>
+      </div>
+    </header>
+
+    <div class="errbox" id="errBox"></div>
+
+    <div class="controls">
+      <button class="primary" id="btnRefresh" type="button">Atualizar agora</button>
+      <label>
+        Ordenar
+        <select id="sortBy">
+          <option value="peso">peso do que falta</option>
+          <option value="falta">% falta</option>
+          <option value="apurado">% apurado</option>
+          <option value="impacto">impacto na margem</option>
+          <option value="margem">margem parcial</option>
+        </select>
+      </label>
+      <span id="cacheInfo"></span>
+    </div>
+
+    <section class="grid" id="kpis"></section>
+    <section class="panel">
+      <h2>Regiões — o que ainda move o placar</h2>
+      <p class="note">Peso = fatia dos votos restantes. Histórico: 2022 1ºT ×0,6 + 2018 2ºT ×0,4 (Bolsonaro × PT).</p>
+      <div class="regs" id="regs"></div>
+    </section>
+    <section class="panel">
+      <h2>Estados — % que falta × projeção ponderada</h2>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>UF</th><th>Estado</th><th class="num">Apurado</th><th>Falta</th><th class="num">% falta</th>
+              <th class="num">Peso</th><th class="num">Flávio</th><th class="num">Lula</th>
+              <th class="num">Hist D</th><th class="num">Hist E</th><th class="num">w hist</th>
+              <th class="num">Proj F</th><th class="num">Proj L</th><th class="num">Impacto</th><th>Líder</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+    <footer>Fonte TSE (EA20). Atualiza em tempo quase real (500ms via API; 2s no modo direto). Polling em milissegundos.</footer>
+  </div>
+
+<script>
+(() => {
+  const REFRESH_MS_API = 500;      // tempo real via servidor/túnel
+  const REFRESH_MS_DIRETO = 2000;  // modo direto TSE (27 arquivos) — mais leve no celular
+  let REFRESH_MS = REFRESH_MS_API;
+  const ELEICAO = '6257';
+  const UFS = ['ac','al','am','ap','ba','ce','df','es','go','ma','mg','ms','mt','pa','pb','pe','pi','pr','rj','rn','ro','rr','rs','sc','se','sp','to','zz'];
+  const UF_META = {
+    AC:['Acre','Norte'],AL:['Alagoas','Nordeste'],AP:['Amapá','Norte'],AM:['Amazonas','Norte'],
+    BA:['Bahia','Nordeste'],CE:['Ceará','Nordeste'],DF:['Distrito Federal','Centro-Oeste'],
+    ES:['Espírito Santo','Sudeste'],GO:['Goiás','Centro-Oeste'],MA:['Maranhão','Nordeste'],
+    MT:['Mato Grosso','Centro-Oeste'],MS:['Mato Grosso do Sul','Centro-Oeste'],MG:['Minas Gerais','Sudeste'],
+    PA:['Pará','Norte'],PB:['Paraíba','Nordeste'],PR:['Paraná','Sul'],PE:['Pernambuco','Nordeste'],
+    PI:['Piauí','Nordeste'],RJ:['Rio de Janeiro','Sudeste'],RN:['Rio Grande do Norte','Nordeste'],
+    RS:['Rio Grande do Sul','Sul'],RO:['Rondônia','Norte'],RR:['Roraima','Norte'],
+    SC:['Santa Catarina','Sul'],SP:['São Paulo','Sudeste'],SE:['Sergipe','Nordeste'],TO:['Tocantins','Norte'],
+    ZZ:['Exterior','Exterior']
+  };
+  // [esquerda, direita] 2022 1T e 2018 2T
+  const H22 = {AC:[29.26,62.5],AL:[56.5,36.05],AP:[45.67,43.41],AM:[49.58,42.8],BA:[69.73,24.31],CE:[65.91,25.38],DF:[36.85,51.65],ES:[40.4,52.23],GO:[39.51,52.16],MA:[68.84,26.02],MT:[34.39,59.84],MS:[39.04,52.7],MG:[48.29,43.6],PA:[52.22,40.27],PB:[64.21,29.62],PR:[35.99,55.26],PE:[65.27,29.91],PI:[74.25,19.9],RJ:[40.68,51.09],RN:[62.98,31.02],RS:[42.28,48.89],RO:[28.98,64.36],RR:[23.05,69.57],SC:[29.54,62.21],SP:[40.89,47.71],SE:[63.82,29.16],TO:[50.4,44],ZZ:[47.17,41.61]};
+  const H18 = {AC:[22.78,77.22],AL:[59.92,40.08],AP:[49.79,50.21],AM:[49.73,50.27],BA:[72.69,27.31],CE:[71.11,28.89],DF:[30.01,69.99],ES:[36.94,63.06],GO:[34.48,65.52],MA:[73.26,26.74],MT:[33.58,66.42],MS:[34.78,65.22],MG:[41.81,58.19],PA:[54.81,45.19],PB:[64.96,35.04],PR:[31.57,68.43],PE:[66.5,33.5],PI:[77.05,22.95],RJ:[32.05,67.95],RN:[63.41,36.59],RS:[36.76,63.24],RO:[27.82,72.18],RR:[28.45,71.55],SC:[24.08,75.92],SP:[32.03,67.97],SE:[67.54,32.46],TO:[51.02,48.98],ZZ:[30,70]};
+
+  let timer=null, tickTimer=null, nextAt=0, lastPayload=null;
+  const $ = (id) => document.getElementById(id);
+  const fmt = (n,d=2) => (n==null||Number.isNaN(n))?'—':Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+  const fmtInt = (n) => (n==null||Number.isNaN(n))?'—':Math.round(n).toLocaleString('pt-BR');
+  const fmtSigned = (n,d=2) => (n==null||Number.isNaN(n))?'—':((Number(n)>=0?'+':'')+fmt(n,d));
+  const clamp = (x,a,b) => Math.max(a, Math.min(b,x));
+
+  function pct(s){
+    if(s==null) return 0;
+    let t=String(s).trim(); if(!t) return 0;
+    if(t.includes(',')&&t.includes('.')) t=t.replace(/\./g,'');
+    return Number(t.replace(',','.'))||0;
+  }
+  function num(s){ return s==null?0:Number(String(s).replace(/[.\s]/g,'').replace(',',''))||0; }
+
+  function hist(uf){
+    const a=H22[uf], b=H18[uf]; if(!a||!b) return null;
+    const e=0.6*a[0]+0.4*b[0], d=0.6*a[1]+0.4*b[1];
+    return {esquerda_peso:e, direita_peso:d, margem_hist:d-e, esquerda_2022:a[0], direita_2022:a[1], esquerda_2018:b[0], direita_2018:b[1]};
+  }
+
+  function extractCands(d){
+    const by={};
+    for(const cargo of d.carg||[]){
+      for(const agr of [...(cargo.agr||[]),...(cargo.fed||[])]){
+        for(const par of agr.par||[]){
+          for(const c of par.cand||[]){
+            by[c.n]={numero:c.n, nome:c.nmu||c.nm, partido:par.sg||agr.com||agr.sg, votos:num(c.vap), pct:pct(c.pvap)};
+          }
+        }
+      }
+    }
+    return Object.values(by).sort((a,b)=>b.votos-a.votos);
+  }
+
+  function parseUf(d){
+    const cands=extractCands(d);
+    const f=cands.find(c=>c.numero==='22');
+    const l=cands.find(c=>c.numero==='13');
+    const uf=String(d.cdabr||'').toUpperCase();
+    const meta=UF_META[uf]||[uf,''];
+    return {
+      uf, nome:meta[0], regiao:meta[1],
+      atualizado:`${d.dt||''} ${d.ht||''}`.trim(),
+      pct_secoes:pct(d.s?.pst), secoes_totalizadas:num(d.s?.st), secoes_total:num(d.s?.ts),
+      secoes_faltam:num(d.s?.snt), votos_validos:num(d.v?.vv),
+      flavio_pct:f?f.pct:0, flavio_votos:f?f.votos:0,
+      lula_pct:l?l.pct:0, lula_votos:l?l.votos:0,
+      margem:(f&&l)?f.pct-l.pct:0, lider:(f&&l&&f.votos>=l.votos)?'Flávio':'Lula',
+      hist:hist(uf), cands
+    };
+  }
+
+  function projetar(ufs){
+    const estados=ufs.map(u=>{
+      const pctAp=u.pct_secoes, pctFalta=Math.max(0,100-pctAp);
+      if(pctAp<=0.01||u.votos_validos<=0){
+        return {...u,pct_falta:pctFalta,skip:true,votos_restantes:0,restantes_flavio:0,restantes_lula:0,peso_nacional_restante:0,impacto_margem_nacional_pp:0,proj_flavio_pct_final:null,proj_lula_pct_final:null,w_hist:null};
+      }
+      const estV=u.votos_validos/(pctAp/100);
+      const rest=Math.max(0,estV-u.votos_validos);
+      const aF=u.flavio_pct/100, aL=u.lula_pct/100, aO=Math.max(0,1-aF-aL);
+      const h=u.hist;
+      const hD=h?h.direita_peso/100:aF, hE=h?h.esquerda_peso/100:aL;
+      const pol=Math.max(hD+hE,0.01), esp=1-aO;
+      const hF=esp*(hD/pol), hL=esp*(hE/pol);
+      const wH=clamp(pctFalta/100,0.15,0.75), wA=1-wH;
+      let sF=wA*aF+wH*hF, sL=wA*aL+wH*hL, sO=aO;
+      const sum=sF+sL+sO; sF/=sum; sL/=sum; sO/=sum;
+      const rF=rest*sF, rL=rest*sL;
+      const pF=100*(u.flavio_votos+rF)/estV, pL=100*(u.lula_votos+rL)/estV;
+      return {
+        ...u, pct_falta:pctFalta, skip:false, w_hist:wH,
+        estimativa_validos_total:estV, votos_restantes:rest,
+        restantes_flavio:rF, restantes_lula:rL,
+        proj_flavio_votos:u.flavio_votos+rF, proj_lula_votos:u.lula_votos+rL,
+        proj_flavio_pct_final:pF, proj_lula_pct_final:pL, margem_parcial:u.margem
+      };
+    });
+    const ativos=estados.filter(e=>!e.skip);
+    const somaRest=ativos.reduce((s,e)=>s+e.votos_restantes,0)||1;
+    const totF=ativos.reduce((s,e)=>s+e.proj_flavio_votos,0);
+    const totL=ativos.reduce((s,e)=>s+e.proj_lula_votos,0);
+    const totV=ativos.reduce((s,e)=>s+e.estimativa_validos_total,0);
+    for(const e of estados){
+      e.peso_nacional_restante=e.skip?0:(100*e.votos_restantes)/somaRest;
+      e.impacto_margem_nacional_pp=e.skip?0:(100*(e.restantes_flavio-e.restantes_lula))/totV;
+    }
+    const secTot=ufs.reduce((s,u)=>s+u.secoes_total,0);
+    const secAp=ufs.reduce((s,u)=>s+u.secoes_totalizadas,0);
+    const vF=ufs.reduce((s,u)=>s+u.flavio_votos,0);
+    const vL=ufs.reduce((s,u)=>s+u.lula_votos,0);
+    const vV=ufs.reduce((s,u)=>s+u.votos_validos,0);
+    const pctSec=secTot?(100*secAp)/secTot:0;
+    const fPct=vV?(100*vF)/vV:0, lPct=vV?(100*vL)/vV:0;
+    const recent=[...ufs].sort((a,b)=>String(b.atualizado).localeCompare(String(a.atualizado)))[0];
+    const projF=totV?(100*totF)/totV:0, projL=totV?(100*totL)/totV:0;
+
+    const regioesMap={};
+    for(const e of ativos){
+      const r=e.regiao||'Outros';
+      if(!regioesMap[r]) regioesMap[r]={regiao:r,pct_w:0,sec:0,f:0,l:0,v:0,rest:0,pf:0,pl:0,pv:0};
+      const g=regioesMap[r];
+      g.pct_w+=e.pct_secoes*e.secoes_total; g.sec+=e.secoes_total;
+      g.f+=e.flavio_votos; g.l+=e.lula_votos; g.v+=e.votos_validos; g.rest+=e.votos_restantes;
+      g.pf+=e.proj_flavio_votos; g.pl+=e.proj_lula_votos; g.pv+=e.estimativa_validos_total;
+    }
+    const regioes=Object.values(regioesMap).map(g=>({
+      regiao:g.regiao,
+      pct_secoes:g.sec?g.pct_w/g.sec:0,
+      pct_falta:g.sec?100-g.pct_w/g.sec:0,
+      flavio_pct_parcial:g.v?(100*g.f)/g.v:0,
+      lula_pct_parcial:g.v?(100*g.l)/g.v:0,
+      peso_nacional_restante:(100*g.rest)/somaRest,
+      proj_flavio_pct:g.pv?(100*g.pf)/g.pv:0,
+      proj_lula_pct:g.pv?(100*g.pl)/g.pv:0
+    })).sort((a,b)=>b.peso_nacional_restante-a.peso_nacional_restante);
+
+    estados.sort((a,b)=>b.peso_nacional_restante-a.peso_nacional_restante);
+    return {
+      ok:true,
+      capturado_em:new Date().toISOString(),
+      modo:'direto-tse',
+      avisos:[],
+      nacional_parcial:{
+        fonte:'agregacao_ufs', pct_secoes:pctSec, pct_falta:Math.max(0,100-pctSec),
+        atualizado:recent?.atualizado||'', flavio_pct:fPct, lula_pct:lPct,
+        flavio_votos:vF, lula_votos:vL, margem:fPct-lPct, votos_validos:vV
+      },
+      nacional_projetado:{
+        flavio_pct:projF, lula_pct:projL, margem:projF-projL,
+        votos_restantes:somaRest, ajuste_margem_pp:projF-projL-(fPct-lPct),
+        chance_primeiro_turno:projF>50?'matematicamente possível':'tendência de 2º turno'
+      },
+      estados, regioes
+    };
+  }
+
+  function tseUrl(uf){
+    const u=uf.toLowerCase();
+    return `https://resultados.tse.jus.br/oficial/ele2026/${ELEICAO}/dados/${u}/${u}-c0001-e00${ELEICAO}-u.json`;
+  }
+
+  async function fetchJson(url){
+    // 1) direto
+    try{
+      const r=await fetch(url,{cache:'no-store',mode:'cors'});
+      if(r.ok) return r.json();
+    }catch(_){}
+    // 2) proxies CORS públicos
+    const proxies=[
+      (u)=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+      (u)=>`https://corsproxy.io/?${encodeURIComponent(u)}`,
+    ];
+    let lastErr;
+    for(const p of proxies){
+      try{
+        const r=await fetch(p(url),{cache:'no-store'});
+        if(!r.ok) throw new Error('HTTP '+r.status);
+        return await r.json();
+      }catch(e){ lastErr=e; }
+    }
+    throw lastErr||new Error('falha fetch');
+  }
+
+  const melhorUf = new Map(); // merge monotônico no modo direto
+
+  function ehMaisAvancado(novo, antigo){
+    if(!antigo) return true;
+    if(novo.secoes_totalizadas > antigo.secoes_totalizadas) return true;
+    if(novo.secoes_totalizadas < antigo.secoes_totalizadas) return false;
+    if(novo.votos_validos > antigo.votos_validos) return true;
+    if(novo.votos_validos < antigo.votos_validos) return false;
+    if(novo.flavio_votos < antigo.flavio_votos) return false;
+    if(novo.lula_votos < antigo.lula_votos) return false;
+    if(novo.flavio_votos > antigo.flavio_votos || novo.lula_votos > antigo.lula_votos) return true;
+    return String(novo.atualizado||'') >= String(antigo.atualizado||'');
+  }
+
+  async function capturarDireto(){
+    const alvos=[...UFS];
+    const erros=[];
+    let descartados=0;
+    // lotes para não saturar mobile
+    for(let i=0;i<alvos.length;i+=6){
+      const lote=alvos.slice(i,i+6);
+      const settled=await Promise.allSettled(lote.map(async uf=>{
+        const raw=await fetchJson(tseUrl(uf)+`?_=${Date.now().toString(36)}`);
+        return parseUf(raw);
+      }));
+      settled.forEach((r,j)=>{
+        if(r.status==='fulfilled'){
+          const row=r.value;
+          const prev=melhorUf.get(row.uf);
+          if(ehMaisAvancado(row, prev)) melhorUf.set(row.uf, row);
+          else descartados++;
+        } else {
+          erros.push({uf:lote[j].toUpperCase(), erro:String(r.reason?.message||r.reason)});
+        }
+      });
+    }
+    const out=UFS.map(u=>melhorUf.get(u.toUpperCase())).filter(Boolean);
+    if(out.length<20) throw new Error(`Poucas UFs carregadas (${out.length}/28)`);
+    const data=projetar(out);
+    data.monotonic=true;
+    if(erros.length) data.avisos.push(`${erros.length} UF(s) falharam: ${erros.map(e=>e.uf).join(', ')}`);
+    if(descartados) data.avisos.push(`${descartados} resposta(s) antigas da CDN ignoradas (evita votos descendo).`);
+    data.erros_ufs=erros;
+    return data;
+  }
+
+  async function capturarViaApiLocal(force=false){
+    const q = force ? '?refresh=1' : '';
+    const r=await fetch('/api/eleicoes/2026/apuracao'+q,{cache:'no-store'});
+    if(!r.ok) throw new Error('API local HTTP '+r.status);
+    const d=await r.json();
+    if(!d.ok && d.error) throw new Error(d.error);
+    d.modo='api-local';
+    return d;
+  }
+
+  async function capturar(force=false){
+    // tenta API local (se existir), senão vai direto no TSE
+    try{
+      if(location.port==='3001' || location.hostname==='localhost' || location.hostname==='127.0.0.1' || location.hostname.endsWith('.trycloudflare.com') || location.hostname.endsWith('.loca.lt') || location.hostname.includes('bore.pub')){
+        REFRESH_MS = REFRESH_MS_API;
+        return await capturarViaApiLocal(force);
+      }
+    }catch(_){}
+    try{
+      REFRESH_MS = REFRESH_MS_API;
+      return await capturarViaApiLocal(force);
+    }catch(_){
+      REFRESH_MS = REFRESH_MS_DIRETO;
+      return await capturarDireto();
+    }
+  }
+
+  function fmtHoraMs(isoOrDate){
+    const d = isoOrDate instanceof Date ? isoOrDate : new Date(isoOrDate);
+    return d.toLocaleTimeString('pt-BR', { hour12:false, hour:'2-digit', minute:'2-digit', second:'2-digit', fractionalSecondDigits: 3 });
+  }
+
+  function setStatus(kind,text,meta){
+    $('statusBox').className='status'+(kind?' '+kind:'');
+    $('statusText').textContent=text;
+    $('statusMeta').textContent=meta||'';
+  }
+
+  function renderKpis(data){
+    const p=data.nacional_parcial, j=data.nacional_projetado;
+    $('kpis').innerHTML=`
+      <div class="kpi"><div class="label">Flávio — parcial</div><div class="value flavio">${fmt(p.flavio_pct)}%</div>
+        <div class="hint">${fmtInt(p.flavio_votos)} votos · margem ${fmtSigned(p.margem)} pp</div></div>
+      <div class="kpi"><div class="label">Lula — parcial</div><div class="value lula">${fmt(p.lula_pct)}%</div>
+        <div class="hint">${fmtInt(p.lula_votos)} votos · Brasil ${fmt(p.pct_secoes)}% apurado</div></div>
+      <div class="kpi"><div class="label">Projeção ponderada</div>
+        <div class="value"><span class="flavio">${fmt(j.flavio_pct)}%</span> × <span class="lula">${fmt(j.lula_pct)}%</span></div>
+        <div class="hint">ajuste ${fmtSigned(j.ajuste_margem_pp)} pp · ${j.chance_primeiro_turno}</div></div>
+      <div class="kpi"><div class="label">Ainda falta</div><div class="value">${fmt(p.pct_falta,1)}%</div>
+        <div class="hint">~${fmtInt(j.votos_restantes)} válidos restantes</div></div>`;
+  }
+
+  function renderRegs(regs){
+    $('regs').innerHTML=(regs||[]).map(r=>`
+      <div class="reg"><strong>${r.regiao}</strong>
+        <div class="meta">falta ${fmt(r.pct_falta,1)}% · peso ${fmt(r.peso_nacional_restante,1)}%</div>
+        <div class="dual"><span class="flavio">F ${fmt(r.proj_flavio_pct,1)}%</span>
+        <span class="lula">L ${fmt(r.proj_lula_pct,1)}%</span></div>
+        <div class="meta">parcial ${fmt(r.flavio_pct_parcial,1)} × ${fmt(r.lula_pct_parcial,1)}</div>
+      </div>`).join('');
+  }
+
+  function sortedEstados(estados){
+    const key=$('sortBy').value;
+    const arr=[...estados];
+    const cmp={
+      peso:(a,b)=>b.peso_nacional_restante-a.peso_nacional_restante,
+      falta:(a,b)=>b.pct_falta-a.pct_falta,
+      apurado:(a,b)=>b.pct_secoes-a.pct_secoes,
+      impacto:(a,b)=>Math.abs(b.impacto_margem_nacional_pp||0)-Math.abs(a.impacto_margem_nacional_pp||0),
+      margem:(a,b)=>(b.margem_parcial||b.margem||0)-(a.margem_parcial||a.margem||0)
+    }[key];
+    arr.sort(cmp); return arr;
+  }
+
+  function renderTable(data){
+    $('tbody').innerHTML=sortedEstados(data.estados).map(e=>{
+      const lider=(e.proj_flavio_pct_final??e.flavio_pct)>=(e.proj_lula_pct_final??e.lula_pct)?'Flávio':'Lula';
+      return `<tr>
+        <td><strong>${e.uf}</strong></td><td>${e.nome}</td>
+        <td class="num">${fmt(e.pct_secoes,1)}%</td>
+        <td><div class="bar"><i style="width:${Math.min(100,e.pct_falta||0)}%"></i></div></td>
+        <td class="num">${fmt(e.pct_falta,1)}%</td>
+        <td class="num"><strong>${fmt(e.peso_nacional_restante,1)}%</strong></td>
+        <td class="num flavio">${fmt(e.flavio_pct,1)}%</td>
+        <td class="num lula">${fmt(e.lula_pct,1)}%</td>
+        <td class="num">${e.hist?fmt(e.hist.direita_peso,1)+'%':'—'}</td>
+        <td class="num">${e.hist?fmt(e.hist.esquerda_peso,1)+'%':'—'}</td>
+        <td class="num">${e.w_hist==null?'—':fmt(e.w_hist*100,0)+'%'}</td>
+        <td class="num flavio">${e.proj_flavio_pct_final==null?'—':fmt(e.proj_flavio_pct_final,1)+'%'}</td>
+        <td class="num lula">${e.proj_lula_pct_final==null?'—':fmt(e.proj_lula_pct_final,1)+'%'}</td>
+        <td class="num">${fmtSigned(e.impacto_margem_nacional_pp,2)}</td>
+        <td><span class="pill ${lider==='Flávio'?'f':'l'}">${lider}</span></td>
+      </tr>`;
+    }).join('');
+  }
+
+  function render(data){
+    lastPayload=data;
+    renderKpis(data); renderRegs(data.regioes); renderTable(data);
+    const age = data.cache && data.cache.age_ms != null ? data.cache.age_ms : 0;
+    setStatus('', 'ao vivo'+(data.modo?' · '+data.modo:''),
+      `TSE ${data.nacional_parcial.atualizado} · capturado ${fmtHoraMs(data.capturado_em)}`);
+    $('cacheInfo').textContent = data.modo==='api-local'
+      ? `via servidor · ciclo ${REFRESH_MS}ms · cache ${Math.round(age)}ms`
+      : `direto TSE · ciclo ${REFRESH_MS}ms`;
+    const avisos=[...(data.avisos||[])];
+    if(data.stale_error) avisos.unshift(data.stale_error);
+    if(data.br_oficial?.atrasado){
+      avisos.push(`BR oficial atrasado: ${fmt(data.br_oficial.flavio_pct)}% × ${fmt(data.br_oficial.lula_pct)}% (${fmt(data.br_oficial.pct_secoes)}%)`);
+    }
+    $('errBox').className='errbox';
+    $('errBox').style.display=avisos.length?'block':'none';
+    $('errBox').textContent=avisos.join(' · ');
+  }
+
+  let loading=false;
+  async function load(force=false){
+    if(loading && !force) return; // evita fila no ciclo de 500ms
+    loading=true;
+    try{
+      const data=await capturar(force);
+      render(data);
+    }catch(e){
+      setStatus('error','falha na captura', String(e.message||e));
+      $('errBox').className='errbox bad';
+      $('errBox').style.display='block';
+      $('errBox').textContent='Erro: '+(e.message||e)+'. Toque em Atualizar agora.';
+    }finally{
+      loading=false;
+      nextAt=Date.now()+REFRESH_MS;
+    }
+  }
+
+  function schedule(){
+    clearInterval(timer); clearInterval(tickTimer);
+    timer=setInterval(()=>load(false), REFRESH_MS);
+    tickTimer=setInterval(()=>{
+      const left=Math.max(0, nextAt-Date.now());
+      $('countdown').textContent='próxima atualização em '+left+'ms';
+    }, 50);
+  }
+
+  $('btnRefresh').onclick=()=>{ load(true); schedule(); };
+  $('sortBy').onchange=()=>{ if(lastPayload) renderTable(lastPayload); };
+  load(true); schedule();
+})();
+</script>
+</body>
+</html>
