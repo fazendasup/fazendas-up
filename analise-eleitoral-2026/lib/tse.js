@@ -124,9 +124,9 @@ async function capturarTse() {
   const resultados = [];
   const erros = [];
 
-  // lotes de 8 para não estourar conexão
-  for (let i = 0; i < alvos.length; i += 8) {
-    const lote = alvos.slice(i, i + 8);
+  // lotes maiores — captura completa mais rápida para polling em ms
+  for (let i = 0; i < alvos.length; i += 14) {
+    const lote = alvos.slice(i, i + 14);
     const settled = await Promise.allSettled(
       lote.map(async (uf) => {
         const raw = await fetchJson(ufUrl(uf));
