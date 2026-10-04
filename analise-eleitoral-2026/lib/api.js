@@ -9,7 +9,8 @@ let cache = {
   inflight: null,
 };
 
-const CACHE_TTL_MS = 12_000; // um pouco abaixo dos 15s do front
+/** Cache curto para polling em tempo quase real (ms). */
+const CACHE_TTL_MS = 350;
 
 async function buildPayload() {
   const { br, ufs, erros, capturado_em } = await capturarTse();
@@ -18,7 +19,7 @@ async function buildPayload() {
     ok: true,
     capturado_em,
     fonte: 'TSE resultados oficiais (EA20, eleição 6257)',
-    refresh_sugerido_s: 15,
+    refresh_sugerido_ms: 500,
     erros_ufs: erros,
     ...analise,
   };

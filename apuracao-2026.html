@@ -75,7 +75,7 @@
       <div class="status" id="statusBox">
         <div><span class="dot"></span><span id="statusText">conectando…</span></div>
         <div id="statusMeta">—</div>
-        <div class="countdown" id="countdown">próxima atualização em 15s</div>
+        <div class="countdown" id="countdown">próxima atualização em 500ms</div>
       </div>
     </header>
 
@@ -118,12 +118,14 @@
         </table>
       </div>
     </section>
-    <footer>Fonte TSE (EA20). Atualiza a cada 15s. Funciona no celular sem servidor local (modo direto + proxies CORS).</footer>
+    <footer>Fonte TSE (EA20). Atualiza em tempo quase real (500ms via API; 2s no modo direto). Polling em milissegundos.</footer>
   </div>
 
 <script>
 (() => {
-  const REFRESH_MS = 15000;
+  const REFRESH_MS_API = 500;      // tempo real via servidor/túnel
+  const REFRESH_MS_DIRETO = 2000;  // modo direto TSE (27 arquivos) — mais leve no celular
+  let REFRESH_MS = REFRESH_MS_API;
   const ELEICAO = '6257';
   const UFS = ['ac','al','am','ap','ba','ce','df','es','go','ma','mg','ms','mt','pa','pb','pe','pi','pr','rj','rn','ro','rr','rs','sc','se','sp','to'];
   const UF_META = {
@@ -327,8 +329,9 @@
     return data;
   }
 
-  async function capturarViaApiLocal(){
-    const r=await fetch('/api/eleicoes/2026/apuracao?refresh=1',{cache:'no-store'});
+  async function capturarViaApiLocal(force=false){
+    const q = force ? '?refresh=1' : '';
+    const r=await fetch('/api/eleicoes/2026/apuracao'+q,{cache:'no-store'});
     if(!r.ok) throw new Error('API local HTTP '+r.status);
     const d=await r.json();
     if(!d.ok && d.error) throw new Error(d.error);
@@ -336,15 +339,26 @@
     return d;
   }
 
-  async function capturar(){
+  async function capturar(force=false){
     // tenta API local (se existir), senão vai direto no TSE
     try{
-      if(location.port==='3001' || location.hostname==='localhost' || location.hostname==='127.0.0.1'){
-        return await capturarViaApiLocal();
+      if(location.port==='3001' || location.hostname==='localhost' || location.hostname==='127.0.0.1' || location.hostname.endsWith('.trycloudflare.com') || location.hostname.endsWith('.loca.lt') || location.hostname.includes('bore.pub')){
+        REFRESH_MS = REFRESH_MS_API;
+        return await capturarViaApiLocal(force);
       }
     }catch(_){}
-    try{ return await capturarViaApiLocal(); }
-    catch(_){ return await capturarDireto(); }
+    try{
+      REFRESH_MS = REFRESH_MS_API;
+      return await capturarViaApiLocal(force);
+    }catch(_){
+      REFRESH_MS = REFRESH_MS_DIRETO;
+      return await capturarDireto();
+    }
+  }
+
+  function fmtHoraMs(isoOrDate){
+    const d = isoOrDate instanceof Date ? isoOrDate : new Date(isoOrDate);
+    return d.toLocaleTimeString('pt-BR', { hour12:false, hour:'2-digit', minute:'2-digit', second:'2-digit', fractionalSecondDigits: 3 });
   }
 
   function setStatus(kind,text,meta){
@@ -415,9 +429,12 @@
   function render(data){
     lastPayload=data;
     renderKpis(data); renderRegs(data.regioes); renderTable(data);
+    const age = data.cache && data.cache.age_ms != null ? data.cache.age_ms : 0;
     setStatus('', 'ao vivo'+(data.modo?' · '+data.modo:''),
-      `UFs ${data.nacional_parcial.atualizado} · ${new Date(data.capturado_em).toLocaleTimeString('pt-BR')}`);
-    $('cacheInfo').textContent = data.modo==='api-local' ? 'via servidor' : 'direto TSE';
+      `TSE ${data.nacional_parcial.atualizado} · capturado ${fmtHoraMs(data.capturado_em)}`);
+    $('cacheInfo').textContent = data.modo==='api-local'
+      ? `via servidor · ciclo ${REFRESH_MS}ms · cache ${Math.round(age)}ms`
+      : `direto TSE · ciclo ${REFRESH_MS}ms`;
     const avisos=[...(data.avisos||[])];
     if(data.stale_error) avisos.unshift(data.stale_error);
     if(data.br_oficial?.atrasado){
@@ -428,10 +445,12 @@
     $('errBox').textContent=avisos.join(' · ');
   }
 
-  async function load(){
+  let loading=false;
+  async function load(force=false){
+    if(loading && !force) return; // evita fila no ciclo de 500ms
+    loading=true;
     try{
-      setStatus('warn','atualizando…',$('statusMeta').textContent);
-      const data=await capturar();
+      const data=await capturar(force);
       render(data);
     }catch(e){
       setStatus('error','falha na captura', String(e.message||e));
@@ -439,22 +458,23 @@
       $('errBox').style.display='block';
       $('errBox').textContent='Erro: '+(e.message||e)+'. Toque em Atualizar agora.';
     }finally{
+      loading=false;
       nextAt=Date.now()+REFRESH_MS;
     }
   }
 
   function schedule(){
     clearInterval(timer); clearInterval(tickTimer);
-    timer=setInterval(load, REFRESH_MS);
+    timer=setInterval(()=>load(false), REFRESH_MS);
     tickTimer=setInterval(()=>{
-      const left=Math.max(0, Math.ceil((nextAt-Date.now())/1000));
-      $('countdown').textContent='próxima atualização em '+left+'s';
-    },250);
+      const left=Math.max(0, nextAt-Date.now());
+      $('countdown').textContent='próxima atualização em '+left+'ms';
+    }, 50);
   }
 
-  $('btnRefresh').onclick=()=>{ load(); schedule(); };
+  $('btnRefresh').onclick=()=>{ load(true); schedule(); };
   $('sortBy').onchange=()=>{ if(lastPayload) renderTable(lastPayload); };
-  load(); schedule();
+  load(true); schedule();
 })();
 </script>
 </body>
