@@ -206,24 +206,61 @@ function projetarNacional(br, ufs) {
 
   estados.sort((a, b) => b.peso_nacional_restante - a.peso_nacional_restante);
 
+  // Nacional parcial = soma das UFs (o arquivo BR do TSE às vezes atrasa/trava na CDN)
+  const secTot = ufs.reduce((s, u) => s + (u.secoes_total || 0), 0);
+  const secAp = ufs.reduce((s, u) => s + (u.secoes_totalizadas || 0), 0);
+  const votosF = ufs.reduce((s, u) => s + (u.flavio_votos || 0), 0);
+  const votosL = ufs.reduce((s, u) => s + (u.lula_votos || 0), 0);
+  const votosV = ufs.reduce((s, u) => s + (u.votos_validos || 0), 0);
+  const pctSecoesUf = secTot ? (100 * secAp) / secTot : 0;
+  const flavioPctUf = votosV ? (100 * votosF) / votosV : 0;
+  const lulaPctUf = votosV ? (100 * votosL) / votosV : 0;
+  const margemUf = flavioPctUf - lulaPctUf;
+
+  const ufMaisRecente = [...ufs].sort((a, b) =>
+    String(b.atualizado || '').localeCompare(String(a.atualizado || ''))
+  )[0];
+
+  const brAtrasado =
+    Boolean(br) &&
+    (br.pct_secoes + 1.5 < pctSecoesUf || // BR bem atrás das UFs
+      String(br.atualizado || '') < String(ufMaisRecente?.atualizado || ''));
+
   return {
     metodo: {
       descricao:
-        'Blend parcial atual × histórico Direita/Esquerda (2018 2ºT peso 0,4 + 2022 1ºT peso 0,6), com w_hist = clamp(% falta, 15%, 75%).',
+        'Blend parcial atual × histórico Direita/Esquerda (2018 2ºT peso 0,4 + 2022 1ºT peso 0,6), com w_hist = clamp(% falta, 15%, 75%). Nacional parcial agregado pelas 27 UFs (mais atual que o arquivo BR quando a CDN atrasa).',
       candidatos: { direita: 'Flávio Bolsonaro (22)', esquerda: 'Lula (13)' },
     },
+    avisos: [
+      ...(brAtrasado
+        ? [
+            `Arquivo nacional BR do TSE atrasado (${br.atualizado}, ${br.pct_secoes.toFixed(2).replace('.', ',')}% seções). Usando agregação das UFs (${pctSecoesUf.toFixed(2).replace('.', ',')}%).`,
+          ]
+        : []),
+    ],
+    br_oficial: br
+      ? {
+          atualizado: br.atualizado,
+          pct_secoes: br.pct_secoes,
+          flavio_pct: br.flavio_pct,
+          lula_pct: br.lula_pct,
+          atrasado: brAtrasado,
+        }
+      : null,
     nacional_parcial: {
-      pct_secoes: br.pct_secoes,
-      pct_falta: Math.max(0, 100 - br.pct_secoes),
-      atualizado: br.atualizado,
-      flavio_pct: br.flavio_pct,
-      lula_pct: br.lula_pct,
-      flavio_votos: br.flavio_votos,
-      lula_votos: br.lula_votos,
-      margem: br.margem,
-      votos_validos: br.votos_validos,
-      comparecimento: br.comparecimento,
-      top: (br.cands || []).slice(0, 6).map(({ nome, partido, pct, votos, numero }) => ({
+      fonte: 'agregacao_ufs',
+      pct_secoes: pctSecoesUf,
+      pct_falta: Math.max(0, 100 - pctSecoesUf),
+      atualizado: ufMaisRecente?.atualizado || br?.atualizado || '',
+      flavio_pct: flavioPctUf,
+      lula_pct: lulaPctUf,
+      flavio_votos: votosF,
+      lula_votos: votosL,
+      margem: margemUf,
+      votos_validos: votosV,
+      comparecimento: br?.comparecimento ?? null,
+      top: (br?.cands || []).slice(0, 6).map(({ nome, partido, pct, votos, numero }) => ({
         nome,
         partido,
         pct,
@@ -241,7 +278,7 @@ function projetarNacional(br, ufs) {
       votos_restantes: somaRest,
       restantes_flavio: restF,
       restantes_lula: restL,
-      ajuste_margem_pp: projF - projL - br.margem,
+      ajuste_margem_pp: projF - projL - margemUf,
       chance_primeiro_turno: projF > 50 ? 'matematicamente possível' : 'tendência de 2º turno',
     },
     estados,

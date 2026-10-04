@@ -354,14 +354,25 @@
       setStatus(
         data.stale ? 'stale' : '',
         'ao vivo' + stale,
-        `TSE ${data.nacional_parcial.atualizado} · captura ${new Date(data.capturado_em).toLocaleTimeString('pt-BR')}`
+        `UFs ${data.nacional_parcial.atualizado} · captura ${new Date(data.capturado_em).toLocaleTimeString('pt-BR')}`
       );
       const cache = data.cache || {};
       $('cacheInfo').textContent = cache.hit
         ? `cache ${Math.round((cache.age_ms || 0) / 1000)}s`
         : 'fresh do TSE';
-      $('errBox').style.display = data.stale_error ? 'block' : 'none';
-      if (data.stale_error) $('errBox').textContent = 'Aviso: ' + data.stale_error;
+      const avisos = [];
+      if (data.stale_error) avisos.push(data.stale_error);
+      if (Array.isArray(data.avisos)) avisos.push(...data.avisos);
+      if (data.br_oficial?.atrasado) {
+        avisos.push(
+          `BR oficial TSE: ${fmt(data.br_oficial.flavio_pct)}% × ${fmt(data.br_oficial.lula_pct)}% (${fmt(data.br_oficial.pct_secoes)}% · ${data.br_oficial.atualizado})`
+        );
+      }
+      $('errBox').style.display = avisos.length ? 'block' : 'none';
+      $('errBox').textContent = avisos.join(' · ');
+      if (avisos.length) $('errBox').style.background = '#fff8e7';
+      if (avisos.length) $('errBox').style.borderColor = '#e0c27a';
+      if (avisos.length) $('errBox').style.color = '#6a4b00';
     }
 
     async function load(force = false) {
