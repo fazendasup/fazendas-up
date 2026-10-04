@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>Apuração TSE 2026 — Flávio × Lula (projeção ponderada)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #efe8dc;
+      --ink: #161616;
+      --muted: #5a5348;
+      --card: #fffaf1;
+      --line: #d4c8b4;
+      --flavio: #184e8c;
+      --lula: #b3261e;
+      --ok: #1f6b3a;
+      --warn: #9a6700;
+      --track: #e4d8c6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.35), transparent 220px),
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(22,22,22,.03) 28px),
+        var(--bg);
+      min-height: 100vh;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+    header {
+      display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(1.55rem, 3.5vw, 2.35rem);
+      margin: 0 0 .25rem;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+    }
+    .sub { color: var(--muted); font-size: .95rem; max-width: 52ch; }
+    .status {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .78rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: .65rem .8rem;
+      min-width: 220px;
+    }
+    .status .dot {
+      display: inline-block; width: .55rem; height: .55rem; border-radius: 50%;
+      background: var(--ok); margin-right: .35rem; vertical-align: middle;
+    }
+    .status.stale .dot { background: var(--warn); }
+    .status.error .dot { background: var(--lula); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .75rem;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+    .kpi {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: .9rem 1rem;
+    }
+    .kpi .label {
+      font-size: .68rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted);
+      font-weight: 600;
+    }
+    .kpi .value {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 1.85rem; font-weight: 700; margin-top: .15rem; line-height: 1.1;
+    }
+    .kpi .hint { font-size: .8rem; color: var(--muted); margin-top: .2rem; }
+    .flavio { color: var(--flavio); }
+    .lula { color: var(--lula); }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 1rem;
+      margin-bottom: .85rem;
+    }
+    .panel h2 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 1.15rem;
+      margin: 0 0 .75rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: .4rem;
+    }
+    .note {
+      font-size: .86rem; color: var(--muted);
+      border-left: 3px solid var(--warn);
+      padding: .35rem 0 .35rem .7rem;
+      margin: 0 0 .9rem;
+    }
+    .regs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: .6rem;
+      margin-bottom: .5rem;
+    }
+    .reg {
+      border: 1px solid var(--line);
+      padding: .65rem .75rem;
+      background: #fffdf8;
+    }
+    .reg strong { display: block; font-size: .92rem; }
+    .reg .meta { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--muted); margin: .2rem 0; }
+    .dual {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .25rem; font-size: .82rem; font-weight: 600;
+    }
+    .scroll { overflow-x: auto; }
+    table {
+      width: 100%; border-collapse: collapse; font-size: .8rem;
+      font-variant-numeric: tabular-nums;
+    }
+    th, td { padding: .42rem .4rem; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+    th {
+      font-size: .65rem; text-transform: uppercase; letter-spacing: .04em;
+      color: var(--muted); font-weight: 600;
+    }
+    td.num, th.num { text-align: right; }
+    tr:hover td { background: rgba(0,0,0,.025); }
+    .bar {
+      height: 8px; background: var(--track); position: relative; min-width: 70px;
+    }
+    .bar > i {
+      display: block; height: 100%; background: linear-gradient(90deg, var(--flavio), #3d7cc4);
+    }
+    .bar.falta > i { background: linear-gradient(90deg, #a67c00, #d4a017); }
+    .pill {
+      display: inline-block; font-size: .68rem; font-weight: 600;
+      padding: .1rem .35rem; border: 1px solid currentColor;
+    }
+    .pill.f { color: var(--flavio); }
+    .pill.l { color: var(--lula); }
+    .controls {
+      display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-bottom: .75rem;
+    }
+    button, select {
+      font: inherit; border: 1px solid var(--ink); background: var(--card);
+      padding: .4rem .7rem; cursor: pointer;
+    }
+    button:hover { background: #fff; }
+    button.primary { background: var(--ink); color: #fff; }
+    .countdown {
+      font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted);
+    }
+    footer { margin-top: 1.25rem; font-size: .75rem; color: var(--muted); }
+    .errbox {
+      background: #fdecea; border: 1px solid #f5c2c0; color: #7a1c16;
+      padding: .8rem 1rem; margin-bottom: 1rem; display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Apuração TSE ao vivo — Flávio × Lula</h1>
+        <p class="sub">Captura automática do TSE com peso histórico Direita × Esquerda (2018 e 2022) e projeção do que ainda falta em cada estado.</p>
+      </div>
+      <div class="status" id="statusBox">
+        <div><span class="dot"></span><span id="statusText">conectando…</span></div>
+        <div id="statusMeta">—</div>
+        <div class="countdown" id="countdown">próxima atualização em 15s</div>
+      </div>
+    </header>
+
+    <div class="errbox" id="errBox"></div>
+
+    <div class="controls">
+      <button class="primary" id="btnRefresh" type="button">Atualizar agora</button>
+      <label>
+        Ordenar
+        <select id="sortBy">
+          <option value="peso">peso do que falta</option>
+          <option value="falta">% falta</option>
+          <option value="apurado">% apurado</option>
+          <option value="impacto">impacto na margem</option>
+          <option value="margem">margem parcial</option>
+        </select>
+      </label>
+      <span class="countdown" id="cacheInfo"></span>
+    </div>
+
+    <section class="grid" id="kpis"></section>
+
+    <section class="panel">
+      <h2>Regiões — o que ainda move o placar</h2>
+      <p class="note">Peso = fatia dos votos válidos restantes estimados. Histórico: média ponderada Bolsonaro×PT (2018 2ºT ×0,4 + 2022 1ºT ×0,6).</p>
+      <div class="regs" id="regs"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Estados — percentual que falta × projeção ponderada</h2>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>UF</th>
+              <th>Estado</th>
+              <th class="num">Apurado</th>
+              <th>Falta</th>
+              <th class="num">% falta</th>
+              <th class="num">Peso resta</th>
+              <th class="num">Flávio agora</th>
+              <th class="num">Lula agora</th>
+              <th class="num">Hist. Dir</th>
+              <th class="num">Hist. Esq</th>
+              <th class="num">w hist</th>
+              <th class="num">Proj. F</th>
+              <th class="num">Proj. L</th>
+              <th class="num">Impacto</th>
+              <th>Líder</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      Fonte: Tribunal Superior Eleitoral (EA20). Proxy local <code>/api/eleicoes/2026/apuracao</code>.
+      Atualização automática a cada 15s. Projeção não é resultado oficial.
+    </footer>
+  </div>
+
+  <script>
+    const REFRESH_MS = 15000;
+    let timer = null;
+    let tickTimer = null;
+    let nextAt = 0;
+    let lastPayload = null;
+
+    const $ = (id) => document.getElementById(id);
+
+    function fmt(n, d = 2) {
+      if (n == null || Number.isNaN(n)) return '—';
+      return Number(n).toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+    }
+    function fmtInt(n) {
+      if (n == null || Number.isNaN(n)) return '—';
+      return Math.round(n).toLocaleString('pt-BR');
+    }
+    function fmtSigned(n, d = 2) {
+      if (n == null || Number.isNaN(n)) return '—';
+      const v = Number(n);
+      return (v >= 0 ? '+' : '') + fmt(v, d);
+    }
+
+    function setStatus(kind, text, meta) {
+      const box = $('statusBox');
+      box.className = 'status' + (kind ? ' ' + kind : '');
+      $('statusText').textContent = text;
+      $('statusMeta').textContent = meta || '';
+    }
+
+    function renderKpis(data) {
+      const p = data.nacional_parcial;
+      const j = data.nacional_projetado;
+      $('kpis').innerHTML = `
+        <div class="kpi">
+          <div class="label">Flávio — parcial</div>
+          <div class="value flavio">${fmt(p.flavio_pct)}%</div>
+          <div class="hint">${fmtInt(p.flavio_votos)} votos · margem ${fmtSigned(p.margem)} pp</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Lula — parcial</div>
+          <div class="value lula">${fmt(p.lula_pct)}%</div>
+          <div class="hint">${fmtInt(p.lula_votos)} votos · Brasil ${fmt(p.pct_secoes)}% apurado</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Projeção ponderada</div>
+          <div class="value"><span class="flavio">${fmt(j.flavio_pct)}%</span> × <span class="lula">${fmt(j.lula_pct)}%</span></div>
+          <div class="hint">ajuste margem ${fmtSigned(j.ajuste_margem_pp)} pp · ${j.chance_primeiro_turno}</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Ainda falta no Brasil</div>
+          <div class="value">${fmt(p.pct_falta, 1)}%</div>
+          <div class="hint">~${fmtInt(j.votos_restantes)} válidos restantes (est.)</div>
+        </div>`;
+    }
+
+    function renderRegs(regs) {
+      $('regs').innerHTML = regs.map((r) => `
+        <div class="reg">
+          <strong>${r.regiao}</strong>
+          <div class="meta">falta ${fmt(r.pct_falta, 1)}% · peso ${fmt(r.peso_nacional_restante, 1)}%</div>
+          <div class="dual">
+            <span class="flavio">F ${fmt(r.proj_flavio_pct, 1)}%</span>
+            <span class="lula">L ${fmt(r.proj_lula_pct, 1)}%</span>
+          </div>
+          <div class="meta">parcial ${fmt(r.flavio_pct_parcial, 1)} × ${fmt(r.lula_pct_parcial, 1)}</div>
+        </div>`).join('');
+    }
+
+    function sortedEstados(estados) {
+      const key = $('sortBy').value;
+      const arr = [...estados];
+      const cmp = {
+        peso: (a, b) => b.peso_nacional_restante - a.peso_nacional_restante,
+        falta: (a, b) => b.pct_falta - a.pct_falta,
+        apurado: (a, b) => b.pct_secoes - a.pct_secoes,
+        impacto: (a, b) => Math.abs(b.impacto_margem_nacional_pp || 0) - Math.abs(a.impacto_margem_nacional_pp || 0),
+        margem: (a, b) => b.margem_parcial - a.margem_parcial,
+      }[key];
+      arr.sort(cmp);
+      return arr;
+    }
+
+    function renderTable(data) {
+      const rows = sortedEstados(data.estados);
+      $('tbody').innerHTML = rows.map((e) => {
+        const lider = e.proj_flavio_pct_final >= e.proj_lula_pct_final ? 'Flávio' : 'Lula';
+        const pill = lider === 'Flávio' ? 'f' : 'l';
+        const histD = e.hist ? fmt(e.hist.direita_peso, 1) + '%' : '—';
+        const histE = e.hist ? fmt(e.hist.esquerda_peso, 1) + '%' : '—';
+        return `<tr>
+          <td><strong>${e.uf}</strong></td>
+          <td>${e.nome}</td>
+          <td class="num">${fmt(e.pct_secoes, 1)}%</td>
+          <td><div class="bar falta" title="${fmt(e.pct_falta, 1)}% falta"><i style="width:${Math.min(100, e.pct_falta)}%"></i></div></td>
+          <td class="num">${fmt(e.pct_falta, 1)}%</td>
+          <td class="num"><strong>${fmt(e.peso_nacional_restante, 1)}%</strong></td>
+          <td class="num flavio">${fmt(e.flavio_pct, 1)}%</td>
+          <td class="num lula">${fmt(e.lula_pct, 1)}%</td>
+          <td class="num">${histD}</td>
+          <td class="num">${histE}</td>
+          <td class="num">${e.w_hist == null ? '—' : fmt(e.w_hist * 100, 0) + '%'}</td>
+          <td class="num flavio">${e.proj_flavio_pct_final == null ? '—' : fmt(e.proj_flavio_pct_final, 1) + '%'}</td>
+          <td class="num lula">${e.proj_lula_pct_final == null ? '—' : fmt(e.proj_lula_pct_final, 1) + '%'}</td>
+          <td class="num">${fmtSigned(e.impacto_margem_nacional_pp, 2)}</td>
+          <td><span class="pill ${pill}">${lider}</span></td>
+        </tr>`;
+      }).join('');
+    }
+
+    function render(data) {
+      lastPayload = data;
+      renderKpis(data);
+      renderRegs(data.regioes || []);
+      renderTable(data);
+      const stale = data.stale ? ' (stale)' : '';
+      setStatus(
+        data.stale ? 'stale' : '',
+        'ao vivo' + stale,
+        `TSE ${data.nacional_parcial.atualizado} · captura ${new Date(data.capturado_em).toLocaleTimeString('pt-BR')}`
+      );
+      const cache = data.cache || {};
+      $('cacheInfo').textContent = cache.hit
+        ? `cache ${Math.round((cache.age_ms || 0) / 1000)}s`
+        : 'fresh do TSE';
+      $('errBox').style.display = data.stale_error ? 'block' : 'none';
+      if (data.stale_error) $('errBox').textContent = 'Aviso: ' + data.stale_error;
+    }
+
+    async function load(force = false) {
+      try {
+        const url = '/api/eleicoes/2026/apuracao' + (force ? '?refresh=1' : '');
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        if (!data.ok && data.error) throw new Error(data.error);
+        render(data);
+        $('errBox').style.display = 'none';
+      } catch (e) {
+        setStatus('error', 'falha na captura', String(e.message || e));
+        $('errBox').style.display = 'block';
+        $('errBox').textContent = 'Erro ao buscar TSE: ' + (e.message || e);
+      } finally {
+        nextAt = Date.now() + REFRESH_MS;
+      }
+    }
+
+    function schedule() {
+      clearInterval(timer);
+      clearInterval(tickTimer);
+      timer = setInterval(() => load(false), REFRESH_MS);
+      tickTimer = setInterval(() => {
+        const left = Math.max(0, Math.ceil((nextAt - Date.now()) / 1000));
+        $('countdown').textContent = 'próxima atualização em ' + left + 's';
+      }, 250);
+    }
+
+    $('btnRefresh').addEventListener('click', () => {
+      load(true);
+      schedule();
+    });
+    $('sortBy').addEventListener('change', () => {
+      if (lastPayload) renderTable(lastPayload);
+    });
+
+    load(true);
+    schedule();
+  </script>
+</body>
+</html>
