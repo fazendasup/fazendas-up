@@ -8,6 +8,9 @@ const UFS = [
   'pa', 'pb', 'pe', 'pi', 'pr', 'rj', 'rn', 'ro', 'rr', 'rs', 'sc', 'se', 'sp', 'to',
 ];
 
+/** Melhor snapshot conhecido por UF (evita “votos descendo” por CDN inconsistente). */
+const melhorPorUf = new Map();
+
 function pct(s) {
   if (s == null) return 0;
   let t = String(s).trim();
@@ -29,6 +32,8 @@ function fetchJson(url, timeoutMs = 12000) {
         headers: {
           'User-Agent': 'fazendas-up-apuracao/1.0',
           Accept: 'application/json',
+          'Cache-Control': 'no-cache',
+          Pragma: 'no-cache',
         },
       },
       (res) => {
@@ -57,7 +62,9 @@ function fetchJson(url, timeoutMs = 12000) {
 
 function ufUrl(uf) {
   const u = uf.toLowerCase();
-  return `https://resultados.tse.jus.br/oficial/ele2026/${ELEICAO}/dados/${u}/${u}-c${CARGO}-e00${ELEICAO}-u.json`;
+  // bust de cache da CDN Akamai (evita misturar versões velhas/novas entre UFs)
+  const bust = Date.now().toString(36);
+  return `https://resultados.tse.jus.br/oficial/ele2026/${ELEICAO}/dados/${u}/${u}-c${CARGO}-e00${ELEICAO}-u.json?_=${bust}`;
 }
 
 function extractCands(d) {
@@ -117,14 +124,61 @@ function parseAbrangencia(d) {
 }
 
 /**
- * Busca BR + 27 UFs em paralelo (com limite de concorrência simples).
+ * Aceita novo snapshot só se for mais avançado (seções/votos não regridem).
+ * A CDN do TSE às vezes devolve UF “antiga” no meio de um lote paralelo.
+ */
+function ehMaisAvancado(novo, antigo) {
+  if (!antigo) return true;
+  if (novo.secoes_totalizadas > antigo.secoes_totalizadas) return true;
+  if (novo.secoes_totalizadas < antigo.secoes_totalizadas) return false;
+
+  if (novo.votos_validos > antigo.votos_validos) return true;
+  if (novo.votos_validos < antigo.votos_validos) return false;
+
+  // mesmo estágio: exige que nenhum candidato principal tenha caído
+  if (novo.flavio_votos < antigo.flavio_votos) return false;
+  if (novo.lula_votos < antigo.lula_votos) return false;
+  if (novo.flavio_votos > antigo.flavio_votos || novo.lula_votos > antigo.lula_votos) {
+    return true;
+  }
+
+  // empate total — usa horário do TSE
+  return String(novo.atualizado || '') >= String(antigo.atualizado || '');
+}
+
+function mesclarMonotonico(parsedList) {
+  const descartados = [];
+  for (const row of parsedList) {
+    const prev = melhorPorUf.get(row.uf);
+    if (ehMaisAvancado(row, prev)) {
+      melhorPorUf.set(row.uf, row);
+    } else {
+      descartados.push({
+        uf: row.uf,
+        recebido: {
+          secoes: row.secoes_totalizadas,
+          validos: row.votos_validos,
+          atualizado: row.atualizado,
+        },
+        mantido: {
+          secoes: prev.secoes_totalizadas,
+          validos: prev.votos_validos,
+          atualizado: prev.atualizado,
+        },
+      });
+    }
+  }
+  return descartados;
+}
+
+/**
+ * Busca BR + 27 UFs em paralelo e aplica merge monotônico.
  */
 async function capturarTse() {
   const alvos = ['br', ...UFS];
   const resultados = [];
   const erros = [];
 
-  // lotes maiores — captura completa mais rápida para polling em ms
   for (let i = 0; i < alvos.length; i += 14) {
     const lote = alvos.slice(i, i + 14);
     const settled = await Promise.allSettled(
@@ -140,11 +194,48 @@ async function capturarTse() {
     }
   }
 
-  const br = resultados.find((r) => r.uf === 'BR');
-  const ufs = resultados.filter((r) => r.uf !== 'BR');
-  if (!br) throw new Error('Falha ao obter totalização nacional do TSE');
+  const descartados = mesclarMonotonico(resultados);
 
-  return { br, ufs, erros, capturado_em: new Date().toISOString() };
+  // Monta saída a partir do melhor conhecido (não do lote cru)
+  const br = melhorPorUf.get('BR');
+  const ufs = UFS.map((u) => melhorPorUf.get(u.toUpperCase())).filter(Boolean);
+
+  if (!br && ufs.length < 20) {
+    throw new Error('Falha ao obter totalização do TSE');
+  }
+
+  // Se BR falhou neste ciclo mas UFs ok, sintetiza BR mínimo a partir do store
+  const brOut =
+    br ||
+    ({
+      uf: 'BR',
+      atualizado: ufs[0]?.atualizado || '',
+      pct_secoes: 0,
+      secoes_totalizadas: 0,
+      secoes_total: 0,
+      votos_validos: 0,
+      flavio_pct: 0,
+      flavio_votos: 0,
+      lula_pct: 0,
+      lula_votos: 0,
+      margem: 0,
+      comparecimento: null,
+      cands: [],
+      hist: null,
+    });
+
+  return {
+    br: brOut,
+    ufs,
+    erros,
+    descartados_cdn: descartados,
+    capturado_em: new Date().toISOString(),
+    monotonic: true,
+  };
+}
+
+function resetMonotonicStore() {
+  melhorPorUf.clear();
 }
 
 module.exports = {
@@ -153,4 +244,6 @@ module.exports = {
   parseAbrangencia,
   extractCands,
   ufUrl,
+  ehMaisAvancado,
+  resetMonotonicStore,
 };

@@ -12,17 +12,70 @@ let cache = {
 /** Cache curto para polling em tempo quase real (ms). */
 const CACHE_TTL_MS = 350;
 
+/** Marca d'água nacional — nunca devolve parcial com menos votos/seções que a anterior. */
+let marcaDagua = null;
+
+function aplicarMarcaDagua(payload) {
+  const p = payload.nacional_parcial;
+  if (!p) return payload;
+  if (!marcaDagua) {
+    marcaDagua = {
+      secoes: p.pct_secoes,
+      validos: p.votos_validos,
+      flavio: p.flavio_votos,
+      lula: p.lula_votos,
+    };
+    return payload;
+  }
+  const regrediu =
+    p.votos_validos < marcaDagua.validos ||
+    p.flavio_votos < marcaDagua.flavio ||
+    p.lula_votos < marcaDagua.lula;
+
+  if (regrediu && cache.payload?.nacional_parcial) {
+    // Mantém números da última parcial boa; atualiza só metadados/projeção se fizer sentido
+    const avisos = [...(payload.avisos || [])];
+    avisos.push('Parcial nacional protegida contra regressão (CDN inconsistente neste ciclo).');
+    return {
+      ...cache.payload,
+      capturado_em: payload.capturado_em,
+      avisos,
+      descartados_cdn: payload.descartados_cdn,
+      monotonic: true,
+      protegido_regressao: true,
+    };
+  }
+
+  marcaDagua = {
+    secoes: Math.max(marcaDagua.secoes, p.pct_secoes),
+    validos: Math.max(marcaDagua.validos, p.votos_validos),
+    flavio: Math.max(marcaDagua.flavio, p.flavio_votos),
+    lula: Math.max(marcaDagua.lula, p.lula_votos),
+  };
+  return payload;
+}
+
 async function buildPayload() {
-  const { br, ufs, erros, capturado_em } = await capturarTse();
+  const { br, ufs, erros, capturado_em, descartados_cdn, monotonic } = await capturarTse();
   const analise = projetarNacional(br, ufs);
-  return {
+  const avisos = [...(analise.avisos || [])];
+  if (descartados_cdn?.length) {
+    avisos.push(
+      `${descartados_cdn.length} resposta(s) antigas da CDN ignoradas (merge monotônico — evita votos “descendo”).`
+    );
+  }
+  const payload = {
     ok: true,
     capturado_em,
     fonte: 'TSE resultados oficiais (EA20, eleição 6257)',
     refresh_sugerido_ms: 500,
     erros_ufs: erros,
+    descartados_cdn: descartados_cdn || [],
+    monotonic: Boolean(monotonic),
     ...analise,
+    avisos,
   };
+  return aplicarMarcaDagua(payload);
 }
 
 async function getAnalise(force = false) {

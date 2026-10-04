@@ -307,24 +307,48 @@
     throw lastErr||new Error('falha fetch');
   }
 
+  const melhorUf = new Map(); // merge monotônico no modo direto
+
+  function ehMaisAvancado(novo, antigo){
+    if(!antigo) return true;
+    if(novo.secoes_totalizadas > antigo.secoes_totalizadas) return true;
+    if(novo.secoes_totalizadas < antigo.secoes_totalizadas) return false;
+    if(novo.votos_validos > antigo.votos_validos) return true;
+    if(novo.votos_validos < antigo.votos_validos) return false;
+    if(novo.flavio_votos < antigo.flavio_votos) return false;
+    if(novo.lula_votos < antigo.lula_votos) return false;
+    if(novo.flavio_votos > antigo.flavio_votos || novo.lula_votos > antigo.lula_votos) return true;
+    return String(novo.atualizado||'') >= String(antigo.atualizado||'');
+  }
+
   async function capturarDireto(){
     const alvos=[...UFS];
-    const out=[]; const erros=[];
+    const erros=[];
+    let descartados=0;
     // lotes para não saturar mobile
     for(let i=0;i<alvos.length;i+=6){
       const lote=alvos.slice(i,i+6);
       const settled=await Promise.allSettled(lote.map(async uf=>{
-        const raw=await fetchJson(tseUrl(uf));
+        const raw=await fetchJson(tseUrl(uf)+`?_=${Date.now().toString(36)}`);
         return parseUf(raw);
       }));
       settled.forEach((r,j)=>{
-        if(r.status==='fulfilled') out.push(r.value);
-        else erros.push({uf:lote[j].toUpperCase(), erro:String(r.reason?.message||r.reason)});
+        if(r.status==='fulfilled'){
+          const row=r.value;
+          const prev=melhorUf.get(row.uf);
+          if(ehMaisAvancado(row, prev)) melhorUf.set(row.uf, row);
+          else descartados++;
+        } else {
+          erros.push({uf:lote[j].toUpperCase(), erro:String(r.reason?.message||r.reason)});
+        }
       });
     }
+    const out=UFS.map(u=>melhorUf.get(u.toUpperCase())).filter(Boolean);
     if(out.length<20) throw new Error(`Poucas UFs carregadas (${out.length}/27)`);
     const data=projetar(out);
+    data.monotonic=true;
     if(erros.length) data.avisos.push(`${erros.length} UF(s) falharam: ${erros.map(e=>e.uf).join(', ')}`);
+    if(descartados) data.avisos.push(`${descartados} resposta(s) antigas da CDN ignoradas (evita votos descendo).`);
     data.erros_ufs=erros;
     return data;
   }
