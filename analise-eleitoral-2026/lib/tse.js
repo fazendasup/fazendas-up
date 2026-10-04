@@ -3,9 +3,11 @@ const { historicoUf } = require('./historico');
 
 const ELEICAO = '6257';
 const CARGO = '0001';
+/** 27 UFs + ZZ (voto no exterior) — o BR oficial = soma disso. */
 const UFS = [
   'ac', 'al', 'am', 'ap', 'ba', 'ce', 'df', 'es', 'go', 'ma', 'mg', 'ms', 'mt',
   'pa', 'pb', 'pe', 'pi', 'pr', 'rj', 'rn', 'ro', 'rr', 'rs', 'sc', 'se', 'sp', 'to',
+  'zz',
 ];
 
 /** Melhor snapshot conhecido por UF (evita “votos descendo” por CDN inconsistente). */

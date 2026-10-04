@@ -32,6 +32,7 @@ const UF_META = {
   SP: { nome: 'São Paulo', regiao: 'Sudeste' },
   SE: { nome: 'Sergipe', regiao: 'Nordeste' },
   TO: { nome: 'Tocantins', regiao: 'Norte' },
+  ZZ: { nome: 'Exterior', regiao: 'Exterior' },
 };
 
 /** 2022 1º turno: [esquerda Lula %, direita Bolsonaro %] */
@@ -63,6 +64,8 @@ const HIST_2022_1T = {
   SP: [40.89, 47.71],
   SE: [63.82, 29.16],
   TO: [50.4, 44.0],
+  // Exterior 2022 1º turno (aprox. público consolidado)
+  ZZ: [47.17, 41.61],
 };
 
 /** 2018 2º turno: [esquerda Haddad %, direita Bolsonaro %] */
@@ -94,6 +97,8 @@ const HIST_2018_2T = {
   SP: [32.03, 67.97],
   SE: [67.54, 32.46],
   TO: [51.02, 48.98],
+  // Exterior 2018 2º: Bolsonaro venceu com folga no exterior
+  ZZ: [30.0, 70.0],
 };
 
 /**

@@ -127,7 +127,7 @@
   const REFRESH_MS_DIRETO = 2000;  // modo direto TSE (27 arquivos) — mais leve no celular
   let REFRESH_MS = REFRESH_MS_API;
   const ELEICAO = '6257';
-  const UFS = ['ac','al','am','ap','ba','ce','df','es','go','ma','mg','ms','mt','pa','pb','pe','pi','pr','rj','rn','ro','rr','rs','sc','se','sp','to'];
+  const UFS = ['ac','al','am','ap','ba','ce','df','es','go','ma','mg','ms','mt','pa','pb','pe','pi','pr','rj','rn','ro','rr','rs','sc','se','sp','to','zz'];
   const UF_META = {
     AC:['Acre','Norte'],AL:['Alagoas','Nordeste'],AP:['Amapá','Norte'],AM:['Amazonas','Norte'],
     BA:['Bahia','Nordeste'],CE:['Ceará','Nordeste'],DF:['Distrito Federal','Centro-Oeste'],
@@ -136,11 +136,12 @@
     PA:['Pará','Norte'],PB:['Paraíba','Nordeste'],PR:['Paraná','Sul'],PE:['Pernambuco','Nordeste'],
     PI:['Piauí','Nordeste'],RJ:['Rio de Janeiro','Sudeste'],RN:['Rio Grande do Norte','Nordeste'],
     RS:['Rio Grande do Sul','Sul'],RO:['Rondônia','Norte'],RR:['Roraima','Norte'],
-    SC:['Santa Catarina','Sul'],SP:['São Paulo','Sudeste'],SE:['Sergipe','Nordeste'],TO:['Tocantins','Norte']
+    SC:['Santa Catarina','Sul'],SP:['São Paulo','Sudeste'],SE:['Sergipe','Nordeste'],TO:['Tocantins','Norte'],
+    ZZ:['Exterior','Exterior']
   };
   // [esquerda, direita] 2022 1T e 2018 2T
-  const H22 = {AC:[29.26,62.5],AL:[56.5,36.05],AP:[45.67,43.41],AM:[49.58,42.8],BA:[69.73,24.31],CE:[65.91,25.38],DF:[36.85,51.65],ES:[40.4,52.23],GO:[39.51,52.16],MA:[68.84,26.02],MT:[34.39,59.84],MS:[39.04,52.7],MG:[48.29,43.6],PA:[52.22,40.27],PB:[64.21,29.62],PR:[35.99,55.26],PE:[65.27,29.91],PI:[74.25,19.9],RJ:[40.68,51.09],RN:[62.98,31.02],RS:[42.28,48.89],RO:[28.98,64.36],RR:[23.05,69.57],SC:[29.54,62.21],SP:[40.89,47.71],SE:[63.82,29.16],TO:[50.4,44]};
-  const H18 = {AC:[22.78,77.22],AL:[59.92,40.08],AP:[49.79,50.21],AM:[49.73,50.27],BA:[72.69,27.31],CE:[71.11,28.89],DF:[30.01,69.99],ES:[36.94,63.06],GO:[34.48,65.52],MA:[73.26,26.74],MT:[33.58,66.42],MS:[34.78,65.22],MG:[41.81,58.19],PA:[54.81,45.19],PB:[64.96,35.04],PR:[31.57,68.43],PE:[66.5,33.5],PI:[77.05,22.95],RJ:[32.05,67.95],RN:[63.41,36.59],RS:[36.76,63.24],RO:[27.82,72.18],RR:[28.45,71.55],SC:[24.08,75.92],SP:[32.03,67.97],SE:[67.54,32.46],TO:[51.02,48.98]};
+  const H22 = {AC:[29.26,62.5],AL:[56.5,36.05],AP:[45.67,43.41],AM:[49.58,42.8],BA:[69.73,24.31],CE:[65.91,25.38],DF:[36.85,51.65],ES:[40.4,52.23],GO:[39.51,52.16],MA:[68.84,26.02],MT:[34.39,59.84],MS:[39.04,52.7],MG:[48.29,43.6],PA:[52.22,40.27],PB:[64.21,29.62],PR:[35.99,55.26],PE:[65.27,29.91],PI:[74.25,19.9],RJ:[40.68,51.09],RN:[62.98,31.02],RS:[42.28,48.89],RO:[28.98,64.36],RR:[23.05,69.57],SC:[29.54,62.21],SP:[40.89,47.71],SE:[63.82,29.16],TO:[50.4,44],ZZ:[47.17,41.61]};
+  const H18 = {AC:[22.78,77.22],AL:[59.92,40.08],AP:[49.79,50.21],AM:[49.73,50.27],BA:[72.69,27.31],CE:[71.11,28.89],DF:[30.01,69.99],ES:[36.94,63.06],GO:[34.48,65.52],MA:[73.26,26.74],MT:[33.58,66.42],MS:[34.78,65.22],MG:[41.81,58.19],PA:[54.81,45.19],PB:[64.96,35.04],PR:[31.57,68.43],PE:[66.5,33.5],PI:[77.05,22.95],RJ:[32.05,67.95],RN:[63.41,36.59],RS:[36.76,63.24],RO:[27.82,72.18],RR:[28.45,71.55],SC:[24.08,75.92],SP:[32.03,67.97],SE:[67.54,32.46],TO:[51.02,48.98],ZZ:[30,70]};
 
   let timer=null, tickTimer=null, nextAt=0, lastPayload=null;
   const $ = (id) => document.getElementById(id);
@@ -344,7 +345,7 @@
       });
     }
     const out=UFS.map(u=>melhorUf.get(u.toUpperCase())).filter(Boolean);
-    if(out.length<20) throw new Error(`Poucas UFs carregadas (${out.length}/27)`);
+    if(out.length<20) throw new Error(`Poucas UFs carregadas (${out.length}/28)`);
     const data=projetar(out);
     data.monotonic=true;
     if(erros.length) data.avisos.push(`${erros.length} UF(s) falharam: ${erros.map(e=>e.uf).join(', ')}`);
