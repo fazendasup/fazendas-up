@@ -6,8 +6,9 @@
  * 2. Votos restantes = estimativa − atuais
  * 3. Distribui restantes com blend:
  *    - parcela atual (Flávio/Lula na parcial da UF)
- *    - prior histórico Direita/Esquerda dos 1ºs turnos:
- *      2026×0,45 + 2022×0,30 + 2018×0,25
+ *    - prior histórico Direita/Esquerda:
+ *      2026 1ºT ×0,40 + finais 2022 2ºT ×0,35 + 2018 2ºT ×0,25
+ *      (1º turno atual levemente acima dos resultados finais anteriores)
  *
  * Peso do histórico cresce quando ainda falta muito na UF:
  *   w_hist = clamp(pct_falta/100, 0.15, 0.75)
@@ -17,7 +18,7 @@
  * (massa eleitoral que ainda pode mover o placar).
  */
 
-const { PESOS_1T } = require('./historico');
+const { PESOS_PRIOR } = require('./historico');
 
 function clamp(x, a, b) {
   return Math.max(a, Math.min(b, x));
@@ -46,7 +47,7 @@ function projetarEstado(ufRow) {
   const hist = ufRow.hist;
 
   if (pctAp <= 0.01 || ufRow.votos_validos <= 0) {
-    // Sem parcial ainda: expõe o prior dos 1ºs turnos como referência de projeção
+    // Sem parcial ainda: expõe o prior (2026 1T + finais 2022/2018) como referência
     const histD = hist ? hist.direita_peso : null;
     const histE = hist ? hist.esquerda_peso : null;
     const polar = histD != null && histE != null ? Math.max(histD + histE, 0.01) : null;
@@ -171,7 +172,7 @@ function projetarNacional(br, ufs) {
   let projL = totV ? (100 * totL) / totV : 0;
   let priorPuroNacional = false;
 
-  // Sem parcial do 2º turno ainda: prior dos 1ºs turnos ponderado pelo eleitorado
+  // Sem parcial do 2º turno ainda: prior (2026 1T + finais anteriores) ponderado pelo eleitorado
   if (!ativos.length) {
     let wF = 0;
     let wL = 0;
@@ -294,7 +295,7 @@ function projetarNacional(br, ufs) {
   }
   if (priorPuroNacional) {
     avisos.push(
-      '2º turno ainda sem parcial: projeção nacional = prior dos 1ºs turnos (2026×0,45 + 2022×0,30 + 2018×0,25), ponderado pelo eleitorado.'
+      '2º turno ainda sem parcial: projeção nacional = prior 2026 1ºT×0,40 + finais 2022×0,35 + 2018×0,25, ponderado pelo eleitorado.'
     );
   }
 
@@ -375,9 +376,10 @@ function projetarNacional(br, ufs) {
   return {
     metodo: {
       descricao:
-        'Parcial nacional = arquivo BR oficial do TSE (2º turno, ele 6258). Projeção = BR + restantes por UF/ZZ com prior dos 1ºs turnos: 2026×0,45 + 2022×0,30 + 2018×0,25 (Direita × Esquerda).',
+        'Parcial nacional = arquivo BR oficial do TSE (2º turno, ele 6258). Projeção = BR + restantes por UF/ZZ com prior Direita/Esquerda: 2026 1ºT×0,40 + finais 2022 2ºT×0,35 + 2018 2ºT×0,25.',
       candidatos: { direita: 'Flávio Bolsonaro (22)', esquerda: 'Lula (13)' },
-      pesos_historico_1t: { ...PESOS_1T },
+      pesos_historico: { ...PESOS_PRIOR },
+      pesos_historico_1t: { ...PESOS_PRIOR },
       turno: 2,
       eleicao: '6258',
     },

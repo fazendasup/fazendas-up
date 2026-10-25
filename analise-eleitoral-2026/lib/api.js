@@ -77,7 +77,7 @@ async function buildPayload() {
   const payload = {
     ok: true,
     capturado_em,
-    fonte: 'TSE resultados oficiais (EA20, 2º turno eleição 6258; prior 1ºs turnos 2026/2022/2018)',
+    fonte: 'TSE resultados oficiais (EA20, 2º turno eleição 6258; prior 2026 1ºT + finais 2022/2018)',
     refresh_sugerido_ms: 500,
     erros_ufs: erros,
     descartados_cdn: descartados_cdn || [],
