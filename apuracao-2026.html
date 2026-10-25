@@ -231,8 +231,17 @@
   function projetar(ufs){
     const estados=ufs.map(u=>{
       const pctAp=u.pct_secoes, pctFalta=Math.max(0,100-pctAp);
+      const h0=u.hist||hist(u.uf);
+      // Sem parcial: ainda assim projeta pelo prior histórico da UF
       if(pctAp<=0.01||u.votos_validos<=0){
-        return {...u,pct_falta:pctFalta,skip:true,votos_restantes:0,restantes_flavio:0,restantes_lula:0,peso_nacional_restante:0,impacto_margem_nacional_pp:0,proj_flavio_pct_final:null,proj_lula_pct_final:null,w_hist:null};
+        const d=h0?h0.direita_peso:50, e=h0?h0.esquerda_peso:50;
+        return {
+          ...u, hist:h0, pct_falta:pctFalta, skip:false, prior_puro:true, w_hist:1,
+          votos_restantes:0, restantes_flavio:0, restantes_lula:0,
+          estimativa_validos_total:0, proj_flavio_votos:0, proj_lula_votos:0,
+          proj_flavio_pct_final:d, proj_lula_pct_final:e,
+          peso_nacional_restante:0, impacto_margem_nacional_pp:0
+        };
       }
       const estV=u.votos_validos/(pctAp/100);
       const rest=Math.max(0,estV-u.votos_validos);
@@ -255,13 +264,20 @@
       };
     });
     const ativos=estados.filter(e=>!e.skip);
-    const somaRest=ativos.reduce((s,e)=>s+e.votos_restantes,0)||1;
-    const totF=ativos.reduce((s,e)=>s+e.proj_flavio_votos,0);
-    const totL=ativos.reduce((s,e)=>s+e.proj_lula_votos,0);
-    const totV=ativos.reduce((s,e)=>s+e.estimativa_validos_total,0);
+    const comParcial=ativos.filter(e=>!e.prior_puro);
+    const priorPuroNacional=!comParcial.length;
+    const somaRest=comParcial.reduce((s,e)=>s+e.votos_restantes,0)||1;
+    const totF=comParcial.reduce((s,e)=>s+e.proj_flavio_votos,0);
+    const totL=comParcial.reduce((s,e)=>s+e.proj_lula_votos,0);
+    const totV=comParcial.reduce((s,e)=>s+e.estimativa_validos_total,0);
     for(const e of estados){
-      e.peso_nacional_restante=e.skip?0:(100*e.votos_restantes)/somaRest;
-      e.impacto_margem_nacional_pp=e.skip?0:(100*(e.restantes_flavio-e.restantes_lula))/totV;
+      if(e.prior_puro){
+        e.peso_nacional_restante=100/Math.max(ativos.length,1);
+        e.impacto_margem_nacional_pp=0;
+      } else {
+        e.peso_nacional_restante=(100*e.votos_restantes)/somaRest;
+        e.impacto_margem_nacional_pp=totV?(100*(e.restantes_flavio-e.restantes_lula))/totV:0;
+      }
     }
     const secTot=ufs.reduce((s,u)=>s+u.secoes_total,0);
     const secAp=ufs.reduce((s,u)=>s+u.secoes_totalizadas,0);
@@ -271,34 +287,50 @@
     const pctSec=secTot?(100*secAp)/secTot:0;
     const fPct=vV?(100*vF)/vV:0, lPct=vV?(100*vL)/vV:0;
     const recent=[...ufs].sort((a,b)=>String(b.atualizado).localeCompare(String(a.atualizado)))[0];
-    const projF=totV?(100*totF)/totV:0, projL=totV?(100*totL)/totV:0;
+    // Sem parcial nacional: média simples do prior D×E por UF (aprox. do servidor)
+    let projF, projL;
+    if(priorPuroNacional){
+      const hs=ativos.map(e=>e.hist||hist(e.uf)).filter(Boolean);
+      projF=hs.length?hs.reduce((s,h)=>s+h.direita_peso,0)/hs.length:0;
+      projL=hs.length?hs.reduce((s,h)=>s+h.esquerda_peso,0)/hs.length:0;
+    } else {
+      projF=totV?(100*totF)/totV:0;
+      projL=totV?(100*totL)/totV:0;
+    }
 
     const regioesMap={};
     for(const e of ativos){
       const r=e.regiao||'Outros';
-      if(!regioesMap[r]) regioesMap[r]={regiao:r,pct_w:0,sec:0,f:0,l:0,v:0,rest:0,pf:0,pl:0,pv:0};
+      if(!regioesMap[r]) regioesMap[r]={regiao:r,pct_w:0,sec:0,f:0,l:0,v:0,rest:0,pf:0,pl:0,pv:0,n:0,hd:0,he:0};
       const g=regioesMap[r];
       g.pct_w+=e.pct_secoes*e.secoes_total; g.sec+=e.secoes_total;
       g.f+=e.flavio_votos; g.l+=e.lula_votos; g.v+=e.votos_validos; g.rest+=e.votos_restantes;
       g.pf+=e.proj_flavio_votos; g.pl+=e.proj_lula_votos; g.pv+=e.estimativa_validos_total;
+      g.n+=1;
+      if(e.hist){ g.hd+=e.hist.direita_peso; g.he+=e.hist.esquerda_peso; }
     }
     const regioes=Object.values(regioesMap).map(g=>({
       regiao:g.regiao,
       pct_secoes:g.sec?g.pct_w/g.sec:0,
-      pct_falta:g.sec?100-g.pct_w/g.sec:0,
+      pct_falta:g.sec?100-g.pct_w/g.sec:100,
       flavio_pct_parcial:g.v?(100*g.f)/g.v:0,
       lula_pct_parcial:g.v?(100*g.l)/g.v:0,
-      peso_nacional_restante:(100*g.rest)/somaRest,
-      proj_flavio_pct:g.pv?(100*g.pf)/g.pv:0,
-      proj_lula_pct:g.pv?(100*g.pl)/g.pv:0
+      peso_nacional_restante:priorPuroNacional?(100*g.n)/Math.max(ativos.length,1):(100*g.rest)/somaRest,
+      proj_flavio_pct:g.pv?(100*g.pf)/g.pv:(g.n?g.hd/g.n:0),
+      proj_lula_pct:g.pv?(100*g.pl)/g.pv:(g.n?g.he/g.n:0)
     })).sort((a,b)=>b.peso_nacional_restante-a.peso_nacional_restante);
 
     estados.sort((a,b)=>b.peso_nacional_restante-a.peso_nacional_restante);
+    const leitura = projF===projL ? 'empate projetado' : (projF>projL ? (projF>=50?'vantagem Flávio':'leve vantagem Flávio') : (projL>=50?'vantagem Lula':'leve vantagem Lula'));
+    const avisos=[];
+    if(priorPuroNacional){
+      avisos.push('2º turno ainda sem parcial nacional: projeção = prior D×E (média simples das UFs no modo direto).');
+    }
     return {
       ok:true,
       capturado_em:new Date().toISOString(),
       modo:'direto-tse',
-      avisos:[],
+      avisos,
       nacional_parcial:{
         fonte:'agregacao_ufs', pct_secoes:pctSec, pct_falta:Math.max(0,100-pctSec),
         atualizado:recent?.atualizado||'', flavio_pct:fPct, lula_pct:lPct,
@@ -306,9 +338,9 @@
       },
       nacional_projetado:{
         flavio_pct:projF, lula_pct:projL, margem:projF-projL,
-        votos_restantes:somaRest, ajuste_margem_pp:projF-projL-(fPct-lPct),
-        leitura: projF===projL ? 'empate projetado' : (projF>projL ? (projF>=50?'vantagem Flávio':'leve vantagem Flávio') : (projL>=50?'vantagem Lula':'leve vantagem Lula')),
-        chance_primeiro_turno: projF===projL ? 'empate projetado' : (projF>projL ? (projF>=50?'vantagem Flávio':'leve vantagem Flávio') : (projL>=50?'vantagem Lula':'leve vantagem Lula'))
+        votos_restantes:priorPuroNacional?0:somaRest,
+        ajuste_margem_pp:priorPuroNacional?(projF-projL):(projF-projL-(fPct-lPct)),
+        leitura, chance_primeiro_turno:leitura, prior_puro:priorPuroNacional
       },
       estados, regioes
     };
@@ -387,48 +419,27 @@
     return data;
   }
 
-  /** Link fixo do painel (GitHub Pages). A API atrás do túnel pode mudar; descobrimos em api-base.json. */
+  /** Link fixo do painel (GitHub Pages). A API fica no túnel; descobrimos URLs saudáveis. */
   const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
+  // Só raw.githubusercontent (sem cache longo). NÃO usar Pages ./api-base.json (Fastly cacheia 10min).
   const API_BASE_DISCOVERY = [
     'https://raw.githubusercontent.com/fazendasup/fazendas-up/cursor/analise-apuracao-flavio-lula-d913/api-base.json',
-    'https://cdn.jsdelivr.net/gh/fazendasup/fazendas-up@cursor/analise-apuracao-flavio-lula-d913/api-base.json',
-    './api-base.json',
+    'https://raw.githubusercontent.com/fazendasup/fazendas-up/main/api-base.json',
   ];
-  let apiBaseCache = { at: 0, bases: null };
+  let apiBaseCache = { at: 0, bases: null, winner: null };
+
+  function hostEhTunelOuLocal(hostname){
+    return hostname==='localhost' || hostname==='127.0.0.1'
+      || hostname.endsWith('.loca.lt') || hostname.endsWith('.lhr.life')
+      || hostname.endsWith('.trycloudflare.com') || hostname.includes('bore.pub')
+      || hostname.includes('localhost.run');
+  }
 
   function apiFetchHeaders(){
-    return { 'Bypass-Tunnel-Reminder': '1', 'User-Agent': 'fazendas-apuracao/1.0' };
+    return { 'Bypass-Tunnel-Reminder': '1' };
   }
 
-  async function descobrirApiBases(force=false){
-    const agora = Date.now();
-    if(!force && apiBaseCache.bases && agora - apiBaseCache.at < 30_000) return apiBaseCache.bases;
-    const bases = [];
-    const add = (u)=>{
-      if(!u) return;
-      const b = String(u).replace(/\/$/, '');
-      if(!bases.includes(b)) bases.push(b);
-    };
-    // same-origin primeiro (túnel / localhost)
-    if(location.protocol.startsWith('http')) add(location.origin);
-    const noTunel = !(location.hostname.endsWith('.loca.lt') || location.hostname.endsWith('.lhr.life') || location.hostname.endsWith('.trycloudflare.com') || location.hostname==='localhost' || location.hostname==='127.0.0.1');
-    // No GitHub Pages: lê api-base.json antes do subdomínio fixo (pode estar momentaneamente 502)
-    if(!noTunel) add(API_BASE_FIXED);
-    for(const url of API_BASE_DISCOVERY){
-      try{
-        const r = await fetch(url + (url.includes('?')?'&':'?') + '_=' + agora, { cache:'no-store' });
-        if(!r.ok) continue;
-        const j = await r.json();
-        add(j.api_base || j.url || j.base);
-        for(const x of (j.fallbacks || [])) add(x);
-      }catch(_){}
-    }
-    if(noTunel) add(API_BASE_FIXED);
-    apiBaseCache = { at: agora, bases };
-    return bases;
-  }
-
-  async function fetchComTimeout(url, opts={}, ms=8000){
+  async function fetchComTimeout(url, opts={}, ms=5000){
     const ctrl = new AbortController();
     const t = setTimeout(()=>ctrl.abort(), ms);
     try{
@@ -438,24 +449,69 @@
     }
   }
 
+  async function descobrirApiBases(force=false){
+    const agora = Date.now();
+    if(!force && apiBaseCache.bases && agora - apiBaseCache.at < 15_000) return apiBaseCache.bases;
+    const bases = [];
+    const add = (u)=>{
+      if(!u) return;
+      const b = String(u).replace(/\/$/, '');
+      if(!/^https?:\/\//i.test(b)) return;
+      if(!bases.includes(b)) bases.push(b);
+    };
+    // same-origin SÓ se for túnel/local — nunca github.io
+    if(hostEhTunelOuLocal(location.hostname)) add(location.origin);
+    // subdomínio fixo primeiro (URL estável)
+    add(API_BASE_FIXED);
+    if(apiBaseCache.winner) add(apiBaseCache.winner);
+    for(const url of API_BASE_DISCOVERY){
+      try{
+        const r = await fetchComTimeout(url + '?_=' + agora, { cache:'no-store' }, 4000);
+        if(!r.ok) continue;
+        const j = await r.json();
+        add(j.api_base || j.url || j.base);
+        for(const x of (j.fallbacks || [])) add(x);
+      }catch(_){}
+    }
+    apiBaseCache = { ...apiBaseCache, at: agora, bases };
+    return bases;
+  }
+
+  async function probeBase(base){
+    try{
+      const r = await fetchComTimeout(base + '/api/eleicoes/2026/health', {
+        cache:'no-store', headers: apiFetchHeaders(), mode:'cors',
+      }, 3500);
+      if(!r.ok) return null;
+      const j = await r.json();
+      return j && j.ok ? base : null;
+    }catch(_){ return null; }
+  }
+
   async function capturarViaApi(force=false){
     const q = force ? '?refresh=1' : '';
     const bases = await descobrirApiBases(force);
+    // Probe em paralelo: pega a primeira saudável (evita esperar 8s em URL morta)
+    const probes = await Promise.all(bases.map(async (b, i)=>{
+      const ok = await probeBase(b);
+      return ok ? { b, i } : null;
+    }));
+    const ordered = probes.filter(Boolean).sort((a,c)=>a.i-c.i).map(x=>x.b);
+    const tryOrder = ordered.length ? ordered : bases;
     let lastErr;
-    for(const base of bases){
+    for(const base of tryOrder){
       try{
         const r = await fetchComTimeout(base + '/api/eleicoes/2026/apuracao' + q, {
           cache:'no-store',
           headers: apiFetchHeaders(),
           mode:'cors',
-        }, 8000);
+        }, 7000);
         if(!r.ok) throw new Error('HTTP '+r.status);
         const d = await r.json();
         if(!d.ok && d.error) throw new Error(d.error);
-        d.modo = base === location.origin ? 'api-local' : 'api-tunel';
+        d.modo = hostEhTunelOuLocal(location.hostname) && base === location.origin ? 'api-local' : 'api-tunel';
         d.api_base = base;
-        // prioriza base que funcionou nas próximas rodadas
-        apiBaseCache = { at: Date.now(), bases: [base, ...bases.filter(b=>b!==base)] };
+        apiBaseCache = { at: Date.now(), bases: [base, ...bases.filter(x=>x!==base)], winner: base };
         return d;
       }catch(e){ lastErr = e; }
     }
@@ -468,7 +524,10 @@
       return await capturarViaApi(force);
     }catch(_){
       REFRESH_MS = REFRESH_MS_DIRETO;
-      return await capturarDireto();
+      const data = await capturarDireto();
+      data.avisos = data.avisos || [];
+      data.avisos.unshift('API do túnel indisponível neste ciclo — mostrando TSE direto (sem exterior/BUs).');
+      return data;
     }
   }
 
