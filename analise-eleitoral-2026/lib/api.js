@@ -1,5 +1,6 @@
 const { capturarTse, ELEICAO } = require('./tse');
 const { projetarNacional } = require('./projecao');
+const { capturarExteriorBu, mesclarZzComBu, temCacheExterior } = require('./exterior');
 
 /** Cache em memória para não martelar o TSE a cada cliente. */
 let cache = {
@@ -66,7 +67,31 @@ function aplicarMarcaDagua(payload) {
 
 async function buildPayload() {
   resetEstadoSeEleicaoMudou();
-  const { br, ufs, erros, capturado_em, descartados_cdn, monotonic } = await capturarTse();
+  const tseP = capturarTse();
+  // Exterior por BU é mais lento (~30–40s no 1º ciclo): não bloqueia o painel.
+  let exterior;
+  try {
+    if (temCacheExterior()) {
+      exterior = await capturarExteriorBu(false);
+    } else {
+      capturarExteriorBu(false).catch(() => {});
+      exterior = {
+        ok: false,
+        pendente: true,
+        votos_validos: 0,
+        cidades: [],
+        nota: 'Agregando boletins de urna do exterior em segundo plano…',
+      };
+    }
+  } catch (e) {
+    exterior = { ok: false, erro: String(e.message || e), votos_validos: 0, cidades: [] };
+  }
+
+  const { br, ufs: ufsTse, erros, capturado_em, descartados_cdn, monotonic } = await tseP;
+
+  const zzOficial = ufsTse.find((u) => u.uf === 'ZZ');
+  const { ufs, aplicado: zzBu } = mesclarZzComBu(ufsTse, exterior, zzOficial?.secoes_total);
+
   const analise = projetarNacional(br, ufs);
   const avisos = [...(analise.avisos || [])];
   if (descartados_cdn?.length) {
@@ -74,14 +99,45 @@ async function buildPayload() {
       `${descartados_cdn.length} resposta(s) antigas da CDN ignoradas (merge monotônico — evita votos “descendo”).`
     );
   }
+  if (zzBu && exterior?.votos_validos) {
+    avisos.push(
+      `Exterior via boletins de urna: ${exterior.secoes_com_bu} seções · Flávio ${exterior.flavio_votos.toLocaleString('pt-BR')} × Lula ${exterior.lula_votos.toLocaleString('pt-BR')} (consolidado oficial ZZ ainda não totalizado).`
+    );
+  }
+  if (exterior?.stale_error) {
+    avisos.push(`Exterior (cache): ${exterior.stale_error}`);
+  }
+
   const payload = {
     ok: true,
     capturado_em,
-    fonte: 'TSE resultados oficiais (EA20, 2º turno eleição 6258; prior 2026 1ºT + finais 2022/2018)',
+    fonte:
+      'TSE resultados oficiais (EA20, 2º turno eleição 6258; prior 2026 1ºT + finais 2022/2018; exterior por BU antes das 17h)',
     refresh_sugerido_ms: 500,
     erros_ufs: erros,
     descartados_cdn: descartados_cdn || [],
     monotonic: Boolean(monotonic),
+    exterior: exterior?.ok || exterior?.votos_validos
+      ? {
+          ok: true,
+          fonte: exterior.fonte,
+          capturado_em: exterior.capturado_em,
+          secoes_com_bu: exterior.secoes_com_bu,
+          secoes_config: exterior.secoes_config,
+          flavio_votos: exterior.flavio_votos,
+          lula_votos: exterior.lula_votos,
+          flavio_pct: exterior.flavio_pct,
+          lula_pct: exterior.lula_pct,
+          margem: exterior.margem,
+          votos_validos: exterior.votos_validos,
+          branco: exterior.branco,
+          nulo: exterior.nulo,
+          aplicado_no_zz: Boolean(zzBu),
+          nota: exterior.nota,
+          cidades: (exterior.cidades || []).slice(0, 40),
+          cache: exterior.cache,
+        }
+      : { ok: false, erro: exterior?.erro || 'indisponível' },
     ...analise,
     avisos,
   };
@@ -123,6 +179,11 @@ async function getAnalise(force = false) {
 }
 
 function mountEleicoesApi(app) {
+  // pré-aquece agregação do exterior (BUs) em background
+  setTimeout(() => {
+    capturarExteriorBu(false).catch(() => {});
+  }, 500);
+
   app.get('/api/eleicoes/2026/apuracao', async (req, res) => {
     try {
       const force = req.query.refresh === '1' || req.query.force === '1';
@@ -138,12 +199,24 @@ function mountEleicoesApi(app) {
     }
   });
 
+  app.get('/api/eleicoes/2026/exterior', async (req, res) => {
+    try {
+      const force = req.query.refresh === '1' || req.query.force === '1';
+      const data = await capturarExteriorBu(force);
+      res.setHeader('Cache-Control', 'no-store');
+      res.json(data);
+    } catch (e) {
+      res.status(502).json({ ok: false, error: String(e.message || e) });
+    }
+  });
+
   app.get('/api/eleicoes/2026/health', async (_req, res) => {
     res.json({
       ok: true,
       cache_age_ms: cache.payload ? Date.now() - cache.at : null,
       last_error: cache.error,
       has_payload: Boolean(cache.payload),
+      exterior_cache: temCacheExterior(),
     });
   });
 }

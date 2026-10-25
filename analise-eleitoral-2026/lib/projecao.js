@@ -149,31 +149,44 @@ function baseEstado(ufRow, pctFalta) {
     margem_parcial: ufRow.margem,
     lider_parcial: ufRow.lider,
     eleitorado_total: ufRow.eleitorado_total,
+    fonte_parcial: ufRow.fonte_parcial || null,
   };
 }
 
 function projetarNacional(br, ufs) {
   const estados = ufs.map(projetarEstado);
   const ativos = estados.filter((e) => !e.skip);
+  // Só exterior antecipado por BU enquanto o BR oficial ainda está zerado
+  const soExteriorAntecipado =
+    Boolean(br) &&
+    (br.pct_secoes || 0) < 0.5 &&
+    (br.votos_validos || 0) === 0 &&
+    ativos.length > 0 &&
+    ativos.every((e) => e.uf === 'ZZ' || e.fonte_parcial === 'arquivo_urna_bu');
 
-  const somaRest = ativos.reduce((s, e) => s + e.votos_restantes, 0) || 1;
+  const usarPriorNacional = !ativos.length || soExteriorAntecipado;
+
+  const somaRest = usarPriorNacional
+    ? 1
+    : ativos.reduce((s, e) => s + e.votos_restantes, 0) || 1;
   for (const e of estados) {
-    e.peso_nacional_restante = e.skip ? 0 : (100 * e.votos_restantes) / somaRest;
+    e.peso_nacional_restante =
+      e.skip || usarPriorNacional ? 0 : (100 * e.votos_restantes) / somaRest;
   }
 
   // Nacional projetado = soma das projeções estaduais (mais fiel que escalar o BR)
-  const totF = ativos.reduce((s, e) => s + e.proj_flavio_votos, 0);
-  const totL = ativos.reduce((s, e) => s + e.proj_lula_votos, 0);
-  const totV = ativos.reduce((s, e) => s + e.estimativa_validos_total, 0);
-  const restF = ativos.reduce((s, e) => s + e.restantes_flavio, 0);
-  const restL = ativos.reduce((s, e) => s + e.restantes_lula, 0);
+  const totF = ativos.reduce((s, e) => s + (e.proj_flavio_votos || 0), 0);
+  const totL = ativos.reduce((s, e) => s + (e.proj_lula_votos || 0), 0);
+  const totV = ativos.reduce((s, e) => s + (e.estimativa_validos_total || 0), 0);
+  const restF = usarPriorNacional ? 0 : ativos.reduce((s, e) => s + e.restantes_flavio, 0);
+  const restL = usarPriorNacional ? 0 : ativos.reduce((s, e) => s + e.restantes_lula, 0);
 
   let projF = totV ? (100 * totF) / totV : 0;
   let projL = totV ? (100 * totL) / totV : 0;
   let priorPuroNacional = false;
 
-  // Sem parcial do 2º turno ainda: prior (2026 1T + finais anteriores) ponderado pelo eleitorado
-  if (!ativos.length) {
+  // Sem parcial do 2º turno ainda (ou só exterior por BU): prior ponderado pelo eleitorado
+  if (usarPriorNacional) {
     let wF = 0;
     let wL = 0;
     let wTot = 0;
@@ -183,7 +196,9 @@ function projetarNacional(br, ufs) {
       wF += (e.proj_flavio_pct_final / 100) * peso;
       wL += (e.proj_lula_pct_final / 100) * peso;
       wTot += peso;
-      e.peso_nacional_restante = (100 * peso) / (estados.reduce((s, x) => s + (x.eleitorado_total || x.secoes_total || 1), 0) || 1);
+      e.peso_nacional_restante =
+        (100 * peso) /
+        (estados.reduce((s, x) => s + (x.eleitorado_total || x.secoes_total || 1), 0) || 1);
     }
     if (wTot > 0) {
       projF = (100 * wF) / wTot;
@@ -195,12 +210,18 @@ function projetarNacional(br, ufs) {
   // Contribuição de cada UF ao movimento esperado da margem nacional
   // (quanto os restantes da UF puxam Flávio − Lula no total nacional projetado)
   for (const e of ativos) {
+    if (usarPriorNacional) {
+      e.impacto_margem_nacional_pp = 0;
+      continue;
+    }
     const pull = e.restantes_flavio - e.restantes_lula;
     e.impacto_margem_nacional_pp = totV ? (100 * pull) / totV : 0;
   }
 
-  // Agregado regional — com parcial usa ativos; sem parcial usa prior por UF
-  const baseRegioes = ativos.length ? ativos : estados.filter((e) => e.hist);
+  // Agregado regional — com parcial usa ativos; sem parcial / só exterior usa prior por UF
+  const baseRegioes = usarPriorNacional
+    ? estados.filter((e) => e.hist)
+    : ativos;
   const regioesMap = {};
   for (const e of baseRegioes) {
     const r = e.regiao || 'Outros';
@@ -221,18 +242,18 @@ function projetarNacional(br, ufs) {
       };
     }
     const g = regioesMap[r];
-    const pesoUf = ativos.length
+    const pesoUf = !usarPriorNacional
       ? e.secoes_total
       : e.eleitorado_total || e.secoes_total || 1;
     g.pct_secoes_pond += e.pct_secoes * (e.secoes_total || 0);
     g.peso_secoes += e.secoes_total || 0;
-    g.flavio_votos += e.flavio_votos;
-    g.lula_votos += e.lula_votos;
-    g.validos += e.votos_validos;
-    g.restantes += e.votos_restantes || 0;
-    g.rest_f += e.restantes_flavio || 0;
-    g.rest_l += e.restantes_lula || 0;
-    if (ativos.length) {
+    g.flavio_votos += usarPriorNacional ? 0 : e.flavio_votos;
+    g.lula_votos += usarPriorNacional ? 0 : e.lula_votos;
+    g.validos += usarPriorNacional ? 0 : e.votos_validos;
+    g.restantes += usarPriorNacional ? 0 : e.votos_restantes || 0;
+    g.rest_f += usarPriorNacional ? 0 : e.restantes_flavio || 0;
+    g.rest_l += usarPriorNacional ? 0 : e.restantes_lula || 0;
+    if (!usarPriorNacional) {
       g.proj_f += e.proj_flavio_votos;
       g.proj_l += e.proj_lula_votos;
       g.proj_v += e.estimativa_validos_total;
@@ -243,10 +264,9 @@ function projetarNacional(br, ufs) {
     }
   }
 
-  const denomPesoRest = ativos.length ? somaRest : baseRegioes.reduce(
-    (s, e) => s + (e.eleitorado_total || e.secoes_total || 1),
-    0
-  ) || 1;
+  const denomPesoRest = !usarPriorNacional
+    ? somaRest
+    : baseRegioes.reduce((s, e) => s + (e.eleitorado_total || e.secoes_total || 1), 0) || 1;
 
   const regioes = Object.values(regioesMap).map((g) => ({
     regiao: g.regiao,
@@ -255,7 +275,7 @@ function projetarNacional(br, ufs) {
     flavio_pct_parcial: g.validos ? (100 * g.flavio_votos) / g.validos : 0,
     lula_pct_parcial: g.validos ? (100 * g.lula_votos) / g.validos : 0,
     votos_restantes: g.restantes,
-    peso_nacional_restante: ativos.length
+    peso_nacional_restante: !usarPriorNacional
       ? (100 * g.restantes) / denomPesoRest
       : (100 * g.proj_v) / denomPesoRest,
     proj_flavio_pct: g.proj_v ? (100 * g.proj_f) / g.proj_v : 0,
@@ -280,6 +300,7 @@ function projetarNacional(br, ufs) {
 
   // Parcial nacional: preferir arquivo BR oficial do TSE (bate com o site do TSE).
   // Só cai para soma UFs+ZZ se o BR estiver claramente travado/atrás.
+  // Se a única parcial for exterior por BU, NÃO promove ZZ a “Brasil”.
   const brOk =
     Boolean(br) &&
     (br.votos_validos || 0) > 0 &&
@@ -288,58 +309,63 @@ function projetarNacional(br, ufs) {
     !(br.pct_secoes + 2 < pctSecoesUf);
 
   const avisos = [];
-  if (!brOk) {
+  if (soExteriorAntecipado) {
+    avisos.push(
+      'Parcial nacional ainda zerada no TSE (antes das 17h). Exterior abaixo é por boletins de urna; a projeção nacional segue o prior.'
+    );
+  } else if (!brOk) {
     avisos.push(
       `Usando soma UFs+ZZ (${pctSecoesUf.toFixed(2).replace('.', ',')}% seções): arquivo BR indisponível ou atrasado.`
     );
   }
   if (priorPuroNacional) {
     avisos.push(
-      '2º turno ainda sem parcial: projeção = prior no eixo D×E (2026 1ºT×0,55 + final 2022×0,35 + final 2018×0,10), ponderado pelo eleitorado.'
+      '2º turno ainda sem parcial nacional: projeção = prior no eixo D×E (2026 1ºT×0,55 + final 2022×0,35 + final 2018×0,10), ponderado pelo eleitorado.'
     );
   }
 
-  const nacionalParcial = brOk
-    ? {
-        fonte: 'tse_br_oficial',
-        pct_secoes: br.pct_secoes,
-        pct_falta: Math.max(0, 100 - br.pct_secoes),
-        atualizado: br.atualizado,
-        flavio_pct: br.flavio_pct,
-        lula_pct: br.lula_pct,
-        flavio_votos: br.flavio_votos,
-        lula_votos: br.lula_votos,
-        margem: br.margem,
-        votos_validos: br.votos_validos,
-        comparecimento: br.comparecimento ?? null,
-        top: (br.cands || []).slice(0, 6).map(({ nome, partido, pct, votos, numero }) => ({
-          nome,
-          partido,
-          pct,
-          votos,
-          numero,
-        })),
-      }
-    : {
-        fonte: 'agregacao_ufs_zz',
-        pct_secoes: pctSecoesUf,
-        pct_falta: Math.max(0, 100 - pctSecoesUf),
-        atualizado: ufMaisRecente?.atualizado || br?.atualizado || '',
-        flavio_pct: flavioPctUf,
-        lula_pct: lulaPctUf,
-        flavio_votos: votosF,
-        lula_votos: votosL,
-        margem: flavioPctUf - lulaPctUf,
-        votos_validos: votosV,
-        comparecimento: br?.comparecimento ?? null,
-        top: (br?.cands || []).slice(0, 6).map(({ nome, partido, pct, votos, numero }) => ({
-          nome,
-          partido,
-          pct,
-          votos,
-          numero,
-        })),
-      };
+  const nacionalParcial =
+    brOk || soExteriorAntecipado || Boolean(br)
+      ? {
+          fonte: soExteriorAntecipado ? 'tse_br_aguardando_17h' : brOk ? 'tse_br_oficial' : 'tse_br_oficial',
+          pct_secoes: br?.pct_secoes || 0,
+          pct_falta: Math.max(0, 100 - (br?.pct_secoes || 0)),
+          atualizado: br?.atualizado || '',
+          flavio_pct: br?.flavio_pct || 0,
+          lula_pct: br?.lula_pct || 0,
+          flavio_votos: br?.flavio_votos || 0,
+          lula_votos: br?.lula_votos || 0,
+          margem: br?.margem || 0,
+          votos_validos: br?.votos_validos || 0,
+          comparecimento: br?.comparecimento ?? null,
+          top: (br?.cands || []).slice(0, 6).map(({ nome, partido, pct, votos, numero }) => ({
+            nome,
+            partido,
+            pct,
+            votos,
+            numero,
+          })),
+        }
+      : {
+          fonte: 'agregacao_ufs_zz',
+          pct_secoes: pctSecoesUf,
+          pct_falta: Math.max(0, 100 - pctSecoesUf),
+          atualizado: ufMaisRecente?.atualizado || br?.atualizado || '',
+          flavio_pct: flavioPctUf,
+          lula_pct: lulaPctUf,
+          flavio_votos: votosF,
+          lula_votos: votosL,
+          margem: flavioPctUf - lulaPctUf,
+          votos_validos: votosV,
+          comparecimento: br?.comparecimento ?? null,
+          top: (br?.cands || []).slice(0, 6).map(({ nome, partido, pct, votos, numero }) => ({
+            nome,
+            partido,
+            pct,
+            votos,
+            numero,
+          })),
+        };
 
   // Projeção: ancora nos votos oficiais do BR (quando disponível) + restantes estimados por UF/ZZ
   let projFlavioVotos = totF;

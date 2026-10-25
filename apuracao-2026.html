@@ -97,6 +97,23 @@
     </div>
 
     <section class="grid" id="kpis"></section>
+    <section class="panel" id="exteriorPanel">
+      <h2>Exterior (ZZ) — boletins de urna</h2>
+      <p class="note">Antes das 17h o consolidado oficial ZZ fica em 0%. Aqui somamos os BUs já publicados no arquivo-urna do TSE.</p>
+      <div id="exteriorKpis" class="regs"></div>
+      <div class="scroll" style="margin-top:.65rem">
+        <table>
+          <thead>
+            <tr>
+              <th>Cidade</th><th class="num">Seções</th>
+              <th class="num">Flávio</th><th class="num">Lula</th>
+              <th class="num">% F</th><th class="num">% L</th><th class="num">Margem</th><th>Líder</th>
+            </tr>
+          </thead>
+          <tbody id="exteriorBody"><tr><td colspan="8">carregando exterior…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
     <section class="panel">
       <h2>Regiões — o que ainda move o placar</h2>
       <p class="note">Peso = fatia dos votos restantes. Prior (eixo D×E): 2026 1ºT×0,55 + final 2022×0,35 + final 2018×0,10. O 1ºT de 2026 sozinho já implica ~+2,8 pp ao redistribuir terceiros.</p>
@@ -410,6 +427,7 @@
 
   function renderKpis(data){
     const p=data.nacional_parcial, j=data.nacional_projetado;
+    const ex=data.exterior;
     $('kpis').innerHTML=`
       <div class="kpi"><div class="label">Flávio — parcial</div><div class="value flavio">${fmt(p.flavio_pct)}%</div>
         <div class="hint">${fmtInt(p.flavio_votos)} votos · margem ${fmtSigned(p.margem)} pp</div></div>
@@ -418,8 +436,43 @@
       <div class="kpi"><div class="label">Projeção ponderada</div>
         <div class="value"><span class="flavio">${fmt(j.flavio_pct)}%</span> × <span class="lula">${fmt(j.lula_pct)}%</span></div>
         <div class="hint">ajuste ${fmtSigned(j.ajuste_margem_pp)} pp · ${j.leitura||j.chance_primeiro_turno||'—'}</div></div>
-      <div class="kpi"><div class="label">Ainda falta</div><div class="value">${fmt(p.pct_falta,1)}%</div>
-        <div class="hint">~${fmtInt(j.votos_restantes)} válidos restantes</div></div>`;
+      <div class="kpi"><div class="label">Exterior (BUs)</div>
+        <div class="value">${ex && ex.votos_validos ? `<span class="flavio">${fmt(ex.flavio_pct,1)}%</span> × <span class="lula">${fmt(ex.lula_pct,1)}%</span>` : '…'}</div>
+        <div class="hint">${ex && ex.votos_validos ? `${fmtInt(ex.secoes_com_bu)} seções · ${fmtInt(ex.flavio_votos)} × ${fmtInt(ex.lula_votos)}` : (ex && ex.pendente ? 'agregando BUs…' : 'aguardando')}</div></div>`;
+  }
+
+  function renderExterior(data){
+    const ex=data.exterior;
+    if(!ex || (!ex.votos_validos && !ex.pendente)){
+      $('exteriorKpis').innerHTML=`<div class="reg"><strong>Sem BUs ainda</strong><div class="meta">${ex && ex.erro ? ex.erro : '—'}</div></div>`;
+      $('exteriorBody').innerHTML=`<tr><td colspan="8">sem dados</td></tr>`;
+      return;
+    }
+    if(ex.pendente && !ex.votos_validos){
+      $('exteriorKpis').innerHTML=`<div class="reg"><strong>Agregando…</strong><div class="meta">baixando boletins de urna do TSE</div></div>`;
+      return;
+    }
+    $('exteriorKpis').innerHTML=`
+      <div class="reg"><strong>Parcial ZZ</strong>
+        <div class="meta">${fmtInt(ex.secoes_com_bu)} seções com BU</div>
+        <div class="dual"><span class="flavio">F ${fmt(ex.flavio_pct,1)}%</span><span class="lula">L ${fmt(ex.lula_pct,1)}%</span></div>
+        <div class="meta">${fmtInt(ex.flavio_votos)} × ${fmtInt(ex.lula_votos)} · margem ${fmtSigned(ex.margem,1)} pp</div>
+      </div>
+      <div class="reg"><strong>Fonte</strong>
+        <div class="meta">arquivo-urna TSE</div>
+        <div class="meta">${ex.aplicado_no_zz ? 'injetado na linha ZZ da projeção' : 'consolidado oficial ZZ já prevalece'}</div>
+      </div>`;
+    $('exteriorBody').innerHTML=(ex.cidades||[]).map(c=>`
+      <tr>
+        <td>${c.nome}</td>
+        <td class="num">${fmtInt(c.secoes)}</td>
+        <td class="num flavio">${fmtInt(c.flavio_votos)}</td>
+        <td class="num lula">${fmtInt(c.lula_votos)}</td>
+        <td class="num flavio">${fmt(c.flavio_pct,1)}%</td>
+        <td class="num lula">${fmt(c.lula_pct,1)}%</td>
+        <td class="num">${fmtSigned(c.margem,1)}</td>
+        <td><span class="pill ${c.lider==='Flávio'?'f':'l'}">${c.lider}</span></td>
+      </tr>`).join('') || `<tr><td colspan="8">sem cidades</td></tr>`;
   }
 
   function renderRegs(regs){
@@ -469,7 +522,7 @@
 
   function render(data){
     lastPayload=data;
-    renderKpis(data); renderRegs(data.regioes); renderTable(data);
+    renderKpis(data); renderExterior(data); renderRegs(data.regioes); renderTable(data);
     const age = data.cache && data.cache.age_ms != null ? data.cache.age_ms : 0;
     setStatus('', 'ao vivo'+(data.modo?' · '+data.modo:''),
       `TSE ${data.nacional_parcial.atualizado} · capturado ${fmtHoraMs(data.capturado_em)}`);
