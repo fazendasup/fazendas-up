@@ -1,4 +1,4 @@
-const { capturarTse } = require('./tse');
+const { capturarTse, ELEICAO } = require('./tse');
 const { projetarNacional } = require('./projecao');
 
 /** Cache em memória para não martelar o TSE a cada cliente. */
@@ -14,6 +14,15 @@ const CACHE_TTL_MS = 350;
 
 /** Marca d'água nacional — nunca devolve parcial com menos votos/seções que a anterior. */
 let marcaDagua = null;
+let eleicaoMarca = ELEICAO;
+
+function resetEstadoSeEleicaoMudou() {
+  if (eleicaoMarca !== ELEICAO) {
+    marcaDagua = null;
+    cache = { at: 0, payload: null, error: null, inflight: null };
+    eleicaoMarca = ELEICAO;
+  }
+}
 
 function aplicarMarcaDagua(payload) {
   const p = payload.nacional_parcial;
@@ -56,6 +65,7 @@ function aplicarMarcaDagua(payload) {
 }
 
 async function buildPayload() {
+  resetEstadoSeEleicaoMudou();
   const { br, ufs, erros, capturado_em, descartados_cdn, monotonic } = await capturarTse();
   const analise = projetarNacional(br, ufs);
   const avisos = [...(analise.avisos || [])];
@@ -67,7 +77,7 @@ async function buildPayload() {
   const payload = {
     ok: true,
     capturado_em,
-    fonte: 'TSE resultados oficiais (EA20, eleição 6257)',
+    fonte: 'TSE resultados oficiais (EA20, 2º turno eleição 6258; prior 1ºs turnos 2026/2022/2018)',
     refresh_sugerido_ms: 500,
     erros_ufs: erros,
     descartados_cdn: descartados_cdn || [],

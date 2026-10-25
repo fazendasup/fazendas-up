@@ -1,7 +1,13 @@
 /**
- * Histórico Direita × Esquerda por UF — 1º turno 2022 e 2º turno 2018.
- * Direita: Bolsonaro | Esquerda: Lula (2022) / Haddad (2018)
- * Fonte: TSE (consolidados públicos).
+ * Histórico Direita × Esquerda por UF — focando em PRIMEIROS TURNOS.
+ *
+ * Pesos do prior composto (soma = 1):
+ *   - 2026 1º turno: 0,45  ← resultado deste pleito (peso maior)
+ *   - 2022 1º turno: 0,30
+ *   - 2018 1º turno: 0,25
+ *
+ * Direita: Flávio/Bolsonaro | Esquerda: Lula/Haddad
+ * Fontes: TSE (2026 1T final; 2022/2018 consolidados públicos).
  */
 
 const UF_META = {
@@ -35,6 +41,45 @@ const UF_META = {
   ZZ: { nome: 'Exterior', regiao: 'Exterior' },
 };
 
+/** Pesos do prior — 1º turno 2026 um pouco acima das eleições anteriores */
+const PESOS_1T = {
+  t2026: 0.45,
+  t2022: 0.3,
+  t2018: 0.25,
+};
+
+/** 2026 1º turno FINAL (TSE ele 6257, tf=s): [esquerda Lula %, direita Flávio %] */
+const HIST_2026_1T = {
+  AC: [28.73, 64.56],
+  AL: [54.73, 40.45],
+  AP: [45.71, 45.67],
+  AM: [48.23, 45.0],
+  BA: [66.17, 28.53],
+  CE: [63.29, 31.27],
+  DF: [38.11, 51.31],
+  ES: [37.76, 54.78],
+  GO: [31.06, 53.6],
+  MA: [63.99, 30.9],
+  MT: [29.18, 65.15],
+  MS: [34.68, 58.6],
+  MG: [43.33, 48.24],
+  PA: [49.91, 44.5],
+  PB: [61.31, 33.07],
+  PR: [31.2, 59.91],
+  PE: [63.45, 31.03],
+  PI: [70.99, 24.09],
+  RJ: [39.41, 53.01],
+  RN: [59.75, 34.77],
+  RS: [35.73, 55.64],
+  RO: [25.89, 67.45],
+  RR: [22.86, 71.06],
+  SC: [25.04, 66.65],
+  SP: [38.2, 51.93],
+  SE: [62.75, 30.63],
+  TO: [43.42, 50.44],
+  ZZ: [47.57, 43.49],
+};
+
 /** 2022 1º turno: [esquerda Lula %, direita Bolsonaro %] */
 const HIST_2022_1T = {
   AC: [29.26, 62.5],
@@ -64,11 +109,42 @@ const HIST_2022_1T = {
   SP: [40.89, 47.71],
   SE: [63.82, 29.16],
   TO: [50.4, 44.0],
-  // Exterior 2022 1º turno (aprox. público consolidado)
   ZZ: [47.17, 41.61],
 };
 
-/** 2018 2º turno: [esquerda Haddad %, direita Bolsonaro %] */
+/** 2018 1º turno: [esquerda Haddad %, direita Bolsonaro %] — TSE/Wikipedia */
+const HIST_2018_1T = {
+  AC: [18.53, 62.24],
+  AL: [44.75, 34.4],
+  AP: [32.77, 40.74],
+  AM: [40.3, 43.48],
+  BA: [60.28, 23.41],
+  CE: [33.12, 21.74], // Ciro venceu o CE; Haddad/Bolsonaro para eixo D×E
+  DF: [11.87, 58.37],
+  ES: [24.2, 54.76],
+  GO: [21.86, 57.24],
+  MA: [61.26, 24.28],
+  MT: [24.76, 60.04],
+  MS: [23.87, 55.06],
+  MG: [27.65, 48.31],
+  PA: [41.39, 36.19],
+  PB: [45.46, 31.3],
+  PR: [19.7, 56.89],
+  PE: [48.87, 30.57],
+  PI: [63.4, 18.76],
+  RJ: [14.69, 59.79],
+  RN: [41.19, 30.21],
+  RS: [22.81, 52.63],
+  RO: [20.36, 62.24],
+  RR: [17.85, 62.97],
+  SC: [15.13, 65.82],
+  SP: [16.42, 53.0],
+  SE: [50.09, 27.21],
+  TO: [41.12, 44.64],
+  ZZ: [10.1, 58.79],
+};
+
+/** 2018 2º turno (referência auxiliar, não entra no prior principal) */
 const HIST_2018_2T = {
   AC: [22.78, 77.22],
   AL: [59.92, 40.08],
@@ -97,45 +173,55 @@ const HIST_2018_2T = {
   SP: [32.03, 67.97],
   SE: [67.54, 32.46],
   TO: [51.02, 48.98],
-  // Exterior 2018 2º: Bolsonaro venceu com folga no exterior
-  ZZ: [30.0, 70.0],
+  ZZ: [28.98, 71.02],
 };
 
 /**
- * Peso histórico por UF.
- * Média 2018 (peso 0,4) + 2022 (peso 0,6) — 2022 mais próximo do duelo atual.
- * Também devolve a força relativa da polarização (soma D+E nos dois anos).
+ * Prior composto por UF com peso maior no 1º turno de 2026.
  */
 function historicoUf(uf) {
+  const h26 = HIST_2026_1T[uf];
   const h22 = HIST_2022_1T[uf];
-  const h18 = HIST_2018_2T[uf];
-  if (!h22 || !h18) return null;
+  const h18 = HIST_2018_1T[uf];
+  if (!h26 || !h22 || !h18) return null;
 
-  const esquerda = 0.6 * h22[0] + 0.4 * h18[0];
-  const direita = 0.6 * h22[1] + 0.4 * h18[1];
-  const polarizacao = esquerda + direita; // tipicamente ~90–99
+  const { t2026, t2022, t2018 } = PESOS_1T;
+  const esquerda = t2026 * h26[0] + t2022 * h22[0] + t2018 * h18[0];
+  const direita = t2026 * h26[1] + t2022 * h22[1] + t2018 * h18[1];
 
   return {
     uf,
     ...UF_META[uf],
+    pesos: { ...PESOS_1T },
+    esquerda_2026_1t: h26[0],
+    direita_2026_1t: h26[1],
+    esquerda_2022_1t: h22[0],
+    direita_2022_1t: h22[1],
+    esquerda_2018_1t: h18[0],
+    direita_2018_1t: h18[1],
+    // aliases usados pela projeção/UI
     esquerda_2022: h22[0],
     direita_2022: h22[1],
     esquerda_2018: h18[0],
     direita_2018: h18[1],
     esquerda_peso: esquerda,
     direita_peso: direita,
-    margem_hist: direita - esquerda, // + = direita
-    polarizacao,
+    margem_hist: direita - esquerda,
+    margem_2026_1t: h26[1] - h26[0],
+    polarizacao: esquerda + direita,
   };
 }
 
 function todosHistoricos() {
-  return Object.keys(UF_META).map(historicoUf);
+  return Object.keys(UF_META).map(historicoUf).filter(Boolean);
 }
 
 module.exports = {
   UF_META,
+  PESOS_1T,
+  HIST_2026_1T,
   HIST_2022_1T,
+  HIST_2018_1T,
   HIST_2018_2T,
   historicoUf,
   todosHistoricos,

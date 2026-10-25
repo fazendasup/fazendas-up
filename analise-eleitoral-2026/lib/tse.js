@@ -1,7 +1,8 @@
 const https = require('https');
 const { historicoUf } = require('./historico');
 
-const ELEICAO = '6257';
+/** 2º turno presidenciável 2026 (Flávio × Lula). 1º turno = 6257 (histórico). */
+const ELEICAO = '6258';
 const CARGO = '0001';
 /** 27 UFs + ZZ (voto no exterior) — o BR oficial = soma disso. */
 const UFS = [
@@ -12,6 +13,15 @@ const UFS = [
 
 /** Melhor snapshot conhecido por UF (evita “votos descendo” por CDN inconsistente). */
 const melhorPorUf = new Map();
+let eleicaoDoStore = ELEICAO;
+
+/** Troca de eleição (1T→2T) zera o store monotônico para não misturar placares. */
+function garantirStoreDaEleicao() {
+  if (eleicaoDoStore !== ELEICAO) {
+    melhorPorUf.clear();
+    eleicaoDoStore = ELEICAO;
+  }
+}
 
 function pct(s) {
   if (s == null) return 0;
@@ -177,6 +187,7 @@ function mesclarMonotonico(parsedList) {
  * Busca BR + 27 UFs em paralelo e aplica merge monotônico.
  */
 async function capturarTse() {
+  garantirStoreDaEleicao();
   const alvos = ['br', ...UFS];
   const resultados = [];
   const erros = [];

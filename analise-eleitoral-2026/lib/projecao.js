@@ -1,12 +1,13 @@
 /**
- * Projeção ponderada do que falta apurar.
+ * Projeção ponderada do que falta apurar (2º turno 2026).
  *
  * Para cada UF:
  * 1. Estima votos válidos totais ≈ válidos_atuais / (pct_seções/100)
  * 2. Votos restantes = estimativa − atuais
  * 3. Distribui restantes com blend:
- *    - parcela atual (Flávio/Lula/outros na parcial da UF)
- *    - peso histórico Direita/Esquerda (média 2018×0,4 + 2022×0,6)
+ *    - parcela atual (Flávio/Lula na parcial da UF)
+ *    - prior histórico Direita/Esquerda dos 1ºs turnos:
+ *      2026×0,45 + 2022×0,30 + 2018×0,25
  *
  * Peso do histórico cresce quando ainda falta muito na UF:
  *   w_hist = clamp(pct_falta/100, 0.15, 0.75)
@@ -16,8 +17,27 @@
  * (massa eleitoral que ainda pode mover o placar).
  */
 
+const { PESOS_1T } = require('./historico');
+
 function clamp(x, a, b) {
   return Math.max(a, Math.min(b, x));
+}
+
+function resumoHist(hist) {
+  if (!hist) return null;
+  return {
+    direita_peso: hist.direita_peso,
+    esquerda_peso: hist.esquerda_peso,
+    margem_hist: hist.margem_hist,
+    margem_2026_1t: hist.margem_2026_1t,
+    pesos: hist.pesos,
+    direita_2026_1t: hist.direita_2026_1t,
+    esquerda_2026_1t: hist.esquerda_2026_1t,
+    direita_2022: hist.direita_2022,
+    esquerda_2022: hist.esquerda_2022,
+    direita_2018: hist.direita_2018,
+    esquerda_2018: hist.esquerda_2018,
+  };
 }
 
 function projetarEstado(ufRow) {
@@ -26,18 +46,27 @@ function projetarEstado(ufRow) {
   const hist = ufRow.hist;
 
   if (pctAp <= 0.01 || ufRow.votos_validos <= 0) {
+    // Sem parcial ainda: expõe o prior dos 1ºs turnos como referência de projeção
+    const histD = hist ? hist.direita_peso : null;
+    const histE = hist ? hist.esquerda_peso : null;
+    const polar = histD != null && histE != null ? Math.max(histD + histE, 0.01) : null;
+    const projF = polar != null ? (100 * histD) / polar : null;
+    const projL = polar != null ? (100 * histE) / polar : null;
     return {
       ...baseEstado(ufRow, pctFalta),
       estimativa_validos_total: null,
       votos_restantes: null,
-      w_hist: null,
-      proj_flavio_pct_final: null,
-      proj_lula_pct_final: null,
+      w_hist: hist ? 1 : null,
+      proj_flavio_pct_final: projF,
+      proj_lula_pct_final: projL,
+      proj_margem_final: projF != null && projL != null ? projF - projL : null,
       restantes_flavio: 0,
       restantes_lula: 0,
       restantes_outros: 0,
       peso_nacional_restante: 0,
+      hist: resumoHist(hist),
       skip: true,
+      prior_puro: true,
     };
   }
 
@@ -96,17 +125,7 @@ function projetarEstado(ufRow) {
       flavio: projF - ufRow.flavio_pct,
       lula: projL - ufRow.lula_pct,
     },
-    hist: hist
-      ? {
-          direita_peso: hist.direita_peso,
-          esquerda_peso: hist.esquerda_peso,
-          margem_hist: hist.margem_hist,
-          direita_2022: hist.direita_2022,
-          esquerda_2022: hist.esquerda_2022,
-          direita_2018: hist.direita_2018,
-          esquerda_2018: hist.esquerda_2018,
-        }
-      : null,
+    hist: resumoHist(hist),
     skip: false,
   };
 }
@@ -148,8 +167,29 @@ function projetarNacional(br, ufs) {
   const restF = ativos.reduce((s, e) => s + e.restantes_flavio, 0);
   const restL = ativos.reduce((s, e) => s + e.restantes_lula, 0);
 
-  const projF = totV ? (100 * totF) / totV : 0;
-  const projL = totV ? (100 * totL) / totV : 0;
+  let projF = totV ? (100 * totF) / totV : 0;
+  let projL = totV ? (100 * totL) / totV : 0;
+  let priorPuroNacional = false;
+
+  // Sem parcial do 2º turno ainda: prior dos 1ºs turnos ponderado pelo eleitorado
+  if (!ativos.length) {
+    let wF = 0;
+    let wL = 0;
+    let wTot = 0;
+    for (const e of estados) {
+      if (e.proj_flavio_pct_final == null || e.proj_lula_pct_final == null) continue;
+      const peso = e.eleitorado_total || e.secoes_total || 1;
+      wF += (e.proj_flavio_pct_final / 100) * peso;
+      wL += (e.proj_lula_pct_final / 100) * peso;
+      wTot += peso;
+      e.peso_nacional_restante = (100 * peso) / (estados.reduce((s, x) => s + (x.eleitorado_total || x.secoes_total || 1), 0) || 1);
+    }
+    if (wTot > 0) {
+      projF = (100 * wF) / wTot;
+      projL = (100 * wL) / wTot;
+      priorPuroNacional = true;
+    }
+  }
 
   // Contribuição de cada UF ao movimento esperado da margem nacional
   // (quanto os restantes da UF puxam Flávio − Lula no total nacional projetado)
@@ -158,9 +198,10 @@ function projetarNacional(br, ufs) {
     e.impacto_margem_nacional_pp = totV ? (100 * pull) / totV : 0;
   }
 
-  // Agregado regional
+  // Agregado regional — com parcial usa ativos; sem parcial usa prior por UF
+  const baseRegioes = ativos.length ? ativos : estados.filter((e) => e.hist);
   const regioesMap = {};
-  for (const e of ativos) {
+  for (const e of baseRegioes) {
     const r = e.regiao || 'Outros';
     if (!regioesMap[r]) {
       regioesMap[r] = {
@@ -179,27 +220,43 @@ function projetarNacional(br, ufs) {
       };
     }
     const g = regioesMap[r];
-    g.pct_secoes_pond += e.pct_secoes * e.secoes_total;
-    g.peso_secoes += e.secoes_total;
+    const pesoUf = ativos.length
+      ? e.secoes_total
+      : e.eleitorado_total || e.secoes_total || 1;
+    g.pct_secoes_pond += e.pct_secoes * (e.secoes_total || 0);
+    g.peso_secoes += e.secoes_total || 0;
     g.flavio_votos += e.flavio_votos;
     g.lula_votos += e.lula_votos;
     g.validos += e.votos_validos;
-    g.restantes += e.votos_restantes;
-    g.rest_f += e.restantes_flavio;
-    g.rest_l += e.restantes_lula;
-    g.proj_f += e.proj_flavio_votos;
-    g.proj_l += e.proj_lula_votos;
-    g.proj_v += e.estimativa_validos_total;
+    g.restantes += e.votos_restantes || 0;
+    g.rest_f += e.restantes_flavio || 0;
+    g.rest_l += e.restantes_lula || 0;
+    if (ativos.length) {
+      g.proj_f += e.proj_flavio_votos;
+      g.proj_l += e.proj_lula_votos;
+      g.proj_v += e.estimativa_validos_total;
+    } else if (e.proj_flavio_pct_final != null) {
+      g.proj_f += (e.proj_flavio_pct_final / 100) * pesoUf;
+      g.proj_l += (e.proj_lula_pct_final / 100) * pesoUf;
+      g.proj_v += pesoUf;
+    }
   }
+
+  const denomPesoRest = ativos.length ? somaRest : baseRegioes.reduce(
+    (s, e) => s + (e.eleitorado_total || e.secoes_total || 1),
+    0
+  ) || 1;
 
   const regioes = Object.values(regioesMap).map((g) => ({
     regiao: g.regiao,
     pct_secoes: g.peso_secoes ? g.pct_secoes_pond / g.peso_secoes : 0,
-    pct_falta: g.peso_secoes ? 100 - g.pct_secoes_pond / g.peso_secoes : 0,
+    pct_falta: g.peso_secoes ? 100 - g.pct_secoes_pond / g.peso_secoes : 100,
     flavio_pct_parcial: g.validos ? (100 * g.flavio_votos) / g.validos : 0,
     lula_pct_parcial: g.validos ? (100 * g.lula_votos) / g.validos : 0,
     votos_restantes: g.restantes,
-    peso_nacional_restante: (100 * g.restantes) / somaRest,
+    peso_nacional_restante: ativos.length
+      ? (100 * g.restantes) / denomPesoRest
+      : (100 * g.proj_v) / denomPesoRest,
     proj_flavio_pct: g.proj_v ? (100 * g.proj_f) / g.proj_v : 0,
     proj_lula_pct: g.proj_v ? (100 * g.proj_l) / g.proj_v : 0,
   }));
@@ -233,6 +290,11 @@ function projetarNacional(br, ufs) {
   if (!brOk) {
     avisos.push(
       `Usando soma UFs+ZZ (${pctSecoesUf.toFixed(2).replace('.', ',')}% seções): arquivo BR indisponível ou atrasado.`
+    );
+  }
+  if (priorPuroNacional) {
+    avisos.push(
+      '2º turno ainda sem parcial: projeção nacional = prior dos 1ºs turnos (2026×0,45 + 2022×0,30 + 2018×0,25), ponderado pelo eleitorado.'
     );
   }
 
@@ -282,20 +344,42 @@ function projetarNacional(br, ufs) {
   let projFlavioVotos = totF;
   let projLulaVotos = totL;
   let projValidos = totV;
-  if (brOk) {
+  if (brOk && !priorPuroNacional) {
     // Troca a base já apurada pela oficial BR; mantém só o "restante" modelado por UF
     projFlavioVotos = br.flavio_votos + restF;
     projLulaVotos = br.lula_votos + restL;
     projValidos = br.votos_validos + somaRest;
   }
-  const projFFinal = projValidos ? (100 * projFlavioVotos) / projValidos : projF;
-  const projLFinal = projValidos ? (100 * projLulaVotos) / projValidos : projL;
+  const projFFinal = priorPuroNacional
+    ? projF
+    : projValidos
+      ? (100 * projFlavioVotos) / projValidos
+      : projF;
+  const projLFinal = priorPuroNacional
+    ? projL
+    : projValidos
+      ? (100 * projLulaVotos) / projValidos
+      : projL;
+
+  const leitura =
+    projFFinal === projLFinal
+      ? 'empate projetado'
+      : projFFinal > projLFinal
+        ? projFFinal >= 50
+          ? 'vantagem Flávio'
+          : 'leve vantagem Flávio'
+        : projLFinal >= 50
+          ? 'vantagem Lula'
+          : 'leve vantagem Lula';
 
   return {
     metodo: {
       descricao:
-        'Parcial nacional = arquivo BR oficial do TSE. Projeção = BR + restantes por UF/ZZ com blend histórico Direita/Esquerda (2018×0,4 + 2022×0,6).',
+        'Parcial nacional = arquivo BR oficial do TSE (2º turno, ele 6258). Projeção = BR + restantes por UF/ZZ com prior dos 1ºs turnos: 2026×0,45 + 2022×0,30 + 2018×0,25 (Direita × Esquerda).',
       candidatos: { direita: 'Flávio Bolsonaro (22)', esquerda: 'Lula (13)' },
+      pesos_historico_1t: { ...PESOS_1T },
+      turno: 2,
+      eleicao: '6258',
     },
     avisos,
     br_oficial: br
@@ -330,7 +414,9 @@ function projetarNacional(br, ufs) {
       restantes_flavio: restF,
       restantes_lula: restL,
       ajuste_margem_pp: projFFinal - projLFinal - nacionalParcial.margem,
-      chance_primeiro_turno: projFFinal > 50 ? 'matematicamente possível' : 'tendência de 2º turno',
+      leitura,
+      /** @deprecated use leitura — mantido para UI antiga */
+      chance_primeiro_turno: leitura,
     },
     estados,
     regioes: regioes.sort((a, b) => b.peso_nacional_restante - a.peso_nacional_restante),
