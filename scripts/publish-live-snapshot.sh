@@ -116,15 +116,16 @@ publish_once() {
   sig=$(slim_payload "$raw" "$slim" "$brjson") || return 1
   now=$(date +%s)
   pct=$(python3 -c "import json;print(json.load(open('$raw')).get('nacional_parcial',{}).get('pct_secoes') or 0)")
-  # Em apuração (>0%), republica no máx. a cada 15s mesmo se “igual”
-  local max_skip=15
-  if python3 -c "import sys; sys.exit(0 if float('$pct')>0 else 1)"; then
-    max_skip=15
-  else
-    max_skip=45
-  fi
-  if [ -f "$LAST_SIG" ] && [ "$(cat "$LAST_SIG")" = "$sig" ] && [ $((now - LAST_PUB_AT)) -lt "$max_skip" ]; then
+  # NÃO republicar se o placar (sig) é idêntico — force-push a cada 15s criava
+  # SHAs novos com os mesmos votos e o celular intercalava versão velha/nova.
+  if [ -f "$LAST_SIG" ] && [ "$(cat "$LAST_SIG")" = "$sig" ]; then
     log "unchanged pct=$pct"
+    return 0
+  fi
+  # Heartbeat raro (10 min) só se nunca publicou nesta sessão
+  if [ "$LAST_PUB_AT" -gt 0 ] && [ $((now - LAST_PUB_AT)) -lt 8 ]; then
+    # rate-limit mínimo entre pushes distintos
+    log "rate_limit pct=$pct"
     return 0
   fi
 
