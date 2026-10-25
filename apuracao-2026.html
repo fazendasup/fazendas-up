@@ -628,12 +628,17 @@
   }
 
   async function aplicarBrEspelho(data){
-    // Espelho minúsculo do BR (publicado pelo servidor) — fura atraso do snapshot completo
-    const urls=[
-      'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/br-oficial.json',
-      'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/br-oficial.json',
-    ];
+    // Espelho minúsculo do BR — SEMPRE por SHA (tip da branch no raw.githubusercontent atrasa).
     const agora=Date.now();
+    const urls=[];
+    try{
+      const sha=await descobrirShaDados();
+      if(sha) urls.push(`https://raw.githubusercontent.com/fazendasup/fazendas-up/${sha}/br-oficial.json`);
+    }catch(_){}
+    urls.push(
+      'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/br-oficial.json',
+      'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/br-oficial.json',
+    );
     for(const base of urls){
       try{
         const r=await fetchComTimeout(base+'?_='+agora,{cache:'no-store',mode:'cors'},5000);
@@ -648,6 +653,7 @@
             data.avisos.unshift('Placar nacional = BR oficial TSE.');
           }
         }
+        // Achou um BR válido (mesmo que não mais novo) — para; tip atrasada não deve sobrescrever
         return data;
       }catch(_){}
     }
