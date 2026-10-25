@@ -70,7 +70,7 @@
     <header>
       <div>
         <h1>Apuração TSE ao vivo — 2º turno Flávio × Lula</h1>
-        <p class="sub">Projeção do que falta com prior: 2026 1ºT×0,40 + finais 2022×0,35 + 2018×0,25 (1º turno atual levemente acima dos resultados finais anteriores).</p>
+        <p class="sub">Projeção do que falta com prior no eixo D×E: 2026 1ºT×0,55 + final 2022×0,35 + final 2018×0,10.</p>
       </div>
       <div class="status" id="statusBox">
         <div><span class="dot"></span><span id="statusText">conectando…</span></div>
@@ -99,7 +99,7 @@
     <section class="grid" id="kpis"></section>
     <section class="panel">
       <h2>Regiões — o que ainda move o placar</h2>
-      <p class="note">Peso = fatia dos votos restantes. Prior: 2026 1ºT×0,40 + finais 2022 2ºT×0,35 + 2018 2ºT×0,25 — Direita × Esquerda.</p>
+      <p class="note">Peso = fatia dos votos restantes. Prior (eixo D×E): 2026 1ºT×0,55 + final 2022×0,35 + final 2018×0,10. O 1ºT de 2026 sozinho já implica ~+2,8 pp ao redistribuir terceiros.</p>
       <div class="regs" id="regs"></div>
     </section>
     <section class="panel">
@@ -127,7 +127,7 @@
   const REFRESH_MS_DIRETO = 2000;  // modo direto TSE (27 arquivos) — mais leve no celular
   let REFRESH_MS = REFRESH_MS_API;
   const ELEICAO = '6258'; // 2º turno 2026
-  const PESOS_PRIOR = { t2026_1t: 0.40, t2022_2t: 0.35, t2018_2t: 0.25 };
+  const PESOS_PRIOR = { t2026_1t: 0.55, t2022_2t: 0.35, t2018_2t: 0.10 };
   const UFS = ['ac','al','am','ap','ba','ce','df','es','go','ma','mg','ms','mt','pa','pb','pe','pi','pr','rj','rn','ro','rr','rs','sc','se','sp','to','zz'];
   const UF_META = {
     AC:['Acre','Norte'],AL:['Alagoas','Nordeste'],AP:['Amapá','Norte'],AM:['Amazonas','Norte'],
@@ -160,11 +160,16 @@
   }
   function num(s){ return s==null?0:Number(String(s).replace(/[.\s]/g,'').replace(',',''))||0; }
 
+  function eixoDxE(par){
+    const s=par[0]+par[1]; if(s<=0) return [50,50];
+    return [100*par[0]/s, 100*par[1]/s];
+  }
   function hist(uf){
     const a=H26[uf], b=H22[uf], c=H18[uf]; if(!a||!b||!c) return null;
+    const [e26,d26]=eixoDxE(a), [e22,d22]=eixoDxE(b), [e18,d18]=eixoDxE(c);
     const {t2026_1t,t2022_2t,t2018_2t}=PESOS_PRIOR;
-    const e=t2026_1t*a[0]+t2022_2t*b[0]+t2018_2t*c[0];
-    const d=t2026_1t*a[1]+t2022_2t*b[1]+t2018_2t*c[1];
+    const e=t2026_1t*e26+t2022_2t*e22+t2018_2t*e18;
+    const d=t2026_1t*d26+t2022_2t*d22+t2018_2t*d18;
     return {
       esquerda_peso:e, direita_peso:d, margem_hist:d-e,
       esquerda_2026_1t:a[0], direita_2026_1t:a[1],

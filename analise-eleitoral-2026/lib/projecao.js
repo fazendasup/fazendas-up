@@ -6,9 +6,8 @@
  * 2. Votos restantes = estimativa − atuais
  * 3. Distribui restantes com blend:
  *    - parcela atual (Flávio/Lula na parcial da UF)
- *    - prior histórico Direita/Esquerda:
- *      2026 1ºT ×0,40 + finais 2022 2ºT ×0,35 + 2018 2ºT ×0,25
- *      (1º turno atual levemente acima dos resultados finais anteriores)
+ *    - prior histórico Direita/Esquerda (cada pleito no eixo D×E antes do blend):
+ *      2026 1ºT ×0,55 + final 2022 ×0,35 + final 2018 ×0,10
  *
  * Peso do histórico cresce quando ainda falta muito na UF:
  *   w_hist = clamp(pct_falta/100, 0.15, 0.75)
@@ -31,6 +30,7 @@ function resumoHist(hist) {
     esquerda_peso: hist.esquerda_peso,
     margem_hist: hist.margem_hist,
     margem_2026_1t: hist.margem_2026_1t,
+    margem_2026_1t_eixo: hist.margem_2026_1t_eixo,
     pesos: hist.pesos,
     direita_2026_1t: hist.direita_2026_1t,
     esquerda_2026_1t: hist.esquerda_2026_1t,
@@ -295,7 +295,7 @@ function projetarNacional(br, ufs) {
   }
   if (priorPuroNacional) {
     avisos.push(
-      '2º turno ainda sem parcial: projeção nacional = prior 2026 1ºT×0,40 + finais 2022×0,35 + 2018×0,25, ponderado pelo eleitorado.'
+      '2º turno ainda sem parcial: projeção = prior no eixo D×E (2026 1ºT×0,55 + final 2022×0,35 + final 2018×0,10), ponderado pelo eleitorado.'
     );
   }
 
@@ -376,10 +376,12 @@ function projetarNacional(br, ufs) {
   return {
     metodo: {
       descricao:
-        'Parcial nacional = arquivo BR oficial do TSE (2º turno, ele 6258). Projeção = BR + restantes por UF/ZZ com prior Direita/Esquerda: 2026 1ºT×0,40 + finais 2022 2ºT×0,35 + 2018 2ºT×0,25.',
+        'Parcial nacional = BR oficial TSE (2º turno, ele 6258). Projeção = BR + restantes por UF/ZZ. Prior no eixo D×E: 2026 1ºT×0,55 + final 2022×0,35 + final 2018×0,10 (2018 só regularização leve).',
       candidatos: { direita: 'Flávio Bolsonaro (22)', esquerda: 'Lula (13)' },
       pesos_historico: { ...PESOS_PRIOR },
       pesos_historico_1t: { ...PESOS_PRIOR },
+      nota_precisao:
+        'O 1º turno de 2026, redistribuído no eixo Flávio×Lula (sem terceiros), já implica ~+2,8 pp. O final de 2022 puxa para uma disputa mais apertada; 2018 tem pouco peso por ser menos análogo.',
       turno: 2,
       eleicao: '6258',
     },

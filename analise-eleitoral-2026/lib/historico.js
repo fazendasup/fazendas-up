@@ -1,10 +1,12 @@
 /**
  * Histórico Direita × Esquerda por UF para prior do 2º turno 2026.
  *
- * Pesos do prior composto (soma = 1):
- *   - 2026 1º turno (deste pleito): 0,40  ← levemente maior
- *   - 2022 2º turno (resultado final): 0,35
- *   - 2018 2º turno (resultado final): 0,25
+ * Cada pleito é primeiro convertido para eixo D×E (soma 100%) — no 1º turno
+ * de 2026 isso redistribui os “outros”; nos finais de 2º turno já é ~100%.
+ * Só depois aplica os pesos:
+ *   - 2026 1º turno (deste pleito): 0,55  ← âncora principal
+ *   - 2022 2º turno (final análogo): 0,35
+ *   - 2018 2º turno (final):         0,10  ← leve (pleito menos análogo)
  *
  * Não usa 1ºs turnos de anos anteriores — só o resultado final daquelas eleições.
  * Direita: Flávio/Bolsonaro | Esquerda: Lula/Haddad
@@ -42,11 +44,11 @@ const UF_META = {
   ZZ: { nome: 'Exterior', regiao: 'Exterior' },
 };
 
-/** Pesos do prior — 1º turno 2026 levemente acima dos finais anteriores */
+/** Pesos do prior — 2026 1T como âncora; 2018 só regularização leve */
 const PESOS_PRIOR = {
-  t2026_1t: 0.4,
+  t2026_1t: 0.55,
   t2022_2t: 0.35,
-  t2018_2t: 0.25,
+  t2018_2t: 0.1,
 };
 
 /** @deprecated use PESOS_PRIOR */
@@ -148,8 +150,19 @@ const HIST_2018_2T = {
   ZZ: [28.98, 71.02],
 };
 
+/** Converte [E%, D%] para shares no eixo D×E (soma 100). */
+function eixoDxE(par) {
+  const e = par[0];
+  const d = par[1];
+  const s = e + d;
+  if (s <= 0) return [50, 50];
+  return [(100 * e) / s, (100 * d) / s];
+}
+
 /**
- * Prior composto: 1º turno 2026 (leve vantagem) + finais 2022/2018.
+ * Prior composto: âncora 2026 1T (eixo D×E) + finais 2022/2018.
+ * Renormaliza cada pleito antes do blend — evita misturar % com “outros”
+ * do 1º turno com finais de 2º turno.
  */
 function historicoUf(uf) {
   const h26 = HIST_2026_1T[uf];
@@ -157,9 +170,13 @@ function historicoUf(uf) {
   const h18 = HIST_2018_2T[uf];
   if (!h26 || !h22 || !h18) return null;
 
+  const [e26, d26] = eixoDxE(h26);
+  const [e22, d22] = eixoDxE(h22);
+  const [e18, d18] = eixoDxE(h18);
+
   const { t2026_1t, t2022_2t, t2018_2t } = PESOS_PRIOR;
-  const esquerda = t2026_1t * h26[0] + t2022_2t * h22[0] + t2018_2t * h18[0];
-  const direita = t2026_1t * h26[1] + t2022_2t * h22[1] + t2018_2t * h18[1];
+  const esquerda = t2026_1t * e26 + t2022_2t * e22 + t2018_2t * e18;
+  const direita = t2026_1t * d26 + t2022_2t * d22 + t2018_2t * d18;
 
   return {
     uf,
@@ -167,6 +184,8 @@ function historicoUf(uf) {
     pesos: { ...PESOS_PRIOR },
     esquerda_2026_1t: h26[0],
     direita_2026_1t: h26[1],
+    esquerda_2026_1t_eixo: e26,
+    direita_2026_1t_eixo: d26,
     esquerda_2022_2t: h22[0],
     direita_2022_2t: h22[1],
     esquerda_2018_2t: h18[0],
@@ -176,10 +195,12 @@ function historicoUf(uf) {
     direita_2022: h22[1],
     esquerda_2018: h18[0],
     direita_2018: h18[1],
+    // já no eixo D×E (soma ≈ 100)
     esquerda_peso: esquerda,
     direita_peso: direita,
     margem_hist: direita - esquerda,
     margem_2026_1t: h26[1] - h26[0],
+    margem_2026_1t_eixo: d26 - e26,
     polarizacao: esquerda + direita,
   };
 }
