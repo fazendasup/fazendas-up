@@ -50,7 +50,6 @@ out = {
 }
 open(dst,'w').write(json.dumps(out, ensure_ascii=False, separators=(',',':')))
 sig = {
-  'c': out.get('capturado_em'),
   'p': (out.get('nacional_parcial') or {}).get('votos_validos'),
   'pf': round(((out.get('nacional_projetado') or {}).get('flavio_pct') or 0), 3),
   'pl': round(((out.get('nacional_projetado') or {}).get('lula_pct') or 0), 3),
@@ -62,6 +61,8 @@ print(json.dumps(sig, sort_keys=True))
 PY
 }
 
+LAST_PUB_AT=0
+
 publish_once() {
   local raw=/tmp/apuracao-raw.json
   local slim=/tmp/apuracao-live.json
@@ -69,9 +70,11 @@ publish_once() {
     log "api_fail"
     return 1
   fi
-  local sig
+  local sig now
   sig=$(slim_payload "$raw" "$slim") || return 1
-  if [ -f "$LAST_SIG" ] && [ "$(cat "$LAST_SIG")" = "$sig" ]; then
+  now=$(date +%s)
+  # republica se dados mudaram OU se passou 90s (mantém “ao vivo” no CDN)
+  if [ -f "$LAST_SIG" ] && [ "$(cat "$LAST_SIG")" = "$sig" ] && [ $((now - LAST_PUB_AT)) -lt 90 ]; then
     log "unchanged"
     return 0
   fi
@@ -90,7 +93,11 @@ publish_once() {
     git push -q -f "$(git -C "$ROOT" remote get-url origin)" "HEAD:refs/heads/$BRANCH"
   ) || { log "push_fail"; return 1; }
 
+  # limpa CDN do jsDelivr para o celular pegar dado novo
+  curl -sS --max-time 15 "https://purge.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/apuracao-live.json" >/dev/null 2>&1 || true
+
   echo "$sig" > "$LAST_SIG"
+  LAST_PUB_AT=$now
   log "published $sig"
 }
 
@@ -101,5 +108,5 @@ while true; do
   else
     log "server_down"
   fi
-  sleep 20
+  sleep 25
 done

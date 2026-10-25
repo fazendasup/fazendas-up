@@ -424,11 +424,12 @@
    * Não depende de túnel — o celular só fala com raw.githubusercontent.com.
    */
   const SNAPSHOT_URLS = [
-    'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
     'https://cdn.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/apuracao-live.json',
+    'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
+    'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
   ];
   const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
-  const REFRESH_MS_SNAPSHOT = 3000;
+  const REFRESH_MS_SNAPSHOT = 5000;
 
   function hostEhTunelOuLocal(hostname){
     return hostname==='localhost' || hostname==='127.0.0.1'
