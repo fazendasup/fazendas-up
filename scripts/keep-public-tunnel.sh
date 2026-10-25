@@ -56,7 +56,9 @@ publish_api_base_if_changed() {
   # Só no branch do agente (raw.githubusercontent). NÃO empurrar main:
   # GitHub Pages cacheia api-base.json por ~10min e serve URL morta.
   git -C "$ROOT" push origin "HEAD:$BRANCH" >/dev/null 2>&1 || log "warn: push branch falhou"
-  log "published api-base.json -> $BRANCH"
+  # Pages lê api-base.json do main / do próprio site
+  git -C "$ROOT" push origin "HEAD:main" >/dev/null 2>&1 || log "warn: push main falhou"
+  log "published api-base.json -> $BRANCH + main"
 }
 
 health() {
