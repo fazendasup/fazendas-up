@@ -298,15 +298,14 @@ function projetarNacional(br, ufs) {
     String(b.atualizado || '').localeCompare(String(a.atualizado || ''))
   )[0];
 
-  // Parcial nacional: preferir arquivo BR oficial do TSE (bate com o site do TSE).
-  // Só cai para soma UFs+ZZ se o BR estiver claramente travado/atrás.
+  // Parcial nacional = SEMPRE o arquivo BR do TSE (é o que a página oficial mostra).
+  // Soma UFs+ZZ diverge na CDN (UFs atrasam/adiantam) — nunca usar como placar.
   // Se a única parcial for exterior por BU, NÃO promove ZZ a “Brasil”.
   const brOk =
     Boolean(br) &&
     (br.votos_validos || 0) > 0 &&
     (br.flavio_votos || 0) > 0 &&
-    // BR atrás demais das UFs (>= 2 pp de seções) → provavelmente travado
-    !(br.pct_secoes + 2 < pctSecoesUf);
+    (br.lula_votos || 0) > 0;
 
   const avisos = [];
   if (soExteriorAntecipado) {
@@ -315,7 +314,12 @@ function projetarNacional(br, ufs) {
     );
   } else if (!brOk) {
     avisos.push(
-      `Usando soma UFs+ZZ (${pctSecoesUf.toFixed(2).replace('.', ',')}% seções): arquivo BR indisponível ou atrasado.`
+      `Arquivo BR oficial indisponível — placar nacional indisponível (não usamos soma UFs; diverge do TSE). Agregação UFs+ZZ só diagnóstico: ${pctSecoesUf.toFixed(2).replace('.', ',')}% seções.`
+    );
+  } else if (Math.abs((br.votos_validos || 0) - votosV) > 1000) {
+    // Transparência: tabela por UF pode não somar o BR (CDN por abrangência).
+    avisos.push(
+      `Placar = BR oficial TSE (não a soma das UFs). UFs+ZZ somam ${votosV.toLocaleString('pt-BR')} válidos vs BR ${br.votos_validos.toLocaleString('pt-BR')}.`
     );
   }
   if (priorPuroNacional) {
@@ -324,21 +328,35 @@ function projetarNacional(br, ufs) {
     );
   }
 
-  const nacionalParcial =
-    brOk || soExteriorAntecipado || Boolean(br)
+  const nacionalParcial = soExteriorAntecipado
+    ? {
+        fonte: 'tse_br_aguardando_17h',
+        pct_secoes: 0,
+        pct_falta: 100,
+        atualizado: br?.atualizado || '',
+        flavio_pct: 0,
+        lula_pct: 0,
+        flavio_votos: 0,
+        lula_votos: 0,
+        margem: 0,
+        votos_validos: 0,
+        comparecimento: br?.comparecimento ?? null,
+        top: [],
+      }
+    : brOk
       ? {
-          fonte: soExteriorAntecipado ? 'tse_br_aguardando_17h' : brOk ? 'tse_br_oficial' : 'tse_br_oficial',
-          pct_secoes: br?.pct_secoes || 0,
-          pct_falta: Math.max(0, 100 - (br?.pct_secoes || 0)),
-          atualizado: br?.atualizado || '',
-          flavio_pct: br?.flavio_pct || 0,
-          lula_pct: br?.lula_pct || 0,
-          flavio_votos: br?.flavio_votos || 0,
-          lula_votos: br?.lula_votos || 0,
-          margem: br?.margem || 0,
-          votos_validos: br?.votos_validos || 0,
-          comparecimento: br?.comparecimento ?? null,
-          top: (br?.cands || []).slice(0, 6).map(({ nome, partido, pct, votos, numero }) => ({
+          fonte: 'tse_br_oficial',
+          pct_secoes: br.pct_secoes || 0,
+          pct_falta: Math.max(0, 100 - (br.pct_secoes || 0)),
+          atualizado: br.atualizado || '',
+          flavio_pct: br.flavio_pct || 0,
+          lula_pct: br.lula_pct || 0,
+          flavio_votos: br.flavio_votos || 0,
+          lula_votos: br.lula_votos || 0,
+          margem: br.margem || 0,
+          votos_validos: br.votos_validos || 0,
+          comparecimento: br.comparecimento ?? null,
+          top: (br.cands || []).slice(0, 6).map(({ nome, partido, pct, votos, numero }) => ({
             nome,
             partido,
             pct,
@@ -347,24 +365,19 @@ function projetarNacional(br, ufs) {
           })),
         }
       : {
-          fonte: 'agregacao_ufs_zz',
-          pct_secoes: pctSecoesUf,
-          pct_falta: Math.max(0, 100 - pctSecoesUf),
-          atualizado: ufMaisRecente?.atualizado || br?.atualizado || '',
-          flavio_pct: flavioPctUf,
-          lula_pct: lulaPctUf,
-          flavio_votos: votosF,
-          lula_votos: votosL,
-          margem: flavioPctUf - lulaPctUf,
-          votos_validos: votosV,
-          comparecimento: br?.comparecimento ?? null,
-          top: (br?.cands || []).slice(0, 6).map(({ nome, partido, pct, votos, numero }) => ({
-            nome,
-            partido,
-            pct,
-            votos,
-            numero,
-          })),
+          // Sem BR: placar zerado de propósito (melhor que número errado da soma UFs).
+          fonte: 'indisponivel',
+          pct_secoes: 0,
+          pct_falta: 100,
+          atualizado: ufMaisRecente?.atualizado || '',
+          flavio_pct: 0,
+          lula_pct: 0,
+          flavio_votos: 0,
+          lula_votos: 0,
+          margem: 0,
+          votos_validos: 0,
+          comparecimento: null,
+          top: [],
         };
 
   // Projeção: ancora nos votos oficiais do BR (quando disponível) + restantes estimados por UF/ZZ

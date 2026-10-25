@@ -352,26 +352,18 @@
     return `https://resultados.tse.jus.br/oficial/ele2026/${ELEICAO}/dados/${u}/${u}-c0001-e00${ELEICAO}-u.json`;
   }
 
+  function ehJsonTse(d){
+    return Boolean(d && typeof d==='object' && (d.cdabr || d.carg) && !d.error && d.success!==false);
+  }
+
   async function fetchJson(url){
-    // 1) direto
-    try{
-      const r=await fetch(url,{cache:'no-store',mode:'cors'});
-      if(r.ok) return r.json();
-    }catch(_){}
-    // 2) proxies CORS públicos
-    const proxies=[
-      (u)=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-      (u)=>`https://corsproxy.io/?${encodeURIComponent(u)}`,
-    ];
-    let lastErr;
-    for(const p of proxies){
-      try{
-        const r=await fetch(p(url),{cache:'no-store'});
-        if(!r.ok) throw new Error('HTTP '+r.status);
-        return await r.json();
-      }catch(e){ lastErr=e; }
-    }
-    throw lastErr||new Error('falha fetch');
+    // Só fetch direto. Proxies CORS públicos devolvem 403/HTML e geravam placar falso.
+    // No GitHub Pages o TSE bloqueia CORS — o fluxo cai no snapshot (BR oficial via servidor).
+    const r=await fetch(url,{cache:'no-store',mode:'cors'});
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d=await r.json();
+    if(!ehJsonTse(d)) throw new Error('JSON TSE inválido');
+    return d;
   }
 
   const melhorUf = new Map(); // merge monotônico no modo direto
@@ -390,20 +382,32 @@
 
   function parseBrOficial(d){
     const cands=extractCands(d);
-    const f=cands.find(c=>c.numero==='22');
-    const l=cands.find(c=>c.numero==='13');
+    const f=cands.find(c=>String(c.numero)==='22');
+    const l=cands.find(c=>String(c.numero)==='13');
+    if(!f || !l) return null;
     const pctSec=pct(d.s?.pst ?? d.pst);
-    const vF=f?f.votos:0, vL=l?l.votos:0, vV=vF+vL;
+    const vF=f.votos, vL=l.votos;
+    const vvOficial=num(d.v?.vv);
     return {
       fonte:'tse_br_oficial',
       atualizado:`${d.dt||''} ${d.ht||''}`.trim(),
       pct_secoes:pctSec,
       pct_falta:Math.max(0,100-pctSec),
-      flavio_pct:f?f.pct:0, lula_pct:l?l.pct:0,
+      flavio_pct:f.pct, lula_pct:l.pct,
       flavio_votos:vF, lula_votos:vL,
-      margem:(f&&l)?f.pct-l.pct:0,
-      votos_validos:vV || num(d.v?.vv),
+      margem:f.pct-l.pct,
+      // vv oficial do TSE (2º turno = F+L); nunca inventar pela soma das UFs
+      votos_validos:vvOficial || (vF+vL),
     };
+  }
+
+  function brMaisAvancado(novo, antigo){
+    if(!novo || !(novo.votos_validos>0)) return false;
+    if(!antigo || !(antigo.votos_validos>0)) return true;
+    if(novo.votos_validos !== antigo.votos_validos) return novo.votos_validos > antigo.votos_validos;
+    if(novo.flavio_votos !== antigo.flavio_votos) return novo.flavio_votos > antigo.flavio_votos;
+    if(novo.lula_votos !== antigo.lula_votos) return novo.lula_votos > antigo.lula_votos;
+    return String(novo.atualizado||'') >= String(antigo.atualizado||'');
   }
 
   let exteriorCacheSnap=null;
@@ -412,17 +416,15 @@
     const stamp=Date.now().toString(36);
     const erros=[];
     let descartados=0;
-    let brOficial=null;
 
-    // 1) BR oficial primeiro — mesmo JSON da página do TSE (rápido)
-    try{
-      const brRaw=await fetchJson(tseUrl('br')+`?_=${stamp}`);
-      brOficial=parseBrOficial(brRaw);
-    }catch(e){
-      erros.push({uf:'BR', erro:String(e.message||e)});
+    // BR oficial é obrigatório — sem ele o placar mentiria (soma UFs ≠ TSE).
+    const brRaw=await fetchJson(tseUrl('br')+`?_=${stamp}`);
+    const brOficial=parseBrOficial(brRaw);
+    if(!brOficial || !(brOficial.votos_validos>0)){
+      throw new Error('BR oficial TSE sem votos válidos');
     }
 
-    // 2) UFs em paralelo (lotes) para projeção / tabela
+    // UFs só para projeção / tabela (podem divergir do BR na CDN)
     const alvos=[...UFS];
     for(let i=0;i<alvos.length;i+=8){
       const lote=alvos.slice(i,i+8);
@@ -442,21 +444,18 @@
       });
     }
     const out=UFS.map(u=>melhorUf.get(u.toUpperCase())).filter(Boolean);
-    if(out.length<20 && !brOficial?.votos_validos) throw new Error(`Poucas UFs carregadas (${out.length}/28)`);
     const data=projetar(out.length?out:[]);
     data.monotonic=true;
     data.modo='direto-tse';
-    // Parcial nacional = arquivo BR do TSE (igual à página oficial)
-    if(brOficial && (brOficial.votos_validos>0 || brOficial.pct_secoes>0)){
-      data.nacional_parcial=brOficial;
-      data.br_oficial=brOficial;
-      // recalcula ajuste da projeção vs parcial oficial
-      if(data.nacional_projetado){
-        const j=data.nacional_projetado;
-        j.ajuste_margem_pp=(j.flavio_pct-j.lula_pct)-(brOficial.flavio_pct-brOficial.lula_pct);
-      }
+    data.nacional_parcial=brOficial;
+    data.br_oficial=brOficial;
+    if(data.nacional_projetado){
+      const j=data.nacional_projetado;
+      j.ajuste_margem_pp=(j.flavio_pct-j.lula_pct)-(brOficial.flavio_pct-brOficial.lula_pct);
     }
     if(exteriorCacheSnap) data.exterior=exteriorCacheSnap;
+    data.avisos = data.avisos || [];
+    data.avisos.unshift('Placar nacional = arquivo BR oficial do TSE (não a soma das UFs).');
     if(erros.length) data.avisos.push(`${erros.length} UF(s) falharam: ${erros.map(e=>e.uf).join(', ')}`);
     if(descartados) data.avisos.push(`${descartados} resposta(s) antigas da CDN ignoradas (evita votos descendo).`);
     data.erros_ufs=erros;
@@ -628,10 +627,39 @@
     }catch(_){}
   }
 
+  async function aplicarBrEspelho(data){
+    // Espelho minúsculo do BR (publicado pelo servidor) — fura atraso do snapshot completo
+    const urls=[
+      'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/br-oficial.json',
+      'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/br-oficial.json',
+    ];
+    const agora=Date.now();
+    for(const base of urls){
+      try{
+        const r=await fetchComTimeout(base+'?_='+agora,{cache:'no-store',mode:'cors'},5000);
+        if(!r.ok) continue;
+        const br=await r.json();
+        if(!br || br.fonte!=='tse_br_oficial' || !(br.votos_validos>0)) continue;
+        if(brMaisAvancado(br, data.nacional_parcial)){
+          data.nacional_parcial=br;
+          data.br_oficial=br;
+          data.avisos=data.avisos||[];
+          if(!data.avisos.some(a=>/BR oficial/.test(a))){
+            data.avisos.unshift('Placar nacional = BR oficial TSE.');
+          }
+        }
+        return data;
+      }catch(_){}
+    }
+    return data;
+  }
+
   async function capturar(force=false){
-    // 1) No GitHub Pages / celular: TSE CDN direto (mesma fonte/velocidade da página oficial)
-    // 2) Em localhost/túnel: API local
-    // 3) Snapshot só como rede de segurança + exterior em background
+    // 1) localhost/túnel → API (servidor lê TSE sem CORS)
+    // 2) GitHub Pages/celular → snapshot (BR oficial capturado no servidor).
+    //    TSE CDN NÃO envia CORS: “direto-tse” no browser falha e, com proxies
+    //    quebrados, chegava a mostrar soma das UFs ≠ placar do TSE.
+    // 3) direto-tse só se o BR oficial realmente carregar no browser
     if(hostEhTunelOuLocal(location.hostname)){
       try{
         REFRESH_MS = REFRESH_MS_API;
@@ -640,16 +668,29 @@
     }
 
     try{
-      REFRESH_MS = REFRESH_MS_DIRETO;
-      const data = await capturarDireto();
-      // exterior não atrasa o placar nacional
+      REFRESH_MS = REFRESH_MS_SNAPSHOT;
+      let data = await capturarViaSnapshot();
+      data = await aplicarBrEspelho(data);
+      // Recusa placar que não seja BR oficial
+      if(data.nacional_parcial && data.nacional_parcial.fonte &&
+         data.nacional_parcial.fonte!=='tse_br_oficial' &&
+         data.nacional_parcial.fonte!=='tse_br_aguardando_17h' &&
+         (data.nacional_parcial.votos_validos||0)>0){
+        data.avisos=data.avisos||[];
+        data.avisos.unshift('Ignorando parcial não-oficial (fonte '+data.nacional_parcial.fonte+').');
+        if(data.br_oficial && data.br_oficial.votos_validos>0){
+          data.nacional_parcial={...data.br_oficial, fonte:'tse_br_oficial'};
+        }
+      }
       enriquecerExteriorEmBackground();
       return data;
     }catch(_){}
 
     try{
-      REFRESH_MS = REFRESH_MS_SNAPSHOT;
-      return await capturarViaSnapshot();
+      REFRESH_MS = REFRESH_MS_DIRETO;
+      const data = await capturarDireto();
+      enriquecerExteriorEmBackground();
+      return data;
     }catch(_){}
 
     try{
@@ -674,6 +715,7 @@
   function renderKpis(data){
     const p=data.nacional_parcial||{}, j=data.nacional_projetado||{};
     const ex=data.exterior;
+    const fonteBr = (p.fonte==='tse_br_oficial') ? 'BR oficial TSE' : (p.fonte||'—');
     $('kpis').innerHTML=`
       <div class="kpi"><div class="label">Flávio — parcial</div><div class="value flavio">${fmt(p.flavio_pct)}%</div>
         <div class="hint">${fmtInt(p.flavio_votos)} votos · margem ${fmtSigned(p.margem)} pp</div></div>
@@ -684,7 +726,9 @@
         <div class="hint">ajuste ${fmtSigned(j.ajuste_margem_pp)} pp · ${j.leitura||j.chance_primeiro_turno||'—'}</div></div>
       <div class="kpi"><div class="label">Exterior (BUs)</div>
         <div class="value">${ex && ex.votos_validos ? `<span class="flavio">${fmt(ex.flavio_pct,1)}%</span> × <span class="lula">${fmt(ex.lula_pct,1)}%</span>` : '…'}</div>
-        <div class="hint">${ex && ex.votos_validos ? `${fmtInt(ex.secoes_com_bu)} seções · ${fmtInt(ex.flavio_votos)} × ${fmtInt(ex.lula_votos)}` : (ex && ex.pendente ? 'agregando BUs…' : 'aguardando')}</div></div>`;
+        <div class="hint">${ex && ex.votos_validos ? `${fmtInt(ex.secoes_com_bu)} seções · ${fmtInt(ex.flavio_votos)} × ${fmtInt(ex.lula_votos)}` : (ex && ex.pendente ? 'agregando BUs…' : 'aguardando')}</div></div>
+      <div class="kpi" style="grid-column:1/-1"><div class="label">Fonte do placar</div>
+        <div class="hint" style="margin-top:.25rem;font-size:.8rem">${fonteBr} · atualizado ${p.atualizado||'—'} · válidos ${fmtInt(p.votos_validos)} (mesmo arquivo BR da página do TSE)</div></div>`;
   }
 
   function renderExterior(data){
@@ -773,15 +817,16 @@
     const np=data.nacional_parcial||{};
     setStatus('', 'ao vivo'+(data.modo?' · '+data.modo:''),
       `TSE ${np.atualizado||'—'} · capturado ${fmtHoraMs(data.capturado_em)}`);
+    const fonte=(data.nacional_parcial&&data.nacional_parcial.fonte)||'—';
     if(data.modo==='direto-tse'){
-      $('cacheInfo').textContent = `via CDN TSE (igual página oficial) · ciclo ${REFRESH_MS}ms`;
+      $('cacheInfo').textContent = `placar ${fonte} · CDN TSE · ciclo ${REFRESH_MS}ms`;
     } else if(data.modo==='api-local' || data.modo==='api-tunel'){
-      $('cacheInfo').textContent = `via API${data.api_base?' · '+data.api_base.replace(/^https?:\/\//,''):''} · ciclo ${REFRESH_MS}ms · cache ${Math.round(age)}ms`;
+      $('cacheInfo').textContent = `placar ${fonte} · API · ciclo ${REFRESH_MS}ms · cache ${Math.round(age)}ms`;
     } else if(data.modo==='snapshot-github'){
       const ageS = data.snapshot_age_ms!=null ? Math.round(data.snapshot_age_ms/1000)+'s' : '—';
-      $('cacheInfo').textContent = `via GitHub snapshot · atraso ${ageS} · ciclo ${REFRESH_MS}ms`;
+      $('cacheInfo').textContent = `placar ${fonte} · snapshot · atraso ${ageS} · ciclo ${REFRESH_MS}ms`;
     } else {
-      $('cacheInfo').textContent = `ciclo ${REFRESH_MS}ms`;
+      $('cacheInfo').textContent = `placar ${fonte} · ciclo ${REFRESH_MS}ms`;
     }
     const avisos=[...(data.avisos||[])];
     if(data.stale_error) avisos.unshift(data.stale_error);
