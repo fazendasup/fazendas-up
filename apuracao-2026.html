@@ -425,15 +425,16 @@
    * Preferir raw + ponteiro /rev (muda a cada publish) para furar CDN.
    */
   const SNAPSHOT_REV_URL = 'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/rev';
-  const SNAPSHOT_URL_TMPL = (rev) =>
-    `https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json?v=${encodeURIComponent(rev||'')}`;
+  // JSON por SHA do commit — não usa tip da branch (CDN da branch atrasa minutos)
+  const SNAPSHOT_BY_SHA = (sha) =>
+    `https://raw.githubusercontent.com/fazendasup/fazendas-up/${sha}/apuracao-live.json`;
   const SNAPSHOT_FALLBACKS = [
     'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
     'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
   ];
   const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
   const REFRESH_MS_SNAPSHOT = 4000;
-  const SNAPSHOT_MAX_AGE_MS = 5 * 60 * 1000;
+  const SNAPSHOT_MAX_AGE_MS = 3 * 60 * 1000;
 
   function hostEhTunelOuLocal(hostname){
     return hostname==='localhost' || hostname==='127.0.0.1'
@@ -474,13 +475,14 @@
     let lastErr;
     let best = null;
 
-    // 1) ponteiro /rev (muda a cada publish → fura cache)
+    // 1) /rev = SHA do commit dos dados → raw por SHA (sem cache de branch)
     try{
       const rr = await fetchComTimeout(SNAPSHOT_REV_URL + '?_=' + agora, { cache:'no-store', mode:'cors' }, 4000);
       if(rr.ok){
-        const rev = (await rr.text()).trim();
-        if(rev){
-          const d = await lerSnapshotUrl(SNAPSHOT_URL_TMPL(rev) + '&_=' + agora);
+        const sha = (await rr.text()).trim();
+        if(/^[0-9a-f]{40}$/i.test(sha)){
+          const d = await lerSnapshotUrl(SNAPSHOT_BY_SHA(sha) + '?_=' + agora);
+          d.snapshot_sha = sha;
           if(d.snapshot_age_ms < SNAPSHOT_MAX_AGE_MS) return d;
           best = d;
         }

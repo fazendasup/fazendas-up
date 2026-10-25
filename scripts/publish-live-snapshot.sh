@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Publica apuracao-live.json na branch órfã live-snapshot (force-push).
-# O HTML do GitHub Pages lê esse JSON via raw.githubusercontent — sem túnel.
+# Grava /rev com o SHA do commit dos dados — o HTML busca o JSON por SHA
+# (fura cache de branch do raw.githubusercontent / CDNs).
 set -u
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 WATCH=/tmp/live-snapshot-watch.log
@@ -8,6 +9,7 @@ WORK=/tmp/live-snapshot-work
 BRANCH=live-snapshot
 API=http://127.0.0.1:3001/api/eleicoes/2026/apuracao
 LAST_SIG=/tmp/live-snapshot.sig
+LAST_PUB_AT=0
 
 log(){ echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) $*" | tee -a "$WATCH"; }
 
@@ -38,7 +40,7 @@ out = {
   'capturado_em': d.get('capturado_em'),
   'publicado_em': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]+'Z',
   'fonte': d.get('fonte'),
-  'refresh_sugerido_ms': 3000,
+  'refresh_sugerido_ms': 4000,
   'avisos': d.get('avisos') or [],
   'nacional_parcial': d.get('nacional_parcial'),
   'nacional_projetado': d.get('nacional_projetado'),
@@ -53,6 +55,9 @@ sig = {
   'p': (out.get('nacional_parcial') or {}).get('votos_validos'),
   'pf': round(((out.get('nacional_projetado') or {}).get('flavio_pct') or 0), 3),
   'pl': round(((out.get('nacional_projetado') or {}).get('lula_pct') or 0), 3),
+  'nf': (out.get('nacional_parcial') or {}).get('flavio_votos'),
+  'nl': (out.get('nacional_parcial') or {}).get('lula_votos'),
+  'ps': round(((out.get('nacional_parcial') or {}).get('pct_secoes') or 0), 3),
   'ex': (out.get('exterior') or {}).get('secoes_com_bu'),
   'ef': (out.get('exterior') or {}).get('flavio_votos'),
   'el': (out.get('exterior') or {}).get('lula_votos'),
@@ -60,13 +65,6 @@ sig = {
 print(json.dumps(sig, sort_keys=True))
 PY
 }
-
-LAST_PUB_AT=0
-
-checksum_raw() {
-  cksum "$1" 2>/dev/null | awk '{print $1}'
-}
-
 
 publish_once() {
   local raw=/tmp/apuracao-raw.json
@@ -78,8 +76,7 @@ publish_once() {
   local sig now
   sig=$(slim_payload "$raw" "$slim") || return 1
   now=$(date +%s)
-  # republica se dados mudaram OU se passou 90s (mantém “ao vivo” no CDN)
-  if [ -f "$LAST_SIG" ] && [ "$(cat "$LAST_SIG")" = "$sig" ] && [ $((now - LAST_PUB_AT)) -lt 90 ]; then
+  if [ -f "$LAST_SIG" ] && [ "$(cat "$LAST_SIG")" = "$sig" ] && [ $((now - LAST_PUB_AT)) -lt 45 ]; then
     log "unchanged"
     return 0
   fi
@@ -87,23 +84,28 @@ publish_once() {
   rm -rf "$WORK"
   mkdir -p "$WORK"
   cp "$slim" "$WORK/apuracao-live.json"
-  # ponteiro anti-cache: muda a cada publish (HTML usa ?v=rev)
-  REV="${now}-$(checksum_raw "$slim")"
-  printf '%s\n' "$REV" > "$WORK/rev"
-  printf '%s\n' 'Live apuração snapshot. Consumido pelo apuracao-2026.html no GitHub Pages.' > "$WORK/README.md"
+  printf '%s\n' 'Live apuração snapshot (SHA pointer in /rev).' > "$WORK/README.md"
 
+  local datasha
   (
     cd "$WORK"
     git init -q
     git checkout -q -b "$BRANCH"
-    git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" add apuracao-live.json rev README.md
-    git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" commit -q -m "live: apuração snapshot"
+    # commit 1: dados
+    git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" add apuracao-live.json README.md
+    git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" commit -q -m "live: data"
+    datasha=$(git rev-parse HEAD)
+    # commit 2: ponteiro SHA (HTML busca JSON por este SHA)
+    printf '%s\n' "$datasha" > rev
+    git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" add rev
+    git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" commit -q -m "live: rev $datasha"
     git push -q -f "$(git -C "$ROOT" remote get-url origin)" "HEAD:refs/heads/$BRANCH"
+    echo "$datasha" > /tmp/live-snapshot.last-sha
   ) || { log "push_fail"; return 1; }
 
   echo "$sig" > "$LAST_SIG"
   LAST_PUB_AT=$now
-  log "published rev=$REV $sig"
+  log "published sha=$(cat /tmp/live-snapshot.last-sha 2>/dev/null) $sig"
 }
 
 log "snapshot publisher start"
@@ -113,6 +115,5 @@ while true; do
   else
     log "server_down"
   fi
-  # durante apuração nacional, republica mais rápido
-  sleep 12
+  sleep 10
 done
