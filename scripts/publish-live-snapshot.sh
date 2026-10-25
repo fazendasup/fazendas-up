@@ -63,6 +63,11 @@ PY
 
 LAST_PUB_AT=0
 
+checksum_raw() {
+  cksum "$1" 2>/dev/null | awk '{print $1}'
+}
+
+
 publish_once() {
   local raw=/tmp/apuracao-raw.json
   local slim=/tmp/apuracao-live.json
@@ -82,23 +87,23 @@ publish_once() {
   rm -rf "$WORK"
   mkdir -p "$WORK"
   cp "$slim" "$WORK/apuracao-live.json"
+  # ponteiro anti-cache: muda a cada publish (HTML usa ?v=rev)
+  REV="${now}-$(checksum_raw "$slim")"
+  printf '%s\n' "$REV" > "$WORK/rev"
   printf '%s\n' 'Live apuração snapshot. Consumido pelo apuracao-2026.html no GitHub Pages.' > "$WORK/README.md"
 
   (
     cd "$WORK"
     git init -q
     git checkout -q -b "$BRANCH"
-    git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" add apuracao-live.json README.md
+    git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" add apuracao-live.json rev README.md
     git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" commit -q -m "live: apuração snapshot"
     git push -q -f "$(git -C "$ROOT" remote get-url origin)" "HEAD:refs/heads/$BRANCH"
   ) || { log "push_fail"; return 1; }
 
-  # limpa CDN do jsDelivr para o celular pegar dado novo
-  curl -sS --max-time 15 "https://purge.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/apuracao-live.json" >/dev/null 2>&1 || true
-
   echo "$sig" > "$LAST_SIG"
   LAST_PUB_AT=$now
-  log "published $sig"
+  log "published rev=$REV $sig"
 }
 
 log "snapshot publisher start"
@@ -108,5 +113,6 @@ while true; do
   else
     log "server_down"
   fi
-  sleep 25
+  # durante apuração nacional, republica mais rápido
+  sleep 12
 done

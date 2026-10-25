@@ -420,16 +420,20 @@
   }
 
   /**
-   * Fonte principal: snapshot no GitHub (branch live-snapshot).
-   * Não depende de túnel — o celular só fala com raw.githubusercontent.com.
+   * Snapshot no GitHub (branch live-snapshot).
+   * NÃO usar jsDelivr como primário — cacheia e “trava” a apuração.
+   * Preferir raw + ponteiro /rev (muda a cada publish) para furar CDN.
    */
-  const SNAPSHOT_URLS = [
-    'https://cdn.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/apuracao-live.json',
+  const SNAPSHOT_REV_URL = 'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/rev';
+  const SNAPSHOT_URL_TMPL = (rev) =>
+    `https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json?v=${encodeURIComponent(rev||'')}`;
+  const SNAPSHOT_FALLBACKS = [
     'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
     'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
   ];
   const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
-  const REFRESH_MS_SNAPSHOT = 5000;
+  const REFRESH_MS_SNAPSHOT = 4000;
+  const SNAPSHOT_MAX_AGE_MS = 5 * 60 * 1000;
 
   function hostEhTunelOuLocal(hostname){
     return hostname==='localhost' || hostname==='127.0.0.1'
@@ -448,21 +452,53 @@
     }
   }
 
+  function idadeSnapshotMs(d){
+    const t = Date.parse(d.publicado_em || d.capturado_em || '');
+    if(!t) return Infinity;
+    return Date.now() - t;
+  }
+
+  async function lerSnapshotUrl(url){
+    const r = await fetchComTimeout(url, { cache:'no-store', mode:'cors' }, 8000);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d = await r.json();
+    if(!d || d.ok === false) throw new Error(d && d.error ? d.error : 'snapshot inválido');
+    d.modo = 'snapshot-github';
+    d.api_base = 'raw.githubusercontent.com/live-snapshot';
+    d.snapshot_age_ms = idadeSnapshotMs(d);
+    return d;
+  }
+
   async function capturarViaSnapshot(){
-    let lastErr;
     const agora = Date.now();
-    for(const url of SNAPSHOT_URLS){
+    let lastErr;
+    let best = null;
+
+    // 1) ponteiro /rev (muda a cada publish → fura cache)
+    try{
+      const rr = await fetchComTimeout(SNAPSHOT_REV_URL + '?_=' + agora, { cache:'no-store', mode:'cors' }, 4000);
+      if(rr.ok){
+        const rev = (await rr.text()).trim();
+        if(rev){
+          const d = await lerSnapshotUrl(SNAPSHOT_URL_TMPL(rev) + '&_=' + agora);
+          if(d.snapshot_age_ms < SNAPSHOT_MAX_AGE_MS) return d;
+          best = d;
+        }
+      }
+    }catch(e){ lastErr = e; }
+
+    // 2) fallbacks raw
+    for(const base of SNAPSHOT_FALLBACKS){
       try{
-        const r = await fetchComTimeout(url + (url.includes('?')?'&':'?') + '_=' + agora, {
-          cache:'no-store', mode:'cors',
-        }, 8000);
-        if(!r.ok) throw new Error('HTTP '+r.status);
-        const d = await r.json();
-        if(!d || d.ok === false) throw new Error(d && d.error ? d.error : 'snapshot inválido');
-        d.modo = 'snapshot-github';
-        d.api_base = url.split('/').slice(0,3).join('/');
-        return d;
+        const d = await lerSnapshotUrl(base + (base.includes('?')?'&':'?') + '_=' + agora);
+        if(!best || d.snapshot_age_ms < best.snapshot_age_ms) best = d;
+        if(d.snapshot_age_ms < SNAPSHOT_MAX_AGE_MS) return d;
       }catch(e){ lastErr = e; }
+    }
+    if(best){
+      best.avisos = best.avisos || [];
+      best.avisos.unshift('Snapshot atrasado ('+Math.round(best.snapshot_age_ms/1000)+'s) — CDN/GitHub.');
+      return best;
     }
     throw lastErr || new Error('snapshot indisponível');
   }
