@@ -400,7 +400,7 @@
   async function capturar(force=false){
     // tenta API local (se existir), senão vai direto no TSE
     try{
-      if(location.port==='3001' || location.hostname==='localhost' || location.hostname==='127.0.0.1' || location.hostname.endsWith('.trycloudflare.com') || location.hostname.endsWith('.loca.lt') || location.hostname.includes('bore.pub')){
+      if(location.port==='3001' || location.hostname==='localhost' || location.hostname==='127.0.0.1' || location.hostname.endsWith('.trycloudflare.com') || location.hostname.endsWith('.loca.lt') || location.hostname.endsWith('.lhr.life') || location.hostname.includes('localhost.run') || location.hostname.includes('bore.pub')){
         REFRESH_MS = REFRESH_MS_API;
         return await capturarViaApiLocal(force);
       }
