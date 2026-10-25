@@ -103,6 +103,10 @@ publish_once() {
     echo "$datasha" > /tmp/live-snapshot.last-sha
   ) || { log "push_fail"; return 1; }
 
+  # Purge jsDelivr (HTML lê /rev daqui — raw.githubusercontent tip fica stale)
+  curl -sS --max-time 12 "https://purge.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/rev" >/dev/null 2>&1 || true
+  curl -sS --max-time 12 "https://purge.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/apuracao-live.json" >/dev/null 2>&1 || true
+
   echo "$sig" > "$LAST_SIG"
   LAST_PUB_AT=$now
   log "published sha=$(cat /tmp/live-snapshot.last-sha 2>/dev/null) $sig"

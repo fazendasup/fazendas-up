@@ -424,13 +424,21 @@
    * NÃO usar jsDelivr como primário — cacheia e “trava” a apuração.
    * Preferir raw + ponteiro /rev (muda a cada publish) para furar CDN.
    */
-  const SNAPSHOT_REV_URL = 'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/rev';
-  // JSON por SHA do commit — não usa tip da branch (CDN da branch atrasa minutos)
+  // JSON por SHA do commit — tip da branch no raw.githubusercontent atrasa vários minutos
   const SNAPSHOT_BY_SHA = (sha) =>
     `https://raw.githubusercontent.com/fazendasup/fazendas-up/${sha}/apuracao-live.json`;
+  const SNAPSHOT_REV_CANDIDATES = [
+    'https://cdn.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/rev',
+    'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/rev',
+    'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/rev',
+  ];
+  const SNAPSHOT_ATOM =
+    'https://api.allorigins.win/raw?url=' +
+    encodeURIComponent('https://github.com/fazendasup/fazendas-up/commits/live-snapshot.atom');
   const SNAPSHOT_FALLBACKS = [
-    'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
+    'https://cdn.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/apuracao-live.json',
     'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
+    'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
   ];
   const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
   const REFRESH_MS_SNAPSHOT = 4000;
@@ -470,26 +478,47 @@
     return d;
   }
 
+  async function descobrirShaDados(){
+    const agora = Date.now();
+    // A) ficheiro /rev (jsDelivr é purged a cada publish)
+    for(const url of SNAPSHOT_REV_CANDIDATES){
+      try{
+        const rr = await fetchComTimeout(url + (url.includes('?')?'&':'?') + '_=' + agora, { cache:'no-store', mode:'cors' }, 4000);
+        if(!rr.ok) continue;
+        const sha = (await rr.text()).trim().split(/\s+/)[0];
+        if(/^[0-9a-f]{40}$/i.test(sha)) return sha;
+      }catch(_){}
+    }
+    // B) atom feed via proxy CORS — 2º commit = dados (1º é o commit do /rev)
+    try{
+      const rr = await fetchComTimeout(SNAPSHOT_ATOM + '&_=' + agora, { cache:'no-store', mode:'cors' }, 8000);
+      if(rr.ok){
+        const xml = await rr.text();
+        const all = [...xml.matchAll(/commit\/([0-9a-f]{40})/gi)].map(m=>m[1]);
+        if(all.length >= 2) return all[1];
+        if(all.length === 1) return all[0];
+      }
+    }catch(_){}
+    return null;
+  }
+
   async function capturarViaSnapshot(){
     const agora = Date.now();
     let lastErr;
     let best = null;
 
-    // 1) /rev = SHA do commit dos dados → raw por SHA (sem cache de branch)
+    // 1) SHA fresco → JSON imutável por commit (sem cache velho de branch)
     try{
-      const rr = await fetchComTimeout(SNAPSHOT_REV_URL + '?_=' + agora, { cache:'no-store', mode:'cors' }, 4000);
-      if(rr.ok){
-        const sha = (await rr.text()).trim();
-        if(/^[0-9a-f]{40}$/i.test(sha)){
-          const d = await lerSnapshotUrl(SNAPSHOT_BY_SHA(sha) + '?_=' + agora);
-          d.snapshot_sha = sha;
-          if(d.snapshot_age_ms < SNAPSHOT_MAX_AGE_MS) return d;
-          best = d;
-        }
+      const sha = await descobrirShaDados();
+      if(sha){
+        const d = await lerSnapshotUrl(SNAPSHOT_BY_SHA(sha) + '?_=' + agora);
+        d.snapshot_sha = sha;
+        if(d.snapshot_age_ms < SNAPSHOT_MAX_AGE_MS) return d;
+        best = d;
       }
     }catch(e){ lastErr = e; }
 
-    // 2) fallbacks raw
+    // 2) fallbacks por tip de branch
     for(const base of SNAPSHOT_FALLBACKS){
       try{
         const d = await lerSnapshotUrl(base + (base.includes('?')?'&':'?') + '_=' + agora);
@@ -499,7 +528,7 @@
     }
     if(best){
       best.avisos = best.avisos || [];
-      best.avisos.unshift('Snapshot atrasado ('+Math.round(best.snapshot_age_ms/1000)+'s) — CDN/GitHub.');
+      best.avisos.unshift('Snapshot atrasado ('+Math.round(best.snapshot_age_ms/1000)+'s).');
       return best;
     }
     throw lastErr || new Error('snapshot indisponível');
