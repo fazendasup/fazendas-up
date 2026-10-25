@@ -1,6 +1,8 @@
 {
   "api_base": "https://ff102d44a46dcc.lhr.life",
-  "fallbacks": [],
-  "updated_at": "2026-10-25T23:34:42.006Z",
-  "note": "Atualizado automaticamente pelo watchdog do túnel. O HTML em GitHub Pages lê este arquivo."
+  "fallbacks": [
+    "https://fazendas-apuracao-2026.loca.lt"
+  ],
+  "updated_at": "2026-10-25T23:35:05.876Z",
+  "note": "Túnel vivo (LHR) + fallback loca.lt para /api/eleicoes/2026/br."
 }
