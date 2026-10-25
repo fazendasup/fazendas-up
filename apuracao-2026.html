@@ -419,24 +419,22 @@
     return data;
   }
 
-  /** Link fixo do painel (GitHub Pages). A API fica no túnel; descobrimos URLs saudáveis. */
-  const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
-  // Só raw.githubusercontent (sem cache longo). NÃO usar Pages ./api-base.json (Fastly cacheia 10min).
-  const API_BASE_DISCOVERY = [
-    'https://raw.githubusercontent.com/fazendasup/fazendas-up/cursor/analise-apuracao-flavio-lula-d913/api-base.json',
-    'https://raw.githubusercontent.com/fazendasup/fazendas-up/main/api-base.json',
+  /**
+   * Fonte principal: snapshot no GitHub (branch live-snapshot).
+   * Não depende de túnel — o celular só fala com raw.githubusercontent.com.
+   */
+  const SNAPSHOT_URLS = [
+    'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
+    'https://cdn.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/apuracao-live.json',
   ];
-  let apiBaseCache = { at: 0, bases: null, winner: null };
+  const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
+  const REFRESH_MS_SNAPSHOT = 3000;
 
   function hostEhTunelOuLocal(hostname){
     return hostname==='localhost' || hostname==='127.0.0.1'
       || hostname.endsWith('.loca.lt') || hostname.endsWith('.lhr.life')
       || hostname.endsWith('.trycloudflare.com') || hostname.includes('bore.pub')
       || hostname.includes('localhost.run');
-  }
-
-  function apiFetchHeaders(){
-    return { 'Bypass-Tunnel-Reminder': '1' };
   }
 
   async function fetchComTimeout(url, opts={}, ms=5000){
@@ -449,86 +447,67 @@
     }
   }
 
-  async function descobrirApiBases(force=false){
-    const agora = Date.now();
-    if(!force && apiBaseCache.bases && agora - apiBaseCache.at < 15_000) return apiBaseCache.bases;
-    const bases = [];
-    const add = (u)=>{
-      if(!u) return;
-      const b = String(u).replace(/\/$/, '');
-      if(!/^https?:\/\//i.test(b)) return;
-      if(!bases.includes(b)) bases.push(b);
-    };
-    // same-origin SÓ se for túnel/local — nunca github.io
-    if(hostEhTunelOuLocal(location.hostname)) add(location.origin);
-    // subdomínio fixo primeiro (URL estável)
-    add(API_BASE_FIXED);
-    if(apiBaseCache.winner) add(apiBaseCache.winner);
-    for(const url of API_BASE_DISCOVERY){
-      try{
-        const r = await fetchComTimeout(url + '?_=' + agora, { cache:'no-store' }, 4000);
-        if(!r.ok) continue;
-        const j = await r.json();
-        add(j.api_base || j.url || j.base);
-        for(const x of (j.fallbacks || [])) add(x);
-      }catch(_){}
-    }
-    apiBaseCache = { ...apiBaseCache, at: agora, bases };
-    return bases;
-  }
-
-  async function probeBase(base){
-    try{
-      const r = await fetchComTimeout(base + '/api/eleicoes/2026/health', {
-        cache:'no-store', headers: apiFetchHeaders(), mode:'cors',
-      }, 3500);
-      if(!r.ok) return null;
-      const j = await r.json();
-      return j && j.ok ? base : null;
-    }catch(_){ return null; }
-  }
-
-  async function capturarViaApi(force=false){
-    const q = force ? '?refresh=1' : '';
-    const bases = await descobrirApiBases(force);
-    // Probe em paralelo: pega a primeira saudável (evita esperar 8s em URL morta)
-    const probes = await Promise.all(bases.map(async (b, i)=>{
-      const ok = await probeBase(b);
-      return ok ? { b, i } : null;
-    }));
-    const ordered = probes.filter(Boolean).sort((a,c)=>a.i-c.i).map(x=>x.b);
-    const tryOrder = ordered.length ? ordered : bases;
+  async function capturarViaSnapshot(){
     let lastErr;
-    for(const base of tryOrder){
+    const agora = Date.now();
+    for(const url of SNAPSHOT_URLS){
       try{
-        const r = await fetchComTimeout(base + '/api/eleicoes/2026/apuracao' + q, {
-          cache:'no-store',
-          headers: apiFetchHeaders(),
-          mode:'cors',
-        }, 7000);
+        const r = await fetchComTimeout(url + (url.includes('?')?'&':'?') + '_=' + agora, {
+          cache:'no-store', mode:'cors',
+        }, 8000);
         if(!r.ok) throw new Error('HTTP '+r.status);
         const d = await r.json();
-        if(!d.ok && d.error) throw new Error(d.error);
-        d.modo = hostEhTunelOuLocal(location.hostname) && base === location.origin ? 'api-local' : 'api-tunel';
-        d.api_base = base;
-        apiBaseCache = { at: Date.now(), bases: [base, ...bases.filter(x=>x!==base)], winner: base };
+        if(!d || d.ok === false) throw new Error(d && d.error ? d.error : 'snapshot inválido');
+        d.modo = 'snapshot-github';
+        d.api_base = url.split('/').slice(0,3).join('/');
         return d;
       }catch(e){ lastErr = e; }
     }
-    throw lastErr || new Error('API indisponível');
+    throw lastErr || new Error('snapshot indisponível');
+  }
+
+  async function capturarViaApiLocal(){
+    if(!hostEhTunelOuLocal(location.hostname)) {
+      // opcional: tenta túnel fixo rápido; se falhar, deixa o caller cair no próximo modo
+      const r = await fetchComTimeout(API_BASE_FIXED + '/api/eleicoes/2026/apuracao', {
+        cache:'no-store', mode:'cors',
+        headers:{ 'Bypass-Tunnel-Reminder':'1' },
+      }, 4000);
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      const d = await r.json();
+      if(!d.ok && d.error) throw new Error(d.error);
+      d.modo = 'api-tunel';
+      d.api_base = API_BASE_FIXED;
+      return d;
+    }
+    const r = await fetchComTimeout(location.origin + '/api/eleicoes/2026/apuracao', {
+      cache:'no-store', mode:'cors',
+    }, 5000);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d = await r.json();
+    if(!d.ok && d.error) throw new Error(d.error);
+    d.modo = 'api-local';
+    d.api_base = location.origin;
+    return d;
   }
 
   async function capturar(force=false){
+    // 1) Snapshot GitHub (estável no celular)
+    try{
+      REFRESH_MS = REFRESH_MS_SNAPSHOT;
+      return await capturarViaSnapshot();
+    }catch(_){}
+    // 2) API local/túnel (se existir)
     try{
       REFRESH_MS = REFRESH_MS_API;
-      return await capturarViaApi(force);
-    }catch(_){
-      REFRESH_MS = REFRESH_MS_DIRETO;
-      const data = await capturarDireto();
-      data.avisos = data.avisos || [];
-      data.avisos.unshift('API do túnel indisponível neste ciclo — mostrando TSE direto (sem exterior/BUs).');
-      return data;
-    }
+      return await capturarViaApiLocal();
+    }catch(_){}
+    // 3) TSE direto no browser
+    REFRESH_MS = REFRESH_MS_DIRETO;
+    const data = await capturarDireto();
+    data.avisos = data.avisos || [];
+    data.avisos.unshift('Snapshot/API indisponíveis — TSE direto (sem exterior/BUs).');
+    return data;
   }
 
   function fmtHoraMs(isoOrDate){
@@ -644,9 +623,13 @@
     const np=data.nacional_parcial||{};
     setStatus('', 'ao vivo'+(data.modo?' · '+data.modo:''),
       `TSE ${np.atualizado||'—'} · capturado ${fmtHoraMs(data.capturado_em)}`);
-    $('cacheInfo').textContent = (data.modo==='api-local' || data.modo==='api-tunel')
-      ? `via API${data.api_base?' · '+data.api_base.replace(/^https?:\/\//,''):''} · ciclo ${REFRESH_MS}ms · cache ${Math.round(age)}ms`
-      : `direto TSE · ciclo ${REFRESH_MS}ms`;
+    if(data.modo==='snapshot-github'){
+      $('cacheInfo').textContent = `via GitHub snapshot · ciclo ${REFRESH_MS}ms · capturado ${data.capturado_em||'—'}`;
+    } else if(data.modo==='api-local' || data.modo==='api-tunel'){
+      $('cacheInfo').textContent = `via API${data.api_base?' · '+data.api_base.replace(/^https?:\/\//,''):''} · ciclo ${REFRESH_MS}ms · cache ${Math.round(age)}ms`;
+    } else {
+      $('cacheInfo').textContent = `direto TSE · ciclo ${REFRESH_MS}ms`;
+    }
     const avisos=[...(data.avisos||[])];
     if(data.stale_error) avisos.unshift(data.stale_error);
     if(data.br_oficial?.atrasado){
