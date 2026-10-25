@@ -88,13 +88,14 @@ br_out = {
   'publicado_em': out['publicado_em'],
 }
 open(br_dst,'w').write(json.dumps(br_out, ensure_ascii=False, separators=(',',':')))
+# Só republica quando o PLACAR (votos/seções) ou exterior muda.
+# Projeção oscila a cada ciclo e gerava force-push inútil → atom/CDN intercalavam SHAs velhos.
 sig = {
   'p': (out.get('nacional_parcial') or {}).get('votos_validos'),
-  'pf': round(((out.get('nacional_projetado') or {}).get('flavio_pct') or 0), 3),
-  'pl': round(((out.get('nacional_projetado') or {}).get('lula_pct') or 0), 3),
   'nf': (out.get('nacional_parcial') or {}).get('flavio_votos'),
   'nl': (out.get('nacional_parcial') or {}).get('lula_votos'),
   'ps': round(((out.get('nacional_parcial') or {}).get('pct_secoes') or 0), 3),
+  'ht': (out.get('nacional_parcial') or {}).get('atualizado') or '',
   'ex': (out.get('exterior') or {}).get('secoes_com_bu'),
   'ef': (out.get('exterior') or {}).get('flavio_votos'),
   'el': (out.get('exterior') or {}).get('lula_votos'),

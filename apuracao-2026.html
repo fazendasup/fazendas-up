@@ -511,81 +511,160 @@
     return Date.now() - t;
   }
 
+  function scoreParcial(p){
+    if(!p) return -1;
+    // Desempate estável: válidos → F+L → % seções → horário TSE
+    return (Number(p.votos_validos)||0) * 1e7
+      + (Number(p.flavio_votos)||0) + (Number(p.lula_votos)||0)
+      + (Number(p.pct_secoes)||0) * 10;
+  }
+
+  function snapshotMaisAvancado(a, b){
+    if(!a) return b;
+    if(!b) return a;
+    const sa=scoreParcial(a.nacional_parcial), sb=scoreParcial(b.nacional_parcial);
+    if(sb!==sa) return sb>sa ? b : a;
+    const ta=Date.parse(a.publicado_em||a.capturado_em||'')||0;
+    const tb=Date.parse(b.publicado_em||b.capturado_em||'')||0;
+    return tb>=ta ? b : a;
+  }
+
   async function lerSnapshotUrl(url){
     const r = await fetchComTimeout(url, { cache:'no-store', mode:'cors' }, 8000);
     if(!r.ok) throw new Error('HTTP '+r.status);
     const d = await r.json();
     if(!d || d.ok === false) throw new Error(d && d.error ? d.error : 'snapshot inválido');
+    const p=d.nacional_parcial||{};
+    if(!(p.votos_validos>0) && p.fonte!=='tse_br_aguardando_17h'){
+      throw new Error('snapshot sem placar BR');
+    }
     d.modo = 'snapshot-github';
     d.api_base = 'raw.githubusercontent.com/live-snapshot';
     d.snapshot_age_ms = idadeSnapshotMs(d);
     return d;
   }
 
-  function shaDoAtom(xml){
-    const all = [...xml.matchAll(/commit\/([0-9a-f]{40})/gi)].map(m=>m[1]);
-    // 1º = commit do /rev, 2º = commit dos dados
-    if(all.length >= 2) return all[1];
-    if(all.length === 1) return all[0];
-    return null;
+  function shasDoAtom(xml){
+    const all = [...xml.matchAll(/commit\/([0-9a-f]{40})/gi)].map(m=>m[1].toLowerCase());
+    const uniq=[];
+    for(const s of all){ if(!uniq.includes(s)) uniq.push(s); }
+    return uniq;
   }
 
-  async function descobrirShaDados(){
+  async function listarShasCandidatos(){
     const agora = Date.now();
-    // A) Atom feed PRIMEIRO (sempre o tip fresco; jsDelivr /rev atrasa horas)
+    const shas=[];
+    const pushSha=(s)=>{ if(s && /^[0-9a-f]{40}$/i.test(s) && !shas.includes(s.toLowerCase())) shas.push(s.toLowerCase()); };
+
+    // A) /rev direto (raw.githack costuma ser mais fresco que raw.githubusercontent tip)
+    for(const url of SNAPSHOT_REV_CANDIDATES){
+      try{
+        const rr = await fetchComTimeout(url + (url.includes('?')?'&':'?') + '_=' + agora, { cache:'no-store', mode:'cors' }, 4000);
+        if(!rr.ok) continue;
+        pushSha((await rr.text()).trim().split(/\s+/)[0]);
+      }catch(_){}
+    }
+
+    // B) Atom — proxies às vezes devolvem feed velho; só vira candidato, não decisão final
     for(const url of SNAPSHOT_ATOM_PROXIES){
       try{
         const sep = url.includes('?') ? '&' : '?';
         const rr = await fetchComTimeout(url + sep + '_=' + agora, { cache:'no-store', mode:'cors' }, 8000);
         if(!rr.ok) continue;
-        const sha = shaDoAtom(await rr.text());
-        if(sha) return sha;
+        for(const s of shasDoAtom(await rr.text()).slice(0, 6)) pushSha(s);
       }catch(_){}
     }
-    // B) /rev — só aceita se o JSON desse SHA estiver fresco
-    for(const url of SNAPSHOT_REV_CANDIDATES){
-      try{
-        const rr = await fetchComTimeout(url + (url.includes('?')?'&':'?') + '_=' + agora, { cache:'no-store', mode:'cors' }, 4000);
-        if(!rr.ok) continue;
-        const sha = (await rr.text()).trim().split(/\s+/)[0];
-        if(!/^[0-9a-f]{40}$/i.test(sha)) continue;
-        const d = await lerSnapshotUrl(SNAPSHOT_BY_SHA(sha) + '?_=' + agora);
-        if(d.snapshot_age_ms < SNAPSHOT_MAX_AGE_MS) return sha;
-      }catch(_){}
-    }
-    return null;
+    return shas;
+  }
+
+  // Compat: espelho BR ainda chama isto
+  async function descobrirShaDados(){
+    const shas = await listarShasCandidatos();
+    return shas[0] || null;
   }
 
   async function capturarViaSnapshot(){
     const agora = Date.now();
     let lastErr;
     let best = null;
+    const shas = await listarShasCandidatos();
 
-    // 1) SHA fresco → JSON por commit
-    try{
-      const sha = await descobrirShaDados();
-      if(sha){
+    // Avalia vários SHAs e fica com o placar MAIS AVANÇADO (nunca o primeiro do atom velho)
+    for(const sha of shas.slice(0, 5)){
+      try{
         const d = await lerSnapshotUrl(SNAPSHOT_BY_SHA(sha) + '?_=' + agora);
         d.snapshot_sha = sha;
-        if(d.snapshot_age_ms < SNAPSHOT_MAX_AGE_MS) return d;
-        best = d;
-      }
-    }catch(e){ lastErr = e; }
-
-    // 2) fallbacks tip de branch (sem jsDelivr)
-    for(const base of SNAPSHOT_FALLBACKS){
-      try{
-        const d = await lerSnapshotUrl(base + (base.includes('?')?'&':'?') + '_=' + agora);
-        if(!best || d.snapshot_age_ms < best.snapshot_age_ms) best = d;
-        if(d.snapshot_age_ms < SNAPSHOT_MAX_AGE_MS) return d;
+        best = snapshotMaisAvancado(best, d);
       }catch(e){ lastErr = e; }
     }
-    if(best){
+
+    // Tip da branch só se não achamos nada por SHA (CDN tip atrasa e causa “votos descendo”)
+    if(!best){
+      for(const base of SNAPSHOT_FALLBACKS){
+        try{
+          const d = await lerSnapshotUrl(base + (base.includes('?')?'&':'?') + '_=' + agora);
+          best = snapshotMaisAvancado(best, d);
+        }catch(e){ lastErr = e; }
+      }
+    }
+
+    if(!best) throw lastErr || new Error('snapshot indisponível');
+    if(best.snapshot_age_ms >= SNAPSHOT_MAX_AGE_MS){
       best.avisos = best.avisos || [];
       best.avisos.unshift('Snapshot atrasado '+Math.round(best.snapshot_age_ms/1000)+'s — atualizando…');
-      return best;
     }
-    throw lastErr || new Error('snapshot indisponível');
+    return best;
+  }
+
+  /** Marca d'água no browser: placar nacional nunca regride entre ciclos. */
+  let marcaDaguaNacional = null;
+
+  function aplicarMarcaDaguaCliente(data){
+    if(!data) return data;
+    const p = data.nacional_parcial;
+    const avisos = [...(data.avisos||[])];
+
+    if(p && (p.votos_validos>0) && p.fonte==='tse_br_oficial'){
+      if(!marcaDaguaNacional){
+        marcaDaguaNacional = {
+          flavio: p.flavio_votos, lula: p.lula_votos, validos: p.votos_validos,
+          pct: p.pct_secoes, atualizado: p.atualizado, parcial: {...p}
+        };
+        return data;
+      }
+      const regrediu =
+        p.votos_validos < marcaDaguaNacional.validos ||
+        p.flavio_votos < marcaDaguaNacional.flavio ||
+        p.lula_votos < marcaDaguaNacional.lula;
+      if(regrediu){
+        avisos.unshift('Fonte temporariamente atrasada — mantendo placar já exibido (não volta número).');
+        return {
+          ...data,
+          nacional_parcial: {...marcaDaguaNacional.parcial},
+          br_oficial: {...marcaDaguaNacional.parcial},
+          avisos,
+          protegido_regressao: true,
+        };
+      }
+      marcaDaguaNacional = {
+        flavio: p.flavio_votos, lula: p.lula_votos, validos: p.votos_validos,
+        pct: p.pct_secoes, atualizado: p.atualizado, parcial: {...p}
+      };
+      return data;
+    }
+
+    // Sem placar novo: reaproveita o melhor já visto
+    if(marcaDaguaNacional?.parcial){
+      avisos.unshift('Sem BR fresco neste ciclo — mantendo último placar.');
+      return {
+        ...data,
+        nacional_parcial: {...marcaDaguaNacional.parcial},
+        br_oficial: {...marcaDaguaNacional.parcial},
+        avisos,
+        protegido_regressao: true,
+      };
+    }
+    return data;
   }
 
   async function capturarViaApiLocal(){
@@ -614,48 +693,49 @@
   }
 
   async function enriquecerExteriorEmBackground(){
-    // não bloqueia o ciclo — exterior vem do snapshot quando der
+    // só atualiza exterior — nunca mexe no placar nacional (evita regressão)
     try{
       const snap = await capturarViaSnapshot();
       if(snap?.exterior?.votos_validos){
-        exteriorCacheSnap = snap.exterior;
-        if(lastPayload){
-          lastPayload.exterior = snap.exterior;
-          try{ renderExterior(lastPayload); renderKpis(lastPayload); }catch(_){}
+        const prev = exteriorCacheSnap;
+        // exterior também monotônico por seções/votos
+        if(!prev || (snap.exterior.secoes_com_bu||0) >= (prev.secoes_com_bu||0)
+          && (snap.exterior.votos_validos||0) >= (prev.votos_validos||0)){
+          exteriorCacheSnap = snap.exterior;
+          if(lastPayload){
+            lastPayload.exterior = snap.exterior;
+            try{ renderExterior(lastPayload); renderKpis(lastPayload); }catch(_){}
+          }
         }
       }
     }catch(_){}
   }
 
   async function aplicarBrEspelho(data){
-    // Espelho minúsculo do BR — SEMPRE por SHA (tip da branch no raw.githubusercontent atrasa).
+    // Espelho BR por vários SHAs — fica com o mais avançado (ignora tip crua/atrasada).
     const agora=Date.now();
-    const urls=[];
-    try{
-      const sha=await descobrirShaDados();
-      if(sha) urls.push(`https://raw.githubusercontent.com/fazendasup/fazendas-up/${sha}/br-oficial.json`);
-    }catch(_){}
-    urls.push(
-      'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/br-oficial.json',
-      'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/br-oficial.json',
-    );
-    for(const base of urls){
+    let melhorBr = data.nacional_parcial;
+    let shas=[];
+    try{ shas = await listarShasCandidatos(); }catch(_){}
+    for(const sha of shas.slice(0, 4)){
       try{
-        const r=await fetchComTimeout(base+'?_='+agora,{cache:'no-store',mode:'cors'},5000);
+        const r=await fetchComTimeout(
+          `https://raw.githubusercontent.com/fazendasup/fazendas-up/${sha}/br-oficial.json?_=${agora}`,
+          {cache:'no-store',mode:'cors'}, 5000
+        );
         if(!r.ok) continue;
         const br=await r.json();
         if(!br || br.fonte!=='tse_br_oficial' || !(br.votos_validos>0)) continue;
-        if(brMaisAvancado(br, data.nacional_parcial)){
-          data.nacional_parcial=br;
-          data.br_oficial=br;
-          data.avisos=data.avisos||[];
-          if(!data.avisos.some(a=>/BR oficial/.test(a))){
-            data.avisos.unshift('Placar nacional = BR oficial TSE.');
-          }
-        }
-        // Achou um BR válido (mesmo que não mais novo) — para; tip atrasada não deve sobrescrever
-        return data;
+        if(brMaisAvancado(br, melhorBr)) melhorBr = br;
       }catch(_){}
+    }
+    if(melhorBr && brMaisAvancado(melhorBr, data.nacional_parcial)){
+      data.nacional_parcial=melhorBr;
+      data.br_oficial=melhorBr;
+      data.avisos=data.avisos||[];
+      if(!data.avisos.some(a=>/BR oficial/.test(a))){
+        data.avisos.unshift('Placar nacional = BR oficial TSE.');
+      }
     }
     return data;
   }
@@ -663,48 +743,48 @@
   async function capturar(force=false){
     // 1) localhost/túnel → API (servidor lê TSE sem CORS)
     // 2) GitHub Pages/celular → snapshot (BR oficial capturado no servidor).
-    //    TSE CDN NÃO envia CORS: “direto-tse” no browser falha e, com proxies
-    //    quebrados, chegava a mostrar soma das UFs ≠ placar do TSE.
     // 3) direto-tse só se o BR oficial realmente carregar no browser
+    let data = null;
     if(hostEhTunelOuLocal(location.hostname)){
       try{
         REFRESH_MS = REFRESH_MS_API;
-        return await capturarViaApiLocal();
+        data = await capturarViaApiLocal();
       }catch(_){}
     }
 
-    try{
-      REFRESH_MS = REFRESH_MS_SNAPSHOT;
-      let data = await capturarViaSnapshot();
-      data = await aplicarBrEspelho(data);
-      // Recusa placar que não seja BR oficial
-      if(data.nacional_parcial && data.nacional_parcial.fonte &&
-         data.nacional_parcial.fonte!=='tse_br_oficial' &&
-         data.nacional_parcial.fonte!=='tse_br_aguardando_17h' &&
-         (data.nacional_parcial.votos_validos||0)>0){
-        data.avisos=data.avisos||[];
-        data.avisos.unshift('Ignorando parcial não-oficial (fonte '+data.nacional_parcial.fonte+').');
-        if(data.br_oficial && data.br_oficial.votos_validos>0){
-          data.nacional_parcial={...data.br_oficial, fonte:'tse_br_oficial'};
+    if(!data){
+      try{
+        REFRESH_MS = REFRESH_MS_SNAPSHOT;
+        data = await capturarViaSnapshot();
+        data = await aplicarBrEspelho(data);
+        if(data.nacional_parcial && data.nacional_parcial.fonte &&
+           data.nacional_parcial.fonte!=='tse_br_oficial' &&
+           data.nacional_parcial.fonte!=='tse_br_aguardando_17h' &&
+           (data.nacional_parcial.votos_validos||0)>0){
+          data.avisos=data.avisos||[];
+          data.avisos.unshift('Ignorando parcial não-oficial (fonte '+data.nacional_parcial.fonte+').');
+          if(data.br_oficial && data.br_oficial.votos_validos>0){
+            data.nacional_parcial={...data.br_oficial, fonte:'tse_br_oficial'};
+          }
         }
-      }
-      enriquecerExteriorEmBackground();
-      return data;
-    }catch(_){}
-
-    try{
-      REFRESH_MS = REFRESH_MS_DIRETO;
-      const data = await capturarDireto();
-      enriquecerExteriorEmBackground();
-      return data;
-    }catch(_){}
-
-    try{
-      REFRESH_MS = REFRESH_MS_API;
-      return await capturarViaApiLocal();
-    }catch(e){
-      throw e;
+        enriquecerExteriorEmBackground();
+      }catch(_){ data = null; }
     }
+
+    if(!data){
+      try{
+        REFRESH_MS = REFRESH_MS_DIRETO;
+        data = await capturarDireto();
+        enriquecerExteriorEmBackground();
+      }catch(_){ data = null; }
+    }
+
+    if(!data){
+      REFRESH_MS = REFRESH_MS_API;
+      data = await capturarViaApiLocal();
+    }
+
+    return aplicarMarcaDaguaCliente(data);
   }
 
   function fmtHoraMs(isoOrDate){
@@ -828,13 +908,15 @@
       $('cacheInfo').textContent = `placar ${fonte} · CDN TSE · ciclo ${REFRESH_MS}ms`;
     } else if(data.modo==='api-local' || data.modo==='api-tunel'){
       $('cacheInfo').textContent = `placar ${fonte} · API · ciclo ${REFRESH_MS}ms · cache ${Math.round(age)}ms`;
-    } else if(data.modo==='snapshot-github'){
+    } else     if(data.modo==='snapshot-github'){
       const ageS = data.snapshot_age_ms!=null ? Math.round(data.snapshot_age_ms/1000)+'s' : '—';
-      $('cacheInfo').textContent = `placar ${fonte} · snapshot · atraso ${ageS} · ciclo ${REFRESH_MS}ms`;
+      const sha = data.snapshot_sha ? data.snapshot_sha.slice(0,7) : '—';
+      $('cacheInfo').textContent = `placar ${fonte} · snapshot ${sha} · atraso ${ageS} · ciclo ${REFRESH_MS}ms`;
     } else {
       $('cacheInfo').textContent = `placar ${fonte} · ciclo ${REFRESH_MS}ms`;
     }
     const avisos=[...(data.avisos||[])];
+    if(data.protegido_regressao) avisos.unshift('Placar protegido: ignorada leitura mais antiga da CDN/snapshot.');
     if(data.stale_error) avisos.unshift(data.stale_error);
     if(data.br_oficial?.atrasado){
       avisos.push(`BR oficial atrasado: ${fmt(data.br_oficial.flavio_pct)}% × ${fmt(data.br_oficial.lula_pct)}% (${fmt(data.br_oficial.pct_secoes)}%)`);
