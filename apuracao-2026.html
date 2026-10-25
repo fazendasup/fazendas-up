@@ -424,25 +424,26 @@
    * NÃO usar jsDelivr como primário — cacheia e “trava” a apuração.
    * Preferir raw + ponteiro /rev (muda a cada publish) para furar CDN.
    */
-  // JSON por SHA do commit — tip da branch no raw.githubusercontent atrasa vários minutos
+  // JSON por SHA do commit (CDN da tip da branch atrasa — nunca confiar só no jsDelivr)
   const SNAPSHOT_BY_SHA = (sha) =>
     `https://raw.githubusercontent.com/fazendasup/fazendas-up/${sha}/apuracao-live.json`;
+  const ATOM_URL = 'https://github.com/fazendasup/fazendas-up/commits/live-snapshot.atom';
+  const SNAPSHOT_ATOM_PROXIES = [
+    'https://api.allorigins.win/raw?url=' + encodeURIComponent(ATOM_URL),
+    'https://corsproxy.io/?' + encodeURIComponent(ATOM_URL),
+  ];
   const SNAPSHOT_REV_CANDIDATES = [
-    'https://cdn.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/rev',
     'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/rev',
+    'https://cdn.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/rev',
     'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/rev',
   ];
-  const SNAPSHOT_ATOM =
-    'https://api.allorigins.win/raw?url=' +
-    encodeURIComponent('https://github.com/fazendasup/fazendas-up/commits/live-snapshot.atom');
   const SNAPSHOT_FALLBACKS = [
-    'https://cdn.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/apuracao-live.json',
     'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
     'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/apuracao-live.json',
   ];
   const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
-  const REFRESH_MS_SNAPSHOT = 4000;
-  const SNAPSHOT_MAX_AGE_MS = 3 * 60 * 1000;
+  const REFRESH_MS_SNAPSHOT = 5000;
+  const SNAPSHOT_MAX_AGE_MS = 90 * 1000; // >90s = atrasado, tenta outra fonte
 
   function hostEhTunelOuLocal(hostname){
     return hostname==='localhost' || hostname==='127.0.0.1'
@@ -478,27 +479,37 @@
     return d;
   }
 
+  function shaDoAtom(xml){
+    const all = [...xml.matchAll(/commit\/([0-9a-f]{40})/gi)].map(m=>m[1]);
+    // 1º = commit do /rev, 2º = commit dos dados
+    if(all.length >= 2) return all[1];
+    if(all.length === 1) return all[0];
+    return null;
+  }
+
   async function descobrirShaDados(){
     const agora = Date.now();
-    // A) ficheiro /rev (jsDelivr é purged a cada publish)
+    // A) Atom feed PRIMEIRO (sempre o tip fresco; jsDelivr /rev atrasa horas)
+    for(const url of SNAPSHOT_ATOM_PROXIES){
+      try{
+        const sep = url.includes('?') ? '&' : '?';
+        const rr = await fetchComTimeout(url + sep + '_=' + agora, { cache:'no-store', mode:'cors' }, 8000);
+        if(!rr.ok) continue;
+        const sha = shaDoAtom(await rr.text());
+        if(sha) return sha;
+      }catch(_){}
+    }
+    // B) /rev — só aceita se o JSON desse SHA estiver fresco
     for(const url of SNAPSHOT_REV_CANDIDATES){
       try{
         const rr = await fetchComTimeout(url + (url.includes('?')?'&':'?') + '_=' + agora, { cache:'no-store', mode:'cors' }, 4000);
         if(!rr.ok) continue;
         const sha = (await rr.text()).trim().split(/\s+/)[0];
-        if(/^[0-9a-f]{40}$/i.test(sha)) return sha;
+        if(!/^[0-9a-f]{40}$/i.test(sha)) continue;
+        const d = await lerSnapshotUrl(SNAPSHOT_BY_SHA(sha) + '?_=' + agora);
+        if(d.snapshot_age_ms < SNAPSHOT_MAX_AGE_MS) return sha;
       }catch(_){}
     }
-    // B) atom feed via proxy CORS — 2º commit = dados (1º é o commit do /rev)
-    try{
-      const rr = await fetchComTimeout(SNAPSHOT_ATOM + '&_=' + agora, { cache:'no-store', mode:'cors' }, 8000);
-      if(rr.ok){
-        const xml = await rr.text();
-        const all = [...xml.matchAll(/commit\/([0-9a-f]{40})/gi)].map(m=>m[1]);
-        if(all.length >= 2) return all[1];
-        if(all.length === 1) return all[0];
-      }
-    }catch(_){}
     return null;
   }
 
@@ -507,7 +518,7 @@
     let lastErr;
     let best = null;
 
-    // 1) SHA fresco → JSON imutável por commit (sem cache velho de branch)
+    // 1) SHA fresco → JSON por commit
     try{
       const sha = await descobrirShaDados();
       if(sha){
@@ -518,7 +529,7 @@
       }
     }catch(e){ lastErr = e; }
 
-    // 2) fallbacks por tip de branch
+    // 2) fallbacks tip de branch (sem jsDelivr)
     for(const base of SNAPSHOT_FALLBACKS){
       try{
         const d = await lerSnapshotUrl(base + (base.includes('?')?'&':'?') + '_=' + agora);
@@ -528,7 +539,7 @@
     }
     if(best){
       best.avisos = best.avisos || [];
-      best.avisos.unshift('Snapshot atrasado ('+Math.round(best.snapshot_age_ms/1000)+'s).');
+      best.avisos.unshift('Snapshot atrasado '+Math.round(best.snapshot_age_ms/1000)+'s — atualizando…');
       return best;
     }
     throw lastErr || new Error('snapshot indisponível');
@@ -692,7 +703,8 @@
     setStatus('', 'ao vivo'+(data.modo?' · '+data.modo:''),
       `TSE ${np.atualizado||'—'} · capturado ${fmtHoraMs(data.capturado_em)}`);
     if(data.modo==='snapshot-github'){
-      $('cacheInfo').textContent = `via GitHub snapshot · ciclo ${REFRESH_MS}ms · capturado ${data.capturado_em||'—'}`;
+      const ageS = data.snapshot_age_ms!=null ? Math.round(data.snapshot_age_ms/1000)+'s' : '—';
+      $('cacheInfo').textContent = `via GitHub snapshot · atraso ${ageS} · ciclo ${REFRESH_MS}ms · ${data.capturado_em||'—'}`;
     } else if(data.modo==='api-local' || data.modo==='api-tunel'){
       $('cacheInfo').textContent = `via API${data.api_base?' · '+data.api_base.replace(/^https?:\/\//,''):''} · ciclo ${REFRESH_MS}ms · cache ${Math.round(age)}ms`;
     } else {

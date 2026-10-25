@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Publica apuracao-live.json na branch órfã live-snapshot (force-push).
-# Grava /rev com o SHA do commit dos dados — o HTML busca o JSON por SHA
-# (fura cache de branch do raw.githubusercontent / CDNs).
+# /rev = SHA do commit dos dados. HTML descobre o tip via atom feed.
 set -u
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 WATCH=/tmp/live-snapshot-watch.log
@@ -40,7 +39,7 @@ out = {
   'capturado_em': d.get('capturado_em'),
   'publicado_em': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]+'Z',
   'fonte': d.get('fonte'),
-  'refresh_sugerido_ms': 4000,
+  'refresh_sugerido_ms': 5000,
   'avisos': d.get('avisos') or [],
   'nacional_parcial': d.get('nacional_parcial'),
   'nacional_projetado': d.get('nacional_projetado'),
@@ -69,15 +68,23 @@ PY
 publish_once() {
   local raw=/tmp/apuracao-raw.json
   local slim=/tmp/apuracao-live.json
-  if ! curl -sS --max-time 25 "$API" -o "$raw"; then
+  if ! curl -sS --max-time 20 "$API?refresh=1" -o "$raw"; then
     log "api_fail"
     return 1
   fi
-  local sig now
+  local sig now pct
   sig=$(slim_payload "$raw" "$slim") || return 1
   now=$(date +%s)
-  if [ -f "$LAST_SIG" ] && [ "$(cat "$LAST_SIG")" = "$sig" ] && [ $((now - LAST_PUB_AT)) -lt 45 ]; then
-    log "unchanged"
+  pct=$(python3 -c "import json;print(json.load(open('$raw')).get('nacional_parcial',{}).get('pct_secoes') or 0)")
+  # Em apuração (>0%), republica no máx. a cada 15s mesmo se “igual”
+  local max_skip=15
+  if python3 -c "import sys; sys.exit(0 if float('$pct')>0 else 1)"; then
+    max_skip=15
+  else
+    max_skip=45
+  fi
+  if [ -f "$LAST_SIG" ] && [ "$(cat "$LAST_SIG")" = "$sig" ] && [ $((now - LAST_PUB_AT)) -lt "$max_skip" ]; then
+    log "unchanged pct=$pct"
     return 0
   fi
 
@@ -86,30 +93,31 @@ publish_once() {
   cp "$slim" "$WORK/apuracao-live.json"
   printf '%s\n' 'Live apuração snapshot (SHA pointer in /rev).' > "$WORK/README.md"
 
-  local datasha
   (
     cd "$WORK"
     git init -q
     git checkout -q -b "$BRANCH"
-    # commit 1: dados
     git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" add apuracao-live.json README.md
     git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" commit -q -m "live: data"
     datasha=$(git rev-parse HEAD)
-    # commit 2: ponteiro SHA (HTML busca JSON por este SHA)
     printf '%s\n' "$datasha" > rev
     git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" add rev
     git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" commit -q -m "live: rev $datasha"
-    git push -q -f "$(git -C "$ROOT" remote get-url origin)" "HEAD:refs/heads/$BRANCH"
+    # timeout evita hang de horas no push
+    if ! timeout 45 git push -q -f "$(git -C "$ROOT" remote get-url origin)" "HEAD:refs/heads/$BRANCH"; then
+      log "push_timeout_or_fail"
+      exit 1
+    fi
     echo "$datasha" > /tmp/live-snapshot.last-sha
   ) || { log "push_fail"; return 1; }
 
-  # Purge jsDelivr (HTML lê /rev daqui — raw.githubusercontent tip fica stale)
-  curl -sS --max-time 12 "https://purge.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/rev" >/dev/null 2>&1 || true
-  curl -sS --max-time 12 "https://purge.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/apuracao-live.json" >/dev/null 2>&1 || true
+  # purge em background — não bloqueia o loop
+  ( curl -sS --max-time 8 "https://purge.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/rev" >/dev/null 2>&1 || true
+    curl -sS --max-time 8 "https://purge.jsdelivr.net/gh/fazendasup/fazendas-up@live-snapshot/apuracao-live.json" >/dev/null 2>&1 || true ) &
 
   echo "$sig" > "$LAST_SIG"
   LAST_PUB_AT=$now
-  log "published sha=$(cat /tmp/live-snapshot.last-sha 2>/dev/null) $sig"
+  log "published sha=$(cat /tmp/live-snapshot.last-sha 2>/dev/null) pct=$pct $sig"
 }
 
 log "snapshot publisher start"
@@ -119,5 +127,5 @@ while true; do
   else
     log "server_down"
   fi
-  sleep 10
+  sleep 8
 done
