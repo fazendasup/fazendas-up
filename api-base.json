@@ -1,8 +1,8 @@
 {
-  "api_base": "https://f24a5a28d993b9.lhr.life",
+  "api_base": "https://fazendas-apuracao-2026.loca.lt",
   "fallbacks": [
-    "https://fazendas-apuracao-2026.loca.lt"
+    "https://f24a5a28d993b9.lhr.life"
   ],
-  "updated_at": "2026-10-25T23:13:16.809Z",
-  "note": "Túnel para /api/eleicoes/2026/br (placar ultrarrápido)."
+  "updated_at": "2026-10-25T23:15:08.961Z",
+  "note": "Atualizado automaticamente pelo watchdog do túnel. O HTML em GitHub Pages lê este arquivo."
 }
