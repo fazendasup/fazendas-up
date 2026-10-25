@@ -426,7 +426,7 @@
   }
 
   function renderKpis(data){
-    const p=data.nacional_parcial, j=data.nacional_projetado;
+    const p=data.nacional_parcial||{}, j=data.nacional_projetado||{};
     const ex=data.exterior;
     $('kpis').innerHTML=`
       <div class="kpi"><div class="label">Flávio — parcial</div><div class="value flavio">${fmt(p.flavio_pct)}%</div>
@@ -524,8 +524,9 @@
     lastPayload=data;
     renderKpis(data); renderExterior(data); renderRegs(data.regioes); renderTable(data);
     const age = data.cache && data.cache.age_ms != null ? data.cache.age_ms : 0;
+    const np=data.nacional_parcial||{};
     setStatus('', 'ao vivo'+(data.modo?' · '+data.modo:''),
-      `TSE ${data.nacional_parcial.atualizado} · capturado ${fmtHoraMs(data.capturado_em)}`);
+      `TSE ${np.atualizado||'—'} · capturado ${fmtHoraMs(data.capturado_em)}`);
     $('cacheInfo').textContent = data.modo==='api-local'
       ? `via servidor · ciclo ${REFRESH_MS}ms · cache ${Math.round(age)}ms`
       : `direto TSE · ciclo ${REFRESH_MS}ms`;

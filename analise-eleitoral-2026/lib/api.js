@@ -51,6 +51,7 @@ function aplicarMarcaDagua(payload) {
       capturado_em: payload.capturado_em,
       avisos,
       descartados_cdn: payload.descartados_cdn,
+      exterior: payload.exterior || cache.payload.exterior,
       monotonic: true,
       protegido_regressao: true,
     };
@@ -68,13 +69,13 @@ function aplicarMarcaDagua(payload) {
 async function buildPayload() {
   resetEstadoSeEleicaoMudou();
   const tseP = capturarTse();
-  // Exterior por BU é mais lento (~30–40s no 1º ciclo): não bloqueia o painel.
+  // Exterior por BU é lento: nunca bloqueia a apuração — cache + refresh background.
   let exterior;
   try {
     if (temCacheExterior()) {
-      exterior = await capturarExteriorBu(false);
+      exterior = await capturarExteriorBu(false, { wait: false });
     } else {
-      capturarExteriorBu(false).catch(() => {});
+      capturarExteriorBu(false, { wait: true }).catch(() => {});
       exterior = {
         ok: false,
         pendente: true,
@@ -108,6 +109,13 @@ async function buildPayload() {
     avisos.push(`Exterior (cache): ${exterior.stale_error}`);
   }
 
+  const exteriorOut =
+    exterior?.ok || exterior?.votos_validos
+      ? formatarExteriorOut(exterior, zzBu)
+      : exterior?.pendente
+        ? { ok: false, pendente: true, nota: exterior.nota }
+        : { ok: false, erro: exterior?.erro || 'indisponível' };
+
   const payload = {
     ok: true,
     capturado_em,
@@ -117,40 +125,60 @@ async function buildPayload() {
     erros_ufs: erros,
     descartados_cdn: descartados_cdn || [],
     monotonic: Boolean(monotonic),
-    exterior: exterior?.ok || exterior?.votos_validos
-      ? {
-          ok: true,
-          fonte: exterior.fonte,
-          capturado_em: exterior.capturado_em,
-          secoes_com_bu: exterior.secoes_com_bu,
-          secoes_config: exterior.secoes_config,
-          flavio_votos: exterior.flavio_votos,
-          lula_votos: exterior.lula_votos,
-          flavio_pct: exterior.flavio_pct,
-          lula_pct: exterior.lula_pct,
-          margem: exterior.margem,
-          votos_validos: exterior.votos_validos,
-          branco: exterior.branco,
-          nulo: exterior.nulo,
-          aplicado_no_zz: Boolean(zzBu),
-          nota: exterior.nota,
-          cidades: (exterior.cidades || []).slice(0, 40),
-          cache: exterior.cache,
-        }
-      : { ok: false, erro: exterior?.erro || 'indisponível' },
     ...analise,
     avisos,
+    exterior: exteriorOut,
   };
   return aplicarMarcaDagua(payload);
+}
+
+function formatarExteriorOut(exterior, aplicadoNoZz = false) {
+  return {
+    ok: true,
+    fonte: exterior.fonte,
+    capturado_em: exterior.capturado_em,
+    secoes_com_bu: exterior.secoes_com_bu,
+    secoes_config: exterior.secoes_config,
+    flavio_votos: exterior.flavio_votos,
+    lula_votos: exterior.lula_votos,
+    flavio_pct: exterior.flavio_pct,
+    lula_pct: exterior.lula_pct,
+    margem: exterior.margem,
+    votos_validos: exterior.votos_validos,
+    branco: exterior.branco,
+    nulo: exterior.nulo,
+    aplicado_no_zz: Boolean(aplicadoNoZz),
+    nota: exterior.nota,
+    cidades: (exterior.cidades || []).slice(0, 40),
+    cache: exterior.cache,
+  };
+}
+
+async function anexarExteriorSePronto(payload) {
+  if (!payload) return payload;
+  const jaTem = payload.exterior?.votos_validos || payload.exterior?.ok;
+  if (jaTem || !temCacheExterior()) return payload;
+  try {
+    const exterior = await capturarExteriorBu(false, { wait: false });
+    if (!(exterior?.ok || exterior?.votos_validos)) return payload;
+    const zz = (payload.estados || []).find((u) => u.uf === 'ZZ');
+    const aplicado = zz?.fonte_parcial === 'arquivo_urna_bu' || !(zz?.votos_validos > 0);
+    const next = { ...payload, exterior: formatarExteriorOut(exterior, aplicado) };
+    if (cache.payload?.capturado_em === payload.capturado_em) cache.payload = next;
+    return next;
+  } catch {
+    return payload;
+  }
 }
 
 async function getAnalise(force = false) {
   const agora = Date.now();
   if (!force && cache.payload && agora - cache.at < CACHE_TTL_MS) {
-    return { ...cache.payload, cache: { hit: true, age_ms: agora - cache.at } };
+    const payload = await anexarExteriorSePronto(cache.payload);
+    return { ...payload, cache: { hit: true, age_ms: agora - cache.at } };
   }
   if (cache.inflight) {
-    const payload = await cache.inflight;
+    const payload = await anexarExteriorSePronto(await cache.inflight);
     return { ...payload, cache: { hit: true, age_ms: 0, coalesced: true } };
   }
 
@@ -174,15 +202,19 @@ async function getAnalise(force = false) {
       throw err;
     });
 
-  const payload = await cache.inflight;
+  const payload = await anexarExteriorSePronto(await cache.inflight);
   return { ...payload, cache: { hit: false, age_ms: 0 } };
 }
 
 function mountEleicoesApi(app) {
   // pré-aquece agregação do exterior (BUs) em background
   setTimeout(() => {
-    capturarExteriorBu(false).catch(() => {});
-  }, 500);
+    capturarExteriorBu(false, { wait: true })
+      .then(() => {
+        if (cache.payload) return anexarExteriorSePronto(cache.payload);
+      })
+      .catch(() => {});
+  }, 200);
 
   app.get('/api/eleicoes/2026/apuracao', async (req, res) => {
     try {
@@ -202,7 +234,8 @@ function mountEleicoesApi(app) {
   app.get('/api/eleicoes/2026/exterior', async (req, res) => {
     try {
       const force = req.query.refresh === '1' || req.query.force === '1';
-      const data = await capturarExteriorBu(force);
+      // wait só quando force; senão responde cache na hora
+      const data = await capturarExteriorBu(force, { wait: force });
       res.setHeader('Cache-Control', 'no-store');
       res.json(data);
     } catch (e) {

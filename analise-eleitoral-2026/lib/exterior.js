@@ -22,7 +22,8 @@ let cache = {
   cfgAt: 0,
 };
 
-const CACHE_TTL_MS = 45000;
+/** Cache “fresco” — depois disso ainda devolvemos stale e renovamos em background. */
+const CACHE_TTL_MS = 90_000;
 const CFG_TTL_MS = 30 * 60 * 1000;
 
 function fetchBuf(url, timeoutMs = 15000) {
@@ -267,16 +268,8 @@ function comoLinhaUf(agg, secoesTotalOficial = 1351) {
   };
 }
 
-async function capturarExteriorBu(force = false) {
-  const agora = Date.now();
-  if (!force && cache.payload && agora - cache.at < CACHE_TTL_MS) {
-    return { ...cache.payload, cache: { hit: true, age_ms: agora - cache.at } };
-  }
-  if (cache.inflight) {
-    const p = await cache.inflight;
-    return { ...p, cache: { hit: true, age_ms: 0, coalesced: true } };
-  }
-
+function iniciarRefreshExterior() {
+  if (cache.inflight) return cache.inflight;
   cache.inflight = (async () => {
     const { jobs } = await carregarConfigSecoes();
     const rows = await mapPool(jobs, 40, baixarSecao);
@@ -305,8 +298,40 @@ async function capturarExteriorBu(force = false) {
     }
     throw err;
   });
+  return cache.inflight;
+}
 
-  const payload = await cache.inflight;
+/**
+ * @param {boolean} force — só o endpoint /exterior?refresh=1 deve forçar espera
+ * @param {{ wait?: boolean }} opts — wait:false (padrão) nunca bloqueia se já há cache
+ */
+async function capturarExteriorBu(force = false, opts = {}) {
+  const wait = opts.wait === true || force;
+  const agora = Date.now();
+
+  if (!force && cache.payload && agora - cache.at < CACHE_TTL_MS) {
+    return { ...cache.payload, cache: { hit: true, age_ms: agora - cache.at } };
+  }
+
+  // Cache expirado, mas ainda útil: devolve na hora e renova em background
+  if (!force && cache.payload?.votos_validos && !wait) {
+    iniciarRefreshExterior().catch(() => {});
+    return {
+      ...cache.payload,
+      stale: agora - cache.at >= CACHE_TTL_MS,
+      cache: { hit: true, age_ms: agora - cache.at, refreshing: true },
+    };
+  }
+
+  if (cache.inflight && !wait && cache.payload?.votos_validos) {
+    return {
+      ...cache.payload,
+      stale: true,
+      cache: { hit: true, age_ms: agora - cache.at, coalesced: true, refreshing: true },
+    };
+  }
+
+  const payload = await iniciarRefreshExterior();
   return { ...payload, cache: { hit: false, age_ms: 0 } };
 }
 
