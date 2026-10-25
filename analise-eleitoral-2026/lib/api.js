@@ -1,4 +1,4 @@
-const { capturarTse, ELEICAO } = require('./tse');
+const { capturarTse, capturarBrOnly, ELEICAO } = require('./tse');
 const { projetarNacional } = require('./projecao');
 const { capturarExteriorBu, mesclarZzComBu, temCacheExterior } = require('./exterior');
 
@@ -10,8 +10,23 @@ let cache = {
   inflight: null,
 };
 
-/** Cache curto para polling em tempo quase real (ms). */
+/** Cache curto para polling em tempo quase real (ms). Full = UFs+projeção. */
 const CACHE_TTL_MS = 350;
+
+/**
+ * Placar BR ultrarrápido — poll dedicado, independente das 28 UFs.
+ * O site do TSE costuma refrescar a UI em ~2–5s; aqui o JSON BR é lido ~150ms.
+ */
+const BR_POLL_MS = 150;
+let brFast = {
+  at: 0,
+  fetch_ms: null,
+  parcial: null,
+  br: null,
+  error: null,
+  inflight: null,
+  ticks: 0,
+};
 
 /** Marca d'água nacional — nunca devolve parcial com menos votos/seções que a anterior. */
 let marcaDagua = null;
@@ -21,8 +36,141 @@ function resetEstadoSeEleicaoMudou() {
   if (eleicaoMarca !== ELEICAO) {
     marcaDagua = null;
     cache = { at: 0, payload: null, error: null, inflight: null };
+    brFast = { at: 0, fetch_ms: null, parcial: null, br: null, error: null, inflight: null, ticks: 0 };
     eleicaoMarca = ELEICAO;
   }
+}
+
+function brParaParcial(br) {
+  if (!br || !(br.votos_validos > 0)) return null;
+  return {
+    fonte: 'tse_br_oficial',
+    pct_secoes: br.pct_secoes || 0,
+    pct_falta: Math.max(0, 100 - (br.pct_secoes || 0)),
+    atualizado: br.atualizado || '',
+    flavio_pct: br.flavio_pct || 0,
+    lula_pct: br.lula_pct || 0,
+    flavio_votos: br.flavio_votos || 0,
+    lula_votos: br.lula_votos || 0,
+    margem: br.margem || 0,
+    votos_validos: br.votos_validos || 0,
+    comparecimento: br.comparecimento ?? null,
+    top: (br.cands || []).slice(0, 6).map(({ nome, partido, pct, votos, numero }) => ({
+      nome,
+      partido,
+      pct,
+      votos,
+      numero,
+    })),
+  };
+}
+
+function brMaisNovoQue(novo, antigo) {
+  if (!novo) return false;
+  if (!antigo) return true;
+  if ((novo.votos_validos || 0) !== (antigo.votos_validos || 0)) {
+    return (novo.votos_validos || 0) > (antigo.votos_validos || 0);
+  }
+  if ((novo.flavio_votos || 0) !== (antigo.flavio_votos || 0)) {
+    return (novo.flavio_votos || 0) > (antigo.flavio_votos || 0);
+  }
+  if ((novo.lula_votos || 0) !== (antigo.lula_votos || 0)) {
+    return (novo.lula_votos || 0) > (antigo.lula_votos || 0);
+  }
+  return String(novo.atualizado || '') >= String(antigo.atualizado || '');
+}
+
+async function refreshBrFast() {
+  if (brFast.inflight) return brFast.inflight;
+  const t0 = Date.now();
+  brFast.inflight = capturarBrOnly()
+    .then((br) => {
+      const fetch_ms = Date.now() - t0;
+      const parcial = brParaParcial(br);
+      if (parcial && brMaisNovoQue(parcial, brFast.parcial)) {
+        brFast.parcial = parcial;
+        brFast.br = br;
+      } else if (!brFast.parcial && parcial) {
+        brFast.parcial = parcial;
+        brFast.br = br;
+      }
+      brFast.at = Date.now();
+      brFast.fetch_ms = fetch_ms;
+      brFast.error = null;
+      brFast.ticks += 1;
+      // Espelha no payload completo se já existir (placar não espera UFs)
+      if (cache.payload && brFast.parcial) {
+        const cur = cache.payload.nacional_parcial;
+        if (brMaisNovoQue(brFast.parcial, cur)) {
+          cache.payload = {
+            ...cache.payload,
+            nacional_parcial: brFast.parcial,
+            br_oficial: {
+              atualizado: brFast.parcial.atualizado,
+              pct_secoes: brFast.parcial.pct_secoes,
+              flavio_pct: brFast.parcial.flavio_pct,
+              lula_pct: brFast.parcial.lula_pct,
+              flavio_votos: brFast.parcial.flavio_votos,
+              lula_votos: brFast.parcial.lula_votos,
+              votos_validos: brFast.parcial.votos_validos,
+              usado_na_parcial: true,
+            },
+            capturado_em: new Date().toISOString(),
+          };
+          cache.at = Date.now();
+          cache.payload = aplicarMarcaDagua(cache.payload);
+        }
+      }
+      return brFast;
+    })
+    .catch((e) => {
+      brFast.error = String(e.message || e);
+      return brFast;
+    })
+    .finally(() => {
+      brFast.inflight = null;
+    });
+  return brFast.inflight;
+}
+
+function startBrFastLoop() {
+  const tick = async () => {
+    try {
+      await refreshBrFast();
+    } catch (_) {}
+    setTimeout(tick, BR_POLL_MS);
+  };
+  setTimeout(tick, 50);
+}
+
+function getBrFastPayload() {
+  if (!brFast.parcial) {
+    return {
+      ok: false,
+      error: brFast.error || 'BR ainda não capturado',
+      refresh_sugerido_ms: BR_POLL_MS,
+    };
+  }
+  return {
+    ok: true,
+    modo: 'br-fast',
+    capturado_em: new Date(brFast.at).toISOString(),
+    fetch_ms: brFast.fetch_ms,
+    age_ms: Date.now() - brFast.at,
+    ticks: brFast.ticks,
+    refresh_sugerido_ms: BR_POLL_MS,
+    nacional_parcial: brFast.parcial,
+    br_oficial: {
+      atualizado: brFast.parcial.atualizado,
+      pct_secoes: brFast.parcial.pct_secoes,
+      flavio_pct: brFast.parcial.flavio_pct,
+      lula_pct: brFast.parcial.lula_pct,
+      flavio_votos: brFast.parcial.flavio_votos,
+      lula_votos: brFast.parcial.lula_votos,
+      votos_validos: brFast.parcial.votos_validos,
+      usado_na_parcial: true,
+    },
+  };
 }
 
 function aplicarMarcaDagua(payload) {
@@ -207,6 +355,9 @@ async function getAnalise(force = false) {
 }
 
 function mountEleicoesApi(app) {
+  // Placar BR em loop dedicado (mais rápido que a UI do TSE)
+  startBrFastLoop();
+
   // pré-aquece agregação do exterior (BUs) em background
   setTimeout(() => {
     capturarExteriorBu(false, { wait: true })
@@ -216,11 +367,38 @@ function mountEleicoesApi(app) {
       .catch(() => {});
   }, 200);
 
+  app.get('/api/eleicoes/2026/br', async (req, res) => {
+    try {
+      if (req.query.refresh === '1' || !brFast.parcial) await refreshBrFast();
+      const data = getBrFastPayload();
+      res.setHeader('Cache-Control', 'no-store');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      if (!data.ok) {
+        res.status(503).json(data);
+        return;
+      }
+      res.json(data);
+    } catch (e) {
+      res.status(502).json({ ok: false, error: String(e.message || e) });
+    }
+  });
+
   app.get('/api/eleicoes/2026/apuracao', async (req, res) => {
     try {
       const force = req.query.refresh === '1' || req.query.force === '1';
-      const data = await getAnalise(force);
+      // Garante BR fresco antes de montar (não espera UFs no loop rápido)
+      if (!brFast.parcial) await refreshBrFast();
+      let data = await getAnalise(force);
+      if (brFast.parcial && brMaisNovoQue(brFast.parcial, data.nacional_parcial)) {
+        data = {
+          ...data,
+          nacional_parcial: brFast.parcial,
+          br_oficial: getBrFastPayload().br_oficial,
+        };
+        data = aplicarMarcaDagua(data);
+      }
       res.setHeader('Cache-Control', 'no-store');
+      res.setHeader('Access-Control-Allow-Origin', '*');
       res.json(data);
     } catch (e) {
       res.status(502).json({
@@ -237,6 +415,7 @@ function mountEleicoesApi(app) {
       // wait só quando force; senão responde cache na hora
       const data = await capturarExteriorBu(force, { wait: force });
       res.setHeader('Cache-Control', 'no-store');
+      res.setHeader('Access-Control-Allow-Origin', '*');
       res.json(data);
     } catch (e) {
       res.status(502).json({ ok: false, error: String(e.message || e) });
@@ -244,14 +423,20 @@ function mountEleicoesApi(app) {
   });
 
   app.get('/api/eleicoes/2026/health', async (_req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.json({
       ok: true,
       cache_age_ms: cache.payload ? Date.now() - cache.at : null,
-      last_error: cache.error,
+      br_age_ms: brFast.parcial ? Date.now() - brFast.at : null,
+      br_fetch_ms: brFast.fetch_ms,
+      br_ticks: brFast.ticks,
+      br_atualizado: brFast.parcial?.atualizado || null,
+      last_error: cache.error || brFast.error,
       has_payload: Boolean(cache.payload),
+      has_br: Boolean(brFast.parcial),
       exterior_cache: temCacheExterior(),
     });
   });
 }
 
-module.exports = { mountEleicoesApi, getAnalise };
+module.exports = { mountEleicoesApi, getAnalise, getBrFastPayload, refreshBrFast };

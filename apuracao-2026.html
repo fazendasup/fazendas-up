@@ -135,15 +135,16 @@
         </table>
       </div>
     </section>
-    <footer>Fonte TSE (EA20, eleição 6258 — 2º turno). Prior: 2026 1ºT + finais 2022/2018. Atualiza em tempo quase real (500ms via API; 2s no modo direto).</footer>
+    <footer>Fonte TSE (EA20, eleição 6258 — 2º turno). Prior: 2026 1ºT + finais 2022/2018. Placar BR via API a ~200ms (servidor lê o JSON oficial ~150ms — tende a chegar antes da UI do site do TSE).</footer>
   </div>
 
 <script>
 (() => {
-  const REFRESH_MS_API = 500;      // via servidor/túnel
-  const REFRESH_MS_DIRETO = 1000;  // TSE CDN direto — alinhado à página oficial
+  const REFRESH_MS_BR = 200;       // placar BR via API (servidor polla TSE a 150ms)
+  const REFRESH_MS_API = 2000;     // apuração completa (UFs/projeção) mais lenta
+  const REFRESH_MS_DIRETO = 1000;
   const REFRESH_MS_SNAPSHOT = 5000;
-  let REFRESH_MS = REFRESH_MS_DIRETO;
+  let REFRESH_MS = REFRESH_MS_BR;
   const ELEICAO = '6258'; // 2º turno 2026
   const PESOS_PRIOR = { t2026_1t: 0.55, t2022_2t: 0.35, t2018_2t: 0.10 };
   const UFS = ['ac','al','am','ap','ba','ce','df','es','go','ma','mg','ms','mt','pa','pb','pe','pi','pr','rj','rn','ro','rr','rs','sc','se','sp','to','zz'];
@@ -487,12 +488,65 @@
   ];
   const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
   const SNAPSHOT_MAX_AGE_MS = 90 * 1000; // >90s = atrasado, tenta outra fonte
+  const API_BASE_URLS = [
+    'api-base.json', // mesmo origin no Pages (quando publicado)
+    'https://fazendasup.github.io/fazendas-up/api-base.json',
+    'https://raw.githubusercontent.com/fazendasup/fazendas-up/main/api-base.json',
+    'https://raw.githubusercontent.com/fazendasup/fazendas-up/cursor/analise-apuracao-flavio-lula-d913/api-base.json',
+    'https://raw.githack.com/fazendasup/fazendas-up/main/api-base.json',
+  ];
+  let apiBases = [API_BASE_FIXED];
+  let apiBaseAtivo = null;
+  let lastFullAt = 0;
 
   function hostEhTunelOuLocal(hostname){
     return hostname==='localhost' || hostname==='127.0.0.1'
       || hostname.endsWith('.loca.lt') || hostname.endsWith('.lhr.life')
       || hostname.endsWith('.trycloudflare.com') || hostname.includes('bore.pub')
       || hostname.includes('localhost.run');
+  }
+
+  async function carregarApiBases(){
+    for(const u of API_BASE_URLS){
+      try{
+        const r=await fetchComTimeout(u+(u.includes('?')?'&':'?')+'_='+Date.now(),{cache:'no-store',mode:'cors'},4000);
+        if(!r.ok) continue;
+        const j=await r.json();
+        const list=[];
+        if(j.api_base) list.push(String(j.api_base).replace(/\/$/,''));
+        for(const f of (j.fallbacks||[])) if(f) list.push(String(f).replace(/\/$/,''));
+        list.push(API_BASE_FIXED);
+        apiBases=[...new Set(list)];
+        return apiBases;
+      }catch(_){}
+    }
+    apiBases=[API_BASE_FIXED];
+    return apiBases;
+  }
+
+  async function fetchApiPath(path, ms=2500){
+    const bases = apiBases.length ? apiBases : [API_BASE_FIXED];
+    // Prefere base que já funcionou
+    const ordered = apiBaseAtivo
+      ? [apiBaseAtivo, ...bases.filter(b=>b!==apiBaseAtivo)]
+      : bases;
+    let lastErr;
+    for(const base of ordered){
+      try{
+        // Bypass-Tunnel-Reminder só no loca.lt (senão dispara preflight CORS)
+        const headers = {};
+        if(/loca\.lt$/i.test(new URL(base).hostname)) headers['Bypass-Tunnel-Reminder']='1';
+        const r=await fetchComTimeout(base+path, {
+          cache:'no-store', mode:'cors', headers,
+        }, ms);
+        if(!r.ok) throw new Error('HTTP '+r.status);
+        const d=await r.json();
+        if(d && d.ok===false && d.error) throw new Error(d.error);
+        apiBaseAtivo=base;
+        return { data:d, base };
+      }catch(e){ lastErr=e; }
+    }
+    throw lastErr||new Error('API indisponível');
   }
 
   async function fetchComTimeout(url, opts={}, ms=5000){
@@ -668,28 +722,60 @@
   }
 
   async function capturarViaApiLocal(){
-    if(!hostEhTunelOuLocal(location.hostname)) {
-      // opcional: tenta túnel fixo rápido; se falhar, deixa o caller cair no próximo modo
-      const r = await fetchComTimeout(API_BASE_FIXED + '/api/eleicoes/2026/apuracao', {
+    if(hostEhTunelOuLocal(location.hostname)){
+      const r = await fetchComTimeout(location.origin + '/api/eleicoes/2026/apuracao', {
         cache:'no-store', mode:'cors',
-        headers:{ 'Bypass-Tunnel-Reminder':'1' },
-      }, 4000);
+      }, 5000);
       if(!r.ok) throw new Error('HTTP '+r.status);
       const d = await r.json();
       if(!d.ok && d.error) throw new Error(d.error);
-      d.modo = 'api-tunel';
-      d.api_base = API_BASE_FIXED;
+      d.modo = 'api-local';
+      d.api_base = location.origin;
       return d;
     }
-    const r = await fetchComTimeout(location.origin + '/api/eleicoes/2026/apuracao', {
-      cache:'no-store', mode:'cors',
-    }, 5000);
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    const d = await r.json();
-    if(!d.ok && d.error) throw new Error(d.error);
-    d.modo = 'api-local';
-    d.api_base = location.origin;
+    const { data:d, base } = await fetchApiPath('/api/eleicoes/2026/apuracao', 5000);
+    d.modo = 'api-tunel';
+    d.api_base = base;
     return d;
+  }
+
+  /** Placar só — endpoint /br (servidor já polla o TSE a 150ms). */
+  async function capturarBrFast(){
+    if(hostEhTunelOuLocal(location.hostname)){
+      const r=await fetchComTimeout(location.origin+'/api/eleicoes/2026/br',{cache:'no-store',mode:'cors'},2000);
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      const d=await r.json();
+      if(!d.ok) throw new Error(d.error||'br fail');
+      d.modo='br-fast';
+      d.api_base=location.origin;
+      return d;
+    }
+    const { data:d, base } = await fetchApiPath('/api/eleicoes/2026/br', 2000);
+    d.modo='br-fast';
+    d.api_base=base;
+    return d;
+  }
+
+  function mesclarBrNoPayload(base, brResp){
+    const p=brResp.nacional_parcial;
+    if(!p || !(p.votos_validos>0)) return base;
+    const out = base ? {...base} : {
+      ok:true,
+      estados:[], regioes:[], nacional_projetado:{}, avisos:[],
+      capturado_em: brResp.capturado_em,
+    };
+    // Só avança placar (nunca regride aqui — marca d'água cuida depois)
+    if(!out.nacional_parcial || brMaisAvancado(p, out.nacional_parcial)){
+      out.nacional_parcial=p;
+      out.br_oficial=brResp.br_oficial||p;
+    }
+    out.modo = brResp.modo || out.modo || 'br-fast';
+    out.api_base = brResp.api_base || out.api_base;
+    out.br_fetch_ms = brResp.fetch_ms;
+    out.br_age_ms = brResp.age_ms;
+    out.capturado_em = brResp.capturado_em || out.capturado_em;
+    out.avisos = out.avisos || [];
+    return out;
   }
 
   async function enriquecerExteriorEmBackground(){
@@ -740,50 +826,62 @@
     return data;
   }
 
-  async function capturar(force=false){
-    // 1) localhost/túnel → API (servidor lê TSE sem CORS)
-    // 2) GitHub Pages/celular → snapshot (BR oficial capturado no servidor).
-    // 3) direto-tse só se o BR oficial realmente carregar no browser
-    let data = null;
-    if(hostEhTunelOuLocal(location.hostname)){
+  let fullInflight = null;
+  function refrescarFullEmBackground(force=false){
+    const precisa = force || !lastPayload?.estados?.length || (Date.now()-lastFullAt > REFRESH_MS_API);
+    if(!precisa || fullInflight) return;
+    fullInflight = (async()=>{
       try{
-        REFRESH_MS = REFRESH_MS_API;
-        data = await capturarViaApiLocal();
-      }catch(_){}
-    }
-
-    if(!data){
-      try{
-        REFRESH_MS = REFRESH_MS_SNAPSHOT;
-        data = await capturarViaSnapshot();
-        data = await aplicarBrEspelho(data);
-        if(data.nacional_parcial && data.nacional_parcial.fonte &&
-           data.nacional_parcial.fonte!=='tse_br_oficial' &&
-           data.nacional_parcial.fonte!=='tse_br_aguardando_17h' &&
-           (data.nacional_parcial.votos_validos||0)>0){
-          data.avisos=data.avisos||[];
-          data.avisos.unshift('Ignorando parcial não-oficial (fonte '+data.nacional_parcial.fonte+').');
-          if(data.br_oficial && data.br_oficial.votos_validos>0){
-            data.nacional_parcial={...data.br_oficial, fonte:'tse_br_oficial'};
-          }
+        const full = await capturarViaApiLocal();
+        lastFullAt = Date.now();
+        if(!full) return;
+        const brP = lastPayload?.nacional_parcial;
+        let merged = {...full, modo: (lastPayload?.modo||'').startsWith('br-fast') ? 'br-fast+api' : full.modo};
+        if(brP && brMaisAvancado(brP, merged.nacional_parcial)){
+          merged.nacional_parcial = brP;
+          merged.br_oficial = brP;
         }
-        enriquecerExteriorEmBackground();
-      }catch(_){ data = null; }
+        if(exteriorCacheSnap && !merged.exterior?.votos_validos) merged.exterior = exteriorCacheSnap;
+        merged = aplicarMarcaDaguaCliente(merged);
+        // preserva age/fetch do BR rápido
+        if(lastPayload?.br_fetch_ms!=null) merged.br_fetch_ms = lastPayload.br_fetch_ms;
+        if(lastPayload?.br_age_ms!=null) merged.br_age_ms = lastPayload.br_age_ms;
+        if(lastPayload?.api_base) merged.api_base = lastPayload.api_base;
+        render(merged);
+      }catch(_){}
+      finally { fullInflight = null; }
+    })();
+  }
+
+  async function capturar(force=false){
+    // Hot path: só BR-fast (~200ms). Full/projeção em background.
+    REFRESH_MS = REFRESH_MS_BR;
+    let data = lastPayload ? {...lastPayload} : null;
+
+    try{
+      const br = await capturarBrFast();
+      data = mesclarBrNoPayload(data, br);
+    }catch(_){
+      // API caiu — tenta snapshot/direto só se ainda não há placar
+      if(!data?.nacional_parcial?.votos_validos){
+        try{
+          REFRESH_MS = REFRESH_MS_SNAPSHOT;
+          data = await capturarViaSnapshot();
+          data = await aplicarBrEspelho(data);
+        }catch(_){}
+      }
+      if(!data?.nacional_parcial?.votos_validos){
+        try{
+          REFRESH_MS = REFRESH_MS_DIRETO;
+          data = await capturarDireto();
+        }catch(_){}
+      }
     }
 
-    if(!data){
-      try{
-        REFRESH_MS = REFRESH_MS_DIRETO;
-        data = await capturarDireto();
-        enriquecerExteriorEmBackground();
-      }catch(_){ data = null; }
-    }
+    if(!data) throw new Error('Nenhuma fonte de apuração disponível');
 
-    if(!data){
-      REFRESH_MS = REFRESH_MS_API;
-      data = await capturarViaApiLocal();
-    }
-
+    refrescarFullEmBackground(force);
+    enriquecerExteriorEmBackground();
     return aplicarMarcaDaguaCliente(data);
   }
 
@@ -904,11 +1002,16 @@
     setStatus('', 'ao vivo'+(data.modo?' · '+data.modo:''),
       `TSE ${np.atualizado||'—'} · capturado ${fmtHoraMs(data.capturado_em)}`);
     const fonte=(data.nacional_parcial&&data.nacional_parcial.fonte)||'—';
-    if(data.modo==='direto-tse'){
+    const brMs = data.br_fetch_ms!=null ? ` · TSE ${data.br_fetch_ms}ms` : '';
+    const brAge = data.br_age_ms!=null ? ` · age ${Math.round(data.br_age_ms)}ms` : '';
+    if(data.modo==='br-fast' || data.modo==='br-fast+api'){
+      const host=(data.api_base||'').replace(/^https?:\/\//,'');
+      $('cacheInfo').textContent = `placar ${fonte} · API rápida ${host}${brMs}${brAge} · ciclo ${REFRESH_MS}ms`;
+    } else if(data.modo==='direto-tse'){
       $('cacheInfo').textContent = `placar ${fonte} · CDN TSE · ciclo ${REFRESH_MS}ms`;
     } else if(data.modo==='api-local' || data.modo==='api-tunel'){
       $('cacheInfo').textContent = `placar ${fonte} · API · ciclo ${REFRESH_MS}ms · cache ${Math.round(age)}ms`;
-    } else     if(data.modo==='snapshot-github'){
+    } else if(data.modo==='snapshot-github'){
       const ageS = data.snapshot_age_ms!=null ? Math.round(data.snapshot_age_ms/1000)+'s' : '—';
       const sha = data.snapshot_sha ? data.snapshot_sha.slice(0,7) : '—';
       $('cacheInfo').textContent = `placar ${fonte} · snapshot ${sha} · atraso ${ageS} · ciclo ${REFRESH_MS}ms`;
@@ -955,7 +1058,9 @@
 
   $('btnRefresh').onclick=()=>{ load(true); schedule(); };
   $('sortBy').onchange=()=>{ if(lastPayload) renderTable(lastPayload); };
-  load(true); schedule();
+  carregarApiBases().finally(()=>{ load(true); schedule(); });
+  // Atualiza lista de túneis de tempos em tempos
+  setInterval(()=>{ carregarApiBases().catch(()=>{}); }, 60000);
 })();
 </script>
 </body>

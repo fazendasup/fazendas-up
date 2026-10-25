@@ -184,6 +184,19 @@ function mesclarMonotonico(parsedList) {
 }
 
 /**
+ * Só o arquivo BR — leve (~40ms). Usado no placar ultrarrápido.
+ */
+async function capturarBrOnly() {
+  garantirStoreDaEleicao();
+  const raw = await fetchJson(ufUrl('br'));
+  const br = parseAbrangencia(raw);
+  // Mantém store monotônico do BR (mesmo critério das UFs)
+  const prev = melhorPorUf.get('BR');
+  if (ehMaisAvancado(br, prev)) melhorPorUf.set('BR', br);
+  return melhorPorUf.get('BR') || br;
+}
+
+/**
  * Busca BR + 27 UFs em paralelo e aplica merge monotônico.
  */
 async function capturarTse() {
@@ -254,6 +267,7 @@ function resetMonotonicStore() {
 module.exports = {
   ELEICAO,
   capturarTse,
+  capturarBrOnly,
   parseAbrangencia,
   extractCands,
   ufUrl,
