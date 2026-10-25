@@ -121,20 +121,16 @@ while true; do
 
   PRIMARY=""
   FB=()
-  if [ "$LT_CODE" = "200" ]; then
-    LT_FAIL=0
-    PRIMARY="$FIXED_LT"
-    [ "$LHR_CODE" = "200" ] && [ -n "$LHR" ] && FB+=("$LHR")
-  elif [ "$LHR_CODE" = "200" ] && [ -n "$LHR" ]; then
+  # Prefere LHR quando saudável (mais rápido/estável); loca.lt como fallback de nome fixo.
+  if [ "$LHR_CODE" = "200" ] && [ -n "$LHR" ]; then
     PRIMARY="$LHR"
-    FB+=("$FIXED_LT")
-    LT_FAIL=$((LT_FAIL+1))
-    log "loca.lt unhealthy ($LT_CODE) fail=$LT_FAIL — using lhr backup"
-    if [ "$LT_FAIL" -ge 2 ]; then
-      pkill -f 'localtunnel --port 3001 --subdomain fazendas-apuracao-2026' 2>/dev/null || true
-      LT_FAIL=0
-    fi
+    [ "$LT_CODE" = "200" ] && FB+=("$FIXED_LT")
+    LT_FAIL=0
+  elif [ "$LT_CODE" = "200" ]; then
+    PRIMARY="$FIXED_LT"
+    LT_FAIL=0
   else
+    LT_FAIL=$((LT_FAIL+1))
     log "no healthy tunnel lt=$LT_CODE lhr=$LHR_CODE — restart both"
     pkill -f 'localtunnel --port 3001 --subdomain fazendas-apuracao-2026' 2>/dev/null || true
     pkill -f 'nokey@localhost.run' 2>/dev/null || true
@@ -142,9 +138,18 @@ while true; do
     sleep 3
     continue
   fi
+  if [ "$LT_CODE" != "200" ]; then
+    log "loca.lt unhealthy ($LT_CODE) — primary=$PRIMARY"
+    if [ "$LT_FAIL" -ge 2 ]; then
+      pkill -f 'localtunnel --port 3001 --subdomain fazendas-apuracao-2026' 2>/dev/null || true
+      LT_FAIL=0
+    fi
+  fi
 
-  write_api_base "$PRIMARY" "${FB[@]:-}"
+  changed=$(write_api_base "$PRIMARY" "${FB[@]:-}" || true)
   publish_api_base_if_changed
+  # Copia para o publisher de snapshot pegar no próximo ciclo
+  cp "$API_FILE" /tmp/api-base.json 2>/dev/null || true
   log "ok primary=$PRIMARY lt=$LT_CODE lhr=$LHR_CODE"
-  sleep 30
+  sleep 15
 done

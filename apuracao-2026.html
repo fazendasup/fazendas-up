@@ -488,16 +488,24 @@
   ];
   const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
   const SNAPSHOT_MAX_AGE_MS = 90 * 1000; // >90s = atrasado, tenta outra fonte
+  // raw/github PRIMEIRO — Pages cacheia api-base.json por minutos e deixa URL morta
   const API_BASE_URLS = [
-    'api-base.json', // mesmo origin no Pages (quando publicado)
-    'https://fazendasup.github.io/fazendas-up/api-base.json',
     'https://raw.githubusercontent.com/fazendasup/fazendas-up/main/api-base.json',
-    'https://raw.githubusercontent.com/fazendasup/fazendas-up/cursor/analise-apuracao-flavio-lula-d913/api-base.json',
     'https://raw.githack.com/fazendasup/fazendas-up/main/api-base.json',
+    'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/api-base.json',
+    'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/api-base.json',
+    'https://raw.githubusercontent.com/fazendasup/fazendas-up/cursor/analise-apuracao-flavio-lula-d913/api-base.json',
+    'api-base.json',
+    'https://fazendasup.github.io/fazendas-up/api-base.json',
   ];
   let apiBases = [API_BASE_FIXED];
+  try{
+    const saved = JSON.parse(localStorage.getItem('apuracao_api_bases')||'[]');
+    if(Array.isArray(saved) && saved.length) apiBases = [...new Set(saved.concat(apiBases))];
+  }catch(_){}
   let apiBaseAtivo = null;
   let lastFullAt = 0;
+  let lastBasesLoad = 0;
 
   function hostEhTunelOuLocal(hostname){
     return hostname==='localhost' || hostname==='127.0.0.1'
@@ -506,47 +514,69 @@
       || hostname.includes('localhost.run');
   }
 
+  function lembrarBase(base){
+    if(!base) return;
+    apiBaseAtivo = base;
+    apiBases = [...new Set([base, ...apiBases])].slice(0, 8);
+    try{ localStorage.setItem('apuracao_api_bases', JSON.stringify(apiBases)); }catch(_){}
+  }
+
   async function carregarApiBases(){
-    for(const u of API_BASE_URLS){
-      try{
-        const r=await fetchComTimeout(u+(u.includes('?')?'&':'?')+'_='+Date.now(),{cache:'no-store',mode:'cors'},4000);
-        if(!r.ok) continue;
-        const j=await r.json();
-        const list=[];
-        if(j.api_base) list.push(String(j.api_base).replace(/\/$/,''));
-        for(const f of (j.fallbacks||[])) if(f) list.push(String(f).replace(/\/$/,''));
-        list.push(API_BASE_FIXED);
-        apiBases=[...new Set(list)];
-        return apiBases;
-      }catch(_){}
+    lastBasesLoad = Date.now();
+    const found=[];
+    // Busca em paralelo — fica com a resposta mais fresca (updated_at)
+    const settled = await Promise.allSettled(API_BASE_URLS.map(async u=>{
+      const r=await fetchComTimeout(u+(u.includes('?')?'&':'?')+'_='+Date.now(),{cache:'no-store',mode:'cors'},3500);
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      return await r.json();
+    }));
+    let best=null;
+    for(const s of settled){
+      if(s.status!=='fulfilled' || !s.value) continue;
+      const j=s.value;
+      if(!best || String(j.updated_at||'') > String(best.updated_at||'')) best=j;
     }
-    apiBases=[API_BASE_FIXED];
+    if(best){
+      if(best.api_base) found.push(String(best.api_base).replace(/\/$/,''));
+      for(const f of (best.fallbacks||[])) if(f) found.push(String(f).replace(/\/$/,''));
+    }
+    found.push(API_BASE_FIXED);
+    try{
+      const saved = JSON.parse(localStorage.getItem('apuracao_api_bases')||'[]');
+      if(Array.isArray(saved)) for(const s of saved) if(s) found.push(s);
+    }catch(_){}
+    apiBases=[...new Set(found.filter(Boolean))];
     return apiBases;
   }
 
+  async function fetchOneBase(base, path, ms){
+    const headers = {};
+    try{
+      if(/loca\.lt$/i.test(new URL(base).hostname)) headers['Bypass-Tunnel-Reminder']='1';
+    }catch(_){}
+    const r=await fetchComTimeout(base+path, { cache:'no-store', mode:'cors', headers }, ms);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d=await r.json();
+    if(d && d.ok===false && d.error) throw new Error(d.error);
+    return { data:d, base };
+  }
+
+  /** Dispara todos os túneis em paralelo — o 1º que responder ganha (evita travar em URL morta). */
   async function fetchApiPath(path, ms=2500){
+    if(Date.now()-lastBasesLoad > 12000) carregarApiBases().catch(()=>{});
     const bases = apiBases.length ? apiBases : [API_BASE_FIXED];
-    // Prefere base que já funcionou
     const ordered = apiBaseAtivo
       ? [apiBaseAtivo, ...bases.filter(b=>b!==apiBaseAtivo)]
       : bases;
-    let lastErr;
-    for(const base of ordered){
-      try{
-        // Bypass-Tunnel-Reminder só no loca.lt (senão dispara preflight CORS)
-        const headers = {};
-        if(/loca\.lt$/i.test(new URL(base).hostname)) headers['Bypass-Tunnel-Reminder']='1';
-        const r=await fetchComTimeout(base+path, {
-          cache:'no-store', mode:'cors', headers,
-        }, ms);
-        if(!r.ok) throw new Error('HTTP '+r.status);
-        const d=await r.json();
-        if(d && d.ok===false && d.error) throw new Error(d.error);
-        apiBaseAtivo=base;
-        return { data:d, base };
-      }catch(e){ lastErr=e; }
+    const jobs = ordered.map(base => fetchOneBase(base, path, ms).then(res=>{
+      lembrarBase(res.base);
+      return res;
+    }));
+    try{
+      return await Promise.any(jobs);
+    }catch(_){
+      throw new Error('API indisponível em todos os túneis');
     }
-    throw lastErr||new Error('API indisponível');
   }
 
   async function fetchComTimeout(url, opts={}, ms=5000){
@@ -858,18 +888,24 @@
     REFRESH_MS = REFRESH_MS_BR;
     let data = lastPayload ? {...lastPayload} : null;
 
+    let apiOk=false;
     try{
       const br = await capturarBrFast();
       data = mesclarBrNoPayload(data, br);
+      apiOk=true;
     }catch(_){
-      // API caiu — tenta snapshot/direto só se ainda não há placar
-      if(!data?.nacional_parcial?.votos_validos){
-        try{
+      // API/túnel caiu — rediscover + snapshot na hora (não ficar congelado)
+      carregarApiBases().catch(()=>{});
+      try{
+        const snap = await capturarViaSnapshot();
+        const advanced = snap?.nacional_parcial && brMaisAvancado(snap.nacional_parcial, data?.nacional_parcial);
+        if(!data?.nacional_parcial?.votos_validos || advanced){
           REFRESH_MS = REFRESH_MS_SNAPSHOT;
-          data = await capturarViaSnapshot();
-          data = await aplicarBrEspelho(data);
-        }catch(_){}
-      }
+          data = await aplicarBrEspelho(snap);
+          data.avisos = data.avisos||[];
+          data.avisos.unshift('Túnel instável — placar via snapshot até a API voltar.');
+        }
+      }catch(_){}
       if(!data?.nacional_parcial?.votos_validos){
         try{
           REFRESH_MS = REFRESH_MS_DIRETO;
@@ -879,6 +915,12 @@
     }
 
     if(!data) throw new Error('Nenhuma fonte de apuração disponível');
+    if(!apiOk && data.nacional_parcial){
+      data.avisos = data.avisos||[];
+      if(!data.avisos.some(a=>/Túnel instável/.test(a))){
+        data.avisos.unshift('Reconectando API rápida…');
+      }
+    }
 
     refrescarFullEmBackground(force);
     enriquecerExteriorEmBackground();
@@ -1059,8 +1101,8 @@
   $('btnRefresh').onclick=()=>{ load(true); schedule(); };
   $('sortBy').onchange=()=>{ if(lastPayload) renderTable(lastPayload); };
   carregarApiBases().finally(()=>{ load(true); schedule(); });
-  // Atualiza lista de túneis de tempos em tempos
-  setInterval(()=>{ carregarApiBases().catch(()=>{}); }, 60000);
+  // Rediscover túneis com frequência — URL do lhr muda e Pages atrasa o api-base.json
+  setInterval(()=>{ carregarApiBases().catch(()=>{}); }, 10000);
 })();
 </script>
 </body>

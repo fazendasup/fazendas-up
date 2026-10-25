@@ -133,6 +133,10 @@ publish_once() {
   mkdir -p "$WORK"
   cp "$slim" "$WORK/apuracao-live.json"
   cp "$brjson" "$WORK/br-oficial.json"
+  # api-base fresco no live-snapshot (Pages cacheia o do main por minutos)
+  if [ -f "$ROOT/api-base.json" ]; then
+    cp "$ROOT/api-base.json" "$WORK/api-base.json"
+  fi
   printf '%s\n' 'Live apuração snapshot (SHA pointer in /rev). br-oficial.json = placar BR TSE.' > "$WORK/README.md"
 
   (
@@ -140,6 +144,7 @@ publish_once() {
     git init -q
     git checkout -q -b "$BRANCH"
     git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" add apuracao-live.json br-oficial.json README.md
+    [ -f api-base.json ] && git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" add api-base.json
     git -c user.email="live-snapshot@localhost" -c user.name="live-snapshot" commit -q -m "live: data"
     datasha=$(git rev-parse HEAD)
     printf '%s\n' "$datasha" > rev
