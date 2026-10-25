@@ -99,6 +99,7 @@ ensure_lhr_backup() {
 }
 
 log "watchdog start fixed=$FIXED_LT"
+LT_FAIL=0
 while true; do
   if ! curl -sS -o /dev/null --max-time 3 http://127.0.0.1:3001/api/eleicoes/2026/health; then
     log "local server down — waiting"
@@ -118,13 +119,18 @@ while true; do
   PRIMARY=""
   FB=()
   if [ "$LT_CODE" = "200" ]; then
+    LT_FAIL=0
     PRIMARY="$FIXED_LT"
     [ "$LHR_CODE" = "200" ] && [ -n "$LHR" ] && FB+=("$LHR")
   elif [ "$LHR_CODE" = "200" ] && [ -n "$LHR" ]; then
     PRIMARY="$LHR"
     FB+=("$FIXED_LT")
-    log "loca.lt unhealthy ($LT_CODE) — using lhr backup; restarting loca.lt"
-    pkill -f 'localtunnel --port 3001 --subdomain fazendas-apuracao-2026' 2>/dev/null || true
+    LT_FAIL=$((LT_FAIL+1))
+    log "loca.lt unhealthy ($LT_CODE) fail=$LT_FAIL — using lhr backup"
+    if [ "$LT_FAIL" -ge 2 ]; then
+      pkill -f 'localtunnel --port 3001 --subdomain fazendas-apuracao-2026' 2>/dev/null || true
+      LT_FAIL=0
+    fi
   else
     log "no healthy tunnel lt=$LT_CODE lhr=$LHR_CODE — restart both"
     pkill -f 'localtunnel --port 3001 --subdomain fazendas-apuracao-2026' 2>/dev/null || true

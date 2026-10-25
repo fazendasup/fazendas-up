@@ -411,7 +411,9 @@
     };
     // same-origin primeiro (túnel / localhost)
     if(location.protocol.startsWith('http')) add(location.origin);
-    add(API_BASE_FIXED);
+    const noTunel = !(location.hostname.endsWith('.loca.lt') || location.hostname.endsWith('.lhr.life') || location.hostname.endsWith('.trycloudflare.com') || location.hostname==='localhost' || location.hostname==='127.0.0.1');
+    // No GitHub Pages: lê api-base.json antes do subdomínio fixo (pode estar momentaneamente 502)
+    if(!noTunel) add(API_BASE_FIXED);
     for(const url of API_BASE_DISCOVERY){
       try{
         const r = await fetch(url + (url.includes('?')?'&':'?') + '_=' + agora, { cache:'no-store' });
@@ -421,8 +423,19 @@
         for(const x of (j.fallbacks || [])) add(x);
       }catch(_){}
     }
+    if(noTunel) add(API_BASE_FIXED);
     apiBaseCache = { at: agora, bases };
     return bases;
+  }
+
+  async function fetchComTimeout(url, opts={}, ms=8000){
+    const ctrl = new AbortController();
+    const t = setTimeout(()=>ctrl.abort(), ms);
+    try{
+      return await fetch(url, { ...opts, signal: ctrl.signal });
+    } finally {
+      clearTimeout(t);
+    }
   }
 
   async function capturarViaApi(force=false){
@@ -431,16 +444,18 @@
     let lastErr;
     for(const base of bases){
       try{
-        const r = await fetch(base + '/api/eleicoes/2026/apuracao' + q, {
+        const r = await fetchComTimeout(base + '/api/eleicoes/2026/apuracao' + q, {
           cache:'no-store',
           headers: apiFetchHeaders(),
           mode:'cors',
-        });
+        }, 8000);
         if(!r.ok) throw new Error('HTTP '+r.status);
         const d = await r.json();
         if(!d.ok && d.error) throw new Error(d.error);
         d.modo = base === location.origin ? 'api-local' : 'api-tunel';
         d.api_base = base;
+        // prioriza base que funcionou nas próximas rodadas
+        apiBaseCache = { at: Date.now(), bases: [base, ...bases.filter(b=>b!==base)] };
         return d;
       }catch(e){ lastErr = e; }
     }
