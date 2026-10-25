@@ -1,8 +1,8 @@
 {
-  "api_base": "https://fazendas-apuracao-2026.loca.lt",
+  "api_base": "https://c0f9f949e73e87.lhr.life",
   "fallbacks": [
-    "https://c0f9f949e73e87.lhr.life"
+    "https://fazendas-apuracao-2026.loca.lt"
   ],
-  "updated_at": "2026-10-25T17:36:01.832Z",
+  "updated_at": "2026-10-25T17:37:45.847Z",
   "note": "Atualizado automaticamente pelo watchdog do túnel. O HTML em GitHub Pages lê este arquivo."
 }
