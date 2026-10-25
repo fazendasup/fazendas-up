@@ -47,18 +47,53 @@ PY
 }
 
 publish_api_base_if_changed() {
-  git -C "$ROOT" add api-base.json
-  if git -C "$ROOT" diff --cached --quiet; then
-    return 0
+  # Publica api-base sem depender do branch de trabalho (evita non-fast-forward).
+  # 1) live-snapshot (fresco no raw)  2) main (Pages, com atraso de CDN)
+  local tmp=/tmp/api-base-publish
+  local url
+  url=$(git -C "$ROOT" remote get-url origin)
+  rm -rf "$tmp"
+  mkdir -p "$tmp"
+  (
+    cd "$tmp" || exit 1
+    git init -q
+    git checkout -q -b live-snapshot
+    # pega dados atuais do tip se existirem
+    git fetch -q --depth 1 "$url" live-snapshot 2>/dev/null || true
+    git checkout -q FETCH_HEAD -- . 2>/dev/null || true
+    cp "$API_FILE" api-base.json
+    # garante arquivos mínimos
+    [ -f apuracao-live.json ] || echo '{}' > apuracao-live.json
+    [ -f br-oficial.json ] || echo '{}' > br-oficial.json
+    [ -f README.md ] || echo 'live' > README.md
+    git add api-base.json apuracao-live.json br-oficial.json README.md
+    git -c user.email="tunnel-watchdog@localhost" -c user.name="tunnel-watchdog" \
+      commit -q -m "live: api-base" 2>/dev/null || true
+    datasha=$(git rev-parse HEAD)
+    printf '%s\n' "$datasha" > rev
+    git add rev
+    git -c user.email="tunnel-watchdog@localhost" -c user.name="tunnel-watchdog" \
+      commit -q -m "live: rev $datasha" 2>/dev/null || true
+    timeout 40 git push -q -f "$url" "HEAD:refs/heads/live-snapshot" || {
+      log "warn: push live-snapshot api-base falhou"
+      exit 1
+    }
+  ) || return 0
+
+  # main: commit só do arquivo via clone raso
+  rm -rf "$tmp-main"
+  if git clone -q --depth 1 --branch main "$url" "$tmp-main" 2>/dev/null; then
+    cp "$API_FILE" "$tmp-main/api-base.json"
+    (
+      cd "$tmp-main" || exit 0
+      git add api-base.json
+      if git diff --cached --quiet; then exit 0; fi
+      git -c user.email="tunnel-watchdog@localhost" -c user.name="tunnel-watchdog" \
+        commit -q -m "chore: atualizar api-base do túnel público"
+      timeout 40 git push -q origin main || log "warn: push main api-base falhou"
+    )
   fi
-  git -C "$ROOT" -c user.email="tunnel-watchdog@localhost" -c user.name="tunnel-watchdog" \
-    commit -m "chore: atualizar api-base do túnel público" >/dev/null 2>&1 || true
-  # Só no branch do agente (raw.githubusercontent). NÃO empurrar main:
-  # GitHub Pages cacheia api-base.json por ~10min e serve URL morta.
-  git -C "$ROOT" push origin "HEAD:$BRANCH" >/dev/null 2>&1 || log "warn: push branch falhou"
-  # Pages lê api-base.json do main / do próprio site
-  git -C "$ROOT" push origin "HEAD:main" >/dev/null 2>&1 || log "warn: push main falhou"
-  log "published api-base.json -> $BRANCH + main"
+  log "published api-base.json -> live-snapshot + main"
 }
 
 health() {
@@ -121,13 +156,14 @@ while true; do
 
   PRIMARY=""
   FB=()
-  # Prefere LHR quando saudável (mais rápido/estável); loca.lt como fallback de nome fixo.
+  # Prefere LHR quando saudável (mais rápido/estável); loca.lt sempre nos fallbacks.
   if [ "$LHR_CODE" = "200" ] && [ -n "$LHR" ]; then
     PRIMARY="$LHR"
-    [ "$LT_CODE" = "200" ] && FB+=("$FIXED_LT")
+    FB+=("$FIXED_LT")
     LT_FAIL=0
   elif [ "$LT_CODE" = "200" ]; then
     PRIMARY="$FIXED_LT"
+    [ -n "$LHR" ] && FB+=("$LHR")
     LT_FAIL=0
   else
     LT_FAIL=$((LT_FAIL+1))
@@ -140,15 +176,13 @@ while true; do
   fi
   if [ "$LT_CODE" != "200" ]; then
     log "loca.lt unhealthy ($LT_CODE) — primary=$PRIMARY"
-    if [ "$LT_FAIL" -ge 2 ]; then
-      pkill -f 'localtunnel --port 3001 --subdomain fazendas-apuracao-2026' 2>/dev/null || true
-      LT_FAIL=0
-    fi
+    pkill -f 'localtunnel --port 3001 --subdomain fazendas-apuracao-2026' 2>/dev/null || true
   fi
 
-  changed=$(write_api_base "$PRIMARY" "${FB[@]:-}" || true)
-  publish_api_base_if_changed
-  # Copia para o publisher de snapshot pegar no próximo ciclo
+  out=$(write_api_base "$PRIMARY" "${FB[@]:-}" || true)
+  if echo "$out" | rg -q '^changed$'; then
+    publish_api_base_if_changed
+  fi
   cp "$API_FILE" /tmp/api-base.json 2>/dev/null || true
   log "ok primary=$PRIMARY lt=$LT_CODE lhr=$LHR_CODE"
   sleep 15

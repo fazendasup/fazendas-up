@@ -488,12 +488,12 @@
   ];
   const API_BASE_FIXED = 'https://fazendas-apuracao-2026.loca.lt';
   const SNAPSHOT_MAX_AGE_MS = 90 * 1000; // >90s = atrasado, tenta outra fonte
-  // raw/github PRIMEIRO — Pages cacheia api-base.json por minutos e deixa URL morta
+  // live-snapshot PRIMEIRO (force-push fresco). Tip do main no raw.githubusercontent atrasa.
   const API_BASE_URLS = [
-    'https://raw.githubusercontent.com/fazendasup/fazendas-up/main/api-base.json',
-    'https://raw.githack.com/fazendasup/fazendas-up/main/api-base.json',
     'https://raw.githubusercontent.com/fazendasup/fazendas-up/live-snapshot/api-base.json',
     'https://raw.githack.com/fazendasup/fazendas-up/live-snapshot/api-base.json',
+    'https://raw.githack.com/fazendasup/fazendas-up/main/api-base.json',
+    'https://raw.githubusercontent.com/fazendasup/fazendas-up/main/api-base.json',
     'https://raw.githubusercontent.com/fazendasup/fazendas-up/cursor/analise-apuracao-flavio-lula-d913/api-base.json',
     'api-base.json',
     'https://fazendasup.github.io/fazendas-up/api-base.json',
