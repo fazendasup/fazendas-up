@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fazendas UP — Folhas de Manjericão</title>
+  <meta name="description" content="Apresentação do produto Folhas de Manjericão Fazendas UP: fresco, pronto para consumo e livre de agrotóxicos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #0f2419;
+      --forest-mid: #1a3d2a;
+      --leaf: #3f8f5a;
+      --mist: #e7efe6;
+      --cream: #f3f6f1;
+      --ink: #142018;
+      --brand: #7a2c78;
+      --brand-soft: #a84fa3;
+      --glow: rgba(63, 143, 90, 0.35);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      color: var(--cream);
+      background: var(--forest);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 80% 55% at 70% 15%, rgba(122, 44, 120, 0.28), transparent 55%),
+        radial-gradient(ellipse 70% 50% at 15% 80%, rgba(63, 143, 90, 0.22), transparent 50%),
+        linear-gradient(165deg, #0c1c14 0%, #13281c 45%, #0a1510 100%);
+    }
+
+    .ambient::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    /* —— Hero —— */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-visual {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
+      transform: scale(1.04);
+      animation: hero-drift 14s var(--ease) infinite alternate;
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(10, 20, 14, 0.78) 0%, rgba(10, 20, 14, 0.35) 48%, rgba(10, 20, 14, 0.15) 100%),
+        linear-gradient(180deg, rgba(10, 20, 14, 0.15) 0%, rgba(10, 20, 14, 0.82) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: clamp(4rem, 10vh, 7rem) 0 clamp(3rem, 8vh, 5rem);
+      max-width: 34rem;
+      animation: rise 1s var(--ease) both;
+    }
+
+    .hero .brand {
+      font-family: "Fraunces", serif;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin-bottom: 1.1rem;
+      color: var(--cream);
+    }
+
+    .hero .brand span {
+      display: inline-block;
+      color: var(--brand-soft);
+      font-style: italic;
+    }
+
+    .hero h1 {
+      font-family: "Fraunces", serif;
+      font-weight: 500;
+      font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.85rem;
+      color: var(--mist);
+    }
+
+    .hero .lede {
+      color: rgba(231, 239, 230, 0.82);
+      font-size: 1.05rem;
+      max-width: 28rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.85rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+      transition: transform 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--leaf);
+      color: #06140c;
+    }
+
+    .btn-primary:hover { background: #4aa86a; }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(231, 239, 230, 0.35);
+      color: var(--cream);
+    }
+
+    .btn-ghost:hover { border-color: rgba(231, 239, 230, 0.7); }
+
+    /* —— Sections —— */
+    section {
+      padding: clamp(3.5rem, 8vh, 6rem) 0;
+    }
+
+    .section-head {
+      max-width: 36rem;
+      margin-bottom: 2rem;
+      animation: rise 0.9s var(--ease) both;
+    }
+
+    .section-head h2 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.65rem;
+    }
+
+    .section-head p {
+      color: rgba(231, 239, 230, 0.75);
+    }
+
+    .promise {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: center;
+    }
+
+    .promise-copy .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brand-soft);
+      margin-bottom: 0.85rem;
+    }
+
+    .promise-copy h2 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.9rem;
+    }
+
+    .promise-copy p {
+      color: rgba(231, 239, 230, 0.78);
+      margin-bottom: 1.4rem;
+      max-width: 32rem;
+    }
+
+    .facts {
+      list-style: none;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .facts li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.7rem;
+      align-items: start;
+      color: rgba(231, 239, 230, 0.9);
+      font-weight: 500;
+    }
+
+    .facts li::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      margin-top: 0.45rem;
+      border-radius: 50%;
+      background: var(--leaf);
+      box-shadow: 0 0 0 4px rgba(63, 143, 90, 0.18);
+    }
+
+    .promise-visual {
+      position: relative;
+      border-radius: 1.4rem;
+      overflow: hidden;
+      min-height: 28rem;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      animation: floaty 7s ease-in-out infinite;
+    }
+
+    .promise-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 28rem;
+    }
+
+    /* —— Gallery —— */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .shot {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.15rem;
+      background: #102318;
+      aspect-ratio: 1 / 1.05;
+      isolation: isolate;
+    }
+
+    .shot:first-child {
+      grid-column: span 2;
+      aspect-ratio: 16 / 9;
+    }
+
+    .shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease);
+    }
+
+    .shot:hover img { transform: scale(1.04); }
+
+    .shot figcaption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 1.1rem 1.15rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: linear-gradient(transparent, rgba(8, 16, 12, 0.85));
+      color: var(--mist);
+    }
+
+    /* —— Specs —— */
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      border-top: 1px solid rgba(231, 239, 230, 0.12);
+      padding-top: 2rem;
+    }
+
+    .spec strong {
+      display: block;
+      font-family: "Fraunces", serif;
+      font-size: 1.55rem;
+      margin-bottom: 0.25rem;
+      color: var(--cream);
+    }
+
+    .spec span {
+      color: rgba(231, 239, 230, 0.68);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid rgba(231, 239, 230, 0.1);
+      color: rgba(231, 239, 230, 0.55);
+      font-size: 0.9rem;
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes hero-drift {
+      from { transform: scale(1.04) translate3d(0, 0, 0); }
+      to { transform: scale(1.08) translate3d(-1.2%, -0.8%, 0); }
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @media (max-width: 860px) {
+      .promise { grid-template-columns: 1fr; }
+      .promise-visual,
+      .promise-visual img { min-height: 22rem; }
+      .gallery { grid-template-columns: 1fr; }
+      .shot:first-child {
+        grid-column: auto;
+        aspect-ratio: 16 / 10;
+      }
+      .specs { grid-template-columns: 1fr; gap: 1.25rem; }
+      .hero-visual::after {
+        background:
+          linear-gradient(180deg, rgba(10, 20, 14, 0.2) 0%, rgba(10, 20, 14, 0.88) 72%),
+          linear-gradient(90deg, rgba(10, 20, 14, 0.55), transparent 70%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="hero">
+    <div class="hero-visual" aria-hidden="true">
+      <img src="assets/manjericao-slate-apresentacao.jpg" alt="" width="1600" height="900">
+    </div>
+    <div class="wrap hero-content">
+      <p class="brand">Fazendas <span>UP</span></p>
+      <h1>Folhas de Manjericão</h1>
+      <p class="lede">Fresco, embalado e pronto para a cozinha — cultivo sem agrotóxicos, com o sabor que a sua receita merece.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#apresentacao">Ver apresentação</a>
+        <a class="btn btn-ghost" href="#galeria">Trocar fundos</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="apresentacao">
+      <div class="wrap promise">
+        <div class="promise-copy">
+          <span class="eyebrow">Produto</span>
+          <h2>Do cultivo à mesa, sem rodeios.</h2>
+          <p>Embalagem transparente que mostra a qualidade das folhas, selo de pronto para consumo e orientação clara de refrigeração.</p>
+          <ul class="facts">
+            <li>Livre de agrotóxicos</li>
+            <li>Pronto para consumo</li>
+            <li>Manter refrigerado entre 5 e 10 °C</li>
+          </ul>
+        </div>
+        <figure class="promise-visual">
+          <img src="assets/manjericao-apresentacao-hero.jpg" alt="Embalagem de Folhas de Manjericão Fazendas UP sobre fundo verde profissional" width="1152" height="864">
+        </figure>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Fundos para apresentação</h2>
+          <p>O produto saiu do OSB original e ganhou cenários de catálogo — slate, hortelã e mármore de estúdio.</p>
+        </div>
+        <div class="gallery">
+          <figure class="shot">
+            <img src="assets/manjericao-slate-apresentacao.jpg" alt="Manjericão Fazendas UP em bancada de slate escuro" width="1600" height="900">
+            <figcaption>Slate — ideal para slides e banners</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/manjericao-apresentacao-hero.jpg" alt="Manjericão Fazendas UP com fundo verde e manjericão fresco" width="1152" height="864">
+            <figcaption>Hortelã — clima de frescor</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/manjericao-studio-marble.jpg" alt="Manjericão Fazendas UP em superfície de mármore" width="1024" height="1024">
+            <figcaption>Estúdio — catálogo e e-commerce</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="specs">
+          <div class="spec">
+            <strong>50 g</strong>
+            <span>Peso líquido da embalagem</span>
+          </div>
+          <div class="spec">
+            <strong>5–10 °C</strong>
+            <span>Faixa de refrigeração recomendada</span>
+          </div>
+          <div class="spec">
+            <strong>0 agrotóxicos</strong>
+            <span>Cultivo limpo, folha a folha</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Fazendas UP — Folhas de Manjericão</p>
+      <p>Arquivos em <code>apresentacao-produto/assets/</code></p>
+    </div>
+  </footer>
+</body>
+</html>
